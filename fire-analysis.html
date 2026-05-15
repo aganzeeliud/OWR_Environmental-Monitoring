@@ -3,57 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fire Dynamics Analysis | OWR Monitoring</title>
+    <title>Fire & Forest Intel | OWR Monitoring</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #334155; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-<body class="bg-[#f8fafc]">
-    <nav class="bg-white p-6 border-b border-slate-200 shadow-sm">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-xl font-black text-slate-900 uppercase tracking-tighter">OWR FIRE <span class="text-rose-600">INTEL</span></a>
-            <div class="flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
-                <a href="maps.html" class="hover:text-emerald-600 transition">Live Map</a>
-                <a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a>
+<body class="text-slate-700">
+
+    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
+        <div class="flex items-center space-x-3">
+            <div class="bg-rose-600 p-2 rounded-lg">
+                <i class="fas fa-fire text-white"></i>
             </div>
+            <span class="font-bold tracking-tighter text-xl uppercase">OWR FIRE INTEL</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <a href="index.html" class="text-rose-600">Dashboard</a>
+            <a href="map.html" class="hover:text-rose-600 transition">Interactive Map</a>
+            <a href="methodology.html" class="hover:text-rose-600 transition">Methodology</a>
+            <a href="download.html" class="hover:text-rose-600 transition">Download Data</a>
         </div>
     </nav>
-    <main class="container mx-auto px-6 py-20 text-center">
-        <div class="w-24 h-24 bg-rose-50 text-rose-600 rounded-3xl flex items-center justify-center mx-auto mb-10 border border-rose-100 shadow-sm">
-            <i class="fas fa-fire-alt text-4xl"></i>
-        </div>
-        <h1 class="text-5xl font-black text-slate-900 mb-6 uppercase tracking-tighter">Fire Dynamics Monitoring</h1>
-        <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-16">Integrating <strong>NASA FIRMS</strong> (MODIS/VIIRS) thermal anomalies to monitor illegal land clearing and habitat loss.</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm">
-                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Yearly Alerts</div>
-                <div class="text-4xl font-black text-slate-900">1,240</div>
+
+    <main class="container mx-auto px-6 py-12">
+        <header class="mb-16">
+            <div class="flex justify-between items-end gap-8 mb-8">
+                <div class="max-w-3xl">
+                    <h1 class="text-6xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Wildfire <span class="text-rose-600">Analytics</span></h1>
+                    <p class="text-slate-500 text-lg">Advanced classification and high-resolution hectare loss analysis within the Okapi Wildlife Reserve (2001–2026). Monitoring anthropogenic drivers and environmental severity.</p>
+                </div>
+                <div class="bg-emerald-50 px-6 py-3 rounded-2xl border border-emerald-100 flex flex-col items-center">
+                    <span class="text-[10px] font-black uppercase text-emerald-600 tracking-widest">Reserve Health</span>
+                    <span class="text-xl font-black text-emerald-700" id="cumLossPercent">0.0%</span>
+                    <span class="text-[10px] font-bold text-emerald-600">Cumulative Impact</span>
+                </div>
             </div>
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm">
-                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Burned Area (ha)</div>
-                <div class="text-4xl font-black text-slate-900">4,250</div>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Burned</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiBurned">0</div>
+                <p class="text-[10px] text-amber-600 font-bold mt-4">Hectares Affected</p>
             </div>
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm">
-                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Risk Level</div>
-                <div class="text-4xl font-black text-rose-600 uppercase">Critical</div>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Forest Lost</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiLoss">0</div>
+                <p class="text-[10px] text-emerald-600 font-bold mt-4">Primary Canopy (ha)</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Peak Severity</h3>
+                <div class="text-4xl font-black text-rose-600">EXTREME</div>
+                <p class="text-[10px] text-rose-400 font-bold mt-4">Dry Season Criticality</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Primary Driver</h3>
+                <div class="text-3xl font-black text-slate-900 uppercase leading-none" id="kpiDriver">AGRI</div>
+                <p class="text-[10px] text-slate-400 font-bold mt-4">Dominant Fire Type</p>
             </div>
         </div>
 
-        <div class="bg-white p-20 rounded-[3rem] border border-slate-200 shadow-sm text-slate-300 font-black uppercase tracking-[0.2em]">
-            Detailed Fire Analysis Module Under Maintenance
+        <!-- Main Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
+            <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Annual Forest Loss & Burn Intensity</h3>
+                <div class="relative h-[400px]">
+                    <canvas id="annualLossChart"></canvas>
+                </div>
+            </div>
+            <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10 text-center">Fire Type Distribution</h3>
+                <div class="relative h-[400px]">
+                    <canvas id="typeChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Severity Index</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="severityChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Cumulative Degradation</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="cumulativeChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Monthly Seasonality</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="seasonalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Table -->
+        <div class="mt-16 bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm overflow-hidden">
+            <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-8">Annual Impact Matrix</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-[10px] font-black uppercase text-slate-400 border-b border-slate-100">
+                            <th class="pb-4 px-4 text-center">Year</th>
+                            <th class="pb-4 px-4">Burned (ha)</th>
+                            <th class="pb-4 px-4">Loss (ha)</th>
+                            <th class="pb-4 px-4">Cumulative (ha)</th>
+                            <th class="pb-4 px-4">Impact %</th>
+                            <th class="pb-4 px-4 text-right">Fire Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTableBody" class="text-xs font-bold text-slate-600">
+                        <!-- Dynamic Rows -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <footer class="bg-white py-20 mt-20 border-t border-slate-200">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Fire Intel System</p>
+            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Fire Monitoring System • Analytics Engine v2.1</p>
+            <div class="flex justify-center gap-12 opacity-50 mb-10 grayscale">
+                <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-8" alt="NASA FIRMS">
+            </div>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Advanced Classification Pipeline</p>
         </div>
     </footer>
+
+    <script>
+        async function initDashboard() {
+            const lossRes = await fetch('data/csv/annual-hectare-loss.csv');
+            const lossText = await lossRes.text();
+            const lossData = Papa.parse(lossText, { header: true }).data.filter(d => d.year);
+
+            const classRes = await fetch('data/csv/fire-classification.csv');
+            const classText = await classRes.text();
+            const classData = Papa.parse(classText, { header: true }).data.filter(d => d.year);
+
+            // Update KPIs
+            const latest = lossData[lossData.length - 1];
+            const totalBurned = lossData.reduce((acc, curr) => acc + parseFloat(curr.annual_burned_ha), 0);
+            const totalLoss = lossData.reduce((acc, curr) => acc + parseFloat(curr.annual_forest_loss_ha), 0);
+            
+            document.getElementById('kpiBurned').innerText = Math.round(totalBurned).toLocaleString();
+            document.getElementById('kpiLoss').innerText = Math.round(totalLoss).toLocaleString();
+            document.getElementById('cumLossPercent').innerText = (totalLoss / 1372625 * 100).toFixed(2) + '%';
+
+            // Driver distribution
+            const drivers = {};
+            classData.forEach(d => drivers[d.fire_type] = (drivers[d.fire_type] || 0) + 1);
+            const topDriver = Object.keys(drivers).reduce((a, b) => drivers[a] > drivers[b] ? a : b);
+            document.getElementById('kpiDriver').innerText = topDriver.split(' ')[0].toUpperCase();
+
+            // Charts
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = 'Plus Jakarta Sans';
+            Chart.defaults.font.weight = 'bold';
+
+            // Annual Loss Chart
+            new Chart(document.getElementById('annualLossChart'), {
+                type: 'bar',
+                data: {
+                    labels: lossData.map(d => d.year),
+                    datasets: [
+                        { label: 'Burned Area (ha)', data: lossData.map(d => d.annual_burned_ha), backgroundColor: '#fcd34d' },
+                        { label: 'Forest Loss (ha)', data: lossData.map(d => d.annual_forest_loss_ha), backgroundColor: '#10b981' }
+                    ]
+                },
+                options: { 
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+
+            // Type Distribution
+            new Chart(document.getElementById('typeChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(drivers),
+                    datasets: [{
+                        data: Object.values(drivers),
+                        backgroundColor: ['#f59e0b', '#10b981', '#3b82f6', '#ef4444', '#8b5cf6', '#06b6d4', '#f43f5e', '#64748b']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } } }
+            });
+
+            // Severity Chart
+            const severity = { "Low": 0, "Moderate": 0, "High": 0, "Extreme": 0 };
+            classData.forEach(d => severity[d.severity]++);
+            new Chart(document.getElementById('severityChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: Object.keys(severity),
+                    datasets: [{ data: Object.values(severity), backgroundColor: ['#10b981', '#fcd34d', '#f59e0b', '#e11d48'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: 'rgba(0,0,0,0.05)' } } } }
+            });
+
+            // Cumulative Chart
+            new Chart(document.getElementById('cumulativeChart'), {
+                type: 'line',
+                data: {
+                    labels: lossData.map(d => d.year),
+                    datasets: [{ label: 'Cumulative Loss', data: lossData.map(d => d.cumulative_loss_ha), borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16, 185, 129, 0.05)', tension: 0.4 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
+            });
+
+            // Seasonal Chart (Monthly)
+            const monthly = Array(12).fill(0);
+            classData.forEach(d => monthly[parseInt(d.month)-1]++);
+            new Chart(document.getElementById('seasonalChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                    datasets: [{ label: 'Fire Frequency', data: monthly, borderColor: '#f59e0b', tension: 0.4 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            });
+
+            // Table
+            const tbody = document.getElementById('statsTableBody');
+            lossData.reverse().forEach(d => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-50 hover:bg-slate-50 transition";
+                tr.innerHTML = `
+                    <td class="py-4 px-4 text-center text-slate-900">${d.year}</td>
+                    <td class="py-4 px-4">${parseFloat(d.annual_burned_ha).toLocaleString()}</td>
+                    <td class="py-4 px-4 text-rose-600">${parseFloat(d.annual_forest_loss_ha).toLocaleString()}</td>
+                    <td class="py-4 px-4">${parseFloat(d.cumulative_loss_ha).toLocaleString()}</td>
+                    <td class="py-4 px-4 text-emerald-600">${d.loss_percent_reserve}%</td>
+                    <td class="py-4 px-4 text-right">${d.fire_count}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        initDashboard();
+    </script>
 </body>
 </html>
