@@ -34,9 +34,9 @@ def fetch_cami():
             return
 
         os.makedirs("data/mining", exist_ok=True)
-        with open("data/mining/cami_titles_polygons.geojson", "w") as f:
+        with open("data/mining/cami-titles-polygons.geojson", "w") as f:
             json.dump(data, f, indent=4)
-        print(f"Saved {len(data['features'])} CAMI polygons to data/mining/cami_titles_polygons.geojson")
+        print(f"Saved {len(data['features'])} CAMI polygons to data/mining/cami-titles-polygons.geojson")
     
     except Exception as e:
         print(f"Error fetching data: {e}")
@@ -89,9 +89,9 @@ def generate_simulated_polygons():
     }
     
     os.makedirs("data/mining", exist_ok=True)
-    with open("data/mining/cami_titles_polygons.geojson", "w") as f:
+    with open("data/mining/cami-titles-polygons.geojson", "w") as f:
         json.dump(geojson, f, indent=4)
-    print("Saved simulated polygons to data/mining/cami_titles_polygons.geojson")
+    print("Saved simulated polygons to data/mining/cami-titles-polygons.geojson")
 
 if __name__ == "__main__":
     fetch_cami()

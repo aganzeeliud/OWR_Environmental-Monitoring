@@ -175,64 +175,64 @@ COMMON_HEADERS = ["year", "latitude", "longitude", "province", "territory", "zon
 
 def main():
     # 1. Forest Loss
-    generate_csv("forest_loss_2000_2026.csv", COMMON_HEADERS + ["annual_forest_loss_ha", "cumulative_loss_ha", "remaining_forest_ha", "percent_loss", "forest_fragmentation_index", "primary_forest_loss_ha", "degradation_intensity"], gen_forest_loss)
+    generate_csv("forest-loss-2000-2026.csv", COMMON_HEADERS + ["annual_forest_loss_ha", "cumulative_loss_ha", "remaining_forest_ha", "percent_loss", "forest_fragmentation_index", "primary_forest_loss_ha", "degradation_intensity"], gen_forest_loss)
     
     # 2. Forest Cover Annual
-    generate_csv("forest_cover_annual.csv", COMMON_HEADERS + ["forest_cover_ha", "canopy_density_avg", "net_change_ha"], lambda y: get_common(y) + [1300000 - (y-2000)*3000, 85, -3000])
+    generate_csv("forest-cover-annual.csv", COMMON_HEADERS + ["forest_cover_ha", "canopy_density_avg", "net_change_ha"], lambda y: get_common(y) + [1300000 - (y-2000)*3000, 85, -3000])
 
     # 3. Illegal Logging Hotspots
-    generate_csv("illegal_logging_hotspots.csv", COMMON_HEADERS + ["hotspot_id", "year_detected", "logging_area_ha", "logging_density", "distance_to_road", "forest_type", "suspected_illegal_activity", "hotspot_risk_level"], gen_logging)
+    generate_csv("illegal-logging-hotspots.csv", COMMON_HEADERS + ["hotspot_id", "year_detected", "logging_area_ha", "logging_density", "distance_to_road", "forest_type", "suspected_illegal_activity", "hotspot_risk_level"], gen_logging)
 
     # 4. Mining Expansion
-    generate_csv("mining_expansion.csv", COMMON_HEADERS + ["mining_site_id", "mining_type", "year_detected", "mining_area_ha", "forest_loss_due_to_mining_ha", "distance_to_road_km", "river_proximity_km", "inside_protected_area", "biodiversity_risk_level"], gen_mining)
+    generate_csv("mining-expansion.csv", COMMON_HEADERS + ["mining_site_id", "mining_type", "year_detected", "mining_area_ha", "forest_loss_due_to_mining_ha", "distance_to_road_km", "river_proximity_km", "inside_protected_area", "biodiversity_risk_level"], gen_mining)
 
     # 5. Mining Forest Overlap
-    generate_csv("mining_forest_overlap.csv", COMMON_HEADERS + ["overlap_area_ha", "impact_severity"], lambda y: get_common(y) + [random.uniform(50, 200), "High"])
+    generate_csv("mining-forest-overlap.csv", COMMON_HEADERS + ["overlap_area_ha", "impact_severity"], lambda y: get_common(y) + [random.uniform(50, 200), "High"])
 
     # 6. Fire Burned Area
-    generate_csv("fire_burned_area.csv", COMMON_HEADERS + ["fire_id", "year_active", "burned_area_ha", "fire_severity", "vegetation_type", "carbon_emission_estimate", "recurrence_frequency", "distance_to_settlement"], gen_fire)
+    generate_csv("fire-burned-area.csv", COMMON_HEADERS + ["fire_id", "year_active", "burned_area_ha", "fire_severity", "vegetation_type", "carbon_emission_estimate", "recurrence_frequency", "distance_to_settlement"], gen_fire)
 
     # 7. Fire Hotspots
-    generate_csv("fire_hotspots.csv", COMMON_HEADERS + ["hotspot_intensity", "confidence"], lambda y: get_common(y) + [random.uniform(300, 500), 0.95])
+    generate_csv("fire-hotspots.csv", COMMON_HEADERS + ["hotspot_intensity", "confidence"], lambda y: get_common(y) + [random.uniform(300, 500), 0.95])
 
     # 8. Carbon Emissions
-    generate_csv("carbon_emissions.csv", COMMON_HEADERS + ["carbon_loss_tons", "carbon_loss_per_ha", "biomass_loss_ha", "fire_related_emissions", "logging_related_emissions", "mining_related_emissions"], gen_carbon)
+    generate_csv("carbon-emissions.csv", COMMON_HEADERS + ["carbon_loss_tons", "carbon_loss_per_ha", "biomass_loss_ha", "fire_related_emissions", "logging_related_emissions", "mining_related_emissions"], gen_carbon)
 
     # 9. Biomass Loss
-    generate_csv("biomass_loss.csv", COMMON_HEADERS + ["biomass_lost_tons", "above_ground_biomass_ha"], lambda y: get_common(y) + [random.uniform(10000, 50000), 350])
+    generate_csv("biomass-loss.csv", COMMON_HEADERS + ["biomass_lost_tons", "above_ground_biomass_ha"], lambda y: get_common(y) + [random.uniform(10000, 50000), 350])
 
     # 10. Habitat Fragmentation
-    generate_csv("habitat_fragmentation.csv", COMMON_HEADERS + ["fragment_count", "avg_fragment_size_ha"], lambda y: get_common(y) + [int(100 + (y-2000)*5), round(5000 - (y-2000)*10, 2)])
+    generate_csv("habitat-fragmentation.csv", COMMON_HEADERS + ["fragment_count", "avg_fragment_size_ha"], lambda y: get_common(y) + [int(100 + (y-2000)*5), round(5000 - (y-2000)*10, 2)])
 
     # 11. Biodiversity Risk
-    generate_csv("biodiversity_risk.csv", COMMON_HEADERS + ["habitat_zone", "species_name", "habitat_loss_ha", "fragmentation_level", "conservation_priority", "threat_level", "proximity_to_mining", "proximity_to_logging"], gen_biodiversity)
+    generate_csv("biodiversity-risk.csv", COMMON_HEADERS + ["habitat_zone", "species_name", "habitat_loss_ha", "fragmentation_level", "conservation_priority", "threat_level", "proximity_to_mining", "proximity_to_logging"], gen_biodiversity)
 
     # 12. Road Expansion
-    generate_csv("road_expansion.csv", COMMON_HEADERS + ["new_road_km", "road_type"], lambda y: get_common(y) + [random.uniform(1, 10), "Logging Track"])
+    generate_csv("road-expansion.csv", COMMON_HEADERS + ["new_road_km", "road_type"], lambda y: get_common(y) + [random.uniform(1, 10), "Logging Track"])
 
     # 13. Road Forest Buffer Analysis
-    generate_csv("road_forest_buffer_analysis.csv", COMMON_HEADERS + ["buffer_distance_m", "forest_loss_in_buffer_ha"], lambda y: get_common(y) + [1000, random.uniform(100, 500)])
+    generate_csv("road-forest-buffer-analysis.csv", COMMON_HEADERS + ["buffer_distance_m", "forest_loss_in_buffer_ha"], lambda y: get_common(y) + [1000, random.uniform(100, 500)])
 
     # 14. Logging Roads
-    generate_csv("logging_roads.csv", COMMON_HEADERS + ["road_id", "active_status"], lambda y: get_common(y) + [f"R-{y}", "Active"])
+    generate_csv("logging-roads.csv", COMMON_HEADERS + ["road_id", "active_status"], lambda y: get_common(y) + [f"R-{y}", "Active"])
 
     # 15. Settlement Expansion
-    generate_csv("settlement_expansion.csv", COMMON_HEADERS + ["settlement_area_ha", "population_estimate"], lambda y: get_common(y) + [random.uniform(10, 50), random.randint(1000, 5000)])
+    generate_csv("settlement-expansion.csv", COMMON_HEADERS + ["settlement_area_ha", "population_estimate"], lambda y: get_common(y) + [random.uniform(10, 50), random.randint(1000, 5000)])
 
     # 16. Protected Area Encroachment
-    generate_csv("protected_area_encroachment.csv", COMMON_HEADERS + ["encroachment_type", "encroached_area_ha"], lambda y: get_common(y) + ["Agriculture", random.uniform(20, 100)])
+    generate_csv("protected-area-encroachment.csv", COMMON_HEADERS + ["encroachment_type", "encroached_area_ha"], lambda y: get_common(y) + ["Agriculture", random.uniform(20, 100)])
 
     # 17. Watershed Impacts
-    generate_csv("watershed_impacts.csv", COMMON_HEADERS + ["turbidity_increase_percent", "riparian_loss_ha"], lambda y: get_common(y) + [random.uniform(5, 25), random.uniform(2, 10)])
+    generate_csv("watershed-impacts.csv", COMMON_HEADERS + ["turbidity_increase_percent", "riparian_loss_ha"], lambda y: get_common(y) + [random.uniform(5, 25), random.uniform(2, 10)])
 
     # 18. Annual Statistics
-    generate_csv("annual_statistics.csv", COMMON_HEADERS + ["total_threat_index", "overall_health_score"], lambda y: get_common(y) + [random.uniform(0.1, 0.9), random.uniform(60, 95)])
+    generate_csv("annual-statistics.csv", COMMON_HEADERS + ["total_threat_index", "overall_health_score"], lambda y: get_common(y) + [random.uniform(0.1, 0.9), random.uniform(60, 95)])
 
     # 19. Landcover Change
-    generate_csv("landcover_change.csv", COMMON_HEADERS + ["from_class", "to_class", "change_area_ha"], lambda y: get_common(y) + ["Primary Forest", "Agriculture", random.uniform(50, 300)])
+    generate_csv("landcover-change.csv", COMMON_HEADERS + ["from_class", "to_class", "change_area_ha"], lambda y: get_common(y) + ["Primary Forest", "Agriculture", random.uniform(50, 300)])
 
     # 20. Conservation Priority Zones
-    generate_csv("conservation_priority_zones.csv", COMMON_HEADERS + ["priority_level", "action_required"], lambda y: get_common(y) + ["Critical", "Immediate Patrol"])
+    generate_csv("conservation-priority-zones.csv", COMMON_HEADERS + ["priority_level", "action_required"], lambda y: get_common(y) + ["Critical", "Immediate Patrol"])
 
 if __name__ == "__main__":
     main()

@@ -60,30 +60,30 @@ def generate_temporal_csv(filename, fields_generator):
 
 def main():
     # 1. Yearly Forest Loss Comparison
-    generate_temporal_csv("yearly_forest_loss_comparison.csv", None)
+    generate_temporal_csv("yearly-forest-loss-comparison.csv", None)
     
     # Generate the other 9 files (using the same logic but naming them correctly for the platform requirements)
     filenames = [
-        "yearly_mining_expansion.csv",
-        "yearly_fire_impacts.csv",
-        "yearly_logging_intensity.csv",
-        "yearly_carbon_emissions.csv",
-        "yearly_biodiversity_impacts.csv",
-        "yearly_fragmentation_analysis.csv",
-        "yearly_road_expansion.csv",
-        "yearly_human_encroachment.csv",
-        "yearly_combined_environmental_impacts.csv"
+        "yearly-mining-expansion.csv",
+        "yearly-fire-impacts.csv",
+        "yearly-logging-intensity.csv",
+        "yearly-carbon-emissions.csv",
+        "yearly-biodiversity-impacts.csv",
+        "yearly-fragmentation-analysis.csv",
+        "yearly-road-expansion.csv",
+        "yearly-human-encroachment.csv",
+        "yearly-combined-environmental-impacts.csv"
     ]
     
     for fname in filenames:
         generate_temporal_csv(fname, None)
 
     # 11. Yearly Comparison Tables (Formatted for display)
-    table_path = os.path.join("data", "csv", "yearly_comparison_tables", "master_comparison_2000_2026.csv")
+    table_path = os.path.join("data", "csv", "yearly_comparison_tables", "master-comparison-2000-2026.csv")
     os.makedirs(os.path.dirname(table_path), exist_ok=True)
     # Just copy the combined one for the master table
     import shutil
-    shutil.copy(os.path.join("data", "csv", "yearly_combined_environmental_impacts.csv"), table_path)
+    shutil.copy(os.path.join("data", "csv", "yearly-combined-environmental-impacts.csv"), table_path)
     print("Generated Master Comparison Table")
 
 if __name__ == "__main__":

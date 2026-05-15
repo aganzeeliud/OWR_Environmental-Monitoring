@@ -108,8 +108,8 @@
                     <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Showing only concessions within Okapi Wildlife Reserve</p>
                 </div>
                 <div class="flex gap-4">
-                    <button onclick="downloadCSV('mining_inside.csv')" class="bg-slate-100 hover:bg-slate-200 text-slate-900 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition border border-slate-200">Export CSV</button>
-                    <button onclick="downloadCSV('mining_inside.geojson')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition shadow-lg shadow-emerald-200">GeoJSON API</button>
+                    <button onclick="downloadCSV('mining-inside.csv')" class="bg-slate-100 hover:bg-slate-200 text-slate-900 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition border border-slate-200">Export CSV</button>
+                    <button onclick="downloadCSV('mining-inside.geojson')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition shadow-lg shadow-emerald-200">GeoJSON API</button>
                 </div>
             </div>
             <div class="overflow-x-auto">
@@ -175,10 +175,10 @@
 
             // Fetch Data
             const [bndRes, insideRes, polyRes, timelineRes] = await Promise.all([
-                fetch('data/boundaries/okapi_wildlife_reserve.geojson'),
-                fetch('data/mining/mining_inside.geojson'),
-                fetch('data/mining/cami_titles_polygons.geojson'),
-                fetch('data/mining/hotspot_timeline.csv')
+                fetch('data/boundaries/okapi-wildlife-reserve.geojson'),
+                fetch('data/mining/mining-inside.geojson'),
+                fetch('data/mining/cami-titles-polygons.geojson'),
+                fetch('data/mining/hotspot-timeline.csv')
             ]);
 
             const boundary = await bndRes.json();

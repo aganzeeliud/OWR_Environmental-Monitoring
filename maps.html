@@ -140,9 +140,9 @@
         async function init() {
             try {
                 const [bndRes, camiRes, ipisRes] = await Promise.all([
-                    fetch('data/boundaries/okapi_wildlife_reserve.geojson'),
-                    fetch('data/mining/cami_titles.geojson'),
-                    fetch('data/mining/ipis_mining_impacts.geojson')
+                    fetch('data/boundaries/okapi-wildlife-reserve.geojson'),
+                    fetch('data/mining/cami-titles.geojson'),
+                    fetch('data/mining/ipis-mining-impacts.geojson')
                 ]);
 
                 allData.boundary = await bndRes.json();

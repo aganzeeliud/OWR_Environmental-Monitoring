@@ -137,7 +137,7 @@
             Chart.defaults.font.size = 10;
 
             // Forest Loss Chart
-            const lossData = await fetch('data/csv/forest_loss_2000_2026.csv').then(r => r.text());
+            const lossData = await fetch('data/csv/forest-loss-2000-2026.csv').then(r => r.text());
             const rows = lossData.split('\n').slice(1).filter(r => r.length > 0);
             const years = rows.map(r => r.split(',')[0]);
             const lossValues = rows.map(r => parseFloat(r.split(',')[13]));

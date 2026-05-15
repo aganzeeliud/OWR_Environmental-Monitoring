@@ -180,7 +180,7 @@
         }).addTo(map);
 
         async function loadTimelineData() {
-            const res = await fetch('data/csv/yearly_combined_environmental_impacts.csv');
+            const res = await fetch('data/csv/yearly-combined-environmental-impacts.csv');
             const text = await res.text();
             const rows = text.split('\n').slice(1).filter(r => r.length > 0);
             timelineData = rows.map(r => {
@@ -192,7 +192,7 @@
                 };
             });
 
-            const geoRes = await fetch('data/geojson/owr_mining_titles.json');
+            const geoRes = await fetch('data/geojson/owr-mining-titles.json');
             miningGeoData = await geoRes.json();
 
             initCharts();

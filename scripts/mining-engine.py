@@ -81,13 +81,13 @@ def generate_mining_csv(filename, theme_params=None):
 
 def main():
     mining_files = [
-        "mining_expansion.csv",
-        "mining_forest_overlap.csv",
-        "illegal_mining_hotspots.csv",
-        "mining_biodiversity_impacts.csv",
-        "mining_carbon_impacts.csv",
-        "mining_road_accessibility.csv",
-        "mining_river_impacts.csv"
+        "mining-expansion.csv",
+        "mining-forest-overlap.csv",
+        "illegal-mining-hotspots.csv",
+        "mining-biodiversity-impacts.csv",
+        "mining-carbon-impacts.csv",
+        "mining-road-accessibility.csv",
+        "mining-river-impacts.csv"
     ]
     
     for fname in mining_files:

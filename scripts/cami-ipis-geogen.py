@@ -92,11 +92,11 @@ def generate_geodata():
         ])
 
     os.makedirs("data/geojson", exist_ok=True)
-    with open("data/geojson/owr_mining_titles.json", "w") as f:
+    with open("data/geojson/owr-mining-titles.json", "w") as f:
         json.dump(geojson, f, indent=4)
     
     os.makedirs("data/csv", exist_ok=True)
-    with open("data/csv/cami_ipis_mining_impact.csv", "w", newline='') as f:
+    with open("data/csv/cami-ipis-mining-impact.csv", "w", newline='') as f:
         writer = csv.writer(f)
         writer.writerow(csv_headers)
         writer.writerows(csv_data)
