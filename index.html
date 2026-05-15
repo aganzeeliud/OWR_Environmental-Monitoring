@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWR Environmental Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 font-sans">
+    <nav class="bg-emerald-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-leaf text-emerald-400 text-2xl"></i>
+                <span class="text-xl font-bold tracking-tight">OWR Intelligence</span>
+            </div>
+            <div class="hidden md:flex space-x-6 font-medium">
+                <a href="index.html" class="hover:text-emerald-400 transition">Home</a>
+                <a href="dashboard.html" class="hover:text-emerald-400 transition">Dashboard</a>
+                <a href="maps.html" class="hover:text-emerald-400 transition">Live Maps</a>
+                <a href="database.html" class="hover:text-emerald-400 transition">Databases</a>
+                <div class="relative group">
+                    <button class="hover:text-emerald-400 transition">Analysis <i class="fas fa-chevron-down text-xs"></i></button>
+                    <div class="absolute hidden group-hover:block bg-white text-slate-800 mt-2 py-2 w-48 rounded shadow-xl border border-slate-100">
+                        <a href="fire-analysis.html" class="block px-4 py-2 hover:bg-emerald-50">Fire Analysis</a>
+                        <a href="mining-analysis.html" class="block px-4 py-2 hover:bg-emerald-50">Mining Impact</a>
+                        <a href="logging-analysis.html" class="block px-4 py-2 hover:bg-emerald-50">Illegal Logging</a>
+                    </div>
+                </div>
+                <a href="report.html" class="hover:text-emerald-400 transition">Reports</a>
+            </div>
+            <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <header class="bg-emerald-900 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6">Okapi Wildlife Reserve Monitoring Platform</h1>
+            <p class="text-xl md:text-2xl text-emerald-100 mb-10 max-w-3xl mx-auto">Scientific intelligence for the protection of biodiversity and ecosystems in the Democratic Republic of Congo (2000–2026).</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="dashboard.html" class="bg-emerald-500 hover:bg-emerald-600 px-8 py-3 rounded-full font-bold transition shadow-lg">Explore Data</a>
+                <a href="database.html" class="bg-white text-emerald-900 hover:bg-emerald-50 px-8 py-3 rounded-full font-bold transition shadow-lg">Download CSVs</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-tree text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Forest Loss</h3>
+                <p class="text-slate-600 mb-6">Real-time tracking of deforestation and habitat fragmentation across 13,700 km² of primary tropical forest.</p>
+                <a href="dashboard.html" class="text-emerald-600 font-bold hover:underline">View Trends &rarr;</a>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-pickaxe text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Mining Impact</h3>
+                <p class="text-slate-600 mb-6">Monitoring artisanal and semi-industrial mining activities encroaching on protected biodiversity zones.</p>
+                <a href="mining-analysis.html" class="text-emerald-600 font-bold hover:underline">Analyze Impact &rarr;</a>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-fire text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Fire Detection</h3>
+                <p class="text-slate-600 mb-6">Satellite-based fire alerts and burned area quantification to mitigate habitat loss and carbon emissions.</p>
+                <a href="fire-analysis.html" class="text-emerald-600 font-bold hover:underline">See Hotspots &rarr;</a>
+            </div>
+        </div>
+
+        <section class="bg-emerald-900 text-white rounded-3xl p-12 mb-16 relative overflow-hidden">
+            <div class="md:flex items-center">
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold mb-6">Scientific Methodology</h2>
+                    <p class="text-emerald-100 mb-8 text-lg">Our platform integrates NASA MODIS/VIIRS data, Hansen Global Forest Change, and ESA WorldCover to provide high-precision environmental quantification in hectares (ha).</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-400 mr-3"></i> Annual Change Rates (2000-2026)</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-400 mr-3"></i> Carbon Stock Assessment (GEDI Biomass)</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-400 mr-3"></i> Biodiversity Risk Indices</li>
+                    </ul>
+                    <a href="methodology.html" class="inline-block border-2 border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-emerald-900 px-8 py-3 rounded-full font-bold transition">Read Methodology</a>
+                </div>
+                <div class="hidden md:block md:w-1/3 text-center">
+                    <i class="fas fa-microscope text-9xl text-emerald-800 opacity-50"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 mb-8">
+                    <div class="flex items-center space-x-2 text-white mb-6">
+                        <i class="fas fa-leaf text-emerald-400 text-2xl"></i>
+                        <span class="text-xl font-bold">OWR Intelligence</span>
+                    </div>
+                    <p>Providing spatial data and scientific intelligence for the Okapi Wildlife Reserve, DRC. A contribution to global conservation efforts.</p>
+                </div>
+                <div class="w-full md:w-1/4 mb-8">
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="dashboard.html" class="hover:text-emerald-400">Dashboard</a></li>
+                        <li><a href="database.html" class="hover:text-emerald-400">Database</a></li>
+                        <li><a href="maps.html" class="hover:text-emerald-400">Live Maps</a></li>
+                        <li><a href="report.html" class="hover:text-emerald-400">Annual Reports</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-8">
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Data Sources</h4>
+                    <ul class="space-y-3">
+                        <li>Global Forest Watch</li>
+                        <li>NASA Earth Data</li>
+                        <li>Planet NICFI</li>
+                        <li>ICCN DRC</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-12 pt-8 text-sm text-center">
+                &copy; 2026 OWR Environmental Monitoring Platform. All rights reserved. Results quantified in hectares (ha).
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

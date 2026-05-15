@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Spatial Explorer | OWR Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>#map { height: calc(100vh - 64px); }</style>
+</head>
+<body class="bg-slate-50 overflow-hidden">
+    <nav class="bg-emerald-900 text-white shadow-lg h-16 flex items-center px-6 justify-between">
+        <a href="index.html" class="flex items-center space-x-2">
+            <i class="fas fa-leaf text-emerald-400"></i>
+            <span class="font-bold">OWR Spatial Intelligence</span>
+        </a>
+        <div class="space-x-4">
+            <a href="dashboard.html" class="text-sm bg-emerald-800 hover:bg-emerald-700 px-4 py-2 rounded-lg transition">Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <aside class="w-80 bg-white shadow-xl z-10 p-6 overflow-y-auto hidden lg:block" style="height: calc(100vh - 64px);">
+            <h2 class="font-bold text-lg mb-6">Map Layers</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Base Layers</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="base" class="text-emerald-600" checked>
+                            <span class="text-sm text-slate-700">Satellite Imagery (Sentinel-2)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="base" class="text-emerald-600">
+                            <span class="text-sm text-slate-700">Topographic (OpenStreetMap)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Threat Monitoring</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-red-500 mr-2 text-xs"></i> Fire Hotspots</span>
+                            <input type="checkbox" checked class="rounded text-emerald-600">
+                        </label>
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-amber-500 mr-2 text-xs"></i> Mining Sites</span>
+                            <input type="checkbox" checked class="rounded text-emerald-600">
+                        </label>
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-emerald-500 mr-2 text-xs"></i> Logging Alerts</span>
+                            <input type="checkbox" checked class="rounded text-emerald-600">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t">
+                    <h3 class="font-bold mb-4">Legend</h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center"><span class="w-3 h-3 bg-emerald-900 rounded-full mr-2"></span> OWR Boundary</div>
+                        <div class="flex items-center"><span class="w-3 h-3 bg-red-400 opacity-50 mr-2"></span> Burned Area (ha)</div>
+                        <div class="flex items-center"><span class="w-3 h-3 bg-amber-400 mr-2"></span> Mining Encroachment</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="map" class="flex-grow"></div>
+    </div>
+
+    <script>
+        const map = L.map('map').setView([1.6333, 28.5833], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // OWR Boundary Mock (Rectangle for Epulu region)
+        L.rectangle([[1.0, 27.5], [2.5, 30.0]], {
+            color: "#064e3b",
+            weight: 3,
+            fillOpacity: 0.05
+        }).addTo(map).bindPopup("Okapi Wildlife Reserve Boundary");
+
+        // Load some markers from our CSV logic (simulated)
+        async function loadSpatialData() {
+            // Simulated fetch of current mining hotspots
+            const miningPoints = [
+                {lat: 1.65, lon: 28.6, label: "M-2026-A: Semi-Industrial Site"},
+                {lat: 1.55, lon: 28.4, label: "M-2026-B: Artisanal Mining Cluster"},
+                {lat: 1.75, lon: 28.8, label: "M-2026-C: Riverbed Dredging"}
+            ];
+
+            miningPoints.forEach(p => {
+                L.circleMarker([p.lat, p.lon], {
+                    radius: 8,
+                    fillColor: "#f59e0b",
+                    color: "#b45309",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map).bindPopup(p.label);
+            });
+
+            // Simulated Fire Alerts
+            const firePoints = [
+                {lat: 1.8, lon: 28.2, label: "Active Fire Alert: Moderate Severity"},
+                {lat: 1.4, lon: 29.1, label: "Burned Area: 45ha (Detected 48h ago)"}
+            ];
+
+            firePoints.forEach(p => {
+                L.circleMarker([p.lat, p.lon], {
+                    radius: 10,
+                    fillColor: "#ef4444",
+                    color: "#b91c1c",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.6
+                }).addTo(map).bindPopup(p.label);
+            });
+        }
+
+        loadSpatialData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Explorer | OWR Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+<body class="bg-slate-50 font-sans">
+    <nav class="bg-emerald-900 text-white shadow-lg py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <i class="fas fa-leaf text-emerald-400"></i>
+                <span class="font-bold">OWR Intelligence</span>
+            </a>
+            <div class="space-x-4">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="database.html" class="text-emerald-400">Database</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold mb-8">Scientific Database Explorer</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-1">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold mb-4 uppercase text-xs text-slate-500 tracking-widest">Select Theme</h3>
+                    <select id="themeSelector" class="w-full p-2 border rounded mb-6">
+                        <option value="forest_loss_2000_2026.csv">Forest Loss (2000-2026)</option>
+                        <option value="mining_expansion.csv">Mining Expansion</option>
+                        <option value="fire_burned_area.csv">Fire Burned Area</option>
+                        <option value="illegal_logging_hotspots.csv">Illegal Logging</option>
+                        <option value="carbon_emissions.csv">Carbon Emissions</option>
+                        <option value="biodiversity_risk.csv">Biodiversity Risk</option>
+                        <option value="road_expansion.csv">Road Expansion</option>
+                        <option value="settlement_expansion.csv">Settlement Expansion</option>
+                        <option value="annual_statistics.csv">Annual Statistics</option>
+                        <option value="landcover_change.csv">Landcover Change</option>
+                    </select>
+                    
+                    <button id="downloadBtn" class="w-full bg-emerald-600 text-white py-2 rounded font-bold hover:bg-emerald-700 transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i> Download CSV
+                    </button>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-sm mb-2">Metadata</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">All datasets are quantified in hectares (ha) and square kilometers (km²). Source: NASA/GFW/Hansen. Processed using parametric change detection.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-3">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
+                    <table id="dataTable" class="display w-full">
+                        <thead>
+                            <tr id="tableHead">
+                                <!-- Headers will be injected here -->
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Data will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function() {
+            let table = $('#dataTable').DataTable();
+
+            function loadData(filename) {
+                fetch(`data/csv/${filename}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        const rows = data.split('\n');
+                        const headers = rows[0].split(',');
+                        
+                        // Clear existing
+                        table.destroy();
+                        $('#tableHead').empty();
+                        $('#tableBody').empty();
+
+                        // Add headers
+                        headers.forEach(h => {
+                            $('#tableHead').append(`<th class="px-4 py-2 border-b text-left text-xs uppercase text-slate-500">${h.replace(/_/g, ' ')}</th>`);
+                        });
+
+                        // Add rows (limit to 100 for performance)
+                        for (let i = 1; i < Math.min(rows.length, 101); i++) {
+                            if (rows[i].trim() === '') continue;
+                            const cols = rows[i].split(',');
+                            let rowHtml = '<tr>';
+                            cols.forEach(c => {
+                                rowHtml += `<td class="px-4 py-2 border-b text-sm">${c}</td>`;
+                            });
+                            rowHtml += '</tr>';
+                            $('#tableBody').append(rowHtml);
+                        }
+
+                        table = $('#dataTable').DataTable({
+                            pageLength: 25,
+                            responsive: true
+                        });
+                    });
+            }
+
+            $('#themeSelector').on('change', function() {
+                loadData(this.value);
+            });
+
+            $('#downloadBtn').on('click', function() {
+                const filename = $('#themeSelector').val();
+                window.open(`data/csv/${filename}`);
+            });
+
+            // Initial load
+            loadData('forest_loss_2000_2026.csv');
+        });
+    </script>
+</body>
+</html>

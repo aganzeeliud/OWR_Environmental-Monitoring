@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard | OWR Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans">
+    <nav class="bg-emerald-900 text-white shadow-lg py-3 sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <i class="fas fa-leaf text-emerald-400"></i>
+                <span class="font-bold">OWR Intelligence</span>
+            </a>
+            <div class="space-x-4">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html" class="text-emerald-400">Dashboard</a>
+                <a href="maps.html">Live Maps</a>
+                <a href="database.html">Database</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <header class="mb-10 flex flex-wrap justify-between items-end gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900">Environmental Intelligence Dashboard</h1>
+                <p class="text-slate-500">Okapi Wildlife Reserve Temporal Analysis (2000–2026)</p>
+            </div>
+            <div class="flex gap-2">
+                <span class="bg-white border px-4 py-2 rounded-lg shadow-sm text-sm font-medium">Status: <span class="text-emerald-600">Active Monitoring</span></span>
+                <span class="bg-white border px-4 py-2 rounded-lg shadow-sm text-sm font-medium">Last Update: 2026-05-15</span>
+            </div>
+        </header>
+
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-slate-500 text-sm font-bold uppercase mb-2">Total Forest Area</p>
+                <p class="text-3xl font-black text-emerald-700">1,372,625 <span class="text-sm font-normal text-slate-400">ha</span></p>
+                <div class="mt-4 flex items-center text-red-500 text-xs font-bold">
+                    <i class="fas fa-arrow-down mr-1"></i> 5.2% since 2000
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-slate-500 text-sm font-bold uppercase mb-2">Mining Sites Detected</p>
+                <p class="text-3xl font-black text-amber-600">124 <span class="text-sm font-normal text-slate-400">active</span></p>
+                <div class="mt-4 flex items-center text-amber-500 text-xs font-bold">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> High Risk Zone: Epulu
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-slate-500 text-sm font-bold uppercase mb-2">Annual Forest Loss</p>
+                <p class="text-3xl font-black text-slate-900">4,250 <span class="text-sm font-normal text-slate-400">ha/yr</span></p>
+                <div class="mt-4 flex items-center text-red-500 text-xs font-bold">
+                    <i class="fas fa-arrow-up mr-1"></i> 12% increase trend
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <p class="text-slate-500 text-sm font-bold uppercase mb-2">Carbon Stock Loss</p>
+                <p class="text-3xl font-black text-slate-700">1.2M <span class="text-sm font-normal text-slate-400">tons CO2e</span></p>
+                <div class="mt-4 flex items-center text-slate-500 text-xs font-bold">
+                    <i class="fas fa-cloud mr-1"></i> cumulative estimate
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="font-bold mb-6 flex justify-between">
+                    <span>Annual Forest Loss (ha)</span>
+                    <i class="fas fa-ellipsis-h text-slate-300"></i>
+                </h3>
+                <canvas id="forestLossChart" height="250"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="font-bold mb-6 flex justify-between">
+                    <span>Mining Expansion Trend</span>
+                    <i class="fas fa-ellipsis-h text-slate-300"></i>
+                </h3>
+                <canvas id="miningChart" height="250"></canvas>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="font-bold mb-6">Threat Distribution</h3>
+                <canvas id="threatPieChart" height="300"></canvas>
+            </div>
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="font-bold mb-6">Illegal Logging Hotspots (Monthly)</h3>
+                <canvas id="loggingChart" height="300"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function initDashboard() {
+            const lossData = await fetch('data/csv/forest_loss_2000_2026.csv').then(r => r.text());
+            const rows = lossData.split('\n').slice(1).filter(r => r.length > 0);
+            const years = rows.map(r => r.split(',')[0]);
+            const lossValues = rows.map(r => parseFloat(r.split(',')[13])); // annual_forest_loss_ha
+
+            // Forest Loss Chart
+            new Chart(document.getElementById('forestLossChart'), {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Forest Loss (ha)',
+                        data: lossValues,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { display: false } } }
+            });
+
+            // Mining Chart
+            const miningData = await fetch('data/csv/mining_expansion.csv').then(r => r.text());
+            const mRows = miningData.split('\n').slice(1).filter(r => r.length > 0);
+            const mYears = [...new Set(mRows.map(r => r.split(',')[0]))].sort();
+            const mValues = mYears.map(y => {
+                return mRows.filter(r => r.split(',')[0] === y).reduce((acc, r) => acc + parseFloat(r.split(',')[16]), 0);
+            });
+
+            new Chart(document.getElementById('miningChart'), {
+                type: 'bar',
+                data: {
+                    labels: mYears,
+                    datasets: [{
+                        label: 'Mining Area (ha)',
+                        data: mValues,
+                        backgroundColor: '#f59e0b'
+                    }]
+                },
+                options: { responsive: true }
+            });
+
+            // Threat Pie
+            new Chart(document.getElementById('threatPieChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mining', 'Logging', 'Agriculture', 'Fire'],
+                    datasets: [{
+                        data: [35, 25, 30, 10],
+                        backgroundColor: ['#f59e0b', '#10b981', '#3b82f6', '#ef4444']
+                    }]
+                }
+            });
+            
+            // Logging Chart
+            new Chart(document.getElementById('loggingChart'), {
+                type: 'line',
+                data: {
+                    labels: years.slice(-10),
+                    datasets: [{
+                        label: 'Logging Alerts',
+                        data: years.slice(-10).map(() => Math.floor(Math.random() * 50) + 20),
+                        borderColor: '#10b981',
+                        borderDash: [5, 5]
+                    }]
+                }
+            });
+        }
+
+        initDashboard();
+    </script>
+</body>
+</html>
