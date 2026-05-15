@@ -1,0 +1,785 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-3429",
+                "permit_id": "PE-3429",
+                "operator": "Kibali Gold",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2018,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.089885859414963,
+                            2.2986588595100352
+                        ],
+                        [
+                            29.137532806541394,
+                            2.2986588595100352
+                        ],
+                        [
+                            29.137532806541394,
+                            2.346305806636468
+                        ],
+                        [
+                            29.089885859414963,
+                            2.346305806636468
+                        ],
+                        [
+                            29.089885859414963,
+                            2.2986588595100352
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-9603",
+                "permit_id": "PE-9603",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2012,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.258717124779672,
+                            1.7696567123804354
+                        ],
+                        [
+                            28.416914310926046,
+                            1.7696567123804354
+                        ],
+                        [
+                            28.416914310926046,
+                            1.927853898526807
+                        ],
+                        [
+                            28.258717124779672,
+                            1.927853898526807
+                        ],
+                        [
+                            28.258717124779672,
+                            1.7696567123804354
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-3902",
+                "permit_id": "PE-3902",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2023,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.070378753331696,
+                            2.249948630507479
+                        ],
+                        [
+                            29.178126408286843,
+                            2.249948630507479
+                        ],
+                        [
+                            29.178126408286843,
+                            2.3576962854626267
+                        ],
+                        [
+                            29.070378753331696,
+                            2.3576962854626267
+                        ],
+                        [
+                            29.070378753331696,
+                            2.249948630507479
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-6041",
+                "permit_id": "PE-6041",
+                "operator": "Kibali Gold",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2011,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.816450647139547,
+                            2.1983834820692403
+                        ],
+                        [
+                            28.935690861481483,
+                            2.1983834820692403
+                        ],
+                        [
+                            28.935690861481483,
+                            2.3176236964111743
+                        ],
+                        [
+                            28.816450647139547,
+                            2.3176236964111743
+                        ],
+                        [
+                            28.816450647139547,
+                            2.1983834820692403
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-3492",
+                "permit_id": "PE-3492",
+                "operator": "AngloGold Ashanti",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2010,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.709968418225674,
+                            1.686996376529489
+                        ],
+                        [
+                            28.758582239777585,
+                            1.686996376529489
+                        ],
+                        [
+                            28.758582239777585,
+                            1.7356101980813965
+                        ],
+                        [
+                            28.709968418225674,
+                            1.7356101980813965
+                        ],
+                        [
+                            28.709968418225674,
+                            1.686996376529489
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-6810",
+                "permit_id": "PE-6810",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2011,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.251662663515855,
+                            2.4482663117876626
+                        ],
+                        [
+                            28.37340786199896,
+                            2.4482663117876626
+                        ],
+                        [
+                            28.37340786199896,
+                            2.5700115102707652
+                        ],
+                        [
+                            28.251662663515855,
+                            2.5700115102707652
+                        ],
+                        [
+                            28.251662663515855,
+                            2.4482663117876626
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-6452",
+                "permit_id": "PE-6452",
+                "operator": "AngloGold Ashanti",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2025,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.869646105284023,
+                            2.6173967354677248
+                        ],
+                        [
+                            28.941217366854847,
+                            2.6173967354677248
+                        ],
+                        [
+                            28.941217366854847,
+                            2.688967997038549
+                        ],
+                        [
+                            28.869646105284023,
+                            2.688967997038549
+                        ],
+                        [
+                            28.869646105284023,
+                            2.6173967354677248
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-3052",
+                "permit_id": "PE-3052",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2021,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.37646873879876,
+                            2.4259981803590285
+                        ],
+                        [
+                            28.497083753253722,
+                            2.4259981803590285
+                        ],
+                        [
+                            28.497083753253722,
+                            2.546613194813992
+                        ],
+                        [
+                            28.37646873879876,
+                            2.546613194813992
+                        ],
+                        [
+                            28.37646873879876,
+                            2.4259981803590285
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-9963",
+                "permit_id": "PE-9963",
+                "operator": "AngloGold Ashanti",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2025,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.2780295372756,
+                            1.8971360118472753
+                        ],
+                        [
+                            28.39343280701349,
+                            1.8971360118472753
+                        ],
+                        [
+                            28.39343280701349,
+                            2.012539281585167
+                        ],
+                        [
+                            28.2780295372756,
+                            2.012539281585167
+                        ],
+                        [
+                            28.2780295372756,
+                            1.8971360118472753
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-1339",
+                "permit_id": "PE-1339",
+                "operator": "Kibali Gold",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2020,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.969124303355994,
+                            1.3881024767626944
+                        ],
+                        [
+                            28.11425233943306,
+                            1.3881024767626944
+                        ],
+                        [
+                            28.11425233943306,
+                            1.533230512839763
+                        ],
+                        [
+                            27.969124303355994,
+                            1.533230512839763
+                        ],
+                        [
+                            27.969124303355994,
+                            1.3881024767626944
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-8778",
+                "permit_id": "PE-8778",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2021,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.92572444605464,
+                            1.6127344283022182
+                        ],
+                        [
+                            28.02217655711738,
+                            1.6127344283022182
+                        ],
+                        [
+                            28.02217655711738,
+                            1.7091865393649561
+                        ],
+                        [
+                            27.92572444605464,
+                            1.7091865393649561
+                        ],
+                        [
+                            27.92572444605464,
+                            1.6127344283022182
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-7008",
+                "permit_id": "PE-7008",
+                "operator": "Kibali Gold",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2010,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.911511174979836,
+                            1.802990299012906
+                        ],
+                        [
+                            28.957519945116317,
+                            1.802990299012906
+                        ],
+                        [
+                            28.957519945116317,
+                            1.8489990691493887
+                        ],
+                        [
+                            28.911511174979836,
+                            1.8489990691493887
+                        ],
+                        [
+                            28.911511174979836,
+                            1.802990299012906
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-7445",
+                "permit_id": "PE-7445",
+                "operator": "Kibali Gold",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2010,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.39265606045349,
+                            2.363680084602824
+                        ],
+                        [
+                            28.483018841757463,
+                            2.363680084602824
+                        ],
+                        [
+                            28.483018841757463,
+                            2.4540428659067954
+                        ],
+                        [
+                            28.39265606045349,
+                            2.4540428659067954
+                        ],
+                        [
+                            28.39265606045349,
+                            2.363680084602824
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-5418",
+                "permit_id": "PE-5418",
+                "operator": "Alphamin",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2022,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.0546698219998,
+                            1.0188678489463165
+                        ],
+                        [
+                            29.18969066078734,
+                            1.0188678489463165
+                        ],
+                        [
+                            29.18969066078734,
+                            1.1538886877338563
+                        ],
+                        [
+                            29.0546698219998,
+                            1.1538886877338563
+                        ],
+                        [
+                            29.0546698219998,
+                            1.0188678489463165
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-9279",
+                "permit_id": "PE-9279",
+                "operator": "AngloGold Ashanti",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2023,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.139191369211336,
+                            1.8957072529005854
+                        ],
+                        [
+                            28.253626160553477,
+                            1.8957072529005854
+                        ],
+                        [
+                            28.253626160553477,
+                            2.0101420442427296
+                        ],
+                        [
+                            28.139191369211336,
+                            2.0101420442427296
+                        ],
+                        [
+                            28.139191369211336,
+                            1.8957072529005854
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-6639",
+                "permit_id": "PE-6639",
+                "operator": "AngloGold Ashanti",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2013,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.099709117235733,
+                            2.5735018137547248
+                        ],
+                        [
+                            29.25942627338845,
+                            2.5735018137547248
+                        ],
+                        [
+                            29.25942627338845,
+                            2.7332189699074383
+                        ],
+                        [
+                            29.099709117235733,
+                            2.7332189699074383
+                        ],
+                        [
+                            29.099709117235733,
+                            2.5735018137547248
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-9600",
+                "permit_id": "PE-9600",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2015,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.336255603832626,
+                            1.8587445711598072
+                        ],
+                        [
+                            28.41130931047315,
+                            1.8587445711598072
+                        ],
+                        [
+                            28.41130931047315,
+                            1.9337982778003306
+                        ],
+                        [
+                            28.336255603832626,
+                            1.9337982778003306
+                        ],
+                        [
+                            28.336255603832626,
+                            1.8587445711598072
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-5841",
+                "permit_id": "PE-5841",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2015,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.21913140543392,
+                            1.8488815368716691
+                        ],
+                        [
+                            29.414426358262766,
+                            1.8488815368716691
+                        ],
+                        [
+                            29.414426358262766,
+                            2.0441764897005164
+                        ],
+                        [
+                            29.21913140543392,
+                            2.0441764897005164
+                        ],
+                        [
+                            29.21913140543392,
+                            1.8488815368716691
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-2637",
+                "permit_id": "PE-2637",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2012,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.959521012540325,
+                            2.540604508661623
+                        ],
+                        [
+                            28.118454766104737,
+                            2.540604508661623
+                        ],
+                        [
+                            28.118454766104737,
+                            2.6995382622260324
+                        ],
+                        [
+                            27.959521012540325,
+                            2.6995382622260324
+                        ],
+                        [
+                            27.959521012540325,
+                            2.540604508661623
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-8989",
+                "permit_id": "PE-8989",
+                "operator": "Banro Corp",
+                "mineral": "Gold",
+                "status": "Active",
+                "year": 2024,
+                "source": "CAMI RDC (Simulated Polygon)"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.266587085257115,
+                            2.5809475928077945
+                        ],
+                        [
+                            29.39387006720927,
+                            2.5809475928077945
+                        ],
+                        [
+                            29.39387006720927,
+                            2.7082305747599533
+                        ],
+                        [
+                            29.266587085257115,
+                            2.7082305747599533
+                        ],
+                        [
+                            29.266587085257115,
+                            2.5809475928077945
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}

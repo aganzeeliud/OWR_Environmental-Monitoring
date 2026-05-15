@@ -13,6 +13,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-popup .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-900">
@@ -23,7 +24,7 @@
                 <i class="fas fa-microchip text-emerald-600 text-2xl"></i>
                 <span class="text-xl font-black tracking-tighter uppercase">Mining Analysis</span>
             </a>
-            <div class="hidden md:flex space-x-8 text-xs font-black uppercase tracking-widest">
+            <div class="hidden md:flex space-x-8 text-xs font-black uppercase tracking-widest text-slate-500">
                 <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
                 <a href="maps.html" class="hover:text-emerald-600 transition">Spatial Map</a>
                 <a href="timeline.html" class="hover:text-emerald-600 transition">Timeline</a>
@@ -37,7 +38,7 @@
                 <div class="max-w-3xl">
                     <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4">Official Monitoring System</div>
                     <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">Mining <span class="text-emerald-600">Governance</span></h1>
-                    <p class="text-lg text-slate-600">Advanced intersection analysis of <strong>CAMI</strong> mining titles and <strong>IPIS</strong> artisanal sites within the <strong>Okapi Wildlife Reserve</strong> (UNESCO #718).</p>
+                    <p class="text-lg text-slate-600">Advanced intersection analysis of <strong>CAMI</strong> mining titles (Polygons) and <strong>IPIS</strong> artisanal sites within the <strong>Okapi Wildlife Reserve</strong> (UNESCO #718).</p>
                 </div>
                 <div class="flex flex-col items-end">
                     <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Primary Sources</div>
@@ -142,7 +143,7 @@
     </footer>
 
     <script>
-        let map, geojsonLayer;
+        let map;
         let timelineData = [];
 
         async function init() {
@@ -151,9 +152,7 @@
             
             const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
             const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-            const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data: &copy; OpenTopoMap contributors'
-            });
+            const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
             const googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
                 maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps'
             });
@@ -175,14 +174,16 @@
             L.control.zoom({ position: 'bottomright' }).addTo(map);
 
             // Fetch Data
-            const [bndRes, insideRes, timelineRes] = await Promise.all([
+            const [bndRes, insideRes, polyRes, timelineRes] = await Promise.all([
                 fetch('data/boundaries/okapi_wildlife_reserve.geojson'),
                 fetch('data/mining/mining_inside.geojson'),
+                fetch('data/mining/cami_titles_polygons.geojson'),
                 fetch('data/mining/hotspot_timeline.csv')
             ]);
 
             const boundary = await bndRes.json();
             const insideData = await insideRes.json();
+            const polyData = await polyRes.json();
             const timelineCSV = await timelineRes.text();
 
             // Render Boundary
@@ -190,14 +191,32 @@
                 style: { color: "#059669", weight: 3, fillOpacity: 0.1, dashArray: '5, 5' }
             }).addTo(map);
 
-            // Render Inside Sites
-            geojsonLayer = L.geoJSON(insideData, {
+            // Render CAMI Polygons
+            L.geoJSON(polyData, {
+                style: { color: "#2563eb", weight: 1.5, fillOpacity: 0.3, fillColor: "#3b82f6" },
+                onEachFeature: (f, l) => {
+                    l.bindPopup(`
+                        <div class="p-2">
+                            <div class="text-[10px] font-black uppercase text-slate-400 mb-1">Industrial Concession (CAMI)</div>
+                            <div class="text-sm font-black mb-2 text-slate-900">${f.properties.permit_id || f.properties.id}</div>
+                            <div class="text-xs font-bold text-slate-500">${f.properties.operator}</div>
+                        </div>
+                    `);
+                }
+            }).addTo(map);
+
+            // Render IPIS Sites (Points)
+            L.geoJSON(insideData, {
                 pointToLayer: (f, l) => L.circleMarker(l, {
-                    radius: 7, fillColor: f.properties.mineral_type === 'Gold' ? '#f59e0b' : '#3b82f6',
-                    color: '#fff', weight: 1, fillOpacity: 0.9
+                    radius: 6, fillColor: '#f59e0b', color: '#fff', weight: 1, fillOpacity: 0.9
                 }),
                 onEachFeature: (f, l) => {
-                    l.bindPopup(`<b class="text-slate-900">${f.properties.title_id || f.properties.site_id}</b><br><span class="text-xs text-slate-500">${f.properties.operator}</span>`);
+                    l.bindPopup(`
+                        <div class="p-2">
+                            <div class="text-[10px] font-black uppercase text-slate-400 mb-1">Artisanal Site (IPIS)</div>
+                            <div class="text-sm font-black mb-2 text-slate-900">${f.properties.site_id || f.properties.id}</div>
+                        </div>
+                    `);
                 }
             }).addTo(map);
 
@@ -275,18 +294,17 @@
 
         function populateTable(features) {
             const tbody = document.getElementById('miningTableBody');
-            // Features are already filtered by mining_inside.geojson
             features.slice(0, 50).forEach(f => {
                 const p = f.properties;
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-slate-50 hover:bg-slate-50 transition cursor-pointer";
                 tr.innerHTML = `
-                    <td class="py-6 px-4 text-slate-900">${p.title_id || p.site_id}</td>
+                    <td class="py-6 px-4 text-slate-900">${p.title_id || p.site_id || p.id}</td>
                     <td class="py-6 px-4 text-slate-500">${p.operator || 'Artisanal'}</td>
-                    <td class="py-6 px-4"><span class="bg-slate-100 px-3 py-1 rounded-full text-slate-700">${p.mineral_type || p.commodity}</span></td>
+                    <td class="py-6 px-4"><span class="bg-slate-100 px-3 py-1 rounded-full text-slate-700">${p.mineral_type || p.commodity || 'Gold'}</span></td>
                     <td class="py-6 px-4">${p.year}</td>
                     <td class="py-6 px-4"><span class="text-emerald-600 font-bold">Active</span></td>
-                    <td class="py-6 px-4 text-right text-amber-600">${p.distance_to_boundary_km} km</td>
+                    <td class="py-6 px-4 text-right text-amber-600">${p.distance_to_boundary_km || 0} km</td>
                 `;
                 tbody.appendChild(tr);
             });
