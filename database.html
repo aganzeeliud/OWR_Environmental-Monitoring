@@ -3,69 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database Explorer | OWR Intelligence</title>
+    <title>Scientific Data Hub | OWR Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0b1221; color: #94a3b8; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate { color: #64748b !important; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+        .dataTables_wrapper .dataTables_paginate .paginate_button { color: #64748b !important; border: none !important; background: transparent !important; }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current { background: rgba(16, 185, 129, 0.2) !important; color: #10b981 !important; border-radius: 8px; }
+        table.dataTable { border-collapse: collapse !important; border: none !important; }
+        table.dataTable thead th { border-bottom: 1px solid rgba(255,255,255,0.05) !important; padding: 20px !important; }
+        table.dataTable tbody td { border-bottom: 1px solid rgba(255,255,255,0.02) !important; padding: 15px 20px !important; color: #f1f5f9; font-size: 12px; }
+        input[type="search"] { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 20px !important; padding: 8px 16px !important; color: white !important; }
+        select { background: #1e293b !important; color: white !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 8px !important; }
+    </style>
 </head>
-<body class="bg-slate-50 font-sans">
-    <nav class="bg-emerald-900 text-white shadow-lg py-3">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2">
-                <i class="fas fa-leaf text-emerald-400"></i>
-                <span class="font-bold">OWR Intelligence</span>
-            </a>
-            <div class="space-x-4">
-                <a href="index.html">Home</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="database.html" class="text-emerald-400">Database</a>
+<body class="bg-[#0b1221]">
+
+    <nav class="bg-[#0f172a] text-white shadow-2xl h-16 flex items-center px-6 justify-between border-b border-white/5 sticky top-0 z-[1000]">
+        <div class="flex items-center space-x-3">
+            <div class="bg-emerald-500/20 p-2 rounded-lg">
+                <i class="fas fa-database text-emerald-400"></i>
             </div>
+            <span class="font-bold tracking-tighter text-xl uppercase">Data Central</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <a href="index.html" class="hover:text-emerald-400 transition">Hub</a>
+            <a href="dashboard.html" class="hover:text-emerald-400 transition">Dashboard</a>
+            <a href="maps.html" class="hover:text-emerald-400 transition">Spatial Map</a>
+        </div>
+        <div class="bg-white/5 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-slate-500">
+            Authenticated Access
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-12">
-        <h1 class="text-3xl font-bold mb-8">Scientific Database Explorer</h1>
+    <main class="container mx-auto px-6 py-12">
+        <header class="mb-16">
+            <h1 class="text-5xl font-black text-white mb-4 uppercase tracking-tighter leading-none">Scientific <span class="text-emerald-500">Archives</span></h1>
+            <p class="text-slate-500 text-lg max-w-3xl">Access the unified OWR environmental database. 26 years of quantified temporal change detection across 20+ thematic layers.</p>
+        </header>
         
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <div class="lg:col-span-1">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="font-bold mb-4 uppercase text-xs text-slate-500 tracking-widest">Select Theme</h3>
-                    <select id="themeSelector" class="w-full p-2 border rounded mb-6">
-                        <option value="forest_loss_2000_2026.csv">Forest Loss (2000-2026)</option>
-                        <option value="mining_expansion.csv">Mining Expansion</option>
-                        <option value="fire_burned_area.csv">Fire Burned Area</option>
-                        <option value="illegal_logging_hotspots.csv">Illegal Logging</option>
-                        <option value="carbon_emissions.csv">Carbon Emissions</option>
-                        <option value="biodiversity_risk.csv">Biodiversity Risk</option>
-                        <option value="road_expansion.csv">Road Expansion</option>
-                        <option value="settlement_expansion.csv">Settlement Expansion</option>
-                        <option value="annual_statistics.csv">Annual Statistics</option>
-                        <option value="landcover_change.csv">Landcover Change</option>
-                    </select>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-3">
+                <div class="glass p-8 rounded-[2.5rem] sticky top-24">
+                    <h3 class="text-[10px] font-black uppercase text-emerald-400 tracking-[0.2em] mb-6">Database Schema</h3>
                     
-                    <button id="downloadBtn" class="w-full bg-emerald-600 text-white py-2 rounded font-bold hover:bg-emerald-700 transition flex items-center justify-center">
-                        <i class="fas fa-download mr-2"></i> Download CSV
+                    <div class="mb-8">
+                        <label class="block text-[10px] font-black text-slate-600 uppercase mb-2 tracking-widest">Select Dataset</label>
+                        <select id="themeSelector" class="w-full bg-[#1e293b] border-none text-xs font-bold py-3 px-4 rounded-xl focus:ring-2 focus:ring-emerald-500 transition">
+                            <option value="forest_loss_2000_2026.csv">Forest Loss (Hansen GFC)</option>
+                            <option value="mining_inside.csv">Mining Inside OWR</option>
+                            <option value="cami_ipis_mining_impact.csv">Master Mining Impact</option>
+                            <option value="fire_burned_area.csv">Fire Dynamics (NASA)</option>
+                            <option value="illegal_logging_hotspots.csv">Illegal Logging Sites</option>
+                            <option value="carbon_emissions.csv">Carbon Flux Estimates</option>
+                            <option value="biodiversity_risk.csv">Biodiversity Risk Index</option>
+                            <option value="annual_statistics.csv">Consolidated Statistics</option>
+                        </select>
+                    </div>
+                    
+                    <button id="downloadBtn" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-emerald-500 transition flex items-center justify-center shadow-lg shadow-emerald-900/20 mb-8">
+                        <i class="fas fa-cloud-download-alt mr-2"></i> Export CSV
                     </button>
                     
-                    <div class="mt-8">
-                        <h4 class="font-bold text-sm mb-2">Metadata</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">All datasets are quantified in hectares (ha) and square kilometers (km²). Source: NASA/GFW/Hansen. Processed using parametric change detection.</p>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
+                        <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Technical Note</h4>
+                        <p class="text-[10px] text-slate-400 leading-relaxed font-bold">Datasets use EPSG:4326 (WGS84). Precision: 30m resolution for forest cover. Retrieval Date: 2026-05-15.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="lg:col-span-3">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
-                    <table id="dataTable" class="display w-full">
+            <div class="lg:col-span-9">
+                <div class="glass p-8 rounded-[3rem] overflow-hidden">
+                    <table id="dataTable" class="w-full">
                         <thead>
-                            <tr id="tableHead">
-                                <!-- Headers will be injected here -->
+                            <tr id="tableHead" class="text-[10px] font-black text-slate-500 uppercase tracking-widest text-left">
+                                <!-- Headers -->
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <!-- Data will be injected here -->
+                            <!-- Data -->
                         </tbody>
                     </table>
                 </div>
@@ -73,34 +95,42 @@
         </div>
     </main>
 
+    <footer class="bg-[#0b1221] py-20 mt-20 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-600 mb-10">OWR Data Infrastructure • RDC-002 Archive</p>
+            <div class="flex justify-center gap-12 opacity-20 mb-10 grayscale">
+                <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-6">
+            </div>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Open Data Platform</p>
+        </div>
+    </footer>
+
     <script>
         $(document).ready(function() {
             let table = $('#dataTable').DataTable();
 
             function loadData(filename) {
-                fetch(`data/csv/${filename}`)
+                const path = filename.includes('mining') ? `data/mining/${filename}` : `data/csv/${filename}`;
+                fetch(path)
                     .then(response => response.text())
                     .then(data => {
                         const rows = data.split('\n');
                         const headers = rows[0].split(',');
                         
-                        // Clear existing
                         table.destroy();
                         $('#tableHead').empty();
                         $('#tableBody').empty();
 
-                        // Add headers
                         headers.forEach(h => {
-                            $('#tableHead').append(`<th class="px-4 py-2 border-b text-left text-xs uppercase text-slate-500">${h.replace(/_/g, ' ')}</th>`);
+                            $('#tableHead').append(`<th>${h.replace(/_/g, ' ')}</th>`);
                         });
 
-                        // Add rows (limit to 100 for performance)
                         for (let i = 1; i < Math.min(rows.length, 101); i++) {
                             if (rows[i].trim() === '') continue;
                             const cols = rows[i].split(',');
-                            let rowHtml = '<tr>';
+                            let rowHtml = '<tr class="hover:bg-white/5 transition">';
                             cols.forEach(c => {
-                                rowHtml += `<td class="px-4 py-2 border-b text-sm">${c}</td>`;
+                                rowHtml += `<td>${c}</td>`;
                             });
                             rowHtml += '</tr>';
                             $('#tableBody').append(rowHtml);
@@ -108,7 +138,11 @@
 
                         table = $('#dataTable').DataTable({
                             pageLength: 25,
-                            responsive: true
+                            responsive: true,
+                            language: {
+                                search: "_INPUT_",
+                                searchPlaceholder: "Search records..."
+                            }
                         });
                     });
             }
@@ -119,10 +153,10 @@
 
             $('#downloadBtn').on('click', function() {
                 const filename = $('#themeSelector').val();
-                window.open(`data/csv/${filename}`);
+                const path = filename.includes('mining') ? `data/mining/${filename}` : `data/csv/${filename}`;
+                window.open(path);
             });
 
-            // Initial load
             loadData('forest_loss_2000_2026.csv');
         });
     </script>
