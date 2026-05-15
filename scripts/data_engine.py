@@ -146,21 +146,27 @@ def gen_biodiversity(year):
 
 # 3. Illegal Logging
 def gen_logging(year):
-    count = random.randint(3, 10)
+    count = random.randint(5, 12)
     rows = []
     for i in range(count):
+        # Spatially distribute across OWR: [27.5, 1.0] to [30.0, 2.5]
+        lat = 1.0 + random.uniform(0.1, 1.4)
+        lon = 27.5 + random.uniform(0.1, 2.4)
+        
         area = 20 + (year-2000)*2 + random.uniform(0, 30)
         common = get_common(year)
+        common[1] = lat
+        common[2] = lon
         common[6] = round(area, 2)
         rows.append(common + [
-            f"L-{year}-{i}",
+            f"L-{year}-{i:03d}",
             year,
             round(area, 2),
             random.choice(["Low", "Medium", "High"]),
             round(random.uniform(0.1, 10), 2),
             "Primary Tropical Forest",
             "True",
-            random.randint(3, 5)
+            random.randint(1, 5)
         ])
     return rows
 
