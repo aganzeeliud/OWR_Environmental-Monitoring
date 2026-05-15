@@ -1,211 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Climate Observatory | Okapi Wildlife Reserve (1990–2026)</title>
+    <title>Climate Observatory | OWR Environmental Intelligence</title>
     
     <!-- Libraries -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-
-        :root {
-            --emerald-950: #022c22;
-            --emerald-900: #064e3b;
-            --emerald-800: #065f46;
-            --emerald-600: #059669;
-            --emerald-500: #10b981;
-            --slate-900: #0f172a;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc;
+            color: #0f172a;
         }
 
-        body {
-            background-color: var(--emerald-950);
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(161, 95%, 15%, 1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(180, 80%, 10%, 1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(161, 95%, 15%, 1) 0, transparent 50%);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
         }
 
-        /* Glassmorphism Header */
-        .glass-nav {
-            background: rgba(2, 44, 34, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1.25rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
         }
 
-        .nav-brand {
-            font-weight: 800;
-            letter-spacing: -1px;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            color: var(--emerald-500);
-            text-decoration: none;
-        }
-
-        /* Hero */
-        .hero-section {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--emerald-500);
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            display: inline-block;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 0.9;
-            letter-spacing: -4px;
-            margin-bottom: 24px;
-        }
-
-        .hero-p {
-            color: var(--text-dim);
-            font-size: 1.25rem;
-            max-width: 700px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
-        }
-
-        /* Dashboard Grid */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
-            padding: 40px;
-            height: 100%;
+        .card-modern {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            border-radius: 2rem;
         }
 
-        .glass-card:hover {
-            border-color: rgba(16, 185, 129, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-8px);
+        .card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
         }
 
-        .card-label {
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--emerald-500);
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.5px;
-        }
-
-        /* Map UI */
-        #map {
-            height: 600px;
-            border-radius: 24px;
+        #map { 
+            height: 600px; 
+            border-radius: 2rem; 
+            background: #e2e8f0; 
+            border: 1px solid rgba(0,0,0,0.05);
             z-index: 1;
         }
 
-        .map-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            width: 280px;
+        .accent-emerald {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
         }
 
-        /* Stats */
-        .stat-value {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 1;
-            margin-bottom: 8px;
+        .chart-source { 
+            position: absolute; 
+            bottom: 10px; 
+            right: 15px; 
+            font-size: 8px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            color: #94a3b8; 
+            letter-spacing: 0.05em; 
         }
 
-        .stat-meta {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-dim);
-        }
-
-        /* Chart Styling */
-        .chart-container {
-            height: 350px;
-            width: 100%;
-        }
-
-        .source-tag {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            font-size: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.2);
-            letter-spacing: 1px;
-        }
-
-        /* Custom UI */
-        .btn-emerald {
-            background: var(--emerald-600);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .btn-emerald:hover {
-            background: var(--emerald-500);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-        }
+        .reveal { visibility: hidden; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-            font-size: 12px;
-            font-weight: 600;
+            gap: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b;
         }
 
         .legend-color {
@@ -213,161 +95,200 @@
             height: 12px;
             border-radius: 3px;
         }
-
-        footer {
-            padding: 80px 0;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--emerald-950); }
-        ::-webkit-scrollbar-thumb { background: var(--emerald-800); border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <nav class="glass-nav d-flex justify-content-between align-items-center">
-        <a href="index.html" class="nav-brand">OWR <span style="color:white">CLIMATE</span></a>
-        <div class="d-flex gap-4 align-items-center">
-            <span class="badge bg-success" style="font-size: 10px; padding: 6px 12px;">LIVE v3.0</span>
-            <a href="https://aganzeeliud.github.io/GFW_/explorer" class="btn btn-emerald btn-sm">GFW Explorer</a>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-[3000] glass-nav">
+        <div class="container mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 accent-emerald rounded-xl flex items-center justify-center shadow-lg shadow-emerald-100">
+                    <i class="fas fa-cloud-sun-rain text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tighter text-slate-900 uppercase">OWR <span class="text-emerald-600">CLIMATE</span></span>
+                    <div class="text-[8px] font-black uppercase tracking-[0.3em] text-slate-400 -mt-1">Meteorological Observatory</div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center space-x-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="index.html" class="hover:text-emerald-600 transition-colors">Hub</a>
+                <a href="fire-analysis.html" class="hover:text-emerald-600 transition-colors">Wildfire</a>
+                <a href="https://aganzeeliud.github.io/GFW_/explorer" class="hover:text-emerald-600 transition-colors">Mining</a>
+                <a href="logging-analysis.html" class="hover:text-emerald-600 transition-colors">Logging</a>
+                <a href="maps.html" class="hover:text-emerald-600 transition-colors">GIS Hub</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 hidden sm:block">Copernicus Integrated</span>
+                <a href="dashboard.html" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-slate-700 transition">Analytics</a>
+            </div>
         </div>
     </nav>
 
-    <section class="hero-section container">
-        <span class="hero-badge reveal">UNESCO Monitoring Intelligence</span>
-        <h1 class="reveal">Congo Basin <br><span style="color: var(--emerald-500)">Climate Dynamics</span></h1>
-        <p class="hero-p reveal">Long-term meteorological analysis for the Okapi Wildlife Reserve (1990–2026). Integrating high-resolution Copernicus and NASA datasets.</p>
-        
-        <div class="row g-4 mb-5">
-            <div class="col-md-3 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Mean Annual Temp</span>
-                    <div class="stat-value" id="hero-temp">25.1°</div>
-                    <div class="stat-meta">+1.2° Warming Trend</div>
-                </div>
+    <!-- Hero Header -->
+    <header class="relative pt-40 pb-20 overflow-hidden hero-pattern">
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="reveal inline-flex items-center space-x-3 bg-emerald-50 border border-emerald-100 rounded-full px-5 py-2 mb-8">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-black uppercase tracking-widest text-emerald-700">Multi-Decadal Climate Monitoring (1990—2026)</span>
             </div>
-            <div class="col-md-3 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Avg Rainfall</span>
-                    <div class="stat-value" id="hero-rain">1,850</div>
-                    <div class="stat-meta">mm / Per Annum</div>
+            <h1 class="reveal text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tighter text-slate-900 uppercase">
+                Climate <br><span class="text-emerald-600">Observatory Portal</span>
+            </h1>
+            <p class="reveal text-lg md:text-xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-12">
+                Long-term meteorological analysis for the Okapi Wildlife Reserve. Integrating high-resolution Copernicus ERA5-Land, CHIRPS, and NASA POWER datasets to track decadal shifts.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Mean Annual Temp</span>
+                    <div class="text-3xl font-black text-slate-900" id="stat-temp">25.1°C</div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-2 uppercase tracking-tighter">+1.2° Warming Trend</div>
                 </div>
-            </div>
-            <div class="col-md-3 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Humidity Index</span>
-                    <div class="stat-value">84%</div>
-                    <div class="stat-meta">Tropical Equilibrium</div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Avg Rainfall</span>
+                    <div class="text-3xl font-black text-slate-900" id="stat-rain">1,850 mm</div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-2 uppercase tracking-tighter">Tropical Equilibrium</div>
                 </div>
-            </div>
-            <div class="col-md-3 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Data Confidence</span>
-                    <div class="stat-value">98.2</div>
-                    <div class="stat-meta">Scientific Validation</div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Extreme Events</span>
+                    <div class="text-3xl font-black text-slate-900" id="stat-extremes">14</div>
+                    <div class="text-[10px] text-amber-600 font-bold mt-2 uppercase tracking-tighter">Drought/Flood Cycles</div>
+                </div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Data Confidence</span>
+                    <div class="text-3xl font-black text-slate-900">98.2%</div>
+                    <div class="text-[10px] text-slate-400 font-bold mt-2 uppercase tracking-tighter">Scientific Validation</div>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <main class="container mb-5">
-        <!-- Map & Controls -->
-        <div class="row g-4 mb-5">
-            <div class="col-lg-12 position-relative reveal">
-                <div class="glass-card p-2" style="height: 620px;">
-                    <div id="map"></div>
-                    
-                    <div class="map-controls reveal">
-                        <div class="glass-card p-4" style="background: rgba(2, 44, 34, 0.9); border-radius: 20px;">
-                            <span class="card-label">Temporal Control</span>
-                            <div class="mb-4">
-                                <label class="stat-meta mb-2 d-block">Observation Year: <span id="year-val" class="text-white">2014</span></label>
-                                <input type="range" class="form-range" id="year-slider" min="1990" max="2026" value="2014">
-                            </div>
+    <main class="container mx-auto px-8 pb-40">
+        <!-- Interactive Climate Map -->
+        <div class="row g-0 mb-16">
+            <div class="reveal col-lg-12">
+                <div class="card-modern p-4 shadow-xl flex flex-col md:flex-row gap-4">
+                    <div class="md:w-3/4">
+                        <div id="map"></div>
+                    </div>
+                    <div class="md:w-1/4 p-6 bg-slate-50 rounded-3xl border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-6 block">Spatial Controls</span>
                             
-                            <span class="card-label">Visualization</span>
-                            <div class="d-flex flex-column gap-2 mb-4">
-                                <button class="btn btn-sm btn-outline-success active" id="btn-risk" onclick="toggleLayer('risk')">Risk Hotspots</button>
-                                <button class="btn btn-sm btn-outline-info" id="btn-stations" onclick="toggleLayer('stations')">Monitoring Grid</button>
+                            <div class="mb-8">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase mb-3 block">Temporal Baseline: <span id="year-label" class="text-slate-900">2014</span></label>
+                                <input type="range" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" id="year-slider" min="1990" max="2026" value="2014">
                             </div>
 
-                            <span class="card-label">Legend</span>
-                            <div class="legend-item"><div class="legend-color" style="background: #e74c3c"></div> High Flood Risk</div>
-                            <div class="legend-item"><div class="legend-color" style="background: #f39c12"></div> Moderate Drought</div>
-                            <div class="legend-item"><div class="legend-color" style="background: #3498db"></div> Hydrological Stability</div>
+                            <div class="space-y-3 mb-10">
+                                <button class="w-full text-left px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-white shadow-lg shadow-emerald-100 active-layer" id="btn-risk" onclick="toggleLayer('risk')">
+                                    <i class="fas fa-biohazard mr-2"></i> Risk Hotspots
+                                </button>
+                                <button class="w-full text-left px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white text-slate-500 border border-slate-200 hover:bg-slate-50 transition" id="btn-stations" onclick="toggleLayer('stations')">
+                                    <i class="fas fa-broadcast-tower mr-2"></i> Monitoring Grid
+                                </button>
+                            </div>
+
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Risk Legend</span>
+                            <div class="space-y-3">
+                                <div class="legend-item"><div class="legend-color" style="background: #ef4444"></div> High Impact Risk</div>
+                                <div class="legend-item"><div class="legend-color" style="background: #f59e0b"></div> Moderate Anomaly</div>
+                                <div class="legend-item"><div class="legend-color" style="background: #3b82f6"></div> Scientific Baseline</div>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-6 border-t border-slate-200">
+                            <span class="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] leading-relaxed">
+                                Fused Satellite Telemetry: Copernicus Sentinel-2 & NASA MODIS
+                            </span>
                         </div>
                     </div>
-                    <span class="source-tag">Source: Copernicus / CHIRPS / NASA</span>
                 </div>
             </div>
         </div>
 
-        <!-- Charts Grid -->
-        <div class="row g-4">
-            <!-- 1990-2026 Temp Evolution -->
-            <div class="col-lg-12 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Decadal Monitoring</span>
-                    <h3 class="card-title">Temperature Evolution (1990–2026)</h3>
-                    <div id="temp-evolution-chart" class="chart-container"></div>
-                    <span class="source-tag">Source: ERA5-Land Reanalysis (ECMWF)</span>
-                </div>
+        <!-- Analytics Bento Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+            <!-- Long Term Temp -->
+            <div class="reveal lg:col-span-12 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Temperature Evolution (1990—2026)</h3>
+                <div id="temp-evolution-chart" style="height: 400px; width: 100%;"></div>
+                <span class="chart-source">Source: ERA5-Land Reanalysis (ECMWF)</span>
             </div>
 
-            <!-- Monthly Seasonal Climatology -->
-            <div class="col-lg-7 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Seasonal Analysis</span>
-                    <h3 class="card-title">Monthly Climatology (Rainfall Cycle)</h3>
-                    <div id="seasonal-climatology-chart" class="chart-container"></div>
-                    <span class="source-tag">Source: CHIRPS Rainfall Dataset v2.0</span>
-                </div>
+            <!-- Seasonal Cycle -->
+            <div class="reveal lg:col-span-7 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Monthly Climatology (Rainfall Cycle)</h3>
+                <div id="seasonal-climatology-chart" style="height: 350px; width: 100%;"></div>
+                <span class="chart-source">Source: CHIRPS Rainfall Dataset v2.0</span>
             </div>
 
-            <!-- Heatwave Timeline -->
-            <div class="col-lg-5 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Extreme Events</span>
-                    <h3 class="card-title">Heatwave Frequency Index</h3>
-                    <div id="heatwave-chart" class="chart-container"></div>
-                    <span class="source-tag">Source: NASA POWER Meteorological Data</span>
-                </div>
+            <!-- Heatwaves -->
+            <div class="reveal lg:col-span-5 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Heatwave Frequency Index</h3>
+                <div id="heatwave-chart" style="height: 350px; width: 100%;"></div>
+                <span class="chart-source">Source: NASA POWER Meteorological Data</span>
             </div>
 
-            <!-- Precipitation Stats -->
-            <div class="col-lg-6 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Hydrology</span>
-                    <h3 class="card-title">Annual Rainfall Flux</h3>
-                    <div id="rain-flux-chart" class="chart-container"></div>
-                    <span class="source-tag">Source: Multi-Sensor Precipitation Integration</span>
-                </div>
+            <!-- Rain Flux -->
+            <div class="reveal lg:col-span-6 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Annual Rainfall Flux</h3>
+                <div id="rain-flux-chart" style="height: 300px; width: 100%;"></div>
+                <span class="chart-source">Source: Multi-Sensor Precipitation Integration</span>
             </div>
 
-            <!-- Drought Severity -->
-            <div class="col-lg-6 reveal">
-                <div class="glass-card">
-                    <span class="card-label">Aridity Monitoring</span>
-                    <h3 class="card-title">Drought Severity (SPI Index)</h3>
-                    <div id="drought-chart" class="chart-container"></div>
-                    <span class="source-tag">Source: TerraClimate / Water Balance Modeling</span>
-                </div>
+            <!-- Drought SPI -->
+            <div class="reveal lg:col-span-6 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Drought Severity (SPI Index)</h3>
+                <div id="drought-chart" style="height: 300px; width: 100%;"></div>
+                <span class="chart-source">Source: TerraClimate / Water Balance Modeling</span>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <h4 style="font-weight: 800; letter-spacing: -1px; margin-bottom: 32px;">OWR CLIMATE INTELLIGENCE</h4>
-            <div class="d-flex justify-content-center gap-4 mb-4">
-                <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" style="height: 30px; opacity: 0.5;">
-                <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" style="height: 30px; opacity: 0.5;">
+    <!-- Footer -->
+    <footer class="bg-white py-32 border-t border-slate-200">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-20">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-4 mb-8">
+                        <div class="w-10 h-10 accent-emerald rounded-xl flex items-center justify-center">
+                            <i class="fas fa-cloud-sun-rain text-white"></i>
+                        </div>
+                        <span class="text-2xl font-black tracking-tighter text-slate-900 uppercase">OWR <span class="text-emerald-600">CLIMATE</span></span>
+                    </div>
+                    <p class="text-slate-500 max-w-md font-bold uppercase text-[10px] leading-relaxed tracking-widest">
+                        Official Meteorological Monitoring Infrastructure for the Okapi Wildlife Reserve. Developing open-source geospatial solutions for Congo Basin conservation.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Analysis Units</h5>
+                    <ul class="text-[10px] space-y-4 text-slate-600 font-black uppercase tracking-widest">
+                        <li><a href="fire-analysis.html" class="hover:text-emerald-600 transition">Wildfire Intel</a></li>
+                        <li><a href="logging-analysis.html" class="hover:text-emerald-600 transition">Extraction Intel</a></li>
+                        <li><a href="https://aganzeeliud.github.io/GFW_/explorer" class="hover:text-emerald-600 transition">Mining Governance</a></li>
+                        <li><a href="maps.html" class="hover:text-emerald-600 transition">Spatial Hub</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Scientific Hub</h5>
+                    <ul class="text-[10px] space-y-4 text-slate-600 font-black uppercase tracking-widest">
+                        <li><a href="database.html" class="hover:text-emerald-600 transition">Data Archives</a></li>
+                        <li><a href="methodology.html" class="hover:text-emerald-600 transition">Methodology</a></li>
+                        <li><a href="report.html" class="hover:text-emerald-600 transition">Reports</a></li>
+                    </ul>
+                </div>
             </div>
-            <p class="stat-meta uppercase" style="letter-spacing: 2px;">Scientific Data Initiative • Okapi Wildlife Reserve (ICCN)</p>
-            <p class="stat-meta" style="margin-top: 12px; font-size: 10px;">&copy; 2026 DR Congo Environmental Command Center. All Rights Reserved.</p>
+            <div class="mt-32 pt-12 border-t border-slate-100 flex flex-wrap justify-between items-center gap-8">
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">&copy; 2026 OWR Environmental Monitoring • ICCN Scientific Unit</p>
+                <div class="flex gap-8 items-center opacity-30 grayscale hover:opacity-100 transition-all">
+                    <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-5">
+                    <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-5">
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -382,23 +303,22 @@
         function initMap() {
             map = L.map('map', { preferCanvas: true, zoomControl: false }).setView(mapCenter, 8);
             
-            const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' }).addTo(map);
-            const topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles &copy; Esri' });
-            const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles &copy; Esri' });
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; CARTO'
+            }).addTo(map);
 
-            L.control.layers({ "Scientific Dark": dark, "Topography": topo, "Satellite": satellite }, {}, { position: 'bottomright' }).addTo(map);
             L.control.zoom({ position: 'bottomright' }).addTo(map);
 
             // Fetch Layers
             fetch('geojson/climate/rfo_boundary.geojson').then(r => r.json()).then(data => {
-                rfoLayer = L.geoJSON(data, { style: { color: '#10b981', weight: 2, fillOpacity: 0.05 } }).addTo(map);
+                rfoLayer = L.geoJSON(data, { style: { color: '#059669', weight: 2, fillOpacity: 0.02 } }).addTo(map);
                 map.fitBounds(rfoLayer.getBounds());
             });
 
             fetch('geojson/climate/flood_risk.geojson').then(r => r.json()).then(data => {
                 riskLayer = L.geoJSON(data, {
                     style: f => ({ 
-                        fillColor: f.properties.flood_risk > 70 ? '#e74c3c' : f.properties.flood_risk > 40 ? '#f39c12' : '#3498db',
+                        fillColor: f.properties.flood_risk > 70 ? '#ef4444' : f.properties.flood_risk > 40 ? '#f59e0b' : '#3b82f6',
                         weight: 0.5, color: '#ffffff', fillOpacity: 0.7 
                     })
                 }).addTo(map);
@@ -406,48 +326,71 @@
 
             fetch('geojson/climate/climate_stations.geojson').then(r => r.json()).then(data => {
                 stationLayer = L.geoJSON(data, {
-                    pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#10b981', color: '#fff', weight: 1, fillOpacity: 1 })
+                    pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#059669', color: '#fff', weight: 1, fillOpacity: 1 })
                 });
             });
         }
 
         function toggleLayer(type) {
             const btn = document.getElementById(`btn-${type}`);
-            if (type === 'risk') map.hasLayer(riskLayer) ? (map.removeLayer(riskLayer), btn.classList.remove('active')) : (map.addLayer(riskLayer), btn.classList.add('active'));
-            if (type === 'stations') map.hasLayer(stationLayer) ? (map.removeLayer(stationLayer), btn.classList.remove('active')) : (map.addLayer(stationLayer), btn.classList.add('active'));
+            if (type === 'risk') {
+                if (map.hasLayer(riskLayer)) {
+                    map.removeLayer(riskLayer);
+                    btn.className = "w-full text-left px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white text-slate-500 border border-slate-200 hover:bg-slate-50 transition";
+                } else {
+                    map.addLayer(riskLayer);
+                    btn.className = "w-full text-left px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-white shadow-lg shadow-emerald-100";
+                }
+            }
+            if (type === 'stations') {
+                if (map.hasLayer(stationLayer)) {
+                    map.removeLayer(stationLayer);
+                    btn.className = "w-full text-left px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white text-slate-500 border border-slate-200 hover:bg-slate-50 transition";
+                } else {
+                    map.addLayer(stationLayer);
+                    btn.className = "w-full text-left px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-white shadow-lg shadow-emerald-100";
+                }
+            }
         }
 
         // Charts
         async function initCharts() {
-            const config = { responsive: true, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { family: 'Plus Jakarta Sans', color: '#94a3b8', size: 10 }, margin: { t: 10, b: 30, l: 40, r: 10 } };
+            const chartFont = { family: 'Plus Jakarta Sans', size: 10, color: '#94a3b8', weight: 'bold' };
+            const chartLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: chartFont,
+                margin: { t: 10, b: 30, l: 40, r: 10 },
+                xaxis: { gridcolor: 'rgba(0,0,0,0)', bordercolor: 'rgba(0,0,0,0)' },
+                yaxis: { gridcolor: 'rgba(0,0,0,0.03)', bordercolor: 'rgba(0,0,0,0)' }
+            };
 
             const data = await new Promise(resolve => {
                 Papa.parse('data/climate/monthly_climate.csv', { download: true, header: true, complete: res => resolve(res.data.filter(d => d.year)) });
             });
 
-            // 1. Temp Evolution (1990-2026)
+            // 1. Temp Evolution
             const annualTemp = {};
             data.forEach(d => { if(!annualTemp[d.year]) annualTemp[d.year] = []; annualTemp[d.year].push(parseFloat(d.temperature)); });
             const years = Object.keys(annualTemp);
             const temps = years.map(y => annualTemp[y].reduce((a,b)=>a+b, 0) / annualTemp[y].length);
 
             Plotly.newPlot('temp-evolution-chart', [{
-                x: years, y: temps, mode: 'lines+markers', line: { color: '#10b981', width: 3, shape: 'spline' }, 
-                marker: { size: 6, color: '#059669' }, fill: 'tozeroy', fillcolor: 'rgba(16, 185, 129, 0.05)'
-            }], config);
+                x: years, y: temps, mode: 'lines+markers', line: { color: '#059669', width: 4, shape: 'spline' }, 
+                marker: { size: 6, color: '#10b981' }, fill: 'tozeroy', fillcolor: 'rgba(16, 185, 129, 0.02)'
+            }], { ...chartLayout, margin: { t: 30, b: 50, l: 50, r: 20 } });
 
-            // Update Hero Stats
-            document.getElementById('hero-temp').innerText = temps[temps.length-1].toFixed(1) + '°';
+            document.getElementById('stat-temp').innerText = temps[temps.length-1].toFixed(1) + '°C';
 
-            // 2. Seasonal Climatology (High Fidelity)
+            // 2. Seasonal Climatology
             const monthlyRain = Array(12).fill(0).map(() => []);
             data.forEach(d => monthlyRain[parseInt(d.month)-1].push(parseFloat(d.rainfall)));
             const avgRain = monthlyRain.map(arr => arr.reduce((a,b)=>a+b,0)/arr.length);
             const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
             Plotly.newPlot('seasonal-climatology-chart', [{
-                x: months, y: avgRain, type: 'bar', marker: { color: '#3498db', opacity: 0.8 }, name: 'Avg Rainfall'
-            }], config);
+                x: months, y: avgRain, type: 'bar', marker: { color: '#3b82f6', opacity: 0.8, borderRadius: 6 }, name: 'Avg Rainfall'
+            }], chartLayout);
 
             // 3. Heatwave Index
             const heatwaves = await new Promise(resolve => {
@@ -455,13 +398,14 @@
             });
             Plotly.newPlot('heatwave-chart', [{
                 x: heatwaves.map(d => d.year), y: heatwaves.map(d => parseFloat(d.temp_anomaly)), 
-                type: 'bar', marker: { color: '#e74c3c' }
-            }], config);
+                type: 'bar', marker: { color: '#ef4444', borderRadius: 4 }
+            }], chartLayout);
+            document.getElementById('stat-extremes').innerText = heatwaves.length;
 
             // 4. Rain Flux
             const annualRain = years.map(y => data.filter(d => d.year === y).reduce((a,b) => a + parseFloat(b.rainfall), 0));
-            Plotly.newPlot('rain-flux-chart', [{ x: years, y: annualRain, mode: 'lines', line: { color: '#3498db', width: 2 } }], config);
-            document.getElementById('hero-rain').innerText = annualRain[annualRain.length-1].toFixed(0);
+            Plotly.newPlot('rain-flux-chart', [{ x: years, y: annualRain, mode: 'lines', line: { color: '#3b82f6', width: 3, shape: 'spline' } }], chartLayout);
+            document.getElementById('stat-rain').innerText = Math.round(annualRain[annualRain.length-1]).toLocaleString() + ' mm';
 
             // 5. Drought SPI
             const droughts = await new Promise(resolve => {
@@ -469,14 +413,13 @@
             });
             Plotly.newPlot('drought-chart', [{
                 x: droughts.map(d => d.year), y: droughts.map(d => (parseFloat(d.rainfall) - 1800)/200),
-                mode: 'markers', marker: { size: 12, color: '#f39c12', symbol: 'diamond' }
-            }], config);
+                mode: 'markers', marker: { size: 14, color: '#f59e0b', symbol: 'diamond' }
+            }], chartLayout);
         }
 
         // Controls
         document.getElementById('year-slider').addEventListener('input', e => {
-            document.getElementById('year-val').innerText = e.target.value;
-            // Simulated variation
+            document.getElementById('year-label').innerText = e.target.value;
             if (riskLayer) riskLayer.setStyle(f => ({ fillOpacity: 0.4 + (Math.sin(e.target.value)*0.3) }));
         });
 
