@@ -6,8 +6,8 @@
     <title>Mining Intelligence & Governance | OWR Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-slate-50 font-sans text-slate-900">
@@ -165,20 +165,44 @@
                 tbody.appendChild(tr);
             });
 
-            // Initialize Map
-            const map = L.map('miningMap').setView([1.6333, 28.5833], 9);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            // Initialize Mapbox
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VtaW5pLWNsaSIsImEiOiJjbHN2eXJxeGwwMWRyMnFvNHB5Ym55bm55In0.placeholder';
+            const map = new mapboxgl.Map({
+                container: 'miningMap',
+                style: 'mapbox://styles/mapbox/satellite-v9',
+                center: [28.5833, 1.6333],
+                zoom: 8.5
+            });
 
-            // Mock CAMI Polygons
-            L.rectangle([[1.4, 28.2], [1.8, 28.6]], { color: "#064e3b", weight: 2, fillOpacity: 0.1 }).addTo(map).bindPopup("CAMI Concession: Industrial PE-9482");
-            
-            // Map IPIS Points
-            data.slice(0, 30).forEach(c => {
-                if(c[5] === 'Artisanal') {
-                    L.circleMarker([1.6333 + Math.random()*0.5, 28.5833 + Math.random()*0.5], {
-                        radius: 6, fillColor: "#f59e0b", color: "white", weight: 1, fillOpacity: 0.8
-                    }).addTo(map).bindPopup(`IPIS Site: ${c[0]}<br>Mineral: ${c[3]}<br>Type: Artisanal`);
-                }
+            map.on('load', () => {
+                // Mock CAMI Concession Polygon
+                map.addSource('cami-concession', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [[[28.2, 1.4], [28.6, 1.4], [28.6, 1.8], [28.2, 1.8], [28.2, 1.4]]]
+                        }
+                    }
+                });
+
+                map.addLayer({
+                    'id': 'cami-layer',
+                    'type': 'fill',
+                    'source': 'cami-concession',
+                    'paint': { 'fill-color': '#064e3b', 'fill-opacity': 0.1 }
+                });
+
+                // Map IPIS Points
+                data.slice(0, 30).forEach(c => {
+                    if(c[5] === 'Artisanal') {
+                        new mapboxgl.Marker({ color: '#f59e0b', scale: 0.6 })
+                            .setLngLat([28.5833 + Math.random()*0.5, 1.6333 + Math.random()*0.5])
+                            .setPopup(new mapboxgl.Popup().setHTML(`IPIS Site: ${c[0]}<br>Mineral: ${c[3]}<br>Type: Artisanal`))
+                            .addTo(map);
+                    }
+                });
             });
 
             // Charts

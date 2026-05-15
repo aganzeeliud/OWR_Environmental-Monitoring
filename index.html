@@ -6,6 +6,8 @@
     <title>OWR Environmental Intelligence | Command Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -183,6 +185,36 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VtaW5pLWNsaSIsImEiOiJjbHN2eXJxeGwwMWRyMnFvNHB5Ym55bm55In0.placeholder';
+        const miniMap = new mapboxgl.Map({
+            container: 'miniMap',
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            center: [28.5833, 1.6333],
+            zoom: 6,
+            interactive: false
+        });
+
+        miniMap.on('load', () => {
+            miniMap.addSource('owr-boundary', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Polygon',
+                        'coordinates': [[[27.5, 1.0], [30.0, 1.0], [30.0, 2.5], [27.5, 2.5], [27.5, 1.0]]]
+                    }
+                }
+            });
+            miniMap.addLayer({
+                'id': 'owr-boundary-layer',
+                'type': 'line',
+                'source': 'owr-boundary',
+                'paint': { 'line-color': '#10b981', 'line-width': 2 }
+            });
+        });
+    </script>
 
 </body>
 </html>

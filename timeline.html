@@ -6,8 +6,8 @@
     <title>Environmental Timeline Explorer | OWR Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         #timelineMap { height: 500px; width: 100%; border-radius: 1.5rem; }
@@ -172,10 +172,15 @@
         let isPlaying = false;
         let playInterval;
 
-        const map = L.map('timelineMap').setView([1.6333, 28.5833], 9);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM' }).addTo(map);
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VtaW5pLWNsaSIsImEiOiJjbHN2eXJxeGwwMWRyMnFvNHB5Ym55bm55In0.placeholder';
+        const map = new mapboxgl.Map({
+            container: 'timelineMap',
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            center: [28.5833, 1.6333],
+            zoom: 8.5
+        });
 
-        const markersLayer = L.layerGroup().addTo(map);
+        let markers = [];
 
         async function loadTimelineData() {
             const res = await fetch('data/csv/yearly_combined_environmental_impacts.csv');
@@ -198,9 +203,12 @@
                     change: parseFloat(c[11])
                 };
             });
-            initCharts();
-            updateUI();
-            populateTable();
+            
+            map.on('load', () => {
+                initCharts();
+                updateUI();
+                populateTable();
+            });
         }
 
         function updateUI() {
@@ -231,18 +239,25 @@
             });
 
             // Update Map Markers (Simulated yearly progression)
-            markersLayer.clearLayers();
+            markers.forEach(m => m.remove());
+            markers = [];
             const count = Math.floor(5 + (currentYear - 2000) * 1.5);
             for(let i=0; i<count; i++) {
                 const lat = 1.6333 + Math.sin(i * currentYear) * 0.4;
                 const lon = 28.5833 + Math.cos(i * currentYear) * 0.4;
-                L.circleMarker([lat, lon], {
-                    radius: 5 + (data.risk * 10),
-                    fillColor: currentYear > 2015 ? "#f59e0b" : "#10b981",
-                    color: "white",
-                    weight: 1,
-                    fillOpacity: 0.6
-                }).addTo(markersLayer);
+                
+                const el = document.createElement('div');
+                el.className = 'marker';
+                el.style.backgroundColor = currentYear > 2015 ? "#f59e0b" : "#10b981";
+                el.style.width = (5 + (data.risk * 10)) + 'px';
+                el.style.height = (5 + (data.risk * 10)) + 'px';
+                el.style.borderRadius = '50%';
+                el.style.opacity = '0.6';
+
+                const m = new mapboxgl.Marker(el)
+                    .setLngLat([lon, lat])
+                    .addTo(map);
+                markers.push(m);
             }
         }
 
