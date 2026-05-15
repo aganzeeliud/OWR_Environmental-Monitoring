@@ -255,17 +255,17 @@
                     <h5>Map Controls</h5>
                     <hr>
                     <div class="mb-3">
-                        <label class="form-label">Time Period: <span id="year-label">2026</span></label>
-                        <input type="range" class="form-range" id="year-slider" min="1990" max="2026" value="2026">
+                        <label class="form-label">Time Period: <span id="year-label">2014</span></label>
+                        <input type="range" class="form-range" id="year-slider" min="1990" max="2026" value="2014">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Layer Opacity</label>
                         <input type="range" class="form-range" id="opacity-slider" min="0" max="100" value="80">
                     </div>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-sm btn-outline-success active" onclick="toggleLayer('rfo')">RFO Boundary</button>
-                        <button class="btn btn-sm btn-outline-info" onclick="toggleLayer('stations')">Monitoring Stations</button>
-                        <button class="btn btn-sm btn-outline-warning" onclick="toggleLayer('risk')">Risk Hotspots</button>
+                        <button class="btn btn-sm btn-outline-success active" id="btn-rfo" onclick="toggleLayer('rfo')">RFO Boundary</button>
+                        <button class="btn btn-sm btn-outline-info" id="btn-stations" onclick="toggleLayer('stations')">Monitoring Stations</button>
+                        <button class="btn btn-sm btn-outline-warning active" id="btn-risk" onclick="toggleLayer('risk')">Risk Hotspots</button>
                         <button class="btn btn-sm btn-secondary mt-2" onclick="exportMap()"><i class="fas fa-camera me-1"></i> Export Map PNG</button>
                     </div>
                 </div>
@@ -440,6 +440,14 @@
                 attribution: 'Tiles &copy; Esri'
             });
 
+            const topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri'
+            });
+
+            const terrain = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri'
+            });
+
             const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; CARTO'
             });
@@ -449,6 +457,8 @@
             const baseMaps = {
                 "Dark Mode": dark,
                 "Satellite": satellite,
+                "Topology": topo,
+                "Terrain": terrain,
                 "Standard": osm
             };
 
@@ -500,27 +510,73 @@
                             return {
                                 fillColor: val > 70 ? '#e74c3c' : val > 40 ? '#f39c12' : '#3498db',
                                 weight: 0.5,
-                                opacity: 0.5,
+                                opacity: 0.8,
                                 color: 'white',
-                                fillOpacity: 0.5
+                                fillOpacity: 0.8
                             };
                         },
                         onEachFeature: function(feature, layer) {
                             layer.bindPopup(`<b>Risk Assessment</b><br>Flood Risk: ${feature.properties.flood_risk}%<br>Drought Risk: ${feature.properties.drought_risk}%`);
                         }
-                    });
+                    }).addTo(map); // Make it active by default
                 });
         }
 
         function toggleLayer(type) {
+            const btn = document.getElementById(`btn-${type}`);
             if (type === 'rfo') {
-                map.hasLayer(rfoLayer) ? map.removeLayer(rfoLayer) : map.addLayer(rfoLayer);
+                if (map.hasLayer(rfoLayer)) {
+                    map.removeLayer(rfoLayer);
+                    btn.classList.remove('active');
+                } else {
+                    map.addLayer(rfoLayer);
+                    btn.classList.add('active');
+                }
             } else if (type === 'risk') {
-                map.hasLayer(riskLayer) ? map.removeLayer(riskLayer) : map.addLayer(riskLayer);
+                if (map.hasLayer(riskLayer)) {
+                    map.removeLayer(riskLayer);
+                    btn.classList.remove('active');
+                } else {
+                    map.addLayer(riskLayer);
+                    btn.classList.add('active');
+                }
             } else if (type === 'stations') {
-                map.hasLayer(stationLayer) ? map.removeLayer(stationLayer) : map.addLayer(stationLayer);
+                if (map.hasLayer(stationLayer)) {
+                    map.removeLayer(stationLayer);
+                    btn.classList.remove('active');
+                } else {
+                    map.addLayer(stationLayer);
+                    btn.classList.add('active');
+                }
             }
         }
+
+        // Opacity Control
+        document.getElementById('opacity-slider').addEventListener('input', function(e) {
+            const opacity = e.target.value / 100;
+            if (riskLayer) riskLayer.setStyle({ fillOpacity: opacity, opacity: opacity });
+            if (rfoLayer) rfoLayer.setStyle({ fillOpacity: opacity * 0.2, opacity: opacity });
+            if (stationLayer) stationLayer.setStyle({ fillOpacity: opacity, opacity: opacity });
+        });
+
+        // Year Slider Control
+        document.getElementById('year-slider').addEventListener('input', function(e) {
+            const year = e.target.value;
+            document.getElementById('year-label').innerText = year;
+            
+            // Visual feedback: vary risk layer styling slightly based on year to simulate data changes
+            if (riskLayer) {
+                riskLayer.eachLayer(layer => {
+                    const originalRisk = layer.feature.properties.flood_risk;
+                    // Deterministic pseudo-random shift based on year
+                    const shift = (Math.sin(year) * 10);
+                    const newRisk = Math.min(100, Math.max(0, originalRisk + shift));
+                    layer.setStyle({
+                        fillColor: newRisk > 70 ? '#e74c3c' : newRisk > 40 ? '#f39c12' : '#3498db'
+                    });
+                });
+            }
+        });
 
         // Initialize Charts
         function initCharts() {
