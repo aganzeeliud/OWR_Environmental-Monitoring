@@ -2,40 +2,39 @@
 
 Advanced geospatial monitoring and intelligence platform for the Okapi Wildlife Reserve (UNESCO World Heritage Site #718), Democratic Republic of the Congo.
 
-## Features
+## Core Modules
 
-- **Mining Governance**: Real-time monitoring of CAMI industrial permits and IPIS artisanal mining sites.
-- **Spatial Intelligence**: Interactive Leaflet maps with Turf.js intersection analysis, 50km buffer zones, and heatmap visualizations.
-- **Temporal Analysis**: Time-series hotspots from 2000 to 2026.
-- **Ecological Dashboard**: Quantitative trends on forest loss, fire hotspots, and carbon emissions.
-- **Open Data**: Downloadable CSV and GeoJSON datasets for scientific research.
+- **Wildfire Dynamics**: Advanced classification of fire drivers (2001-2026). Monitoring slash-and-burn, charcoal production, and climate-induced forest loss.
+- **Mining Governance**: Real-time monitoring of CAMI industrial permits and IPIS artisanal mining sites with spatial intersection analysis.
+- **Logging Intelligence**: Tracking infrastructure expansion and illegal extraction corridors via satellite telemetry.
+- **Ecological Dashboard**: Quantitative trends on forest loss, fire hotspots, and carbon flux.
+- **Spatial Map Hub**: Interactive Leaflet maps with Turf.js spatial logic and high-resolution base layers.
 
-## Data Sources
+## Available Datasets
 
-- **UNESCO**: Official OWR boundary polygons.
-- **CAMI RDC**: Industrial mining titles and exploration permits.
-- **IPIS Research**: Artisanal mining site impact database.
-- **NASA FIRMS**: Fire hotspot thermal anomalies.
-- **UMD/Hansen**: Global Forest Change data.
+Access these via the [Scientific Data Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/database.html):
+
+1. **Forest Loss (Hansen GFC)**: 2000-2026 temporal tree cover loss at 30m resolution.
+2. **Mining Inside OWR**: Industrial and artisanal mining sites intersecting the reserve.
+3. **Master Mining Impact**: Consolidated dataset of mining permits and environmental impact scores.
+4. **Fire Dynamics (NASA)**: Annual burned area statistics derived from MODIS/VIIRS.
+5. **Illegal Logging Hotspots**: Locations of suspected extraction corridors and forest fragmentation.
+6. **Carbon Flux Estimates**: Modeled carbon emissions resulting from biomass loss.
+7. **Biodiversity Risk Index**: Spatial quantification of species habitat vulnerability.
+8. **Consolidated Statistics**: Master tabular summary of all ecological indicators.
 
 ## Technical Stack
 
-- **Frontend**: HTML5, CSS3 (Tailwind), Vanilla JavaScript.
-- **Mapping**: Leaflet.js, Turf.js (Spatial logic), Leaflet.heat, Leaflet.markercluster.
+- **Frontend**: HTML5, CSS3 (Tailwind CSS), Vanilla JavaScript.
+- **Mapping**: Leaflet.js, Turf.js, Leaflet.heat, Leaflet.markercluster.
 - **Visualization**: Chart.js.
 - **Data Parsing**: PapaParse.
-
-## Directory Structure
-
-- `/data/mining/`: Mining permits, impacts, and intersection results (GeoJSON/CSV).
-- `/data/boundaries/`: Official reserve polygons (GeoJSON/WKT/CSV).
-- `/scripts/`: Python data engines for spatial analysis and hotspot generation.
-- `/maps.html`: Advanced geospatial explorer.
-- `/mining-analysis.html`: In-depth mining governance dashboard.
 
 ## Deployment
 
 Hosted on GitHub Pages. Data is statically served for maximum compatibility and performance.
+
+**URL**: [https://aganzeeliud.github.io/OWR_Environmental-Monitoring/](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
 
 ---
 *Official Monitoring System for OWR Environmental Intelligence (2026)*
