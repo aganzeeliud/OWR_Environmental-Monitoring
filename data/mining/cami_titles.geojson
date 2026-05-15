@@ -1,0 +1,1255 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-7453",
+                "permit_name": "Permit PE-7453",
+                "operator": "Kibali Gold",
+                "mineral_type": "Gold",
+                "status": "Active",
+                "issue_date": "2019-01-01",
+                "expiry_date": "2029-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.929045637711912,
+                "longitude": 27.759987833327095,
+                "source": "CAMI",
+                "year": 2019
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.759987833327095,
+                    2.929045637711912
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-3501",
+                "permit_name": "Permit PE-3501",
+                "operator": "Banro Corp",
+                "mineral_type": "Cassiterite",
+                "status": "Expired",
+                "issue_date": "2006-01-01",
+                "expiry_date": "2016-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.427984707446984,
+                "longitude": 28.676604813752675,
+                "source": "CAMI",
+                "year": 2006
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.676604813752675,
+                    1.427984707446984
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-6402",
+                "permit_name": "Permit PE-6402",
+                "operator": "Alphamin",
+                "mineral_type": "Gold",
+                "status": "Active",
+                "issue_date": "2020-01-01",
+                "expiry_date": "2030-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.6029720334533573,
+                "longitude": 29.134339040316323,
+                "source": "CAMI",
+                "year": 2020
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.134339040316323,
+                    1.6029720334533573
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2505",
+                "permit_name": "Permit PE-2505",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Diamond",
+                "status": "Renewal",
+                "issue_date": "2023-01-01",
+                "expiry_date": "2033-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.2668675563417773,
+                "longitude": 27.85060665623375,
+                "source": "CAMI",
+                "year": 2023
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.85060665623375,
+                    1.2668675563417773
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-8957",
+                "permit_name": "Permit PE-8957",
+                "operator": "Banro Corp",
+                "mineral_type": "Cassiterite",
+                "status": "Active",
+                "issue_date": "2022-01-01",
+                "expiry_date": "2032-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.0103891017465267,
+                "longitude": 29.112847279633932,
+                "source": "CAMI",
+                "year": 2022
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.112847279633932,
+                    2.0103891017465267
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2631",
+                "permit_name": "Permit PE-2631",
+                "operator": "Banro Corp",
+                "mineral_type": "Diamond",
+                "status": "Inactive",
+                "issue_date": "2016-01-01",
+                "expiry_date": "2026-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.792866802874971,
+                "longitude": 28.17046326364401,
+                "source": "CAMI",
+                "year": 2016
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.17046326364401,
+                    2.792866802874971
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9484",
+                "permit_name": "Permit PE-9484",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Coltan",
+                "status": "Inactive",
+                "issue_date": "2013-01-01",
+                "expiry_date": "2023-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.37517782804891,
+                "longitude": 29.049042861361666,
+                "source": "CAMI",
+                "year": 2013
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.049042861361666,
+                    2.37517782804891
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-4751",
+                "permit_name": "Permit PE-4751",
+                "operator": "Kibali Gold",
+                "mineral_type": "Wolframite",
+                "status": "Renewal",
+                "issue_date": "2023-01-01",
+                "expiry_date": "2033-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.2339786542895808,
+                "longitude": 28.09879005891336,
+                "source": "CAMI",
+                "year": 2023
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.09879005891336,
+                    1.2339786542895808
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9112",
+                "permit_name": "Permit PE-9112",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Gold",
+                "status": "Active",
+                "issue_date": "2018-01-01",
+                "expiry_date": "2028-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.6579490531920644,
+                "longitude": 29.34602428818195,
+                "source": "CAMI",
+                "year": 2018
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.34602428818195,
+                    0.6579490531920644
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9842",
+                "permit_name": "Permit PE-9842",
+                "operator": "Banro Corp",
+                "mineral_type": "Coltan",
+                "status": "Inactive",
+                "issue_date": "2016-01-01",
+                "expiry_date": "2026-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.0006138198589394,
+                "longitude": 27.909724427852264,
+                "source": "CAMI",
+                "year": 2016
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.909724427852264,
+                    2.0006138198589394
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2777",
+                "permit_name": "Permit PE-2777",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Cassiterite",
+                "status": "Expired",
+                "issue_date": "2009-01-01",
+                "expiry_date": "2019-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.0831995247407846,
+                "longitude": 29.680569464969075,
+                "source": "CAMI",
+                "year": 2009
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.680569464969075,
+                    2.0831995247407846
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-6371",
+                "permit_name": "Permit PE-6371",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Coltan",
+                "status": "Active",
+                "issue_date": "2001-01-01",
+                "expiry_date": "2011-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.560346672591064,
+                "longitude": 28.41146096970911,
+                "source": "CAMI",
+                "year": 2001
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.41146096970911,
+                    2.560346672591064
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-3729",
+                "permit_name": "Permit PE-3729",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Coltan",
+                "status": "Inactive",
+                "issue_date": "2006-01-01",
+                "expiry_date": "2016-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.4400719664196533,
+                "longitude": 27.89924177425899,
+                "source": "CAMI",
+                "year": 2006
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.89924177425899,
+                    2.4400719664196533
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9747",
+                "permit_name": "Permit PE-9747",
+                "operator": "Banro Corp",
+                "mineral_type": "Wolframite",
+                "status": "Active",
+                "issue_date": "2026-01-01",
+                "expiry_date": "2036-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.1444655234917716,
+                "longitude": 29.461693115074375,
+                "source": "CAMI",
+                "year": 2026
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.461693115074375,
+                    2.1444655234917716
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9278",
+                "permit_name": "Permit PE-9278",
+                "operator": "Kibali Gold",
+                "mineral_type": "Gold",
+                "status": "Inactive",
+                "issue_date": "2021-01-01",
+                "expiry_date": "2031-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.9104188102727715,
+                "longitude": 28.448051717579897,
+                "source": "CAMI",
+                "year": 2021
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.448051717579897,
+                    2.9104188102727715
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2148",
+                "permit_name": "Permit PE-2148",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Diamond",
+                "status": "Active",
+                "issue_date": "2000-01-01",
+                "expiry_date": "2010-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.7279445068052164,
+                "longitude": 28.9053748783353,
+                "source": "CAMI",
+                "year": 2000
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.9053748783353,
+                    0.7279445068052164
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9618",
+                "permit_name": "Permit PE-9618",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Coltan",
+                "status": "Active",
+                "issue_date": "2003-01-01",
+                "expiry_date": "2013-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.0165087587328188,
+                "longitude": 29.155879178536797,
+                "source": "CAMI",
+                "year": 2003
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.155879178536797,
+                    2.0165087587328188
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-1024",
+                "permit_name": "Permit PE-1024",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Diamond",
+                "status": "Expired",
+                "issue_date": "2011-01-01",
+                "expiry_date": "2021-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.8623718009258416,
+                "longitude": 28.635151641127397,
+                "source": "CAMI",
+                "year": 2011
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.635151641127397,
+                    2.8623718009258416
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2737",
+                "permit_name": "Permit PE-2737",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Cassiterite",
+                "status": "Active",
+                "issue_date": "2002-01-01",
+                "expiry_date": "2012-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.2636336191031163,
+                "longitude": 28.097222301960418,
+                "source": "CAMI",
+                "year": 2002
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.097222301960418,
+                    2.2636336191031163
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-5502",
+                "permit_name": "Permit PE-5502",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Gold",
+                "status": "Expired",
+                "issue_date": "2002-01-01",
+                "expiry_date": "2012-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.4006884211825454,
+                "longitude": 28.926366943316722,
+                "source": "CAMI",
+                "year": 2002
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.926366943316722,
+                    2.4006884211825454
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-4253",
+                "permit_name": "Permit PE-4253",
+                "operator": "Alphamin",
+                "mineral_type": "Gold",
+                "status": "Inactive",
+                "issue_date": "2004-01-01",
+                "expiry_date": "2014-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.7825546708628832,
+                "longitude": 27.621327575917796,
+                "source": "CAMI",
+                "year": 2004
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.621327575917796,
+                    0.7825546708628832
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-3181",
+                "permit_name": "Permit PE-3181",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Diamond",
+                "status": "Inactive",
+                "issue_date": "2025-01-01",
+                "expiry_date": "2035-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.7932683448618971,
+                "longitude": 29.653564545903606,
+                "source": "CAMI",
+                "year": 2025
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.653564545903606,
+                    1.7932683448618971
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9606",
+                "permit_name": "Permit PE-9606",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Cassiterite",
+                "status": "Expired",
+                "issue_date": "2011-01-01",
+                "expiry_date": "2021-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.844417158043729,
+                "longitude": 27.632598850754952,
+                "source": "CAMI",
+                "year": 2011
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.632598850754952,
+                    2.844417158043729
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2216",
+                "permit_name": "Permit PE-2216",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Coltan",
+                "status": "Inactive",
+                "issue_date": "2016-01-01",
+                "expiry_date": "2026-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.568578638016059,
+                "longitude": 28.77083342522556,
+                "source": "CAMI",
+                "year": 2016
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.77083342522556,
+                    2.568578638016059
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-6815",
+                "permit_name": "Permit PE-6815",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Wolframite",
+                "status": "Active",
+                "issue_date": "2007-01-01",
+                "expiry_date": "2017-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.952588362719918,
+                "longitude": 29.292899674733803,
+                "source": "CAMI",
+                "year": 2007
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.292899674733803,
+                    2.952588362719918
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-7434",
+                "permit_name": "Permit PE-7434",
+                "operator": "Banro Corp",
+                "mineral_type": "Wolframite",
+                "status": "Active",
+                "issue_date": "2013-01-01",
+                "expiry_date": "2023-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.7465268543293186,
+                "longitude": 28.555798751192583,
+                "source": "CAMI",
+                "year": 2013
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.555798751192583,
+                    0.7465268543293186
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2977",
+                "permit_name": "Permit PE-2977",
+                "operator": "Banro Corp",
+                "mineral_type": "Cassiterite",
+                "status": "Inactive",
+                "issue_date": "2014-01-01",
+                "expiry_date": "2024-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.531362834908568,
+                "longitude": 28.373926956868686,
+                "source": "CAMI",
+                "year": 2014
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.373926956868686,
+                    0.531362834908568
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-8563",
+                "permit_name": "Permit PE-8563",
+                "operator": "Kibali Gold",
+                "mineral_type": "Diamond",
+                "status": "Renewal",
+                "issue_date": "2021-01-01",
+                "expiry_date": "2031-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.2646135367226217,
+                "longitude": 28.37485252397879,
+                "source": "CAMI",
+                "year": 2021
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.37485252397879,
+                    2.2646135367226217
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2111",
+                "permit_name": "Permit PE-2111",
+                "operator": "Banro Corp",
+                "mineral_type": "Gold",
+                "status": "Active",
+                "issue_date": "2004-01-01",
+                "expiry_date": "2014-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.6902692396242445,
+                "longitude": 27.734574830801698,
+                "source": "CAMI",
+                "year": 2004
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.734574830801698,
+                    1.6902692396242445
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-3653",
+                "permit_name": "Permit PE-3653",
+                "operator": "Alphamin",
+                "mineral_type": "Gold",
+                "status": "Expired",
+                "issue_date": "2008-01-01",
+                "expiry_date": "2018-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.8409665536641797,
+                "longitude": 29.027457365538197,
+                "source": "CAMI",
+                "year": 2008
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.027457365538197,
+                    1.8409665536641797
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9444",
+                "permit_name": "Permit PE-9444",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Gold",
+                "status": "Renewal",
+                "issue_date": "2000-01-01",
+                "expiry_date": "2010-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.9160114539999604,
+                "longitude": 28.65759543733864,
+                "source": "CAMI",
+                "year": 2000
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.65759543733864,
+                    1.9160114539999604
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-1484",
+                "permit_name": "Permit PE-1484",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Cassiterite",
+                "status": "Renewal",
+                "issue_date": "2021-01-01",
+                "expiry_date": "2031-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.9394139256842506,
+                "longitude": 28.352973936209843,
+                "source": "CAMI",
+                "year": 2021
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.352973936209843,
+                    2.9394139256842506
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2185",
+                "permit_name": "Permit PE-2185",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Diamond",
+                "status": "Inactive",
+                "issue_date": "2012-01-01",
+                "expiry_date": "2022-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.7367570950317202,
+                "longitude": 28.427060195813365,
+                "source": "CAMI",
+                "year": 2012
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.427060195813365,
+                    0.7367570950317202
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2051",
+                "permit_name": "Permit PE-2051",
+                "operator": "Kibali Gold",
+                "mineral_type": "Gold",
+                "status": "Expired",
+                "issue_date": "2001-01-01",
+                "expiry_date": "2011-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.174072168282633,
+                "longitude": 29.214842689081777,
+                "source": "CAMI",
+                "year": 2001
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.214842689081777,
+                    2.174072168282633
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-8420",
+                "permit_name": "Permit PE-8420",
+                "operator": "Kibali Gold",
+                "mineral_type": "Wolframite",
+                "status": "Renewal",
+                "issue_date": "2010-01-01",
+                "expiry_date": "2020-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.6295293773804268,
+                "longitude": 28.415791737758664,
+                "source": "CAMI",
+                "year": 2010
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.415791737758664,
+                    0.6295293773804268
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-5315",
+                "permit_name": "Permit PE-5315",
+                "operator": "Kibali Gold",
+                "mineral_type": "Diamond",
+                "status": "Expired",
+                "issue_date": "2026-01-01",
+                "expiry_date": "2036-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.8718884594936394,
+                "longitude": 29.57454218882171,
+                "source": "CAMI",
+                "year": 2026
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.57454218882171,
+                    2.8718884594936394
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-1295",
+                "permit_name": "Permit PE-1295",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Coltan",
+                "status": "Active",
+                "issue_date": "2022-01-01",
+                "expiry_date": "2032-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.5215210992810724,
+                "longitude": 28.989989746573293,
+                "source": "CAMI",
+                "year": 2022
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.989989746573293,
+                    0.5215210992810724
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-8236",
+                "permit_name": "Permit PE-8236",
+                "operator": "Kibali Gold",
+                "mineral_type": "Gold",
+                "status": "Active",
+                "issue_date": "2020-01-01",
+                "expiry_date": "2030-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.470541213897844,
+                "longitude": 28.107939985424103,
+                "source": "CAMI",
+                "year": 2020
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.107939985424103,
+                    2.470541213897844
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-4360",
+                "permit_name": "Permit PE-4360",
+                "operator": "Alphamin",
+                "mineral_type": "Cassiterite",
+                "status": "Inactive",
+                "issue_date": "2010-01-01",
+                "expiry_date": "2020-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.2132159074426268,
+                "longitude": 29.31128443527764,
+                "source": "CAMI",
+                "year": 2010
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.31128443527764,
+                    2.2132159074426268
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-6908",
+                "permit_name": "Permit PE-6908",
+                "operator": "Alphamin",
+                "mineral_type": "Coltan",
+                "status": "Expired",
+                "issue_date": "2017-01-01",
+                "expiry_date": "2027-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.352333685777191,
+                "longitude": 29.53513381039873,
+                "source": "CAMI",
+                "year": 2017
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.53513381039873,
+                    2.352333685777191
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-4922",
+                "permit_name": "Permit PE-4922",
+                "operator": "Banro Corp",
+                "mineral_type": "Diamond",
+                "status": "Renewal",
+                "issue_date": "2006-01-01",
+                "expiry_date": "2016-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.5361184383333764,
+                "longitude": 28.103341298047244,
+                "source": "CAMI",
+                "year": 2006
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.103341298047244,
+                    2.5361184383333764
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2361",
+                "permit_name": "Permit PE-2361",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Cassiterite",
+                "status": "Inactive",
+                "issue_date": "2016-01-01",
+                "expiry_date": "2026-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.4015247089909098,
+                "longitude": 28.929068597654997,
+                "source": "CAMI",
+                "year": 2016
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.929068597654997,
+                    1.4015247089909098
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-8091",
+                "permit_name": "Permit PE-8091",
+                "operator": "Banro Corp",
+                "mineral_type": "Coltan",
+                "status": "Active",
+                "issue_date": "2025-01-01",
+                "expiry_date": "2035-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.8351984421291001,
+                "longitude": 29.400558811891116,
+                "source": "CAMI",
+                "year": 2025
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.400558811891116,
+                    0.8351984421291001
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-5785",
+                "permit_name": "Permit PE-5785",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Cassiterite",
+                "status": "Inactive",
+                "issue_date": "2002-01-01",
+                "expiry_date": "2012-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.369649788810341,
+                "longitude": 27.730539008596608,
+                "source": "CAMI",
+                "year": 2002
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.730539008596608,
+                    2.369649788810341
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-9325",
+                "permit_name": "Permit PE-9325",
+                "operator": "Banro Corp",
+                "mineral_type": "Wolframite",
+                "status": "Renewal",
+                "issue_date": "2022-01-01",
+                "expiry_date": "2032-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.905504577821137,
+                "longitude": 29.329159380505587,
+                "source": "CAMI",
+                "year": 2022
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.329159380505587,
+                    1.905504577821137
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-3689",
+                "permit_name": "Permit PE-3689",
+                "operator": "Banro Corp",
+                "mineral_type": "Wolframite",
+                "status": "Renewal",
+                "issue_date": "2012-01-01",
+                "expiry_date": "2022-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.270577437422599,
+                "longitude": 29.402954824925036,
+                "source": "CAMI",
+                "year": 2012
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.402954824925036,
+                    2.270577437422599
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-8326",
+                "permit_name": "Permit PE-8326",
+                "operator": "AngloGold Ashanti",
+                "mineral_type": "Cassiterite",
+                "status": "Expired",
+                "issue_date": "2024-01-01",
+                "expiry_date": "2034-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.9540236287948243,
+                "longitude": 28.75956064354052,
+                "source": "CAMI",
+                "year": 2024
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.75956064354052,
+                    0.9540236287948243
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-7576",
+                "permit_name": "Permit PE-7576",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Cassiterite",
+                "status": "Renewal",
+                "issue_date": "2001-01-01",
+                "expiry_date": "2011-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 2.8731331444609975,
+                "longitude": 28.485533890450906,
+                "source": "CAMI",
+                "year": 2001
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.485533890450906,
+                    2.8731331444609975
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-7056",
+                "permit_name": "Permit PE-7056",
+                "operator": "Alphamin",
+                "mineral_type": "Diamond",
+                "status": "Inactive",
+                "issue_date": "2004-01-01",
+                "expiry_date": "2014-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 1.844427127491443,
+                "longitude": 27.820416810830338,
+                "source": "CAMI",
+                "year": 2004
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.820416810830338,
+                    1.844427127491443
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title_id": "PE-2091",
+                "permit_name": "Permit PE-2091",
+                "operator": "Artisanal Cooperatives",
+                "mineral_type": "Gold",
+                "status": "Inactive",
+                "issue_date": "2025-01-01",
+                "expiry_date": "2035-01-01",
+                "province": "Ituri",
+                "territory": "Mambasa",
+                "latitude": 0.7315568785764649,
+                "longitude": 27.843839643985124,
+                "source": "CAMI",
+                "year": 2025
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.843839643985124,
+                    0.7315568785764649
+                ]
+            }
+        }
+    ]
+}

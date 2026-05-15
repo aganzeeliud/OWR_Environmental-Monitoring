@@ -1,0 +1,2205 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-28778",
+                "site_name": "Site IPIS-28778",
+                "commodity": "Wolframite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 3,
+                "armed_group": "None",
+                "latitude": 2.279109626083142,
+                "longitude": 28.833257194013616,
+                "year": 2010,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.833257194013616,
+                    2.279109626083142
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-18362",
+                "site_name": "Site IPIS-18362",
+                "commodity": "Wolframite",
+                "impact_type": "Child Labor",
+                "impact_score": 10,
+                "armed_group": "ADF",
+                "latitude": 1.5351276605495014,
+                "longitude": 28.693509348244486,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.693509348244486,
+                    1.5351276605495014
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-86450",
+                "site_name": "Site IPIS-86450",
+                "commodity": "Coltan",
+                "impact_type": "Armed Presence",
+                "impact_score": 4,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.1268361455859726,
+                "longitude": 28.519452935257117,
+                "year": 2016,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.519452935257117,
+                    1.1268361455859726
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-17761",
+                "site_name": "Site IPIS-17761",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 3,
+                "armed_group": "Mai-Mai",
+                "latitude": 0.8195914634647161,
+                "longitude": 28.0509809018685,
+                "year": 2009,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.0509809018685,
+                    0.8195914634647161
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-83872",
+                "site_name": "Site IPIS-83872",
+                "commodity": "Wolframite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 8,
+                "armed_group": "Local Militia",
+                "latitude": 1.0531972063156254,
+                "longitude": 28.068478538640573,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.068478538640573,
+                    1.0531972063156254
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-37148",
+                "site_name": "Site IPIS-37148",
+                "commodity": "Diamond",
+                "impact_type": "Deforestation",
+                "impact_score": 9,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.7163784042316226,
+                "longitude": 28.436763262460662,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.436763262460662,
+                    1.7163784042316226
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-36541",
+                "site_name": "Site IPIS-36541",
+                "commodity": "Diamond",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "ADF",
+                "latitude": 2.632846855490044,
+                "longitude": 28.950170961913837,
+                "year": 2007,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.950170961913837,
+                    2.632846855490044
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-73324",
+                "site_name": "Site IPIS-73324",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 5,
+                "armed_group": "None",
+                "latitude": 1.909962398881229,
+                "longitude": 28.054535076944287,
+                "year": 2010,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.054535076944287,
+                    1.909962398881229
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-96658",
+                "site_name": "Site IPIS-96658",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 7,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.3014158677929415,
+                "longitude": 28.881928952406337,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.881928952406337,
+                    2.3014158677929415
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-27648",
+                "site_name": "Site IPIS-27648",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 10,
+                "armed_group": "Local Militia",
+                "latitude": 2.550429693843099,
+                "longitude": 28.8858483123965,
+                "year": 2026,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.8858483123965,
+                    2.550429693843099
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-66732",
+                "site_name": "Site IPIS-66732",
+                "commodity": "Diamond",
+                "impact_type": "Deforestation",
+                "impact_score": 5,
+                "armed_group": "ADF",
+                "latitude": 1.0663781166227992,
+                "longitude": 29.145493932717027,
+                "year": 2014,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.145493932717027,
+                    1.0663781166227992
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-49304",
+                "site_name": "Site IPIS-49304",
+                "commodity": "Wolframite",
+                "impact_type": "Child Labor",
+                "impact_score": 2,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.9308057800648968,
+                "longitude": 29.0546803163415,
+                "year": 2022,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.0546803163415,
+                    1.9308057800648968
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-34794",
+                "site_name": "Site IPIS-34794",
+                "commodity": "Wolframite",
+                "impact_type": "Armed Presence",
+                "impact_score": 10,
+                "armed_group": "Local Militia",
+                "latitude": 2.1699070433138288,
+                "longitude": 28.545843461054798,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.545843461054798,
+                    2.1699070433138288
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-63801",
+                "site_name": "Site IPIS-63801",
+                "commodity": "Cassiterite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 1,
+                "armed_group": "None",
+                "latitude": 1.2751489090650339,
+                "longitude": 28.590380061947112,
+                "year": 2000,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.590380061947112,
+                    1.2751489090650339
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-35697",
+                "site_name": "Site IPIS-35697",
+                "commodity": "Wolframite",
+                "impact_type": "Child Labor",
+                "impact_score": 3,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.3545114633189828,
+                "longitude": 29.34063470246402,
+                "year": 2010,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.34063470246402,
+                    1.3545114633189828
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-56408",
+                "site_name": "Site IPIS-56408",
+                "commodity": "Gold",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 1,
+                "armed_group": "ADF",
+                "latitude": 1.0277909422807203,
+                "longitude": 29.178881310439532,
+                "year": 2012,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.178881310439532,
+                    1.0277909422807203
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-98582",
+                "site_name": "Site IPIS-98582",
+                "commodity": "Cassiterite",
+                "impact_type": "Armed Presence",
+                "impact_score": 8,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.4770167715942755,
+                "longitude": 29.32879804757545,
+                "year": 2004,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.32879804757545,
+                    1.4770167715942755
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-40980",
+                "site_name": "Site IPIS-40980",
+                "commodity": "Gold",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 4,
+                "armed_group": "ADF",
+                "latitude": 1.9579393746299973,
+                "longitude": 28.89899331623607,
+                "year": 2024,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.89899331623607,
+                    1.9579393746299973
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-17014",
+                "site_name": "Site IPIS-17014",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 2.6408431178481613,
+                "longitude": 28.416236089773726,
+                "year": 2009,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.416236089773726,
+                    2.6408431178481613
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-36643",
+                "site_name": "Site IPIS-36643",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 4,
+                "armed_group": "None",
+                "latitude": 2.2724639870089263,
+                "longitude": 28.505148244682285,
+                "year": 2007,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.505148244682285,
+                    2.2724639870089263
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-83643",
+                "site_name": "Site IPIS-83643",
+                "commodity": "Diamond",
+                "impact_type": "Armed Presence",
+                "impact_score": 2,
+                "armed_group": "Local Militia",
+                "latitude": 1.6392392070933846,
+                "longitude": 28.205108741695604,
+                "year": 2008,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.205108741695604,
+                    1.6392392070933846
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-14181",
+                "site_name": "Site IPIS-14181",
+                "commodity": "Wolframite",
+                "impact_type": "Child Labor",
+                "impact_score": 7,
+                "armed_group": "None",
+                "latitude": 1.6156129949580382,
+                "longitude": 28.84383766580893,
+                "year": 2010,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.84383766580893,
+                    1.6156129949580382
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-66249",
+                "site_name": "Site IPIS-66249",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 8,
+                "armed_group": "Local Militia",
+                "latitude": 1.1968083600268427,
+                "longitude": 29.085311462035705,
+                "year": 2017,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.085311462035705,
+                    1.1968083600268427
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-10878",
+                "site_name": "Site IPIS-10878",
+                "commodity": "Gold",
+                "impact_type": "Armed Presence",
+                "impact_score": 1,
+                "armed_group": "None",
+                "latitude": 2.2363790675970217,
+                "longitude": 28.64444764120109,
+                "year": 2005,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.64444764120109,
+                    2.2363790675970217
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-96899",
+                "site_name": "Site IPIS-96899",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 1,
+                "armed_group": "Local Militia",
+                "latitude": 1.1662522140484142,
+                "longitude": 29.13183872633913,
+                "year": 2019,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.13183872633913,
+                    1.1662522140484142
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-14436",
+                "site_name": "Site IPIS-14436",
+                "commodity": "Coltan",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 1.153992205792876,
+                "longitude": 28.28323624020109,
+                "year": 2001,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.28323624020109,
+                    1.153992205792876
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-40551",
+                "site_name": "Site IPIS-40551",
+                "commodity": "Cassiterite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 8,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.2451005298250015,
+                "longitude": 28.663138533365895,
+                "year": 2000,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.663138533365895,
+                    1.2451005298250015
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-67879",
+                "site_name": "Site IPIS-67879",
+                "commodity": "Diamond",
+                "impact_type": "Deforestation",
+                "impact_score": 4,
+                "armed_group": "ADF",
+                "latitude": 1.9083217717827914,
+                "longitude": 28.42051107248314,
+                "year": 2021,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.42051107248314,
+                    1.9083217717827914
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-41882",
+                "site_name": "Site IPIS-41882",
+                "commodity": "Diamond",
+                "impact_type": "Child Labor",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 1.1143145508261387,
+                "longitude": 28.843633429914327,
+                "year": 2017,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.843633429914327,
+                    1.1143145508261387
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-55136",
+                "site_name": "Site IPIS-55136",
+                "commodity": "Diamond",
+                "impact_type": "Child Labor",
+                "impact_score": 8,
+                "armed_group": "Local Militia",
+                "latitude": 1.8552012299009168,
+                "longitude": 28.745781465951843,
+                "year": 2017,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.745781465951843,
+                    1.8552012299009168
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-76310",
+                "site_name": "Site IPIS-76310",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.8608974379105936,
+                "longitude": 28.163151868865175,
+                "year": 2026,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.163151868865175,
+                    1.8608974379105936
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-10784",
+                "site_name": "Site IPIS-10784",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 9,
+                "armed_group": "Local Militia",
+                "latitude": 0.9373344162824551,
+                "longitude": 28.942192080898508,
+                "year": 2021,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.942192080898508,
+                    0.9373344162824551
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-40830",
+                "site_name": "Site IPIS-40830",
+                "commodity": "Cassiterite",
+                "impact_type": "Child Labor",
+                "impact_score": 4,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.3487724640500947,
+                "longitude": 28.897217516096248,
+                "year": 2022,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.897217516096248,
+                    2.3487724640500947
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-84481",
+                "site_name": "Site IPIS-84481",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 6,
+                "armed_group": "None",
+                "latitude": 1.6758971147735546,
+                "longitude": 29.04345851186932,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.04345851186932,
+                    1.6758971147735546
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-62676",
+                "site_name": "Site IPIS-62676",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 6,
+                "armed_group": "None",
+                "latitude": 1.0947289242322435,
+                "longitude": 27.84933002615725,
+                "year": 2011,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.84933002615725,
+                    1.0947289242322435
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-46258",
+                "site_name": "Site IPIS-46258",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 5,
+                "armed_group": "Local Militia",
+                "latitude": 2.6734526085340633,
+                "longitude": 28.717553244279582,
+                "year": 2014,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.717553244279582,
+                    2.6734526085340633
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-40070",
+                "site_name": "Site IPIS-40070",
+                "commodity": "Cassiterite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 7,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.231017002642969,
+                "longitude": 28.533146805386313,
+                "year": 2002,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.533146805386313,
+                    2.231017002642969
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-29964",
+                "site_name": "Site IPIS-29964",
+                "commodity": "Wolframite",
+                "impact_type": "Armed Presence",
+                "impact_score": 8,
+                "armed_group": "ADF",
+                "latitude": 2.1408187621284984,
+                "longitude": 27.95824334604165,
+                "year": 2016,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.95824334604165,
+                    2.1408187621284984
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-65226",
+                "site_name": "Site IPIS-65226",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 3,
+                "armed_group": "ADF",
+                "latitude": 0.8087256112058707,
+                "longitude": 28.63180453218002,
+                "year": 2023,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.63180453218002,
+                    0.8087256112058707
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-10622",
+                "site_name": "Site IPIS-10622",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 7,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.5826082111141058,
+                "longitude": 29.004924695136218,
+                "year": 2018,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.004924695136218,
+                    1.5826082111141058
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-91816",
+                "site_name": "Site IPIS-91816",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 9,
+                "armed_group": "None",
+                "latitude": 0.949399743545049,
+                "longitude": 28.6251821753901,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.6251821753901,
+                    0.949399743545049
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-34315",
+                "site_name": "Site IPIS-34315",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 9,
+                "armed_group": "ADF",
+                "latitude": 0.9942677151118022,
+                "longitude": 28.470275225746924,
+                "year": 2025,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.470275225746924,
+                    0.9942677151118022
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-65131",
+                "site_name": "Site IPIS-65131",
+                "commodity": "Wolframite",
+                "impact_type": "Child Labor",
+                "impact_score": 1,
+                "armed_group": "ADF",
+                "latitude": 1.8162649297166649,
+                "longitude": 27.91351609210393,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.91351609210393,
+                    1.8162649297166649
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-57510",
+                "site_name": "Site IPIS-57510",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 8,
+                "armed_group": "Local Militia",
+                "latitude": 1.8760720150256582,
+                "longitude": 27.812324553835623,
+                "year": 2003,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.812324553835623,
+                    1.8760720150256582
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-96287",
+                "site_name": "Site IPIS-96287",
+                "commodity": "Gold",
+                "impact_type": "Armed Presence",
+                "impact_score": 7,
+                "armed_group": "None",
+                "latitude": 0.8300870275625756,
+                "longitude": 29.29362922023731,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.29362922023731,
+                    0.8300870275625756
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-47219",
+                "site_name": "Site IPIS-47219",
+                "commodity": "Wolframite",
+                "impact_type": "Armed Presence",
+                "impact_score": 5,
+                "armed_group": "None",
+                "latitude": 1.7893361578025262,
+                "longitude": 29.234484485662918,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.234484485662918,
+                    1.7893361578025262
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-97329",
+                "site_name": "Site IPIS-97329",
+                "commodity": "Coltan",
+                "impact_type": "Armed Presence",
+                "impact_score": 10,
+                "armed_group": "ADF",
+                "latitude": 2.4163752321795844,
+                "longitude": 29.004861421343968,
+                "year": 2008,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.004861421343968,
+                    2.4163752321795844
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-94833",
+                "site_name": "Site IPIS-94833",
+                "commodity": "Cassiterite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 8,
+                "armed_group": "None",
+                "latitude": 1.100500601411539,
+                "longitude": 28.677104878852838,
+                "year": 2000,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.677104878852838,
+                    1.100500601411539
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-82158",
+                "site_name": "Site IPIS-82158",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 2,
+                "armed_group": "ADF",
+                "latitude": 1.6445489318978486,
+                "longitude": 29.131263923751384,
+                "year": 2020,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.131263923751384,
+                    1.6445489318978486
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-67858",
+                "site_name": "Site IPIS-67858",
+                "commodity": "Wolframite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 7,
+                "armed_group": "ADF",
+                "latitude": 1.103998757164292,
+                "longitude": 28.47319044315815,
+                "year": 2003,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.47319044315815,
+                    1.103998757164292
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-38646",
+                "site_name": "Site IPIS-38646",
+                "commodity": "Wolframite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 3,
+                "armed_group": "ADF",
+                "latitude": 1.431121940529653,
+                "longitude": 29.304695761560247,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.304695761560247,
+                    1.431121940529653
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-44832",
+                "site_name": "Site IPIS-44832",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 10,
+                "armed_group": "ADF",
+                "latitude": 1.6804903289907895,
+                "longitude": 28.36339904904468,
+                "year": 2022,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.36339904904468,
+                    1.6804903289907895
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-59213",
+                "site_name": "Site IPIS-59213",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 9,
+                "armed_group": "Local Militia",
+                "latitude": 1.2265711545352072,
+                "longitude": 29.239921066487096,
+                "year": 2019,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.239921066487096,
+                    1.2265711545352072
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-48136",
+                "site_name": "Site IPIS-48136",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 6,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.7427435496302421,
+                "longitude": 28.684677498872556,
+                "year": 2003,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.684677498872556,
+                    1.7427435496302421
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-55474",
+                "site_name": "Site IPIS-55474",
+                "commodity": "Gold",
+                "impact_type": "Armed Presence",
+                "impact_score": 6,
+                "armed_group": "None",
+                "latitude": 2.6288744780080973,
+                "longitude": 27.91740076879281,
+                "year": 2013,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.91740076879281,
+                    2.6288744780080973
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-94927",
+                "site_name": "Site IPIS-94927",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 10,
+                "armed_group": "ADF",
+                "latitude": 1.691520497142945,
+                "longitude": 29.203816227221896,
+                "year": 2019,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.203816227221896,
+                    1.691520497142945
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-15635",
+                "site_name": "Site IPIS-15635",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 4,
+                "armed_group": "ADF",
+                "latitude": 1.7003370489109078,
+                "longitude": 28.595693868725405,
+                "year": 2001,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.595693868725405,
+                    1.7003370489109078
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-89151",
+                "site_name": "Site IPIS-89151",
+                "commodity": "Coltan",
+                "impact_type": "Deforestation",
+                "impact_score": 7,
+                "armed_group": "Local Militia",
+                "latitude": 0.9716963639146838,
+                "longitude": 28.72828492799981,
+                "year": 2011,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.72828492799981,
+                    0.9716963639146838
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-90740",
+                "site_name": "Site IPIS-90740",
+                "commodity": "Diamond",
+                "impact_type": "Child Labor",
+                "impact_score": 8,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.439268091373277,
+                "longitude": 28.35557583692858,
+                "year": 2019,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.35557583692858,
+                    2.439268091373277
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-72572",
+                "site_name": "Site IPIS-72572",
+                "commodity": "Wolframite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 1,
+                "armed_group": "Mai-Mai",
+                "latitude": 0.8089007452137482,
+                "longitude": 28.912846302039995,
+                "year": 2004,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.912846302039995,
+                    0.8089007452137482
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-56132",
+                "site_name": "Site IPIS-56132",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 7,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.5015647610632508,
+                "longitude": 28.28072057962932,
+                "year": 2010,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.28072057962932,
+                    2.5015647610632508
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-21031",
+                "site_name": "Site IPIS-21031",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 6,
+                "armed_group": "Local Militia",
+                "latitude": 2.1353989579975137,
+                "longitude": 28.52752034025544,
+                "year": 2010,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.52752034025544,
+                    2.1353989579975137
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-60591",
+                "site_name": "Site IPIS-60591",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 6,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.2654510839848463,
+                "longitude": 28.259280765424613,
+                "year": 2003,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.259280765424613,
+                    2.2654510839848463
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-74695",
+                "site_name": "Site IPIS-74695",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 2,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.6942019222950875,
+                "longitude": 29.203697713977927,
+                "year": 2024,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.203697713977927,
+                    2.6942019222950875
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-94843",
+                "site_name": "Site IPIS-94843",
+                "commodity": "Gold",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 5,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.8951093549468123,
+                "longitude": 28.335525294175323,
+                "year": 2026,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.335525294175323,
+                    1.8951093549468123
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-86074",
+                "site_name": "Site IPIS-86074",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 4,
+                "armed_group": "Local Militia",
+                "latitude": 2.6655997967392073,
+                "longitude": 28.88267099216515,
+                "year": 2023,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.88267099216515,
+                    2.6655997967392073
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-93328",
+                "site_name": "Site IPIS-93328",
+                "commodity": "Diamond",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.303366423330516,
+                "longitude": 29.36070759620291,
+                "year": 2003,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.36070759620291,
+                    1.303366423330516
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-94841",
+                "site_name": "Site IPIS-94841",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "ADF",
+                "latitude": 1.8239080110663797,
+                "longitude": 28.759727755428436,
+                "year": 2009,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.759727755428436,
+                    1.8239080110663797
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-91840",
+                "site_name": "Site IPIS-91840",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "ADF",
+                "latitude": 1.6662422497159617,
+                "longitude": 28.664650910028932,
+                "year": 2017,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.664650910028932,
+                    1.6662422497159617
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-87140",
+                "site_name": "Site IPIS-87140",
+                "commodity": "Cassiterite",
+                "impact_type": "Armed Presence",
+                "impact_score": 6,
+                "armed_group": "None",
+                "latitude": 1.306019030430837,
+                "longitude": 29.255152724961516,
+                "year": 2001,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.255152724961516,
+                    1.306019030430837
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-97856",
+                "site_name": "Site IPIS-97856",
+                "commodity": "Cassiterite",
+                "impact_type": "Armed Presence",
+                "impact_score": 2,
+                "armed_group": "ADF",
+                "latitude": 1.062877410086508,
+                "longitude": 28.413040180093706,
+                "year": 2024,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.413040180093706,
+                    1.062877410086508
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-76009",
+                "site_name": "Site IPIS-76009",
+                "commodity": "Gold",
+                "impact_type": "Child Labor",
+                "impact_score": 4,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.6721598228280863,
+                "longitude": 29.074600202032702,
+                "year": 2000,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.074600202032702,
+                    2.6721598228280863
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-13063",
+                "site_name": "Site IPIS-13063",
+                "commodity": "Cassiterite",
+                "impact_type": "Armed Presence",
+                "impact_score": 1,
+                "armed_group": "ADF",
+                "latitude": 1.6678496510614056,
+                "longitude": 28.49711828292527,
+                "year": 2015,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.49711828292527,
+                    1.6678496510614056
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-23007",
+                "site_name": "Site IPIS-23007",
+                "commodity": "Wolframite",
+                "impact_type": "Armed Presence",
+                "impact_score": 7,
+                "armed_group": "ADF",
+                "latitude": 1.563810444565441,
+                "longitude": 29.071139837810712,
+                "year": 2014,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.071139837810712,
+                    1.563810444565441
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-63307",
+                "site_name": "Site IPIS-63307",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 9,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.1775446669657645,
+                "longitude": 28.638446410727383,
+                "year": 2022,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.638446410727383,
+                    2.1775446669657645
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-93410",
+                "site_name": "Site IPIS-93410",
+                "commodity": "Gold",
+                "impact_type": "Child Labor",
+                "impact_score": 5,
+                "armed_group": "None",
+                "latitude": 2.1260077457849054,
+                "longitude": 29.389661406647143,
+                "year": 2025,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.389661406647143,
+                    2.1260077457849054
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-57575",
+                "site_name": "Site IPIS-57575",
+                "commodity": "Diamond",
+                "impact_type": "Armed Presence",
+                "impact_score": 10,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.121447776330033,
+                "longitude": 28.569811116179924,
+                "year": 2009,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.569811116179924,
+                    2.121447776330033
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-13421",
+                "site_name": "Site IPIS-13421",
+                "commodity": "Cassiterite",
+                "impact_type": "Child Labor",
+                "impact_score": 9,
+                "armed_group": "Local Militia",
+                "latitude": 2.617739571812683,
+                "longitude": 28.94070999290187,
+                "year": 2002,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.94070999290187,
+                    2.617739571812683
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-55159",
+                "site_name": "Site IPIS-55159",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 9,
+                "armed_group": "Local Militia",
+                "latitude": 1.2301144298271778,
+                "longitude": 28.98345446231662,
+                "year": 2017,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.98345446231662,
+                    1.2301144298271778
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-94218",
+                "site_name": "Site IPIS-94218",
+                "commodity": "Gold",
+                "impact_type": "Deforestation",
+                "impact_score": 7,
+                "armed_group": "ADF",
+                "latitude": 1.9103751685397596,
+                "longitude": 29.23695006432452,
+                "year": 2016,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.23695006432452,
+                    1.9103751685397596
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-95137",
+                "site_name": "Site IPIS-95137",
+                "commodity": "Wolframite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 1.1434413441725706,
+                "longitude": 28.898947240154204,
+                "year": 2021,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.898947240154204,
+                    1.1434413441725706
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-45004",
+                "site_name": "Site IPIS-45004",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 10,
+                "armed_group": "Local Militia",
+                "latitude": 2.2572888691793063,
+                "longitude": 29.139868054139377,
+                "year": 2026,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.139868054139377,
+                    2.2572888691793063
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-32245",
+                "site_name": "Site IPIS-32245",
+                "commodity": "Coltan",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 5,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.549890913640505,
+                "longitude": 27.9335479996058,
+                "year": 2026,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.9335479996058,
+                    2.549890913640505
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-54893",
+                "site_name": "Site IPIS-54893",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 3,
+                "armed_group": "None",
+                "latitude": 2.5824341290648247,
+                "longitude": 28.258166318536816,
+                "year": 2002,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.258166318536816,
+                    2.5824341290648247
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-55600",
+                "site_name": "Site IPIS-55600",
+                "commodity": "Coltan",
+                "impact_type": "Deforestation",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 1.8674620048600405,
+                "longitude": 29.154589376141185,
+                "year": 2019,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.154589376141185,
+                    1.8674620048600405
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-77080",
+                "site_name": "Site IPIS-77080",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 3,
+                "armed_group": "Local Militia",
+                "latitude": 1.6082490446684907,
+                "longitude": 27.866558316806778,
+                "year": 2018,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.866558316806778,
+                    1.6082490446684907
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-27512",
+                "site_name": "Site IPIS-27512",
+                "commodity": "Cassiterite",
+                "impact_type": "Deforestation",
+                "impact_score": 7,
+                "armed_group": "Local Militia",
+                "latitude": 1.4413515243576223,
+                "longitude": 28.67867702394012,
+                "year": 2002,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.67867702394012,
+                    1.4413515243576223
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-43689",
+                "site_name": "Site IPIS-43689",
+                "commodity": "Diamond",
+                "impact_type": "Deforestation",
+                "impact_score": 6,
+                "armed_group": "None",
+                "latitude": 1.4154376098655632,
+                "longitude": 28.813990833911557,
+                "year": 2002,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.813990833911557,
+                    1.4154376098655632
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-21451",
+                "site_name": "Site IPIS-21451",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 8,
+                "armed_group": "Mai-Mai",
+                "latitude": 1.2553685458176878,
+                "longitude": 28.947194722020043,
+                "year": 2008,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.947194722020043,
+                    1.2553685458176878
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-84876",
+                "site_name": "Site IPIS-84876",
+                "commodity": "Coltan",
+                "impact_type": "Armed Presence",
+                "impact_score": 3,
+                "armed_group": "Mai-Mai",
+                "latitude": 2.387367234715268,
+                "longitude": 29.18198040136012,
+                "year": 2020,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.18198040136012,
+                    2.387367234715268
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-17042",
+                "site_name": "Site IPIS-17042",
+                "commodity": "Cassiterite",
+                "impact_type": "Armed Presence",
+                "impact_score": 1,
+                "armed_group": "None",
+                "latitude": 2.2702529893583057,
+                "longitude": 29.009510938966024,
+                "year": 2012,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.009510938966024,
+                    2.2702529893583057
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-69658",
+                "site_name": "Site IPIS-69658",
+                "commodity": "Wolframite",
+                "impact_type": "Child Labor",
+                "impact_score": 3,
+                "armed_group": "None",
+                "latitude": 2.3581316773266905,
+                "longitude": 29.139646704031932,
+                "year": 2003,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.139646704031932,
+                    2.3581316773266905
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-65367",
+                "site_name": "Site IPIS-65367",
+                "commodity": "Coltan",
+                "impact_type": "Armed Presence",
+                "impact_score": 6,
+                "armed_group": "ADF",
+                "latitude": 1.868855574200093,
+                "longitude": 27.97197571735839,
+                "year": 2020,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.97197571735839,
+                    1.868855574200093
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-61895",
+                "site_name": "Site IPIS-61895",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 1,
+                "armed_group": "None",
+                "latitude": 2.1029317119100455,
+                "longitude": 28.815690479131803,
+                "year": 2014,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.815690479131803,
+                    2.1029317119100455
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-40615",
+                "site_name": "Site IPIS-40615",
+                "commodity": "Gold",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 2,
+                "armed_group": "Local Militia",
+                "latitude": 0.9652274739215904,
+                "longitude": 28.303888475957113,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.303888475957113,
+                    0.9652274739215904
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-70305",
+                "site_name": "Site IPIS-70305",
+                "commodity": "Cassiterite",
+                "impact_type": "Child Labor",
+                "impact_score": 9,
+                "armed_group": "ADF",
+                "latitude": 2.4257271897364783,
+                "longitude": 29.322828246674312,
+                "year": 2006,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.322828246674312,
+                    2.4257271897364783
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-76727",
+                "site_name": "Site IPIS-76727",
+                "commodity": "Coltan",
+                "impact_type": "Child Labor",
+                "impact_score": 1,
+                "armed_group": "ADF",
+                "latitude": 2.628308017735278,
+                "longitude": 28.20284144044799,
+                "year": 2025,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.20284144044799,
+                    2.628308017735278
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-27226",
+                "site_name": "Site IPIS-27226",
+                "commodity": "Wolframite",
+                "impact_type": "Deforestation",
+                "impact_score": 9,
+                "armed_group": "ADF",
+                "latitude": 1.235095043653404,
+                "longitude": 28.919669416512594,
+                "year": 2026,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.919669416512594,
+                    1.235095043653404
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-27229",
+                "site_name": "Site IPIS-27229",
+                "commodity": "Diamond",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 1.2759893920519327,
+                "longitude": 29.161879880735988,
+                "year": 2018,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.161879880735988,
+                    1.2759893920519327
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "site_id": "IPIS-59805",
+                "site_name": "Site IPIS-59805",
+                "commodity": "Cassiterite",
+                "impact_type": "Mercury Pollution",
+                "impact_score": 2,
+                "armed_group": "None",
+                "latitude": 1.7434532804209493,
+                "longitude": 28.327593613810237,
+                "year": 2002,
+                "source": "IPIS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.327593613810237,
+                    1.7434532804209493
+                ]
+            }
+        }
+    ]
+}

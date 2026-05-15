@@ -3,158 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Spatial Explorer | OWR Intelligence</title>
+    <title>Advanced Mining Map | OWR Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>#map { height: calc(100vh - 64px); }</style>
+    <style>
+        #map { height: calc(100vh - 64px); background: #0b1221; }
+        .custom-popup .leaflet-popup-content-wrapper { background: #1e293b; color: #f1f5f9; border-radius: 12px; }
+        .custom-popup .leaflet-popup-tip { background: #1e293b; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
 </head>
-<body class="bg-slate-50 overflow-hidden">
-    <nav class="bg-emerald-900 text-white shadow-lg h-16 flex items-center px-6 justify-between">
-        <a href="index.html" class="flex items-center space-x-2">
-            <i class="fas fa-leaf text-emerald-400"></i>
-            <span class="font-bold">OWR Spatial Intelligence</span>
+<body class="bg-[#0b1221] text-slate-300 overflow-hidden font-sans">
+    <nav class="bg-[#0f172a] text-white shadow-2xl h-16 flex items-center px-6 justify-between border-b border-white/5 relative z-[1001]">
+        <a href="index.html" class="flex items-center space-x-3">
+            <div class="bg-emerald-500/20 p-2 rounded-lg">
+                <i class="fas fa-satellite text-emerald-400"></i>
+            </div>
+            <span class="font-bold tracking-tighter text-xl">OWR GEOSPATIAL INTEL</span>
         </a>
-        <div class="space-x-4">
-            <a href="dashboard.html" class="text-sm bg-emerald-800 hover:bg-emerald-700 px-4 py-2 rounded-lg transition">Back to Dashboard</a>
+        <div class="flex items-center space-x-4">
+            <div class="hidden md:flex bg-white/5 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-slate-400 items-center">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span> Live System
+            </div>
+            <a href="mining-analysis.html" class="text-xs bg-emerald-600 hover:bg-emerald-500 px-6 py-2 rounded-full font-bold transition-all shadow-lg shadow-emerald-900/20">Analysis Dashboard</a>
         </div>
     </nav>
 
-    <div class="flex">
-        <aside class="w-80 bg-white shadow-xl z-10 p-6 overflow-y-auto hidden lg:block" style="height: calc(100vh - 64px);">
-            <h2 class="font-bold text-lg mb-6">Map Layers</h2>
+    <div class="flex relative">
+        <!-- Sidebar -->
+        <aside class="w-80 glass z-[1000] p-6 overflow-y-auto absolute left-0 top-0 bottom-0 m-4 rounded-3xl transition-transform duration-300" id="sidebar">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-black text-xs uppercase tracking-[0.2em] text-emerald-400">Control Center</h2>
+                <button onclick="toggleSidebar()" class="lg:hidden text-slate-400"><i class="fas fa-times"></i></button>
+            </div>
             
-            <div class="space-y-6">
+            <div class="space-y-8">
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Base Layers</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="radio" name="base" id="baseSatellite" class="text-emerald-600" checked>
-                            <span class="text-sm text-slate-700">Satellite Imagery (Sentinel-2)</span>
-                        </label>
-                        <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="radio" name="base" id="baseOsm" class="text-emerald-600">
-                            <span class="text-sm text-slate-700">Topographic (OSM)</span>
-                        </label>
+                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Temporal Filter</h3>
+                    <input type="range" id="timeSlider" min="2000" max="2026" value="2026" class="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                    <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-500">
+                        <span>2000</span>
+                        <span id="currentYear" class="text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded">2026</span>
+                        <span>2026</span>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Threat Monitoring</h3>
-                    <div class="mb-4">
-                        <label class="text-[10px] font-black uppercase text-slate-400 block mb-2 tracking-widest">Filter Year:</label>
-                        <select id="yearFilter" class="w-full bg-slate-100 border-none rounded-lg px-4 py-2 text-xs font-bold focus:ring-2 focus:ring-emerald-500">
-                            <option value="all">Display All</option>
-                        </select>
-                    </div>
+                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Operational Layers</h3>
                     <div class="space-y-3">
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-emerald-700 mr-2 text-xs"></i> CAMI Concessions</span>
-                            <input type="checkbox" id="checkCami" checked class="rounded text-emerald-600">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
+                            <span class="text-xs font-bold"><i class="fas fa-shield-alt text-emerald-400 mr-2"></i> OWR Boundary</span>
+                            <input type="checkbox" id="checkBoundary" checked class="rounded-full bg-slate-800 border-none text-emerald-500 focus:ring-0">
                         </label>
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-amber-500 mr-2 text-xs"></i> IPIS Artisanal Sites</span>
-                            <input type="checkbox" id="checkIpis" checked class="rounded text-emerald-600">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
+                            <span class="text-xs font-bold"><i class="fas fa-industry text-blue-400 mr-2"></i> CAMI Permits</span>
+                            <input type="checkbox" id="checkCami" checked class="rounded-full bg-slate-800 border-none text-blue-500 focus:ring-0">
                         </label>
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-red-500 mr-2 text-xs"></i> Fire Hotspots</span>
-                            <input type="checkbox" id="checkFire" checked class="rounded text-emerald-600">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
+                            <span class="text-xs font-bold"><i class="fas fa-pickaxe text-amber-400 mr-2"></i> IPIS Impact Sites</span>
+                            <input type="checkbox" id="checkIpis" checked class="rounded-full bg-slate-800 border-none text-amber-500 focus:ring-0">
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
+                            <span class="text-xs font-bold"><i class="fas fa-fire text-red-400 mr-2"></i> Mining Hotspots</span>
+                            <input type="checkbox" id="checkHotspots" class="rounded-full bg-slate-800 border-none text-red-500 focus:ring-0">
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
+                            <span class="text-xs font-bold"><i class="fas fa-circle-notch text-purple-400 mr-2"></i> 50km Buffer Zone</span>
+                            <input type="checkbox" id="checkBuffer" class="rounded-full bg-slate-800 border-none text-purple-500 focus:ring-0">
                         </label>
                     </div>
                 </div>
 
-                <div class="pt-6 border-t">
-                    <h3 class="font-bold mb-4 text-sm uppercase tracking-widest text-slate-400">Legend</h3>
-                    <div class="space-y-2 text-xs font-bold">
-                        <div class="flex items-center"><span class="w-3 h-3 bg-emerald-900 rounded-full mr-2"></span> OWR Boundary</div>
-                        <div class="flex items-center"><span class="w-3 h-3 bg-emerald-600 mr-2"></span> Industrial (CAMI)</div>
-                        <div class="flex items-center"><span class="w-3 h-3 bg-amber-400 mr-2"></span> Artisanal (IPIS)</div>
-                        <div class="flex items-center"><span class="w-3 h-3 bg-red-400 opacity-50 mr-2"></span> Fire Damage</div>
+                <div>
+                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Base Station</h3>
+                    <select id="baseMapSelect" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold text-slate-300 focus:ring-2 focus:ring-emerald-500">
+                        <option value="satellite">Satellite (Esri)</option>
+                        <option value="dark">Dark Carto</option>
+                        <option value="topo">Topographic</option>
+                    </select>
+                </div>
+
+                <div class="pt-6 border-t border-white/5">
+                    <div class="bg-emerald-500/10 p-4 rounded-2xl border border-emerald-500/20">
+                        <h4 class="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-1">Live Intelligence</h4>
+                        <div class="text-2xl font-black text-white" id="statSites">0</div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Mining sites in view</p>
                     </div>
                 </div>
             </div>
         </aside>
 
-        <div id="map" class="flex-grow"></div>
+        <div id="map" class="w-full"></div>
+
+        <!-- Mobile Toggle -->
+        <button onclick="toggleSidebar()" class="lg:hidden absolute bottom-8 right-8 z-[1001] bg-emerald-600 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white text-xl">
+            <i class="fas fa-sliders-h"></i>
+        </button>
     </div>
 
     <script>
-        const map = L.map('map').setView([1.6333, 28.5833], 9);
+        const map = L.map('map', {
+            zoomControl: false,
+            attributionControl: false
+        }).setView([1.6333, 28.5833], 8);
 
-        const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: CAMI / IPIS'
-        }).addTo(map);
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        const baseMaps = {
+            satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+            dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'),
+            topo: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        };
 
-        // OWR Boundary
-        L.polygon([[1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]], {
-            color: "#064e3b", weight: 4, fillOpacity: 0.05, dashArray: '10, 10'
-        }).addTo(map).bindPopup("Okapi Wildlife Reserve Boundary");
+        baseMaps.dark.addTo(map);
 
-        let miningLayer;
-        let fireLayer = L.layerGroup().addTo(map);
-        let geojsonData;
+        let boundaryLayer, camiLayer, ipisLayer, hotspotLayer, bufferLayer;
+        let allData = { cami: [], ipis: [], boundary: null };
 
-        async function loadSpatialData() {
-            // Load Mining Titles (CAMI/IPIS)
-            const res = await fetch('data/geojson/owr_mining_titles.json');
-            geojsonData = await res.json();
+        async function init() {
+            try {
+                const [bndRes, camiRes, ipisRes] = await Promise.all([
+                    fetch('data/boundaries/okapi_wildlife_reserve.geojson'),
+                    fetch('data/mining/cami_titles.geojson'),
+                    fetch('data/mining/ipis_mining_impacts.geojson')
+                ]);
 
-            // Populate Year Filter
-            const years = [...new Set(geojsonData.features.map(f => f.properties.year))].sort().reverse();
-            years.forEach(y => {
-                const opt = document.createElement('option');
-                opt.value = y;
-                opt.textContent = y;
-                document.getElementById('yearFilter').appendChild(opt);
-            });
+                allData.boundary = await bndRes.json();
+                allData.cami = (await camiRes.json()).features;
+                allData.ipis = (await ipisRes.json()).features;
 
-            renderMiningLayer('all');
-
-            // Fire Hotspots (Simulated)
-            const firePoints = [[1.8, 28.2], [1.4, 29.1], [1.6, 28.8], [2.1, 27.9]];
-            firePoints.forEach(p => {
-                L.circleMarker(p, { radius: 10, fillColor: "#ef4444", color: "white", weight: 1, fillOpacity: 0.6 })
-                 .addTo(fireLayer).bindPopup("NASA FIRMS: Thermal Anomaly");
-            });
-        }
-
-        function renderMiningLayer(year) {
-            if(miningLayer) map.removeLayer(miningLayer);
-            
-            miningLayer = L.geoJSON(geojsonData, {
-                filter: (f) => year === 'all' || f.properties.year == year,
-                style: (feature) => ({
-                    color: feature.properties.type === 'Industrial' ? '#059669' : '#d97706',
-                    weight: 3,
-                    fillOpacity: 0.4
-                }),
-                pointToLayer: (feature, latlng) => {
-                    return L.circleMarker(latlng, {
-                        radius: 7, fillColor: '#d97706', color: "#fff", weight: 1, fillOpacity: 0.8
-                    });
-                },
-                onEachFeature: (feature, layer) => {
-                    layer.bindPopup(`<b>${feature.properties.id}</b><br>Year: ${feature.properties.year}<br>Source: ${feature.properties.source}<br>Operator: ${feature.properties.operator}`);
-                }
-            }).addTo(map);
-
-            if(year !== 'all') {
-                const bounds = miningLayer.getBounds();
-                if(bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50] });
+                renderBoundary();
+                renderLayers(2026);
+                updateStats();
+            } catch (e) {
+                console.error("Data load failed:", e);
             }
         }
 
-        // Controls
-        document.getElementById('baseSatellite').onchange = () => { map.addLayer(satellite); map.removeLayer(osm); };
-        document.getElementById('baseOsm').onchange = () => { map.addLayer(osm); map.removeLayer(satellite); };
-        document.getElementById('checkCami').onchange = (e) => { if(e.target.checked) map.addLayer(miningLayer); else map.removeLayer(miningLayer); };
-        document.getElementById('checkFire').onchange = (e) => { if(e.target.checked) map.addLayer(fireLayer); else map.removeLayer(fireLayer); };
-        document.getElementById('yearFilter').onchange = (e) => renderMiningLayer(e.target.value);
+        function renderBoundary() {
+            if(boundaryLayer) map.removeLayer(boundaryLayer);
+            boundaryLayer = L.geoJSON(allData.boundary, {
+                style: { color: "#10b981", weight: 3, fillOpacity: 0.1, dashArray: '5, 10' }
+            }).addTo(map);
 
-        loadSpatialData();
+            // Buffer Layer (50km)
+            const buffered = turf.buffer(allData.boundary.features[0], 50, {units: 'kilometers'});
+            bufferLayer = L.geoJSON(buffered, {
+                style: { color: "#a855f7", weight: 1, fillOpacity: 0.05, dashArray: '2, 5' }
+            });
+        }
+
+        function renderLayers(year) {
+            if(camiLayer) map.removeLayer(camiLayer);
+            if(ipisLayer) map.removeLayer(ipisLayer);
+            if(hotspotLayer) map.removeLayer(hotspotLayer);
+
+            const filteredCami = allData.cami.filter(f => f.properties.year <= year);
+            const filteredIpis = allData.ipis.filter(f => f.properties.year <= year);
+
+            camiLayer = L.geoJSON({type: "FeatureCollection", features: filteredCami}, {
+                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#3b82f6', color: '#fff', weight: 1, fillOpacity: 0.8 }),
+                onEachFeature: (f, l) => bindMiningPopup(f, l)
+            }).addTo(map);
+
+            ipisLayer = L.geoJSON({type: "FeatureCollection", features: filteredIpis}, {
+                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#f59e0b', color: '#fff', weight: 1, fillOpacity: 0.8 }),
+                onEachFeature: (f, l) => bindMiningPopup(f, l)
+            }).addTo(map);
+
+            // Hotspot Heatmap
+            const heatPoints = [...filteredCami, ...filteredIpis].map(f => [f.geometry.coordinates[1], f.geometry.coordinates[0], 0.5]);
+            hotspotLayer = L.heatLayer(heatPoints, { radius: 25, blur: 15, maxZoom: 10, gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'} });
+
+            updateStats();
+        }
+
+        function bindMiningPopup(f, l) {
+            const p = f.properties;
+            l.bindPopup(`
+                <div class="p-2 custom-popup">
+                    <div class="text-[10px] font-black uppercase text-slate-400 mb-1">${p.source} • ${p.year}</div>
+                    <div class="text-sm font-black mb-2">${p.title_id || p.site_id}</div>
+                    <div class="grid grid-cols-2 gap-2 text-[10px] font-bold">
+                        <div class="bg-white/10 p-2 rounded">
+                            <span class="block text-slate-500">TYPE</span>
+                            <span class="text-white">${p.permit_name || p.commodity}</span>
+                        </div>
+                        <div class="bg-white/10 p-2 rounded">
+                            <span class="block text-slate-500">STATUS</span>
+                            <span class="text-emerald-400">${p.status || 'Active'}</span>
+                        </div>
+                    </div>
+                </div>
+            `, { className: 'custom-popup' });
+        }
+
+        function updateStats() {
+            const count = (map.hasLayer(camiLayer) ? camiLayer.getLayers().length : 0) + 
+                          (map.hasLayer(ipisLayer) ? ipisLayer.getLayers().length : 0);
+            document.getElementById('statSites').innerText = count;
+        }
+
+        // Event Handlers
+        document.getElementById('timeSlider').oninput = (e) => {
+            const yr = e.target.value;
+            document.getElementById('currentYear').innerText = yr;
+            renderLayers(yr);
+        };
+
+        document.getElementById('checkBoundary').onchange = (e) => e.target.checked ? map.addLayer(boundaryLayer) : map.removeLayer(boundaryLayer);
+        document.getElementById('checkCami').onchange = (e) => e.target.checked ? map.addLayer(camiLayer) : map.removeLayer(camiLayer);
+        document.getElementById('checkIpis').onchange = (e) => e.target.checked ? map.addLayer(ipisLayer) : map.removeLayer(ipisLayer);
+        document.getElementById('checkHotspots').onchange = (e) => e.target.checked ? map.addLayer(hotspotLayer) : map.removeLayer(hotspotLayer);
+        document.getElementById('checkBuffer').onchange = (e) => e.target.checked ? map.addLayer(bufferLayer) : map.removeLayer(bufferLayer);
+        document.getElementById('baseMapSelect').onchange = (e) => {
+            Object.values(baseMaps).forEach(m => map.removeLayer(m));
+            baseMaps[e.target.value].addTo(map);
+        };
+
+        function toggleSidebar() {
+            const s = document.getElementById('sidebar');
+            s.classList.toggle('-translate-x-full');
+            s.classList.toggle('hidden');
+        }
+
+        init();
     </script>
 </body>
 </html>

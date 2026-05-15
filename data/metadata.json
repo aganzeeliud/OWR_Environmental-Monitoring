@@ -1,0 +1,40 @@
+{
+    "project": "Okapi Wildlife Reserve Environmental Monitoring",
+    "version": "2.0.0",
+    "last_update": "2026-05-15",
+    "data_sources": [
+        {
+            "name": "UNESCO",
+            "type": "Boundary",
+            "url": "https://whc.unesco.org/en/list/718/maps/"
+        },
+        {
+            "name": "CAMI RDC",
+            "type": "Mining Titles",
+            "url": "https://drclicences.cami.cd/fr/"
+        },
+        {
+            "name": "IPIS Research",
+            "type": "Artisanal Mining",
+            "url": "https://ipisresearch.be/mapping/webmapping/drcongo/"
+        },
+        {
+            "name": "ArcGIS Online",
+            "type": "Mining Occurrences",
+            "url": "https://www.arcgis.com/apps/instant/sidebar/index.html?appid=5f33862234ff4d46b238524c095096ac"
+        }
+    ],
+    "spatial_extents": {
+        "okapi_wildlife_reserve": {
+            "bbox": [28.0, 1.0, 29.2, 2.5],
+            "area_ha": 1372600
+        }
+    },
+    "technical_stack": [
+        "Leaflet.js",
+        "Turf.js",
+        "Chart.js",
+        "PapaParse",
+        "Tailwind CSS"
+    ]
+}

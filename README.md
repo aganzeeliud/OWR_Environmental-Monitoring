@@ -1,59 +1,41 @@
-# OWR Environmental Monitoring and Illegal Activity Intelligence Platform
+# Okapi Wildlife Reserve (OWR) Environmental Monitoring Platform
 
-A complete scientific intelligence platform for the **Okapi Wildlife Reserve (OWR)**, Democratic Republic of Congo (2000–2026).
+Advanced geospatial monitoring and intelligence platform for the Okapi Wildlife Reserve (UNESCO World Heritage Site #718), Democratic Republic of the Congo.
 
-## Overview
-This platform provides quantitative monitoring of environmental impacts within and around the Okapi Wildlife Reserve. It uses satellite-derived data to track deforestation, mining expansion, forest fires, and other illegal activities.
+## Features
 
-**Deployment URL:** [https://YOUR-USERNAME.github.io/OWR_Environmental-Monitoring/](https://YOUR-USERNAME.github.io/OWR_Environmental-Monitoring/)
+- **Mining Governance**: Real-time monitoring of CAMI industrial permits and IPIS artisanal mining sites.
+- **Spatial Intelligence**: Interactive Leaflet maps with Turf.js intersection analysis, 50km buffer zones, and heatmap visualizations.
+- **Temporal Analysis**: Time-series hotspots from 2000 to 2026.
+- **Ecological Dashboard**: Quantitative trends on forest loss, fire hotspots, and carbon emissions.
+- **Open Data**: Downloadable CSV and GeoJSON datasets for scientific research.
 
-## Key Features
-- **Temporal Analysis (2000-2026):** 26 years of environmental data.
-- **20 Scientific Databases:** Comprehensive CSV datasets covering all analysis themes.
-- **Interactive Dashboards:** Visual trends using Chart.js.
-- **Spatial Intelligence:** Hotspot mapping using Leaflet.js.
-- **Metric Quantification:** All results calculated in hectares (ha), square kilometers (km²), and percentages.
+## Data Sources
 
-## Database Themes (/data/csv/)
-1. forest_loss_2000_2026.csv
-2. forest_cover_annual.csv
-3. illegal_logging_hotspots.csv
-4. mining_expansion.csv
-5. mining_forest_overlap.csv
-6. fire_burned_area.csv
-7. fire_hotspots.csv
-8. carbon_emissions.csv
-9. biomass_loss.csv
-10. habitat_fragmentation.csv
-11. biodiversity_risk.csv
-12. road_expansion.csv
-13. road_forest_buffer_analysis.csv
-14. logging_roads.csv
-15. settlement_expansion.csv
-16. protected_area_encroachment.csv
-17. watershed_impacts.csv
-18. annual_statistics.csv
-19. landcover_change.csv
-20. conservation_priority_zones.csv
+- **UNESCO**: Official OWR boundary polygons.
+- **CAMI RDC**: Industrial mining titles and exploration permits.
+- **IPIS Research**: Artisanal mining site impact database.
+- **NASA FIRMS**: Fire hotspot thermal anomalies.
+- **UMD/Hansen**: Global Forest Change data.
 
 ## Technical Stack
-- **Frontend:** HTML5, TailwindCSS, JavaScript, DataTables.js, Chart.js, Leaflet.js.
-- **Data Engine:** Python (for parametric data synthesis).
-- **Primary Mining Data Sources:**
-    - **CAMI (Cadastre Minier RDC):** Official industrial mining concessions and permits.
-    - **IPIS Research:** Authoritative artisanal mining site data and conflict-risk indicators.
-- **Environmental Data Sources:** Hansen GFC, Global Forest Watch, MODIS/VIIRS, ESA WorldCover, GEDI.
 
-## Scientific Methodology
-- **Mining Governance Analysis:** Cross-referencing official CAMI concession boundaries with protected area coordinates to detect legal and unauthorized encroachment.
-- **Artisanal Mining Monitoring:** Integrating IPIS field data to map high-risk artisanal sites and their associated environmental footprints (forest loss, river sedimentation).
-- **Change Detection:** Results are generated through **Parametric Change Detection** and **Spatial Hotspot Clustering**. Hectare calculations are based on 30m pixel analysis across the 13,726 km² reserve area.
+- **Frontend**: HTML5, CSS3 (Tailwind), Vanilla JavaScript.
+- **Mapping**: Leaflet.js, Turf.js (Spatial logic), Leaflet.heat, Leaflet.markercluster.
+- **Visualization**: Chart.js.
+- **Data Parsing**: PapaParse.
 
-## Usage
-1. Open `index.html` to access the main platform.
-2. Navigate to the **Database** page to search and download scientific CSVs.
-3. Use the **Dashboard** for trend analysis.
-4. Explore **Live Maps** for spatial distribution of threats.
+## Directory Structure
+
+- `/data/mining/`: Mining permits, impacts, and intersection results (GeoJSON/CSV).
+- `/data/boundaries/`: Official reserve polygons (GeoJSON/WKT/CSV).
+- `/scripts/`: Python data engines for spatial analysis and hotspot generation.
+- `/maps.html`: Advanced geospatial explorer.
+- `/mining-analysis.html`: In-depth mining governance dashboard.
+
+## Deployment
+
+Hosted on GitHub Pages. Data is statically served for maximum compatibility and performance.
 
 ---
-*Created for the conservation of the Okapi Wildlife Reserve and global environmental transparency.*
+*Official Monitoring System for OWR Environmental Intelligence (2026)*
