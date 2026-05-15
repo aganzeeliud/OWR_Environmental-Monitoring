@@ -16,250 +16,31 @@
         #loggingMap { height: 600px; border-radius: 2.5rem; background: #e2e8f0; border: 4px solid white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         .custom-popup .leaflet-popup-content-wrapper { background: white; color: #1e293b; border-radius: 12px; }
         .custom-popup .leaflet-popup-tip { background: white; }
+        .chart-source { position: absolute; bottom: 0; right: 0; font-size: 8px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; background: rgba(255,255,255,0.8); padding: 2px 8px; border-top-left-radius: 8px; }
     </style>
 </head>
 <body class="bg-[#f8fafc]">
 
     <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
-        <div class="flex items-center space-x-3">
-            <div class="bg-emerald-600 p-2 rounded-lg">
-                <i class="fas fa-truck-loading text-white"></i>
-            </div>
-            <span class="font-bold tracking-tighter text-xl uppercase text-slate-900">Logging Intel</span>
-        </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
-            <a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a>
-            <a href="mining-analysis.html" class="hover:text-emerald-600 transition">Mining</a>
-            <a href="maps.html" class="hover:text-emerald-600 transition">Spatial Map</a>
-        </div>
-        <div class="bg-rose-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-rose-600 border border-rose-100">
-            Threat Level: High
-        </div>
-    </nav>
-
-    <main class="container mx-auto px-6 py-12">
-        <header class="mb-16">
-            <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">Extraction <span class="text-emerald-600">Monitoring</span></h1>
-            <p class="text-xl text-slate-600 max-w-4xl">Tracking illegal logging operations and road encroachment within the OWR primary forest corridors (2000–2026). Using Hansen GFC Change detection.</p>
-        </header>
-
-        <!-- KPI Row -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">Logged Area (Est.)</span>
-                <span class="text-3xl font-black text-slate-900">12,450 <span class="text-xs text-slate-400 uppercase">ha</span></span>
-            </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">Active Hotspots</span>
-                <span class="text-3xl font-black text-amber-600">42 <span class="text-xs text-slate-400 uppercase">Clusters</span></span>
-            </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">Road Proximity</span>
-                <span class="text-3xl font-black text-rose-600">CRITICAL</span>
-            </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">Data Confidence</span>
-                <span class="text-3xl font-black text-emerald-600">92.4%</span>
-            </div>
-        </div>
-
-        <!-- Map Module -->
-        <div class="bg-white p-4 rounded-[3.5rem] border border-slate-200 shadow-lg mb-16 relative overflow-hidden">
-            <div class="flex justify-between items-center mb-8 p-6 relative z-10">
-                <div>
-                    <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tighter">Temporal Logging Hotspots</h3>
-                    <p class="text-sm text-slate-400 font-bold uppercase tracking-widest">Year-by-Year Extraction Footprint</p>
-                </div>
-                <div class="flex items-center space-x-6">
-                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Filter Year:</label>
-                    <select id="yearFilter" class="bg-slate-50 border border-slate-200 text-slate-900 px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest focus:ring-2 focus:ring-emerald-600 outline-none transition">
-                        <option value="all">Display All (2000-2026)</option>
-                    </select>
-                </div>
-            </div>
-            <div id="loggingMap"></div>
-        </div>
-
+...
         <!-- Charts Row -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                 <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Annual Extraction Intensity (ha)</h3>
                 <div class="relative h-[350px]">
                     <canvas id="loggingIntensityChart"></canvas>
+                    <span class="chart-source">Source: Hansen GFC / UMD</span>
                 </div>
             </div>
             <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                 <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Risk Vector Distribution</h3>
                 <div class="relative h-[350px]">
                     <canvas id="loggingDensityChart"></canvas>
+                    <span class="chart-source">Source: GFW Alerts 2001-2026</span>
                 </div>
             </div>
         </div>
 
         <!-- Footer Section -->
-        <div class="bg-white p-16 rounded-[4rem] text-center border border-slate-200 shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500"></div>
-            <h4 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Integrated Monitoring Pipeline</h4>
-            <div class="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition duration-700 items-center">
-                <span class="text-xl font-black text-slate-900 tracking-tighter">HANSEN GFC</span>
-                <span class="text-xl font-black text-slate-900 tracking-tighter">ESA SENTINEL-2</span>
-                <span class="text-xl font-black text-slate-900 tracking-tighter">GFW ALERTS</span>
-            </div>
-            <p class="mt-12 text-[10px] font-black uppercase tracking-widest text-emerald-600">Processed using Parametric Spectral Change Detection & GEE Spatial Clustering.</p>
-        </div>
-    </main>
-
-    <footer class="bg-white py-20 border-t border-slate-200">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Extraction Intelligence • SECURE ARCHIVE</p>
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Scientific Platform</p>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        let loggingMap;
-        let markersLayer;
-        let loggingData = [];
-
-        function initMap() {
-            loggingMap = L.map('loggingMap', { zoomControl: false }).setView([1.6333, 28.5833], 9);
-            
-            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-            const googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
-                maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps'
-            });
-            const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
-
-            googleSat.addTo(loggingMap);
-
-            const baseLayers = {
-                "Google Satellite": googleSat,
-                "Topology": topo,
-                "OpenStreetMap": osm
-            };
-
-            L.control.layers(baseLayers).addTo(loggingMap);
-            L.control.zoom({ position: 'bottomright' }).addTo(loggingMap);
-
-            L.polygon([[1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]], {
-                color: "#059669", weight: 3, fillOpacity: 0.05, dashArray: '5, 10'
-            }).addTo(loggingMap).bindPopup("Okapi Wildlife Reserve Boundary");
-
-            markersLayer = L.layerGroup().addTo(loggingMap);
-        }
-
-        async function loadData() {
-            const res = await fetch('data/csv/illegal-logging-hotspots.csv');
-            const text = await res.text();
-            const rows = text.split('\n').slice(1).filter(r => r.length > 0);
-            loggingData = rows.map(r => {
-                const c = r.split(',');
-                return {
-                    year: parseInt(c[0]),
-                    lat: parseFloat(c[1]),
-                    lng: parseFloat(c[2]),
-                    area: parseFloat(c[15]),
-                    risk: parseInt(c[20]),
-                    id: c[13]
-                };
-            });
-
-            const years = [...new Set(loggingData.map(d => d.year))].sort((a,b) => b-a);
-            years.forEach(y => $('#yearFilter').append(`<option value="${y}">${y}</option>`));
-
-            renderMarkers('all');
-            initCharts(years.reverse());
-        }
-
-        function renderMarkers(year) {
-            markersLayer.clearLayers();
-            const filtered = year === 'all' ? loggingData : loggingData.filter(d => d.year == year);
-            
-            filtered.forEach(d => {
-                const color = d.risk >= 5 ? '#f43f5e' : (d.risk >= 3 ? '#f59e0b' : '#10b981');
-                L.circleMarker([d.lat, d.lng], {
-                    radius: 5 + (d.area / 15),
-                    fillColor: color,
-                    color: "white",
-                    weight: 1,
-                    fillOpacity: 0.9
-                }).addTo(markersLayer).bindPopup(`
-                    <div class="p-2 custom-popup">
-                        <div class="text-[10px] font-black uppercase text-slate-400 mb-1">HOTSPOT ID: ${d.id}</div>
-                        <div class="text-sm font-black mb-2 text-slate-900">${d.year} ALERT</div>
-                        <div class="text-[10px] font-bold text-emerald-600">AREA: ${d.area} HA</div>
-                    </div>
-                `, { className: 'custom-popup' });
-            });
-        }
-
-        function initCharts(years) {
-            Chart.defaults.color = '#94a3b8';
-            Chart.defaults.font.family = 'Plus Jakarta Sans';
-            Chart.defaults.font.weight = 'bold';
-
-            const intensityData = years.map(y => {
-                return loggingData.filter(d => d.year == y).reduce((acc, curr) => acc + curr.area, 0);
-            });
-
-            new Chart(document.getElementById('loggingIntensityChart'), {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        label: 'Logged Area',
-                        data: intensityData,
-                        borderColor: '#059669',
-                        borderWidth: 4,
-                        fill: true,
-                        backgroundColor: 'rgba(5, 150, 105, 0.05)',
-                        tension: 0.4,
-                        pointRadius: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { display: false }, x: { grid: { display: false } } },
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            const riskCounts = [
-                loggingData.filter(d => d.risk <= 2).length,
-                loggingData.filter(d => d.risk > 2 && d.risk < 5).length,
-                loggingData.filter(d => d.risk >= 5).length
-            ];
-
-            new Chart(document.getElementById('loggingDensityChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Low Risk', 'Medium Risk', 'High Risk'],
-                    datasets: [{
-                        data: riskCounts,
-                        backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '80%',
-                    plugins: { legend: { position: 'bottom' } }
-                }
-            });
-        }
-
-        $('#yearFilter').on('change', function() {
-            renderMarkers(this.value);
-        });
-
-        $(document).ready(() => {
-            initMap();
-            loadData();
-        });
-    </script>
-</body>
+...
 </html>

@@ -39,71 +39,13 @@
             70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
+        .chart-source { position: absolute; bottom: 0; right: 0; font-size: 8px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; background: rgba(255,255,255,0.8); padding: 2px 8px; border-top-left-radius: 8px; }
     </style>
 </head>
 <body class="bg-[#f8fafc]">
 
     <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
-        <div class="flex items-center space-x-3">
-            <div class="bg-emerald-600 p-2 rounded-lg">
-                <i class="fas fa-history text-white"></i>
-            </div>
-            <span class="font-bold tracking-tighter text-xl uppercase text-slate-900">Temporal Intel</span>
-        </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
-            <a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a>
-            <a href="mining-analysis.html" class="hover:text-emerald-600 transition">Mining</a>
-            <a href="maps.html" class="hover:text-emerald-600 transition">Spatial Map</a>
-        </div>
-        <div class="bg-emerald-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 border border-emerald-100">
-            Chronological Mode
-        </div>
-    </nav>
-
-    <main class="container mx-auto px-6 py-12">
-        <header class="mb-16">
-            <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">The <span class="text-emerald-600">Decadal</span> Trajectory</h1>
-            <p class="text-xl text-slate-600 max-w-4xl font-medium">A chronological reconstruction of environmental flux within the Okapi Wildlife Reserve. Quantifying 26 years of cumulative forest loss and industrial acceleration.</p>
-        </header>
-
-        <!-- Timeline Control Module -->
-        <section class="bg-white p-12 rounded-[4rem] mb-16 relative overflow-hidden border border-slate-200 shadow-sm">
-            <div class="relative z-10">
-                <div class="flex flex-wrap justify-between items-center mb-12 gap-8">
-                    <div>
-                        <div class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-2">Temporal Control Station</div>
-                        <h2 class="text-6xl font-black text-slate-900 flex items-baseline">
-                            YEAR: <span id="currentYearDisplay" class="text-emerald-600 ml-4">2000</span>
-                        </h2>
-                    </div>
-                    <div class="flex gap-4">
-                        <button id="playBtn" class="bg-slate-50 hover:bg-slate-100 w-20 h-20 rounded-full flex items-center justify-center transition border border-slate-200 group shadow-sm">
-                            <i class="fas fa-play text-2xl text-emerald-600 group-hover:scale-110 transition" id="playIcon"></i>
-                        </button>
-                        <button id="resetBtn" class="bg-slate-50 hover:bg-slate-100 px-8 rounded-3xl font-black uppercase tracking-widest text-[10px] transition border border-slate-200 shadow-sm text-slate-600">Reset Index</button>
-                    </div>
-                </div>
-                
-                <div class="px-2">
-                    <input type="range" min="2000" max="2026" value="2000" class="timeline-slider" id="yearSlider">
-                    <div class="flex justify-between mt-8 text-[10px] font-black tracking-widest text-slate-400 uppercase">
-                        <span>2000</span>
-                        <span>2005</span>
-                        <span>2010</span>
-                        <span>2015</span>
-                        <span>2020</span>
-                        <span>2026</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- KPI Row -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16" id="kpiContainer">
-            <!-- KPIs via JS -->
-        </div>
-
+...
         <!-- Main Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div class="lg:col-span-8 bg-white p-4 rounded-[4rem] border border-slate-200 shadow-lg">
@@ -114,220 +56,16 @@
                     <h3 class="text-xs font-black mb-8 uppercase tracking-widest text-slate-400">Cumulative Loss (ha)</h3>
                     <div class="relative h-[250px]">
                         <canvas id="cumulativeChart"></canvas>
+                        <span class="chart-source">Source: Hansen GFC / UMD</span>
                     </div>
                 </div>
                 <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                     <h3 class="text-xs font-black mb-8 uppercase tracking-widest text-slate-400">Mining Expansion</h3>
                     <div class="relative h-[250px]">
                         <canvas id="miningExpansionChart"></canvas>
+                        <span class="chart-source">Source: CAMI / IPIS</span>
                     </div>
                 </div>
                 <div class="bg-rose-50 p-10 rounded-[3rem] border border-rose-100 relative overflow-hidden">
-                    <h3 class="text-xs font-black mb-4 uppercase tracking-widest text-rose-600">Decadal Risk Score</h3>
-                    <div id="riskScore" class="text-6xl font-black text-rose-700">34.2%</div>
-                    <div class="text-[10px] uppercase font-black tracking-widest mt-4 text-rose-400">Historical Threat Index</div>
-                    <i class="fas fa-biohazard absolute -bottom-4 -right-4 text-9xl text-rose-600 opacity-5"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Comparison Matrix -->
-        <section class="bg-white p-12 rounded-[4rem] mb-16 border border-slate-200 shadow-sm">
-            <h3 class="text-3xl font-black text-slate-900 mb-12 uppercase tracking-tighter">Annual Comparison Matrix</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="text-[10px] uppercase font-black text-slate-400 border-b border-slate-100">
-                            <th class="py-6 px-4">Year Index</th>
-                            <th class="py-6 px-4">Forest Loss (ha)</th>
-                            <th class="py-6 px-4">Mining (ha)</th>
-                            <th class="py-6 px-4">Fire (ha)</th>
-                            <th class="py-6 px-4">Logging (ha)</th>
-                            <th class="py-6 px-4">Risk Index</th>
-                        </tr>
-                    </thead>
-                    <tbody id="comparisonTableBody" class="text-xs font-bold text-slate-600">
-                        <!-- Table rows -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-white py-20 border-t border-slate-200">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Chronological Intelligence System</p>
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Temporal Archive</p>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        let currentYear = 2000;
-        let timelineData = [];
-        let miningGeoData;
-        let isPlaying = false;
-        let playInterval;
-        let charts = {};
-
-        const map = L.map('timelineMap', { zoomControl: false }).setView([1.6333, 28.5833], 8);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
-
-        const markersLayer = L.layerGroup().addTo(map);
-
-        L.polygon([[1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]], {
-            color: "#059669", weight: 3, fillOpacity: 0.05, dashArray: '5, 10'
-        }).addTo(map);
-
-        async function loadTimelineData() {
-            const res = await fetch('data/csv/yearly-combined-environmental-impacts.csv');
-            const text = await res.text();
-            const rows = text.split('\n').slice(1).filter(r => r.length > 0);
-            timelineData = rows.map(r => {
-                const c = r.split(',');
-                return {
-                    year: parseInt(c[0]), fLoss: parseFloat(c[1]), mArea: parseFloat(c[2]),
-                    fire: parseFloat(c[3]), logging: parseFloat(c[4]), carbon: parseFloat(c[5]),
-                    risk: parseFloat(c[8]), cumLoss: parseFloat(c[10]), change: parseFloat(c[11])
-                };
-            });
-
-            const geoRes = await fetch('data/geojson/owr-mining-titles.json');
-            miningGeoData = await geoRes.json();
-
-            initCharts();
-            updateUI();
-            populateTable();
-        }
-
-        function updateUI() {
-            const data = timelineData.find(d => d.year === currentYear);
-            if (!data) return;
-
-            $('#currentYearDisplay').text(currentYear);
-            $('#yearSlider').val(currentYear);
-
-            const kpis = [
-                { label: 'Forest Lost', val: data.fLoss, unit: 'ha', color: 'text-slate-900', icon: 'fa-tree' },
-                { label: 'Mining Exp.', val: data.mArea, unit: 'ha', color: 'text-amber-600', icon: 'fa-pickaxe' },
-                { label: 'Burned Area', val: data.fire, unit: 'ha', color: 'text-rose-600', icon: 'fa-fire' },
-                { label: 'Logging Int.', val: data.logging, unit: 'ha', color: 'text-emerald-600', icon: 'fa-truck-loading' },
-                { label: 'Carbon Loss', val: data.carbon, unit: 't', color: 'text-slate-500', icon: 'fa-cloud' },
-                { label: 'Risk Index', val: data.risk.toFixed(2), unit: 'SCR', color: 'text-rose-600', icon: 'fa-radiation' }
-            ];
-
-            $('#kpiContainer').empty();
-            kpis.forEach(k => {
-                $('#kpiContainer').append(`
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-                        <i class="fas ${k.icon} mb-4 text-slate-300 text-lg block"></i>
-                        <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">${k.label}</span>
-                        <span class="text-2xl font-black ${k.color} block tracking-tighter">${k.val.toLocaleString()}</span>
-                        <span class="text-[10px] font-bold text-slate-400 uppercase">${k.unit}</span>
-                    </div>
-                `);
-            });
-
-            $('#comparisonTableBody tr').removeClass('bg-emerald-50 text-slate-900 border-l-4 border-emerald-500');
-            $(`#comparisonTableBody tr`).each(function() {
-                if($(this).find('td:first').text() == currentYear) $(this).addClass('bg-emerald-50 text-slate-900 border-l-4 border-emerald-500');
-            });
-
-            markersLayer.clearLayers();
-            L.geoJSON(miningGeoData, {
-                filter: (f) => f.properties.year <= currentYear,
-                pointToLayer: (f, latlng) => L.circleMarker(latlng, {
-                    radius: f.properties.year == currentYear ? 10 : 4,
-                    fillColor: f.properties.year == currentYear ? "#059669" : "#cbd5e1",
-                    color: "white", weight: 1, fillOpacity: 0.9
-                })
-            }).addTo(markersLayer);
-        }
-
-        function populateTable() {
-            $('#comparisonTableBody').empty();
-            timelineData.forEach(d => {
-                $('#comparisonTableBody').append(`
-                    <tr class="border-b border-slate-50 hover:bg-slate-50 transition cursor-pointer" onclick="currentYear=${d.year}; updateUI();">
-                        <td class="py-6 px-4">${d.year}</td>
-                        <td class="py-6 px-4 text-emerald-600">${d.fLoss.toLocaleString()}</td>
-                        <td class="py-6 px-4 text-amber-600">${d.mArea.toLocaleString()}</td>
-                        <td class="py-6 px-4 text-rose-600">${d.fire.toLocaleString()}</td>
-                        <td class="py-6 px-4">${d.logging.toLocaleString()}</td>
-                        <td class="py-6 px-4"><span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-[10px]">${d.risk.toFixed(2)}</span></td>
-                    </tr>
-                `);
-            });
-        }
-
-        function initCharts() {
-            Chart.defaults.color = '#94a3b8';
-            Chart.defaults.font.family = 'Plus Jakarta Sans';
-            Chart.defaults.font.weight = 'bold';
-            const years = timelineData.map(d => d.year);
-            
-            charts.cumulative = new Chart(document.getElementById('cumulativeChart'), {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        data: timelineData.map(d => d.cumLoss),
-                        borderColor: '#059669', borderWidth: 4, fill: true, backgroundColor: 'rgba(5, 150, 105, 0.05)', tension: 0.4, pointRadius: 0
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { display: false }, x: { display: false } }, 
-                    plugins: { legend: { display: false } } 
-                }
-            });
-
-            charts.mining = new Chart(document.getElementById('miningExpansionChart'), {
-                type: 'bar',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        data: timelineData.map(d => d.mArea),
-                        backgroundColor: '#f59e0b', borderRadius: 8
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { display: false }, x: { display: false } }, 
-                    plugins: { legend: { display: false } } 
-                }
-            });
-        }
-
-        $('#yearSlider').on('input', function() {
-            currentYear = parseInt($(this).val());
-            updateUI();
-        });
-
-        $('#playBtn').on('click', function() {
-            isPlaying = !isPlaying;
-            $(this).toggleClass('playing-glow');
-            $('#playIcon').toggleClass('fa-play fa-pause text-white');
-            if(isPlaying) {
-                playInterval = setInterval(() => {
-                    currentYear++;
-                    if(currentYear > 2026) currentYear = 2000;
-                    updateUI();
-                }, 1000);
-            } else {
-                clearInterval(playInterval);
-            }
-        });
-
-        $('#resetBtn').on('click', () => {
-            currentYear = 2000;
-            updateUI();
-            if(isPlaying) $('#playBtn').click();
-        });
-
-        $(document).ready(() => loadTimelineData());
-    </script>
-</body>
+...
 </html>
