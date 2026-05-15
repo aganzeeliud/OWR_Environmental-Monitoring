@@ -112,11 +112,15 @@
             <div class="lg:col-span-4 space-y-8">
                 <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                     <h3 class="text-xs font-black mb-8 uppercase tracking-widest text-slate-400">Cumulative Loss (ha)</h3>
-                    <canvas id="cumulativeChart" height="250"></canvas>
+                    <div class="relative h-[250px]">
+                        <canvas id="cumulativeChart"></canvas>
+                    </div>
                 </div>
                 <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                     <h3 class="text-xs font-black mb-8 uppercase tracking-widest text-slate-400">Mining Expansion</h3>
-                    <canvas id="miningExpansionChart" height="250"></canvas>
+                    <div class="relative h-[250px]">
+                        <canvas id="miningExpansionChart"></canvas>
+                    </div>
                 </div>
                 <div class="bg-rose-50 p-10 rounded-[3rem] border border-rose-100 relative overflow-hidden">
                     <h3 class="text-xs font-black mb-4 uppercase tracking-widest text-rose-600">Decadal Risk Score</h3>
@@ -271,7 +275,12 @@
                         borderColor: '#059669', borderWidth: 4, fill: true, backgroundColor: 'rgba(5, 150, 105, 0.05)', tension: 0.4, pointRadius: 0
                     }]
                 },
-                options: { maintainAspectRatio: false, scales: { y: { display: false }, x: { display: false } }, plugins: { legend: { display: false } } }
+                options: { 
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { display: false }, x: { display: false } }, 
+                    plugins: { legend: { display: false } } 
+                }
             });
 
             charts.mining = new Chart(document.getElementById('miningExpansionChart'), {
@@ -283,7 +292,12 @@
                         backgroundColor: '#f59e0b', borderRadius: 8
                     }]
                 },
-                options: { maintainAspectRatio: false, scales: { y: { display: false }, x: { display: false } }, plugins: { legend: { display: false } } }
+                options: { 
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { display: false }, x: { display: false } }, 
+                    plugins: { legend: { display: false } } 
+                }
             });
         }
 

@@ -85,11 +85,15 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                 <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Annual Extraction Intensity (ha)</h3>
-                <canvas id="loggingIntensityChart" height="350"></canvas>
+                <div class="relative h-[350px]">
+                    <canvas id="loggingIntensityChart"></canvas>
+                </div>
             </div>
             <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
                 <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Risk Vector Distribution</h3>
-                <canvas id="loggingDensityChart" height="350"></canvas>
+                <div class="relative h-[350px]">
+                    <canvas id="loggingDensityChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -216,6 +220,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     maintainAspectRatio: false,
                     scales: { y: { display: false }, x: { grid: { display: false } } },
                     plugins: { legend: { display: false } }
@@ -239,6 +244,8 @@
                     }]
                 },
                 options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
                     cutout: '80%',
                     plugins: { legend: { position: 'bottom' } }
                 }

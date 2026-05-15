@@ -86,11 +86,15 @@
             <div class="lg:col-span-4 space-y-8">
                 <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
                     <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-slate-100 pb-4">Mineral Distribution</h3>
-                    <canvas id="mineralChart" height="250"></canvas>
+                    <div class="relative h-[250px]">
+                        <canvas id="mineralChart"></canvas>
+                    </div>
                 </div>
                 <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
                     <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-slate-100 pb-4">Growth Projection</h3>
-                    <canvas id="growthChart" height="250"></canvas>
+                    <div class="relative h-[250px]">
+                        <canvas id="growthChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,7 +239,12 @@
                         borderWidth: 0
                     }]
                 },
-                options: { cutout: '80%', plugins: { legend: { position: 'bottom', labels: { color: '#64748b', font: { size: 10, weight: 'bold' } } } } }
+                options: { 
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '80%', 
+                    plugins: { legend: { position: 'bottom', labels: { color: '#64748b', font: { size: 10, weight: 'bold' } } } } 
+                }
             });
 
             const ctxGrowth = document.getElementById('growthChart').getContext('2d');
@@ -253,6 +262,8 @@
                     }]
                 },
                 options: { 
+                    responsive: true,
+                    maintainAspectRatio: false,
                     scales: { 
                         y: { display: false },
                         x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 8 } } }
