@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +8,327 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #334155; }
-        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
-        #loggingMap { height: 600px; border-radius: 2.5rem; background: #e2e8f0; border: 4px solid white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .custom-popup .leaflet-popup-content-wrapper { background: white; color: #1e293b; border-radius: 12px; }
-        .custom-popup .leaflet-popup-tip { background: white; }
-        .chart-source { position: absolute; bottom: 0; right: 0; font-size: 8px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; background: rgba(255,255,255,0.8); padding: 2px 8px; border-top-left-radius: 8px; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+        }
+
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        .card-modern {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+        }
+
+        #loggingMap { 
+            height: 600px; 
+            border-radius: 2rem; 
+            background: #e2e8f0; 
+            border: 1px solid rgba(0,0,0,0.05);
+            z-index: 1;
+        }
+
+        .accent-cyan {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+        }
+
+        .chart-source { 
+            position: absolute; 
+            bottom: 10px; 
+            right: 15px; 
+            font-size: 8px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            color: #94a3b8; 
+            letter-spacing: 0.05em; 
+        }
+
+        .reveal { visibility: hidden; }
     </style>
 </head>
-<body class="bg-[#f8fafc]">
+<body class="overflow-x-hidden">
 
-    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
-...
-        <!-- Charts Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
-            <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-[3000] glass-nav">
+        <div class="container mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 accent-cyan rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-truck-loading text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tighter text-slate-900 uppercase">OWR <span class="text-cyan-600">LOGGING</span></span>
+                    <div class="text-[8px] font-black uppercase tracking-[0.3em] text-slate-400 -mt-1">Extraction Intelligence</div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center space-x-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="index.html" class="hover:text-cyan-600 transition-colors">Hub</a>
+                <a href="climate-observatory.html" class="hover:text-cyan-600 transition-colors">Climate</a>
+                <a href="fire-analysis.html" class="hover:text-cyan-600 transition-colors">Wildfire</a>
+                <a href="https://aganzeeliud.github.io/GFW_/explorer" class="hover:text-cyan-600 transition-colors">Mining</a>
+                <a href="maps.html" class="hover:text-cyan-600 transition-colors">GIS Hub</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <span class="text-[10px] font-bold text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100 hidden sm:block">Sentinel-2 Native</span>
+                <a href="dashboard.html" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-slate-700 transition">Analytics</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="relative pt-40 pb-20 overflow-hidden hero-pattern">
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="reveal inline-flex items-center space-x-3 bg-cyan-50 border border-cyan-100 rounded-full px-5 py-2 mb-8">
+                <span class="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-black uppercase tracking-widest text-cyan-700">Infrastructure & Extraction Monitoring</span>
+            </div>
+            <h1 class="reveal text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tighter text-slate-900 uppercase">
+                Extraction <br><span class="text-cyan-600">Intelligence Portal</span>
+            </h1>
+            <p class="reveal text-lg md:text-xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-12">
+                Mapping infrastructure expansion and illegal extraction corridors via Sentinel-2 high-resolution imagery. Monitoring the integrity of the Okapi Wildlife Reserve corridors.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Active Road Expansion</span>
+                    <div class="text-3xl font-black text-slate-900">420 <span class="text-xs text-slate-400">km</span></div>
+                    <div class="text-[10px] text-rose-600 font-bold mt-2 uppercase tracking-tighter">+12% Annual Growth</div>
+                </div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Illegal Hotspots</span>
+                    <div class="text-3xl font-black text-slate-900">84 <span class="text-xs text-slate-400">sites</span></div>
+                    <div class="text-[10px] text-amber-600 font-bold mt-2 uppercase tracking-tighter">High Risk: EPULU</div>
+                </div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Confidence Level</span>
+                    <div class="text-3xl font-black text-slate-900">92%</div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-2 uppercase tracking-tighter">Sentinel-2 Verified</div>
+                </div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Data Updated</span>
+                    <div class="text-3xl font-black text-slate-900">24H</div>
+                    <div class="text-[10px] text-slate-400 font-bold mt-2 uppercase tracking-tighter">Automatic Sync</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-8 pb-40">
+        <!-- Interactive Map -->
+        <div class="reveal card-modern p-4 mb-16 shadow-xl">
+            <div id="loggingMap"></div>
+            <div class="flex justify-between items-center mt-4 px-4">
+                <div class="flex gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-rose-500 rounded-full"></span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Extraction Hotspot</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-cyan-500 rounded-full"></span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Infrastructure Road</span>
+                    </div>
+                </div>
+                <span class="text-[8px] font-black uppercase text-slate-400 tracking-widest">Source: ESA Sentinel-2 / ICCN Patrols</span>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div class="reveal lg:col-span-8 card-modern p-10">
                 <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Annual Extraction Intensity (ha)</h3>
-                <div class="relative h-[350px]">
+                <div class="relative h-[400px]">
                     <canvas id="loggingIntensityChart"></canvas>
                     <span class="chart-source">Source: Hansen GFC / UMD</span>
                 </div>
             </div>
-            <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Risk Vector Distribution</h3>
-                <div class="relative h-[350px]">
+            <div class="reveal lg:col-span-4 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Threat Distribution</h3>
+                <div class="relative h-[400px]">
                     <canvas id="loggingDensityChart"></canvas>
                     <span class="chart-source">Source: GFW Alerts 2001-2026</span>
                 </div>
             </div>
         </div>
+    </main>
 
-        <!-- Footer Section -->
-...
+    <!-- Footer -->
+    <footer class="bg-white py-32 border-t border-slate-200">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-20 text-center md:text-left">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center justify-center md:justify-start space-x-4 mb-8">
+                        <div class="w-10 h-10 accent-cyan rounded-xl flex items-center justify-center">
+                            <i class="fas fa-truck-loading text-white"></i>
+                        </div>
+                        <span class="text-2xl font-black tracking-tighter text-slate-900 uppercase">OWR <span class="text-cyan-600">LOGGING</span></span>
+                    </div>
+                    <p class="text-slate-500 max-w-md font-bold uppercase text-[10px] leading-relaxed tracking-widest mx-auto md:mx-0">
+                        Strategic Extraction Monitoring Protocol for the Okapi Wildlife Reserve. Developing open-source solutions for biodiversity preservation.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Analysis Units</h5>
+                    <ul class="text-[10px] space-y-4 text-slate-600 font-black uppercase tracking-widest">
+                        <li><a href="climate-observatory.html" class="hover:text-cyan-600 transition">Climate Dashboard</a></li>
+                        <li><a href="fire-analysis.html" class="hover:text-cyan-600 transition">Wildfire Intel</a></li>
+                        <li><a href="https://aganzeeliud.github.io/GFW_/explorer" class="hover:text-cyan-600 transition">Mining Governance</a></li>
+                        <li><a href="maps.html" class="hover:text-cyan-600 transition">Spatial Hub</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Scientific</h5>
+                    <ul class="text-[10px] space-y-4 text-slate-600 font-black uppercase tracking-widest">
+                        <li><a href="methodology.html" class="hover:text-cyan-600 transition">Methodology</a></li>
+                        <li><a href="database.html" class="hover:text-cyan-600 transition">Data Archives</a></li>
+                        <li><a href="report.html" class="hover:text-cyan-600 transition">Reports</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-32 pt-12 border-t border-slate-100 flex flex-wrap justify-between items-center gap-8">
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">&copy; 2026 OWR Environmental Monitoring • Open Science Initiative</p>
+                <div class="flex gap-8 items-center opacity-30 grayscale hover:opacity-100 transition-all">
+                    <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-5">
+                    <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-5">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init ScrollReveal
+        ScrollReveal().reveal('.reveal', { delay: 100, distance: '40px', origin: 'bottom', duration: 800, easing: 'ease-out' });
+
+        // Map Initialization
+        const map = L.map('loggingMap', { zoomControl: false }).setView([1.75, 28.6], 9);
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; CARTO'
+        }).addTo(map);
+
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        // Load Reserve Boundary
+        fetch('data/boundaries/okapi-wildlife-reserve.geojson')
+            .then(res => res.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: { color: '#0891b2', weight: 2, fillOpacity: 0.02 }
+                }).addTo(map);
+            });
+
+        // Load Logging Hotspots
+        fetch('data/csv/illegal-logging-hotspots.csv')
+            .then(res => res.text())
+            .then(csvText => {
+                Papa.parse(csvText, {
+                    header: true,
+                    complete: (results) => {
+                        results.data.forEach(row => {
+                            if(row.latitude && row.longitude) {
+                                L.circleMarker([row.latitude, row.longitude], {
+                                    radius: 6,
+                                    fillColor: '#ef4444',
+                                    color: '#fff',
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                }).addTo(map).bindPopup(`<b>Hotspot: ${row.sector || 'Unknown'}</b><br>Detected: ${row.year || '2026'}`);
+                            }
+                        });
+                    }
+                });
+            });
+
+        // Chart Initialization
+        async function initCharts() {
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = 'Plus Jakarta Sans';
+            Chart.defaults.font.weight = 'bold';
+
+            // Intensity Chart
+            const intensityRes = await fetch('data/csv/yearly-logging-intensity.csv');
+            const intensityCsv = await intensityRes.text();
+            const intensityData = Papa.parse(intensityCsv, { header: true }).data.filter(d => d.year);
+
+            new Chart(document.getElementById('loggingIntensityChart'), {
+                type: 'line',
+                data: {
+                    labels: intensityData.map(d => d.year),
+                    datasets: [{
+                        label: 'Hectares Lost',
+                        data: intensityData.map(d => parseFloat(d.loss_ha)),
+                        borderColor: '#0891b2',
+                        backgroundColor: 'rgba(8, 145, 178, 0.05)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 4,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#0891b2'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(0,0,0,0.03)' }, border: { display: false } },
+                        x: { grid: { display: false }, border: { display: false } }
+                    }
+                }
+            });
+
+            // Density Chart
+            new Chart(document.getElementById('loggingDensityChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Illegal Clearing', 'Road Expansion', 'Encroachment'],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: ['#ef4444', '#0891b2', '#f59e0b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '80%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 20, font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        initCharts();
+    </script>
+</body>
 </html>
