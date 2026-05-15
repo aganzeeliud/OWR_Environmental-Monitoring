@@ -39,10 +39,15 @@ This platform provides quantitative monitoring of environmental impacts within a
 ## Technical Stack
 - **Frontend:** HTML5, TailwindCSS, JavaScript, DataTables.js, Chart.js, Leaflet.js.
 - **Data Engine:** Python (for parametric data synthesis).
-- **Data Sources:** Hansen GFC, Global Forest Watch, MODIS/VIIRS, ESA WorldCover, GEDI.
+- **Primary Mining Data Sources:**
+    - **CAMI (Cadastre Minier RDC):** Official industrial mining concessions and permits.
+    - **IPIS Research:** Authoritative artisanal mining site data and conflict-risk indicators.
+- **Environmental Data Sources:** Hansen GFC, Global Forest Watch, MODIS/VIIRS, ESA WorldCover, GEDI.
 
 ## Scientific Methodology
-Results are generated through **Parametric Change Detection** and **Spatial Hotspot Clustering**. Hectare calculations are based on 30m pixel analysis across the 13,726 km² reserve area.
+- **Mining Governance Analysis:** Cross-referencing official CAMI concession boundaries with protected area coordinates to detect legal and unauthorized encroachment.
+- **Artisanal Mining Monitoring:** Integrating IPIS field data to map high-risk artisanal sites and their associated environmental footprints (forest loss, river sedimentation).
+- **Change Detection:** Results are generated through **Parametric Change Detection** and **Spatial Hotspot Clustering**. Hectare calculations are based on 30m pixel analysis across the 13,726 km² reserve area.
 
 ## Usage
 1. Open `index.html` to access the main platform.

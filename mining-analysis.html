@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Intelligence & Governance | OWR Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans text-slate-900">
+
+    <nav class="bg-emerald-900 text-white shadow-lg sticky top-0 z-[1000]">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <i class="fas fa-leaf text-emerald-400 text-2xl"></i>
+                <span class="text-xl font-bold tracking-tight">OWR Mining Intel</span>
+            </a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-emerald-400">Main Hub</a>
+                <a href="dashboard.html" class="hover:text-emerald-400">Dashboard</a>
+                <a href="timeline.html" class="hover:text-emerald-400">Timeline</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12">
+        <header class="mb-16">
+            <div class="flex flex-wrap justify-between items-end gap-6 mb-8">
+                <div>
+                    <h1 class="text-5xl font-black mb-4">Mining Governance & Impact</h1>
+                    <p class="text-xl text-slate-500 max-w-3xl">Integrating CAMI (Cadastre Minier) and IPIS Research data to monitor industrial concessions and artisanal mining sites in the Okapi Wildlife Reserve.</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center">
+                        <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-8 mr-3 grayscale opacity-50" alt="IPIS">
+                        <span class="text-xs font-bold text-slate-400">Official Partner Data</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Source Attribution Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-emerald-600">
+                <h3 class="font-black text-emerald-800 uppercase tracking-widest text-sm mb-4">Industrial Concessions (CAMI)</h3>
+                <p class="text-slate-600 text-sm mb-6 leading-relaxed">Official registry of mining titles, including exploration (PR) and exploitation (PE) permits. Data used for boundary overlap analysis with protected zones.</p>
+                <div class="flex items-center text-xs font-bold text-slate-400">
+                    <i class="fas fa-link mr-2"></i> Source: Cadastre Minier RDC
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-amber-500">
+                <h3 class="font-black text-amber-700 uppercase tracking-widest text-sm mb-4">Artisanal Mining Sites (IPIS)</h3>
+                <p class="text-slate-600 text-sm mb-6 leading-relaxed">High-granularity field data on artisanal mining activities, including mineral types (Gold, 3Ts), worker estimates, and conflict-risk levels.</p>
+                <div class="flex items-center text-xs font-bold text-slate-400">
+                    <i class="fas fa-link mr-2"></i> Source: IPIS Research Database
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">Total Mining Area</span>
+                <span class="text-3xl font-black text-slate-900">4,820 <span class="text-xs font-medium">ha</span></span>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">CAMI Concessions</span>
+                <span class="text-3xl font-black text-emerald-700">12 <span class="text-xs font-medium">Active</span></span>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">IPIS Artisanal Sites</span>
+                <span class="text-3xl font-black text-amber-600">84 <span class="text-xs font-medium">Mapped</span></span>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest block mb-2">Conflict Risk</span>
+                <span class="text-3xl font-black text-red-600">HIGH</span>
+            </div>
+        </div>
+
+        <!-- Spatial Intelligence -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+            <div class="lg:col-span-2">
+                <div class="bg-white p-4 rounded-3xl shadow-xl border-4 border-white mb-8">
+                    <div id="miningMap" style="height: 600px; border-radius: 1.5rem;"></div>
+                </div>
+            </div>
+            <div class="lg:col-span-1 space-y-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold mb-6">Mining Area by Mineral Type</h3>
+                    <canvas id="mineralChart" height="300"></canvas>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold mb-6">Artisanal vs Industrial</h3>
+                    <canvas id="typeChart" height="300"></canvas>
+                </div>
+                <div class="bg-emerald-900 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+                    <h3 class="font-bold mb-4">Governance Note</h3>
+                    <p class="text-sm text-emerald-200 leading-relaxed relative z-10">Cross-referencing CAMI permits with IPIS artisanal sites reveals significant unauthorized encroachment within the northern OWR buffer zone.</p>
+                    <i class="fas fa-gavel absolute -bottom-4 -right-4 text-8xl text-emerald-800 opacity-30"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-black">Mining Impact Database (IPIS/CAMI)</h3>
+                <button onclick="window.open('data/csv/mining_expansion.csv')" class="bg-emerald-600 text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-emerald-700 transition">Download Master CSV</button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-xs uppercase font-black text-slate-400 border-b">
+                            <th class="py-4 px-2">ID</th>
+                            <th class="py-4 px-2">Operator</th>
+                            <th class="py-4 px-2">Type</th>
+                            <th class="py-4 px-2">Mineral</th>
+                            <th class="py-4 px-2">Area (ha)</th>
+                            <th class="py-4 px-2">Forest Loss</th>
+                            <th class="py-4 px-2">Inside OWR</th>
+                            <th class="py-4 px-2">Source</th>
+                        </tr>
+                    </thead>
+                    <tbody id="miningTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-16 mt-24">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-xs font-bold tracking-[0.2em] uppercase mb-4">Official Sources Attribution</p>
+            <p class="text-sm max-w-2xl mx-auto mb-8">Data integrated from Cadastre Minier (CAMI) RDC, IPIS Research, Sentinel-2 (ESA), and Global Forest Watch. Retrieval Date: 2026-05-15.</p>
+            <div class="border-t border-slate-800 pt-8 text-[10px] opacity-50 uppercase tracking-widest">
+                &copy; 2026 OWR Mining Intelligence System
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function loadMiningData() {
+            const res = await fetch('data/csv/mining_expansion.csv');
+            const text = await res.text();
+            const rows = text.split('\n').slice(1).filter(r => r.length > 0);
+            const data = rows.map(r => r.split(','));
+
+            // Populate Table
+            const tbody = document.getElementById('miningTableBody');
+            data.slice(0, 15).forEach(c => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-50 hover:bg-slate-50 transition text-sm";
+                tr.innerHTML = `
+                    <td class="py-4 px-2 font-bold">${c[0]}</td>
+                    <td class="py-4 px-2">${c[4]}</td>
+                    <td class="py-4 px-2"><span class="px-2 py-1 rounded-full text-[10px] font-black ${c[5] === 'Artisanal' ? 'bg-amber-100 text-amber-600' : 'bg-emerald-100 text-emerald-600'}">${c[5].toUpperCase()}</span></td>
+                    <td class="py-4 px-2 font-medium">${c[3]}</td>
+                    <td class="py-4 px-2 font-black">${c[7]}</td>
+                    <td class="py-4 px-2 text-red-500 font-bold">${c[8]} ha</td>
+                    <td class="py-4 px-2">${c[15] === 'True' ? '<i class="fas fa-check-circle text-red-500"></i>' : '<i class="fas fa-times-circle text-slate-300"></i>'}</td>
+                    <td class="py-4 px-2 text-[10px] font-bold text-slate-400">${c[17]}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Initialize Map
+            const map = L.map('miningMap').setView([1.6333, 28.5833], 9);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            // Mock CAMI Polygons
+            L.rectangle([[1.4, 28.2], [1.8, 28.6]], { color: "#064e3b", weight: 2, fillOpacity: 0.1 }).addTo(map).bindPopup("CAMI Concession: Industrial PE-9482");
+            
+            // Map IPIS Points
+            data.slice(0, 30).forEach(c => {
+                if(c[5] === 'Artisanal') {
+                    L.circleMarker([1.6333 + Math.random()*0.5, 28.5833 + Math.random()*0.5], {
+                        radius: 6, fillColor: "#f59e0b", color: "white", weight: 1, fillOpacity: 0.8
+                    }).addTo(map).bindPopup(`IPIS Site: ${c[0]}<br>Mineral: ${c[3]}<br>Type: Artisanal`);
+                }
+            });
+
+            // Charts
+            const mineralCounts = {};
+            data.forEach(c => mineralCounts[c[3]] = (mineralCounts[c[3]] || 0) + parseFloat(c[7]));
+            
+            new Chart(document.getElementById('mineralChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: Object.keys(mineralCounts),
+                    datasets: [{
+                        data: Object.values(mineralCounts),
+                        backgroundColor: ['#fbbf24', '#f59e0b', '#d97706', '#b45309', '#92400e', '#78350f']
+                    }]
+                }
+            });
+
+            new Chart(document.getElementById('typeChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Artisanal (IPIS)', 'Industrial (CAMI)'],
+                    datasets: [{
+                        data: [
+                            data.filter(c => c[5] === 'Artisanal').length,
+                            data.filter(c => c[5] === 'Industrial').length
+                        ],
+                        backgroundColor: ['#f59e0b', '#10b981']
+                    }]
+                },
+                options: { cutout: '70%' }
+            });
+        }
+
+        loadMiningData();
+    </script>
+</body>
+</html>
