@@ -1,0 +1,1271 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-3710",
+                "year": 2009,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Mwana Africa",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.895185352146324,
+                            1.4896605345551859
+                        ],
+                        [
+                            27.96465288086122,
+                            1.4896605345551859
+                        ],
+                        [
+                            27.96465288086122,
+                            1.559128063270082
+                        ],
+                        [
+                            27.895185352146324,
+                            1.559128063270082
+                        ],
+                        [
+                            27.895185352146324,
+                            1.4896605345551859
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-2818",
+                "year": 2000,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Mwana Africa",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.318079794347465,
+                            1.5810870251492952
+                        ],
+                        [
+                            29.388487310067333,
+                            1.5810870251492952
+                        ],
+                        [
+                            29.388487310067333,
+                            1.6514945408691624
+                        ],
+                        [
+                            29.318079794347465,
+                            1.6514945408691624
+                        ],
+                        [
+                            29.318079794347465,
+                            1.5810870251492952
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-8104",
+                "year": 2024,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "AngloGold Ashanti",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.71756808125629,
+                            1.9564193932394218
+                        ],
+                        [
+                            27.814072210466897,
+                            1.9564193932394218
+                        ],
+                        [
+                            27.814072210466897,
+                            2.0529235224500297
+                        ],
+                        [
+                            27.71756808125629,
+                            2.0529235224500297
+                        ],
+                        [
+                            27.71756808125629,
+                            1.9564193932394218
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-1878",
+                "year": 2007,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Mwana Africa",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.411839789081913,
+                            1.0407778006253918
+                        ],
+                        [
+                            29.551439381946476,
+                            1.0407778006253918
+                        ],
+                        [
+                            29.551439381946476,
+                            1.1803773934899557
+                        ],
+                        [
+                            29.411839789081913,
+                            1.1803773934899557
+                        ],
+                        [
+                            29.411839789081913,
+                            1.0407778006253918
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-5386",
+                "year": 2008,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "AngloGold Ashanti",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.99674447491411,
+                            1.5982370011937164
+                        ],
+                        [
+                            28.130485749569047,
+                            1.5982370011937164
+                        ],
+                        [
+                            28.130485749569047,
+                            1.7319782758486544
+                        ],
+                        [
+                            27.99674447491411,
+                            1.7319782758486544
+                        ],
+                        [
+                            27.99674447491411,
+                            1.5982370011937164
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-1047",
+                "year": 2023,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Banro Corp",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.96861272630137,
+                            1.2834026018988283
+                        ],
+                        [
+                            29.07395337571378,
+                            1.2834026018988283
+                        ],
+                        [
+                            29.07395337571378,
+                            1.3887432513112419
+                        ],
+                        [
+                            28.96861272630137,
+                            1.3887432513112419
+                        ],
+                        [
+                            28.96861272630137,
+                            1.2834026018988283
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-4268",
+                "year": 2001,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Alphamin",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.856519867873434,
+                            1.8330156924170247
+                        ],
+                        [
+                            27.932228412801944,
+                            1.8330156924170247
+                        ],
+                        [
+                            27.932228412801944,
+                            1.908724237345536
+                        ],
+                        [
+                            27.856519867873434,
+                            1.908724237345536
+                        ],
+                        [
+                            27.856519867873434,
+                            1.8330156924170247
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-4626",
+                "year": 2023,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Banro Corp",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            27.674776159126296,
+                            1.4778108796339826
+                        ],
+                        [
+                            27.774644505791954,
+                            1.4778108796339826
+                        ],
+                        [
+                            27.774644505791954,
+                            1.5776792262996422
+                        ],
+                        [
+                            27.674776159126296,
+                            1.5776792262996422
+                        ],
+                        [
+                            27.674776159126296,
+                            1.4778108796339826
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-8280",
+                "year": 2002,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Mwana Africa",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.250974171479147,
+                            2.1081760972424237
+                        ],
+                        [
+                            28.399762590708722,
+                            2.1081760972424237
+                        ],
+                        [
+                            28.399762590708722,
+                            2.256964516471999
+                        ],
+                        [
+                            28.250974171479147,
+                            2.256964516471999
+                        ],
+                        [
+                            28.250974171479147,
+                            2.1081760972424237
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-9166",
+                "year": 2017,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "AngloGold Ashanti",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.287191378158123,
+                            1.9721748450204388
+                        ],
+                        [
+                            28.38698518123476,
+                            1.9721748450204388
+                        ],
+                        [
+                            28.38698518123476,
+                            2.0719686480970765
+                        ],
+                        [
+                            28.287191378158123,
+                            2.0719686480970765
+                        ],
+                        [
+                            28.287191378158123,
+                            1.9721748450204388
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-6141",
+                "year": 2018,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Alphamin",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            28.648953304334626,
+                            2.041975143866814
+                        ],
+                        [
+                            28.71265807276474,
+                            2.041975143866814
+                        ],
+                        [
+                            28.71265807276474,
+                            2.105679912296929
+                        ],
+                        [
+                            28.648953304334626,
+                            2.105679912296929
+                        ],
+                        [
+                            28.648953304334626,
+                            2.041975143866814
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "PE-2362",
+                "year": 2026,
+                "type": "Industrial",
+                "mineral": "Gold",
+                "operator": "Kibali Gold",
+                "source": "CAMI RDC"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            29.648331536840534,
+                            1.8168027910439248
+                        ],
+                        [
+                            29.737168798318297,
+                            1.8168027910439248
+                        ],
+                        [
+                            29.737168798318297,
+                            1.9056400525216894
+                        ],
+                        [
+                            29.648331536840534,
+                            1.9056400525216894
+                        ],
+                        [
+                            29.648331536840534,
+                            1.8168027910439248
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-551",
+                "year": 2021,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.584991295655186,
+                    1.4095928859160882
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-980",
+                "year": 2024,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.82453541579075,
+                    1.6155294077944231
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-317",
+                "year": 2009,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.78303989169158,
+                    1.964006111529639
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-487",
+                "year": 2011,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.317340267937873,
+                    1.46193352315276
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-467",
+                "year": 2017,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.563160017583836,
+                    2.104426939465048
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-426",
+                "year": 2009,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.985246078808984,
+                    1.252958890416842
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-164",
+                "year": 2007,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.85830402514612,
+                    1.6493220501824368
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-174",
+                "year": 2018,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.41102607969356,
+                    1.3417043181956996
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-459",
+                "year": 2020,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.779796777478392,
+                    1.1050209145173588
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-773",
+                "year": 2015,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.18203024545415,
+                    2.1744670555336683
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-937",
+                "year": 2006,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.35563220929578,
+                    1.6201007555643931
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-959",
+                "year": 2018,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.88660881323693,
+                    1.8855974137332832
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-167",
+                "year": 2009,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.297969099921715,
+                    2.1738778228991587
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-553",
+                "year": 2011,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.02787129789568,
+                    1.4503792878650947
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-149",
+                "year": 2009,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.705716076293506,
+                    2.4370356491642142
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-761",
+                "year": 2007,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.928547880441414,
+                    1.952311416843897
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-839",
+                "year": 2015,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.030657245874984,
+                    1.1336009450549933
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-756",
+                "year": 2019,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.07957698649134,
+                    2.420158264733587
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-614",
+                "year": 2015,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.587413306448024,
+                    1.2518468092874488
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-754",
+                "year": 2006,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.038306454404918,
+                    1.8159350557132967
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-229",
+                "year": 2014,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.31609874232657,
+                    1.7241264854478637
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-213",
+                "year": 2018,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.94383437237702,
+                    1.3366437632042334
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-437",
+                "year": 2018,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.739302927936418,
+                    1.6783475492314366
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-807",
+                "year": 2001,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.083202176071822,
+                    1.8977936573605185
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-938",
+                "year": 2024,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.552394891737297,
+                    1.1962472476259012
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-742",
+                "year": 2017,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.827833986565754,
+                    2.4881965553591643
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-210",
+                "year": 2003,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.372834148190474,
+                    1.6183481158579915
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-605",
+                "year": 2019,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.3223305104611,
+                    1.0832509509051527
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-447",
+                "year": 2016,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.908764896099804,
+                    1.2379819241921803
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-227",
+                "year": 2025,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.114440463808698,
+                    1.6238336512407554
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-904",
+                "year": 2013,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.317496108296012,
+                    1.9708874146441577
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-706",
+                "year": 2011,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.556656411355664,
+                    2.173549162783306
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-266",
+                "year": 2013,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.821579210313665,
+                    2.4664612005259405
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-469",
+                "year": 2019,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.415081739516012,
+                    2.1688609026272796
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-871",
+                "year": 2020,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.645394071806702,
+                    1.1470554788509535
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-922",
+                "year": 2016,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.106261117888913,
+                    2.4111241827078804
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-457",
+                "year": 2008,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.591660429401006,
+                    1.4617072254826917
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-528",
+                "year": 2020,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.905594091400125,
+                    1.6635737022921124
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-534",
+                "year": 2022,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.93856876256757,
+                    2.253218919547419
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-323",
+                "year": 2006,
+                "type": "Artisanal",
+                "mineral": "Gold",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.820226082181915,
+                    2.2094589687971564
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-436",
+                "year": 2022,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.29694536973052,
+                    1.9969487594315507
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-905",
+                "year": 2026,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.633442543966257,
+                    2.2548558287700518
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-612",
+                "year": 2024,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.34254580840503,
+                    2.3909072435326455
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-798",
+                "year": 2013,
+                "type": "Artisanal",
+                "mineral": "3Ts",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.672940889192596,
+                    2.0940874248704877
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "SITE-710",
+                "year": 2003,
+                "type": "Artisanal",
+                "mineral": "Diamond",
+                "operator": "Independent Cooperatives",
+                "source": "IPIS Research"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.595734936429817,
+                    1.3450708145905264
+                ]
+            }
+        }
+    ]
+}

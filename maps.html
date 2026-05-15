@@ -30,41 +30,47 @@
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Base Layers</h3>
                     <div class="space-y-2">
                         <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="radio" name="base" class="text-emerald-600" checked>
+                            <input type="radio" name="base" id="baseSatellite" class="text-emerald-600" checked>
                             <span class="text-sm text-slate-700">Satellite Imagery (Sentinel-2)</span>
                         </label>
                         <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="radio" name="base" class="text-emerald-600">
-                            <span class="text-sm text-slate-700">Topographic (OpenStreetMap)</span>
+                            <input type="radio" name="base" id="baseOsm" class="text-emerald-600">
+                            <span class="text-sm text-slate-700">Topographic (OSM)</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Threat Monitoring</h3>
+                    <div class="mb-4">
+                        <label class="text-[10px] font-black uppercase text-slate-400 block mb-2 tracking-widest">Filter Year:</label>
+                        <select id="yearFilter" class="w-full bg-slate-100 border-none rounded-lg px-4 py-2 text-xs font-bold focus:ring-2 focus:ring-emerald-500">
+                            <option value="all">Display All</option>
+                        </select>
+                    </div>
                     <div class="space-y-3">
                         <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-red-500 mr-2 text-xs"></i> Fire Hotspots</span>
-                            <input type="checkbox" checked class="rounded text-emerald-600">
-                        </label>
-                        <label class="flex items-center justify-between cursor-pointer">
                             <span class="text-sm text-slate-700"><i class="fas fa-circle text-emerald-700 mr-2 text-xs"></i> CAMI Concessions</span>
-                            <input type="checkbox" checked class="rounded text-emerald-600">
+                            <input type="checkbox" id="checkCami" checked class="rounded text-emerald-600">
                         </label>
                         <label class="flex items-center justify-between cursor-pointer">
                             <span class="text-sm text-slate-700"><i class="fas fa-circle text-amber-500 mr-2 text-xs"></i> IPIS Artisanal Sites</span>
-                            <input type="checkbox" checked class="rounded text-emerald-600">
+                            <input type="checkbox" id="checkIpis" checked class="rounded text-emerald-600">
+                        </label>
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm text-slate-700"><i class="fas fa-circle text-red-500 mr-2 text-xs"></i> Fire Hotspots</span>
+                            <input type="checkbox" id="checkFire" checked class="rounded text-emerald-600">
                         </label>
                     </div>
                 </div>
 
                 <div class="pt-6 border-t">
-                    <h3 class="font-bold mb-4">Legend</h3>
-                    <div class="space-y-2 text-xs">
+                    <h3 class="font-bold mb-4 text-sm uppercase tracking-widest text-slate-400">Legend</h3>
+                    <div class="space-y-2 text-xs font-bold">
                         <div class="flex items-center"><span class="w-3 h-3 bg-emerald-900 rounded-full mr-2"></span> OWR Boundary</div>
-                        <div class="flex items-center"><span class="w-3 h-3 bg-red-400 opacity-50 mr-2"></span> Burned Area (ha)</div>
-                        <div class="flex items-center"><span class="w-3 h-3 bg-emerald-600 mr-2"></span> CAMI Concession</div>
-                        <div class="flex items-center"><span class="w-3 h-3 bg-amber-400 mr-2"></span> IPIS Artisanal Site</div>
+                        <div class="flex items-center"><span class="w-3 h-3 bg-emerald-600 mr-2"></span> Industrial (CAMI)</div>
+                        <div class="flex items-center"><span class="w-3 h-3 bg-amber-400 mr-2"></span> Artisanal (IPIS)</div>
+                        <div class="flex items-center"><span class="w-3 h-3 bg-red-400 opacity-50 mr-2"></span> Fire Damage</div>
                     </div>
                 </div>
             </div>
@@ -77,59 +83,78 @@
         const map = L.map('map').setView([1.6333, 28.5833], 9);
 
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            attribution: 'Tiles &copy; Esri &mdash; Source: CAMI / IPIS'
         }).addTo(map);
 
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        });
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
-        // OWR Boundary Polygon
-        const owrBoundary = L.polygon([
-            [1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]
-        ], {
-            color: "#064e3b",
-            weight: 3,
-            fillColor: "#064e3b",
-            fillOpacity: 0.05
+        // OWR Boundary
+        L.polygon([[1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]], {
+            color: "#064e3b", weight: 4, fillOpacity: 0.05, dashArray: '10, 10'
         }).addTo(map).bindPopup("Okapi Wildlife Reserve Boundary");
 
-        loadSpatialData();
+        let miningLayer;
+        let fireLayer = L.layerGroup().addTo(map);
+        let geojsonData;
 
         async function loadSpatialData() {
-            const miningPoints = [
-                {lng: 28.6, lat: 1.65, label: "M-2026-A: Semi-Industrial Site"},
-                {lng: 28.4, lat: 1.55, label: "M-2026-B: Artisanal Mining Cluster"},
-                {lng: 28.8, lat: 1.75, label: "M-2026-C: Riverbed Dredging"}
-            ];
+            // Load Mining Titles (CAMI/IPIS)
+            const res = await fetch('data/geojson/owr_mining_titles.json');
+            geojsonData = await res.json();
 
-            miningPoints.forEach(p => {
-                L.circleMarker([p.lat, p.lng], {
-                    radius: 8,
-                    fillColor: "#f59e0b",
-                    color: "#b45309",
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                }).addTo(map).bindPopup(`<b>${p.label}</b>`);
+            // Populate Year Filter
+            const years = [...new Set(geojsonData.features.map(f => f.properties.year))].sort().reverse();
+            years.forEach(y => {
+                const opt = document.createElement('option');
+                opt.value = y;
+                opt.textContent = y;
+                document.getElementById('yearFilter').appendChild(opt);
             });
 
-            const firePoints = [
-                {lng: 28.2, lat: 1.8, label: "Active Fire Alert: Moderate Severity"},
-                {lng: 29.1, lat: 1.4, label: "Burned Area: 45ha (Detected 48h ago)"}
-            ];
+            renderMiningLayer('all');
 
+            // Fire Hotspots (Simulated)
+            const firePoints = [[1.8, 28.2], [1.4, 29.1], [1.6, 28.8], [2.1, 27.9]];
             firePoints.forEach(p => {
-                L.circleMarker([p.lat, p.lng], {
-                    radius: 10,
-                    fillColor: "#ef4444",
-                    color: "#b91c1c",
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.6
-                }).addTo(map).bindPopup(`<b>${p.label}</b>`);
+                L.circleMarker(p, { radius: 10, fillColor: "#ef4444", color: "white", weight: 1, fillOpacity: 0.6 })
+                 .addTo(fireLayer).bindPopup("NASA FIRMS: Thermal Anomaly");
             });
         }
+
+        function renderMiningLayer(year) {
+            if(miningLayer) map.removeLayer(miningLayer);
+            
+            miningLayer = L.geoJSON(geojsonData, {
+                filter: (f) => year === 'all' || f.properties.year == year,
+                style: (feature) => ({
+                    color: feature.properties.type === 'Industrial' ? '#059669' : '#d97706',
+                    weight: 3,
+                    fillOpacity: 0.4
+                }),
+                pointToLayer: (feature, latlng) => {
+                    return L.circleMarker(latlng, {
+                        radius: 7, fillColor: '#d97706', color: "#fff", weight: 1, fillOpacity: 0.8
+                    });
+                },
+                onEachFeature: (feature, layer) => {
+                    layer.bindPopup(`<b>${feature.properties.id}</b><br>Year: ${feature.properties.year}<br>Source: ${feature.properties.source}<br>Operator: ${feature.properties.operator}`);
+                }
+            }).addTo(map);
+
+            if(year !== 'all') {
+                const bounds = miningLayer.getBounds();
+                if(bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50] });
+            }
+        }
+
+        // Controls
+        document.getElementById('baseSatellite').onchange = () => { map.addLayer(satellite); map.removeLayer(osm); };
+        document.getElementById('baseOsm').onchange = () => { map.addLayer(osm); map.removeLayer(satellite); };
+        document.getElementById('checkCami').onchange = (e) => { if(e.target.checked) map.addLayer(miningLayer); else map.removeLayer(miningLayer); };
+        document.getElementById('checkFire').onchange = (e) => { if(e.target.checked) map.addLayer(fireLayer); else map.removeLayer(fireLayer); };
+        document.getElementById('yearFilter').onchange = (e) => renderMiningLayer(e.target.value);
+
+        loadSpatialData();
     </script>
 </body>
 </html>
