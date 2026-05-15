@@ -7,43 +7,53 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #334155; }
+    </style>
 </head>
-<body class="bg-[#0b1221] text-slate-300 font-sans">
-    <nav class="bg-[#0f172a] p-6 border-b border-white/5">
+<body class="bg-[#f8fafc]">
+    <nav class="bg-white p-6 border-b border-slate-200 shadow-sm">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-xl font-black text-white">OWR FIRE <span class="text-rose-500">INTEL</span></a>
-            <div class="flex gap-8 text-[10px] font-black uppercase tracking-widest">
-                <a href="index.html">Hub</a>
-                <a href="maps.html">Live Map</a>
-                <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" class="text-xl font-black text-slate-900 uppercase tracking-tighter">OWR FIRE <span class="text-rose-600">INTEL</span></a>
+            <div class="flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
+                <a href="maps.html" class="hover:text-emerald-600 transition">Live Map</a>
+                <a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a>
             </div>
         </div>
     </nav>
     <main class="container mx-auto px-6 py-20 text-center">
-        <div class="w-24 h-24 bg-rose-500/10 text-rose-500 rounded-3xl flex items-center justify-center mx-auto mb-10 border border-rose-500/20">
+        <div class="w-24 h-24 bg-rose-50 text-rose-600 rounded-3xl flex items-center justify-center mx-auto mb-10 border border-rose-100 shadow-sm">
             <i class="fas fa-fire-alt text-4xl"></i>
         </div>
-        <h1 class="text-5xl font-black text-white mb-6 uppercase tracking-tighter">Fire Dynamics Monitoring</h1>
+        <h1 class="text-5xl font-black text-slate-900 mb-6 uppercase tracking-tighter">Fire Dynamics Monitoring</h1>
         <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-16">Integrating <strong>NASA FIRMS</strong> (MODIS/VIIRS) thermal anomalies to monitor illegal land clearing and habitat loss.</p>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            <div class="bg-white/5 p-10 rounded-[2.5rem] border border-white/5">
-                <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Yearly Alerts</div>
-                <div class="text-4xl font-black text-white">1,240</div>
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Yearly Alerts</div>
+                <div class="text-4xl font-black text-slate-900">1,240</div>
             </div>
-            <div class="bg-white/5 p-10 rounded-[2.5rem] border border-white/5">
-                <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Burned Area (ha)</div>
-                <div class="text-4xl font-black text-white">4,250</div>
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Burned Area (ha)</div>
+                <div class="text-4xl font-black text-slate-900">4,250</div>
             </div>
-            <div class="bg-white/5 p-10 rounded-[2.5rem] border border-white/5">
-                <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Risk Level</div>
-                <div class="text-4xl font-black text-rose-500">CRITICAL</div>
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Risk Level</div>
+                <div class="text-4xl font-black text-rose-600 uppercase">Critical</div>
             </div>
         </div>
 
-        <div class="bg-white/5 p-20 rounded-[3rem] border border-white/5 text-slate-600 font-black uppercase tracking-[0.2em]">
+        <div class="bg-white p-20 rounded-[3rem] border border-slate-200 shadow-sm text-slate-300 font-black uppercase tracking-[0.2em]">
             Detailed Fire Analysis Module Under Maintenance
         </div>
     </main>
+
+    <footer class="bg-white py-20 mt-20 border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Fire Intel System</p>
+        </div>
+    </footer>
 </body>
 </html>

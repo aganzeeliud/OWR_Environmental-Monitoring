@@ -10,19 +10,23 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
 </head>
-<body class="bg-slate-900 font-sans text-slate-300">
+<body class="bg-slate-50 font-sans text-slate-900">
 
-    <nav class="bg-[#0b1221] text-white shadow-2xl sticky top-0 z-[1000] border-b border-white/5">
+    <nav class="bg-white text-slate-900 shadow-lg sticky top-0 z-[1000] border-b border-slate-200">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3">
-                <i class="fas fa-microchip text-emerald-400 text-2xl"></i>
+                <i class="fas fa-microchip text-emerald-600 text-2xl"></i>
                 <span class="text-xl font-black tracking-tighter uppercase">Mining Analysis</span>
             </a>
             <div class="hidden md:flex space-x-8 text-xs font-black uppercase tracking-widest">
-                <a href="index.html" class="hover:text-emerald-400 transition">Hub</a>
-                <a href="maps.html" class="hover:text-emerald-400 transition">Spatial Map</a>
-                <a href="timeline.html" class="hover:text-emerald-400 transition">Timeline</a>
+                <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
+                <a href="maps.html" class="hover:text-emerald-600 transition">Spatial Map</a>
+                <a href="timeline.html" class="hover:text-emerald-600 transition">Timeline</a>
             </div>
         </div>
     </nav>
@@ -31,41 +35,41 @@
         <header class="mb-16">
             <div class="flex flex-wrap justify-between items-end gap-8 mb-12">
                 <div class="max-w-3xl">
-                    <div class="inline-block bg-emerald-500/10 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4">Official Monitoring System</div>
-                    <h1 class="text-6xl font-black text-white mb-6 uppercase tracking-tighter leading-none">Mining <span class="text-emerald-500">Governance</span></h1>
-                    <p class="text-lg text-slate-400">Advanced intersection analysis of <strong>CAMI</strong> mining titles and <strong>IPIS</strong> artisanal sites within the <strong>Okapi Wildlife Reserve</strong> (UNESCO #718).</p>
+                    <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4">Official Monitoring System</div>
+                    <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">Mining <span class="text-emerald-600">Governance</span></h1>
+                    <p class="text-lg text-slate-600">Advanced intersection analysis of <strong>CAMI</strong> mining titles and <strong>IPIS</strong> artisanal sites within the <strong>Okapi Wildlife Reserve</strong> (UNESCO #718).</p>
                 </div>
                 <div class="flex flex-col items-end">
-                    <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Primary Sources</div>
-                    <div class="flex gap-4 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition">
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Primary Sources</div>
+                    <div class="flex gap-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition">
                         <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-6" alt="IPIS">
-                        <div class="h-6 w-px bg-slate-700"></div>
-                        <span class="text-xs font-black text-white">CAMI RDC</span>
+                        <div class="h-6 w-px bg-slate-300"></div>
+                        <span class="text-xs font-black text-slate-900">CAMI RDC</span>
                     </div>
                 </div>
             </div>
 
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/5">
+                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
                     <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Active Permits</h3>
-                    <div class="text-4xl font-black text-white" id="statPermits">0</div>
-                    <p class="text-[10px] text-emerald-400 font-bold mt-2">Inside Reserve</p>
+                    <div class="text-4xl font-black text-slate-900" id="statPermits">0</div>
+                    <p class="text-[10px] text-emerald-600 font-bold mt-2 uppercase">Inside Reserve</p>
                 </div>
-                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/5">
+                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
                     <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Impacted Area</h3>
-                    <div class="text-4xl font-black text-white" id="statArea">0 <span class="text-sm">ha</span></div>
-                    <p class="text-[10px] text-amber-400 font-bold mt-2">Historical Total</p>
+                    <div class="text-4xl font-black text-slate-900" id="statArea">0 <span class="text-sm">ha</span></div>
+                    <p class="text-[10px] text-amber-600 font-bold mt-2 uppercase">Historical Total</p>
                 </div>
-                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/5">
+                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
                     <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Hotspots</h3>
-                    <div class="text-4xl font-black text-white" id="statHotspots">0</div>
-                    <p class="text-[10px] text-rose-400 font-bold mt-2">Critical Risk</p>
+                    <div class="text-4xl font-black text-slate-900" id="statHotspots">0</div>
+                    <p class="text-[10px] text-rose-600 font-bold mt-2 uppercase">Critical Risk</p>
                 </div>
-                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/5">
+                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
                     <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Trend Index</h3>
-                    <div class="text-4xl font-black text-white" id="statTrend">+0%</div>
-                    <p class="text-[10px] text-slate-500 font-bold mt-2">Annual Growth</p>
+                    <div class="text-4xl font-black text-slate-900" id="statTrend">+0%</div>
+                    <p class="text-[10px] text-slate-500 font-bold mt-2 uppercase">Annual Growth</p>
                 </div>
             </div>
         </header>
@@ -73,37 +77,40 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
             <!-- Map Container -->
             <div class="lg:col-span-8">
-                <div class="bg-[#0b1221] p-2 rounded-[3rem] shadow-2xl border border-white/5 overflow-hidden">
+                <div class="bg-white p-2 rounded-[3rem] shadow-xl border border-slate-200 overflow-hidden">
                     <div id="miningMap" style="height: 600px; border-radius: 2.5rem;"></div>
                 </div>
             </div>
 
             <!-- Side Charts -->
             <div class="lg:col-span-4 space-y-8">
-                <div class="bg-white/5 p-8 rounded-[2.5rem] border border-white/5">
-                    <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-white/5 pb-4">Mineral Distribution</h3>
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                    <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-slate-100 pb-4">Mineral Distribution</h3>
                     <canvas id="mineralChart" height="250"></canvas>
                 </div>
-                <div class="bg-white/5 p-8 rounded-[2.5rem] border border-white/5">
-                    <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-white/5 pb-4">Growth Projection</h3>
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                    <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-slate-100 pb-4">Growth Projection</h3>
                     <canvas id="growthChart" height="250"></canvas>
                 </div>
             </div>
         </div>
 
         <!-- Timeline Section -->
-        <div class="bg-white/5 p-12 rounded-[3rem] border border-white/5 mb-16">
+        <div class="bg-white p-12 rounded-[3rem] border border-slate-200 shadow-sm mb-16">
             <div class="flex flex-wrap justify-between items-center mb-10 gap-6">
-                <h3 class="text-3xl font-black text-white uppercase tracking-tighter">Temporal Impact Timeline</h3>
+                <div>
+                    <h3 class="text-3xl font-black text-slate-900 uppercase tracking-tighter">Impact Timeline</h3>
+                    <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Showing only concessions within Okapi Wildlife Reserve</p>
+                </div>
                 <div class="flex gap-4">
-                    <button onclick="downloadCSV('mining_inside.csv')" class="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition">Export CSV</button>
-                    <button onclick="downloadCSV('mining_inside.geojson')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition shadow-lg shadow-emerald-900/40">GeoJSON API</button>
+                    <button onclick="downloadCSV('mining_inside.csv')" class="bg-slate-100 hover:bg-slate-200 text-slate-900 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition border border-slate-200">Export CSV</button>
+                    <button onclick="downloadCSV('mining_inside.geojson')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition shadow-lg shadow-emerald-200">GeoJSON API</button>
                 </div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left">
                     <thead>
-                        <tr class="text-[10px] uppercase font-black text-slate-500 border-b border-white/10">
+                        <tr class="text-[10px] uppercase font-black text-slate-400 border-b border-slate-100">
                             <th class="py-6 px-4">Title ID</th>
                             <th class="py-6 px-4">Operator</th>
                             <th class="py-6 px-4">Mineral</th>
@@ -112,7 +119,7 @@
                             <th class="py-6 px-4 text-right">Proximity</th>
                         </tr>
                     </thead>
-                    <tbody id="miningTableBody" class="text-xs font-bold">
+                    <tbody id="miningTableBody" class="text-xs font-bold text-slate-600">
                         <!-- Dynamic Rows -->
                     </tbody>
                 </table>
@@ -120,13 +127,13 @@
         </div>
     </main>
 
-    <footer class="bg-[#0b1221] py-20 border-t border-white/5">
+    <footer class="bg-white py-20 border-t border-slate-200">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-600 mb-10">OWR Intelligence System • 2026 Archive</p>
-            <div class="flex justify-center gap-12 opacity-20 mb-10 grayscale">
+            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Intelligence System • 2026 Archive</p>
+            <div class="flex justify-center gap-12 opacity-50 mb-10 grayscale">
                 <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-6">
             </div>
-            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Secure Access Only</p>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Authorized Access Only</p>
         </div>
     </footer>
 
@@ -137,7 +144,31 @@
         async function init() {
             // Init Map
             map = L.map('miningMap', { zoomControl: false }).setView([1.6333, 28.5833], 8);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+            
+            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+            const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+            const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data: &copy; OpenTopoMap contributors'
+            });
+            const googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps'
+            });
+            const googleTerrain = L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+                maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps'
+            });
+
+            googleSat.addTo(map);
+
+            const baseLayers = {
+                "Google Satellite": googleSat,
+                "Google Terrain": googleTerrain,
+                "Topology": topo,
+                "Satellite (Esri)": satellite,
+                "OpenStreetMap": osm
+            };
+
+            L.control.layers(baseLayers).addTo(map);
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
 
             // Fetch Data
             const [bndRes, insideRes, timelineRes] = await Promise.all([
@@ -152,14 +183,14 @@
 
             // Render Boundary
             L.geoJSON(boundary, {
-                style: { color: "#10b981", weight: 2, fillOpacity: 0.05, dashArray: '5, 5' }
+                style: { color: "#059669", weight: 3, fillOpacity: 0.1, dashArray: '5, 5' }
             }).addTo(map);
 
             // Render Inside Sites
             geojsonLayer = L.geoJSON(insideData, {
                 pointToLayer: (f, l) => L.circleMarker(l, {
-                    radius: 7, fillColor: f.properties.mineral_type === 'Gold' ? '#fbbf24' : '#3b82f6',
-                    color: '#fff', weight: 1, fillOpacity: 0.8
+                    radius: 7, fillColor: f.properties.mineral_type === 'Gold' ? '#f59e0b' : '#3b82f6',
+                    color: '#fff', weight: 1, fillOpacity: 0.9
                 }),
                 onEachFeature: (f, l) => {
                     l.bindPopup(`<b class="text-slate-900">${f.properties.title_id || f.properties.site_id}</b><br><span class="text-xs text-slate-500">${f.properties.operator}</span>`);
@@ -200,7 +231,7 @@
                     labels: ['Gold', '3Ts', 'Diamond', 'Copper'],
                     datasets: [{
                         data: [45, 25, 15, 15],
-                        backgroundColor: ['#fbbf24', '#3b82f6', '#a855f7', '#f43f5e'],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#8b5cf6', '#ef4444'],
                         borderWidth: 0
                     }]
                 },
@@ -215,8 +246,8 @@
                     datasets: [{
                         label: 'Impact Area',
                         data: timelineData.map(d => d.area_affected_ha),
-                        borderColor: '#10b981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
                         fill: true,
                         tension: 0.4
                     }]
@@ -233,17 +264,18 @@
 
         function populateTable(features) {
             const tbody = document.getElementById('miningTableBody');
-            features.slice(0, 20).forEach(f => {
+            // Features are already filtered by mining_inside.geojson
+            features.slice(0, 50).forEach(f => {
                 const p = f.properties;
                 const tr = document.createElement('tr');
-                tr.className = "border-b border-white/5 hover:bg-white/5 transition cursor-pointer";
+                tr.className = "border-b border-slate-50 hover:bg-slate-50 transition cursor-pointer";
                 tr.innerHTML = `
-                    <td class="py-6 px-4 text-white">${p.title_id || p.site_id}</td>
-                    <td class="py-6 px-4 text-slate-400">${p.operator || 'Artisanal'}</td>
-                    <td class="py-6 px-4"><span class="bg-white/10 px-3 py-1 rounded-full text-emerald-400">${p.mineral_type || p.commodity}</span></td>
+                    <td class="py-6 px-4 text-slate-900">${p.title_id || p.site_id}</td>
+                    <td class="py-6 px-4 text-slate-500">${p.operator || 'Artisanal'}</td>
+                    <td class="py-6 px-4"><span class="bg-slate-100 px-3 py-1 rounded-full text-slate-700">${p.mineral_type || p.commodity}</span></td>
                     <td class="py-6 px-4">${p.year}</td>
-                    <td class="py-6 px-4"><span class="text-emerald-500">Active</span></td>
-                    <td class="py-6 px-4 text-right text-amber-500">${p.distance_to_boundary_km} km</td>
+                    <td class="py-6 px-4"><span class="text-emerald-600 font-bold">Active</span></td>
+                    <td class="py-6 px-4 text-right text-amber-600">${p.distance_to_boundary_km} km</td>
                 `;
                 tbody.appendChild(tr);
             });

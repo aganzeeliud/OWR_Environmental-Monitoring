@@ -14,25 +14,27 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        #map { height: calc(100vh - 64px); background: #0b1221; }
-        .custom-popup .leaflet-popup-content-wrapper { background: #1e293b; color: #f1f5f9; border-radius: 12px; }
-        .custom-popup .leaflet-popup-tip { background: #1e293b; }
-        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        #map { height: calc(100vh - 64px); background: #e2e8f0; }
+        .custom-popup .leaflet-popup-content-wrapper { background: white; color: #1e293b; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .custom-popup .leaflet-popup-tip { background: white; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="bg-[#0b1221] text-slate-300 overflow-hidden font-sans">
-    <nav class="bg-[#0f172a] text-white shadow-2xl h-16 flex items-center px-6 justify-between border-b border-white/5 relative z-[1001]">
+<body class="overflow-hidden text-slate-700">
+    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 relative z-[1001]">
         <a href="index.html" class="flex items-center space-x-3">
-            <div class="bg-emerald-500/20 p-2 rounded-lg">
-                <i class="fas fa-satellite text-emerald-400"></i>
+            <div class="bg-emerald-600 p-2 rounded-lg">
+                <i class="fas fa-satellite text-white"></i>
             </div>
-            <span class="font-bold tracking-tighter text-xl">OWR GEOSPATIAL INTEL</span>
+            <span class="font-bold tracking-tighter text-xl uppercase">OWR GEOSPATIAL</span>
         </a>
         <div class="flex items-center space-x-4">
-            <div class="hidden md:flex bg-white/5 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-slate-400 items-center">
+            <div class="hidden md:flex bg-emerald-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 items-center border border-emerald-100">
                 <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span> Live System
             </div>
-            <a href="mining-analysis.html" class="text-xs bg-emerald-600 hover:bg-emerald-500 px-6 py-2 rounded-full font-bold transition-all shadow-lg shadow-emerald-900/20">Analysis Dashboard</a>
+            <a href="mining-analysis.html" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-bold transition-all shadow-md shadow-emerald-100">Analysis Dashboard</a>
         </div>
     </nav>
 
@@ -40,61 +42,63 @@
         <!-- Sidebar -->
         <aside class="w-80 glass z-[1000] p-6 overflow-y-auto absolute left-0 top-0 bottom-0 m-4 rounded-3xl transition-transform duration-300" id="sidebar">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="font-black text-xs uppercase tracking-[0.2em] text-emerald-400">Control Center</h2>
+                <h2 class="font-black text-xs uppercase tracking-[0.2em] text-emerald-600">Control Center</h2>
                 <button onclick="toggleSidebar()" class="lg:hidden text-slate-400"><i class="fas fa-times"></i></button>
             </div>
             
             <div class="space-y-8">
                 <div>
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Temporal Filter</h3>
-                    <input type="range" id="timeSlider" min="2000" max="2026" value="2026" class="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
-                    <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-500">
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Temporal Filter</h3>
+                    <input type="range" id="timeSlider" min="2000" max="2026" value="2026" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                    <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400">
                         <span>2000</span>
-                        <span id="currentYear" class="text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded">2026</span>
+                        <span id="currentYear" class="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">2026</span>
                         <span>2026</span>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Operational Layers</h3>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Operational Layers</h3>
                     <div class="space-y-3">
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
-                            <span class="text-xs font-bold"><i class="fas fa-shield-alt text-emerald-400 mr-2"></i> OWR Boundary</span>
-                            <input type="checkbox" id="checkBoundary" checked class="rounded-full bg-slate-800 border-none text-emerald-500 focus:ring-0">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-shield-alt text-emerald-600 mr-2"></i> OWR Boundary</span>
+                            <input type="checkbox" id="checkBoundary" checked class="rounded-full bg-white border-slate-300 text-emerald-600 focus:ring-0">
                         </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
-                            <span class="text-xs font-bold"><i class="fas fa-industry text-blue-400 mr-2"></i> CAMI Permits</span>
-                            <input type="checkbox" id="checkCami" checked class="rounded-full bg-slate-800 border-none text-blue-500 focus:ring-0">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-industry text-blue-600 mr-2"></i> CAMI Permits</span>
+                            <input type="checkbox" id="checkCami" checked class="rounded-full bg-white border-slate-300 text-blue-600 focus:ring-0">
                         </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
-                            <span class="text-xs font-bold"><i class="fas fa-pickaxe text-amber-400 mr-2"></i> IPIS Impact Sites</span>
-                            <input type="checkbox" id="checkIpis" checked class="rounded-full bg-slate-800 border-none text-amber-500 focus:ring-0">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-pickaxe text-amber-600 mr-2"></i> IPIS Impact Sites</span>
+                            <input type="checkbox" id="checkIpis" checked class="rounded-full bg-white border-slate-300 text-amber-600 focus:ring-0">
                         </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
-                            <span class="text-xs font-bold"><i class="fas fa-fire text-red-400 mr-2"></i> Mining Hotspots</span>
-                            <input type="checkbox" id="checkHotspots" class="rounded-full bg-slate-800 border-none text-red-500 focus:ring-0">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-fire text-red-600 mr-2"></i> Mining Hotspots</span>
+                            <input type="checkbox" id="checkHotspots" class="rounded-full bg-white border-slate-300 text-red-600 focus:ring-0">
                         </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition">
-                            <span class="text-xs font-bold"><i class="fas fa-circle-notch text-purple-400 mr-2"></i> 50km Buffer Zone</span>
-                            <input type="checkbox" id="checkBuffer" class="rounded-full bg-slate-800 border-none text-purple-500 focus:ring-0">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-circle-notch text-purple-600 mr-2"></i> 50km Buffer Zone</span>
+                            <input type="checkbox" id="checkBuffer" class="rounded-full bg-white border-slate-300 text-purple-600 focus:ring-0">
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Base Station</h3>
-                    <select id="baseMapSelect" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold text-slate-300 focus:ring-2 focus:ring-emerald-500">
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Base Station</h3>
+                    <select id="baseMapSelect" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-emerald-600 outline-none shadow-sm">
+                        <option value="googleSat">Google Satellite</option>
+                        <option value="googleTerrain">Google Terrain</option>
+                        <option value="topo">Topology (OpenTopo)</option>
                         <option value="satellite">Satellite (Esri)</option>
-                        <option value="dark">Dark Carto</option>
-                        <option value="topo">Topographic</option>
+                        <option value="osm">Standard (OSM)</option>
                     </select>
                 </div>
 
-                <div class="pt-6 border-t border-white/5">
-                    <div class="bg-emerald-500/10 p-4 rounded-2xl border border-emerald-500/20">
-                        <h4 class="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-1">Live Intelligence</h4>
-                        <div class="text-2xl font-black text-white" id="statSites">0</div>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Mining sites in view</p>
+                <div class="pt-6 border-t border-slate-100">
+                    <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                        <h4 class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-1">Live Intelligence</h4>
+                        <div class="text-2xl font-black text-slate-900" id="statSites">0</div>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Mining sites in view</p>
                     </div>
                 </div>
             </div>
@@ -103,7 +107,7 @@
         <div id="map" class="w-full"></div>
 
         <!-- Mobile Toggle -->
-        <button onclick="toggleSidebar()" class="lg:hidden absolute bottom-8 right-8 z-[1001] bg-emerald-600 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white text-xl">
+        <button onclick="toggleSidebar()" class="lg:hidden absolute bottom-8 right-8 z-[1001] bg-emerald-600 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white text-xl hover:bg-emerald-700 transition">
             <i class="fas fa-sliders-h"></i>
         </button>
     </div>
@@ -117,12 +121,18 @@
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
         const baseMaps = {
+            googleSat: L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps'
+            }),
+            googleTerrain: L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+                maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps'
+            }),
+            topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png'),
             satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
-            dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'),
-            topo: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
         };
 
-        baseMaps.dark.addTo(map);
+        baseMaps.googleSat.addTo(map);
 
         let boundaryLayer, camiLayer, ipisLayer, hotspotLayer, bufferLayer;
         let allData = { cami: [], ipis: [], boundary: null };
@@ -150,13 +160,12 @@
         function renderBoundary() {
             if(boundaryLayer) map.removeLayer(boundaryLayer);
             boundaryLayer = L.geoJSON(allData.boundary, {
-                style: { color: "#10b981", weight: 3, fillOpacity: 0.1, dashArray: '5, 10' }
+                style: { color: "#059669", weight: 3, fillOpacity: 0.1, dashArray: '5, 10' }
             }).addTo(map);
 
-            // Buffer Layer (50km)
             const buffered = turf.buffer(allData.boundary.features[0], 50, {units: 'kilometers'});
             bufferLayer = L.geoJSON(buffered, {
-                style: { color: "#a855f7", weight: 1, fillOpacity: 0.05, dashArray: '2, 5' }
+                style: { color: "#8b5cf6", weight: 1, fillOpacity: 0.05, dashArray: '2, 5' }
             });
         }
 
@@ -169,16 +178,15 @@
             const filteredIpis = allData.ipis.filter(f => f.properties.year <= year);
 
             camiLayer = L.geoJSON({type: "FeatureCollection", features: filteredCami}, {
-                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#3b82f6', color: '#fff', weight: 1, fillOpacity: 0.8 }),
+                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#2563eb', color: '#fff', weight: 1, fillOpacity: 0.9 }),
                 onEachFeature: (f, l) => bindMiningPopup(f, l)
             }).addTo(map);
 
             ipisLayer = L.geoJSON({type: "FeatureCollection", features: filteredIpis}, {
-                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#f59e0b', color: '#fff', weight: 1, fillOpacity: 0.8 }),
+                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#f59e0b', color: '#fff', weight: 1, fillOpacity: 0.9 }),
                 onEachFeature: (f, l) => bindMiningPopup(f, l)
             }).addTo(map);
 
-            // Hotspot Heatmap
             const heatPoints = [...filteredCami, ...filteredIpis].map(f => [f.geometry.coordinates[1], f.geometry.coordinates[0], 0.5]);
             hotspotLayer = L.heatLayer(heatPoints, { radius: 25, blur: 15, maxZoom: 10, gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'} });
 
@@ -190,15 +198,15 @@
             l.bindPopup(`
                 <div class="p-2 custom-popup">
                     <div class="text-[10px] font-black uppercase text-slate-400 mb-1">${p.source} • ${p.year}</div>
-                    <div class="text-sm font-black mb-2">${p.title_id || p.site_id}</div>
+                    <div class="text-sm font-black mb-2 text-slate-900">${p.title_id || p.site_id}</div>
                     <div class="grid grid-cols-2 gap-2 text-[10px] font-bold">
-                        <div class="bg-white/10 p-2 rounded">
-                            <span class="block text-slate-500">TYPE</span>
-                            <span class="text-white">${p.permit_name || p.commodity}</span>
+                        <div class="bg-slate-50 p-2 rounded border border-slate-100">
+                            <span class="block text-slate-400 uppercase tracking-tighter">TYPE</span>
+                            <span class="text-slate-700">${p.permit_name || p.commodity}</span>
                         </div>
-                        <div class="bg-white/10 p-2 rounded">
-                            <span class="block text-slate-500">STATUS</span>
-                            <span class="text-emerald-400">${p.status || 'Active'}</span>
+                        <div class="bg-emerald-50 p-2 rounded border border-emerald-100">
+                            <span class="block text-emerald-600/50 uppercase tracking-tighter">STATUS</span>
+                            <span class="text-emerald-700">${p.status || 'Active'}</span>
                         </div>
                     </div>
                 </div>
@@ -211,7 +219,6 @@
             document.getElementById('statSites').innerText = count;
         }
 
-        // Event Handlers
         document.getElementById('timeSlider').oninput = (e) => {
             const yr = e.target.value;
             document.getElementById('currentYear').innerText = yr;

@@ -8,100 +8,100 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0b1221; color: #94a3b8; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #334155; }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-<body class="bg-[#0b1221]">
+<body class="bg-[#f8fafc]">
 
-    <nav class="bg-[#0f172a] text-white shadow-2xl h-16 flex items-center px-6 justify-between border-b border-white/5 sticky top-0 z-[1000]">
+    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
         <div class="flex items-center space-x-3">
-            <div class="bg-emerald-500/20 p-2 rounded-lg">
-                <i class="fas fa-microscope text-emerald-400"></i>
+            <div class="bg-emerald-600 p-2 rounded-lg">
+                <i class="fas fa-microscope text-white"></i>
             </div>
-            <span class="font-bold tracking-tighter text-xl uppercase">Scientific Standards</span>
+            <span class="font-bold tracking-tighter text-xl uppercase text-slate-900">Scientific Standards</span>
         </div>
         <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-emerald-400 transition">Hub</a>
-            <a href="dashboard.html" class="hover:text-emerald-400 transition">Dashboard</a>
-            <a href="database.html" class="hover:text-emerald-400 transition">Database</a>
+            <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
+            <a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a>
+            <a href="database.html" class="hover:text-emerald-600 transition">Database</a>
         </div>
-        <div class="bg-white/5 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-slate-500">
+        <div class="bg-emerald-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 border border-emerald-100">
             Open Science Protocol
         </div>
     </nav>
 
     <main class="container mx-auto px-6 py-20 max-w-5xl">
         <header class="mb-20 text-center">
-            <h1 class="text-6xl font-black text-white mb-6 uppercase tracking-tighter leading-none">The <span class="text-emerald-500">Methodology</span></h1>
+            <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">The <span class="text-emerald-600">Methodology</span></h1>
             <p class="text-xl text-slate-500 max-w-3xl mx-auto">Standardized protocols for forest loss quantification, multi-sensor integration, and temporal change detection in the Congo Basin.</p>
         </header>
         
         <div class="space-y-12">
-            <section class="glass p-12 rounded-[3.5rem] relative overflow-hidden group">
+            <section class="bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm relative overflow-hidden group">
                 <div class="flex items-center space-x-4 mb-8">
-                    <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/20">
-                        <i class="fas fa-satellite"></i>
+                    <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 border border-emerald-100">
+                        <i class="fas fa-satellite text-xl"></i>
                     </div>
-                    <h2 class="text-2xl font-black text-white uppercase tracking-tighter">1. Multi-Sensor Data Fusion</h2>
+                    <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter">1. Multi-Sensor Data Fusion</h2>
                 </div>
-                <p class="text-slate-400 mb-8 leading-relaxed">The OWR Platform integrates four primary data streams to ensure a high-fidelity monitoring pipeline:</p>
+                <p class="text-slate-600 mb-8 leading-relaxed">The OWR Platform integrates four primary data streams to ensure a high-fidelity monitoring pipeline:</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                        <h4 class="text-xs font-black text-white uppercase mb-2">Hansen GFC (UMD)</h4>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h4 class="text-xs font-black text-slate-900 uppercase mb-2">Hansen GFC (UMD)</h4>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-loose">Decadal forest loss quantification at 30m resolution. Primary temporal baseline.</p>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                        <h4 class="text-xs font-black text-white uppercase mb-2">MODIS & VIIRS (NASA)</h4>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h4 class="text-xs font-black text-slate-900 uppercase mb-2">MODIS & VIIRS (NASA)</h4>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-loose">Thermal anomaly detection and burned area mapping via NASA FIRMS.</p>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                        <h4 class="text-xs font-black text-white uppercase mb-2">Sentinel-2 (ESA)</h4>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h4 class="text-xs font-black text-slate-900 uppercase mb-2">Sentinel-2 (ESA)</h4>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-loose">10m resolution optical validation for industrial encroachment hotspots.</p>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                        <h4 class="text-xs font-black text-white uppercase mb-2">GEDI (NASA)</h4>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h4 class="text-xs font-black text-slate-900 uppercase mb-2">GEDI (NASA)</h4>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-loose">Laser altimetry for above-ground biomass and carbon flux modeling.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="glass p-12 rounded-[3.5rem]">
+            <section class="bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm">
                 <div class="flex items-center space-x-4 mb-8">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 border border-blue-500/20">
-                        <i class="fas fa-ruler-combined"></i>
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 border border-blue-100">
+                        <i class="fas fa-ruler-combined text-xl"></i>
                     </div>
-                    <h2 class="text-2xl font-black text-white uppercase tracking-tighter">2. Metric Standards (SI)</h2>
+                    <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter">2. Metric Standards (SI)</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="bg-white/5 p-6 rounded-2xl text-center border border-white/5">
-                        <span class="text-2xl font-black text-white block">HA</span>
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Hectares</span>
+                    <div class="bg-slate-50 p-6 rounded-2xl text-center border border-slate-100">
+                        <span class="text-2xl font-black text-slate-900 block">HA</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Hectares</span>
                     </div>
-                    <div class="glass p-6 rounded-2xl text-center border border-emerald-500/20">
-                        <span class="text-2xl font-black text-emerald-400 block">KM²</span>
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Sq Kilometers</span>
+                    <div class="bg-emerald-50 p-6 rounded-2xl text-center border border-emerald-100">
+                        <span class="text-2xl font-black text-emerald-600 block">KM²</span>
+                        <span class="text-[10px] font-black text-emerald-700/50 uppercase tracking-widest">Sq Kilometers</span>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-2xl text-center border border-white/5">
-                        <span class="text-2xl font-black text-white block">T/C</span>
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Tons Carbon</span>
+                    <div class="bg-slate-50 p-6 rounded-2xl text-center border border-slate-100">
+                        <span class="text-2xl font-black text-slate-900 block">T/C</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Tons Carbon</span>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-2xl text-center border border-white/5">
-                        <span class="text-2xl font-black text-white block">SCR</span>
-                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Risk Score</span>
+                    <div class="bg-slate-50 p-6 rounded-2xl text-center border border-slate-100">
+                        <span class="text-2xl font-black text-slate-900 block">SCR</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Risk Score</span>
                     </div>
                 </div>
             </section>
 
-            <section class="glass p-12 rounded-[3.5rem] relative overflow-hidden">
+            <section class="bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm relative overflow-hidden">
                 <div class="flex items-center space-x-4 mb-8">
-                    <div class="w-12 h-12 bg-rose-500/10 rounded-2xl flex items-center justify-center text-rose-400 border border-rose-500/20">
-                        <i class="fas fa-code"></i>
+                    <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600 border border-rose-100">
+                        <i class="fas fa-code text-xl"></i>
                     </div>
-                    <h2 class="text-2xl font-black text-white uppercase tracking-tighter">3. Analysis Algorithms</h2>
+                    <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter">3. Analysis Algorithms</h2>
                 </div>
-                <p class="text-slate-400 mb-8 leading-relaxed">We employ <strong>Parametric Spectral Change Detection</strong> to identify anomalies indicative of forest degradation.</p>
-                <div class="bg-[#0f172a] text-emerald-500 p-10 rounded-[2.5rem] font-mono text-xs border border-white/5 shadow-2xl">
+                <p class="text-slate-600 mb-8 leading-relaxed">We employ <strong>Parametric Spectral Change Detection</strong> to identify anomalies indicative of forest degradation.</p>
+                <div class="bg-slate-900 text-emerald-400 p-10 rounded-[2.5rem] font-mono text-xs border border-slate-800 shadow-2xl">
                     <div class="flex space-x-2 mb-4">
                         <div class="w-3 h-3 bg-rose-500 rounded-full"></div>
                         <div class="w-3 h-3 bg-amber-500 rounded-full"></div>
@@ -120,10 +120,10 @@ def detect_deforestation(pixel, baseline, threshold=0.15):
         </div>
     </main>
 
-    <footer class="bg-[#0b1221] py-20 mt-20 border-t border-white/5">
+    <footer class="bg-white py-20 mt-20 border-t border-slate-200">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-600 mb-10">Scientific Rigor • Open Source Intelligence</p>
-            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Methodology Archive</p>
+            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Scientific Rigor • Open Source Intelligence</p>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Methodology Archive</p>
         </div>
     </footer>
 </body>
