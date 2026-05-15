@@ -6,8 +6,8 @@
     <title>Mining Intelligence & Governance | OWR Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-slate-50 font-sans text-slate-900">
@@ -168,24 +168,27 @@
                 tbody.appendChild(tr);
             });
 
-            // Initialize Mapbox
-            mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VtaW5pLWNsaSIsImEiOiJjbHN2eXJxeGwwMWRyMnFvNHB5Ym55bm55In0.placeholder';
-            const map = new mapboxgl.Map({
-                container: 'miningMap',
-                style: 'mapbox://styles/mapbox/satellite-v9',
-                center: [28.5833, 1.6333],
-                zoom: 8.5
-            });
+            // Initialize Leaflet
+            const map = L.map('miningMap').setView([1.6333, 28.5833], 9);
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri'
+            }).addTo(map);
 
-            map.on('load', () => {
-                // Map Filtered Points
-                filteredData.slice(0, 50).forEach(c => {
-                    const color = c[5] === 'Artisanal' ? '#f59e0b' : '#10b981';
-                    new mapboxgl.Marker({ color: color, scale: 0.6 })
-                        .setLngLat([parseFloat(c[24]), parseFloat(c[23])])
-                        .setPopup(new mapboxgl.Popup().setHTML(`<b>${c[0]}</b><br>Type: ${c[5]}<br>Mineral: ${c[3]}<br>Status: INSIDE OWR`))
-                        .addTo(map);
-                });
+            // OWR Boundary
+            L.polygon([[1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]], {
+                color: "#064e3b", weight: 2, fillOpacity: 0.05
+            }).addTo(map).bindPopup("Okapi Wildlife Reserve Boundary");
+
+            // Map Filtered Points
+            filteredData.slice(0, 50).forEach(c => {
+                const color = c[5] === 'Artisanal' ? '#f59e0b' : '#10b981';
+                L.circleMarker([parseFloat(c[23]), parseFloat(c[24])], {
+                    radius: 6,
+                    fillColor: color,
+                    color: "white",
+                    weight: 1,
+                    fillOpacity: 0.8
+                }).addTo(map).bindPopup(`<b>${c[0]}</b><br>Type: ${c[5]}<br>Mineral: ${c[3]}<br>Status: INSIDE OWR`);
             });
 
             // Charts with Legends and Sources

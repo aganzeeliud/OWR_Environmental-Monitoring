@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Spatial Explorer | OWR Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>#map { height: calc(100vh - 64px); }</style>
 </head>
@@ -74,55 +74,27 @@
     </div>
 
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VtaW5pLWNsaSIsImEiOiJjbHN2eXJxeGwwMWRyMnFvNHB5Ym55bm55In0.placeholder'; // Replace with your actual token
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/satellite-v9',
-            center: [28.5833, 1.6333], // [lng, lat]
-            zoom: 8.5
+        const map = L.map('map').setView([1.6333, 28.5833], 9);
+
+        const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        }).addTo(map);
+
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
         });
 
-        map.addControl(new mapboxgl.NavigationControl());
+        // OWR Boundary Polygon
+        const owrBoundary = L.polygon([
+            [1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]
+        ], {
+            color: "#064e3b",
+            weight: 3,
+            fillColor: "#064e3b",
+            fillOpacity: 0.05
+        }).addTo(map).bindPopup("Okapi Wildlife Reserve Boundary");
 
-        map.on('load', () => {
-            // OWR Boundary Polygon
-            map.addSource('owr-boundary', {
-                'type': 'geojson',
-                'data': {
-                    'type': 'Feature',
-                    'geometry': {
-                        'type': 'Polygon',
-                        'coordinates': [[
-                            [27.5, 1.0], [30.0, 1.0], [30.0, 2.5], [27.5, 2.5], [27.5, 1.0]
-                        ]]
-                    }
-                }
-            });
-
-            map.addLayer({
-                'id': 'owr-boundary-layer',
-                'type': 'line',
-                'source': 'owr-boundary',
-                'layout': {},
-                'paint': {
-                    'line-color': '#064e3b',
-                    'line-width': 3
-                }
-            });
-
-            map.addLayer({
-                'id': 'owr-boundary-fill',
-                'type': 'fill',
-                'source': 'owr-boundary',
-                'layout': {},
-                'paint': {
-                    'fill-color': '#064e3b',
-                    'fill-opacity': 0.05
-                }
-            });
-
-            loadSpatialData();
-        });
+        loadSpatialData();
 
         async function loadSpatialData() {
             const miningPoints = [
@@ -131,11 +103,15 @@
                 {lng: 28.8, lat: 1.75, label: "M-2026-C: Riverbed Dredging"}
             ];
 
-            miningPoints.forEach((p, i) => {
-                new mapboxgl.Marker({ color: '#f59e0b' })
-                    .setLngLat([p.lng, p.lat])
-                    .setPopup(new mapboxgl.Popup().setHTML(`<b>${p.label}</b>`))
-                    .addTo(map);
+            miningPoints.forEach(p => {
+                L.circleMarker([p.lat, p.lng], {
+                    radius: 8,
+                    fillColor: "#f59e0b",
+                    color: "#b45309",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map).bindPopup(`<b>${p.label}</b>`);
             });
 
             const firePoints = [
@@ -144,10 +120,14 @@
             ];
 
             firePoints.forEach(p => {
-                new mapboxgl.Marker({ color: '#ef4444' })
-                    .setLngLat([p.lng, p.lat])
-                    .setPopup(new mapboxgl.Popup().setHTML(`<b>${p.label}</b>`))
-                    .addTo(map);
+                L.circleMarker([p.lat, p.lng], {
+                    radius: 10,
+                    fillColor: "#ef4444",
+                    color: "#b91c1c",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.6
+                }).addTo(map).bindPopup(`<b>${p.label}</b>`);
             });
         }
     </script>
