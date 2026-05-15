@@ -33,189 +33,220 @@
 
     <main class="container mx-auto px-6 py-12">
         <header class="mb-16">
-            <h1 class="text-5xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Wildfire & Forest Loss</h1>
-            <p class="text-slate-500 text-lg max-w-3xl">Strategic monitoring of fire dynamics and primary forest loss within the Okapi Wildlife Reserve (2001–2026). Integrating NASA FIRMS and MODIS Burned Area products.</p>
+            <div class="flex justify-between items-end gap-8 mb-8">
+                <div class="max-w-3xl">
+                    <h1 class="text-6xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Wildfire <span class="text-rose-600">Analytics</span></h1>
+                    <p class="text-slate-500 text-lg">Advanced classification and high-resolution hectare loss analysis within the Okapi Wildlife Reserve (2001–2026). Monitoring anthropogenic drivers and environmental severity.</p>
+                </div>
+                <div class="bg-emerald-50 px-6 py-3 rounded-2xl border border-emerald-100 flex flex-col items-center">
+                    <span class="text-[10px] font-black uppercase text-emerald-600 tracking-widest">Reserve Health</span>
+                    <span class="text-xl font-black text-emerald-700" id="cumLossPercent">0.0%</span>
+                    <span class="text-[10px] font-bold text-emerald-600">Cumulative Impact</span>
+                </div>
+            </div>
         </header>
 
         <!-- KPI Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <i class="fas fa-fire-alt absolute top-0 right-0 p-4 opacity-5 text-6xl text-rose-600"></i>
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Cumulative Hotspots</h3>
-                <div class="text-4xl font-black text-slate-900" id="kpiHotspots">0</div>
-                <p class="text-[10px] text-rose-600 font-bold mt-4">2001-2026 Total</p>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Burned</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiBurned">0</div>
+                <p class="text-[10px] text-amber-600 font-bold mt-4">Hectares Affected</p>
             </div>
             <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <i class="fas fa-chart-area absolute top-0 right-0 p-4 opacity-5 text-6xl text-amber-600"></i>
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Burned Area (Est.)</h3>
-                <div class="text-4xl font-black text-slate-900" id="kpiBurned">0 <span class="text-sm">ha</span></div>
-                <p class="text-[10px] text-amber-600 font-bold mt-4">Total Scientific Estimate</p>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Forest Lost</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiLoss">0</div>
+                <p class="text-[10px] text-emerald-600 font-bold mt-4">Primary Canopy (ha)</p>
             </div>
             <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <i class="fas fa-tree absolute top-0 right-0 p-4 opacity-5 text-6xl text-emerald-600"></i>
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Forest Loss via Fire</h3>
-                <div class="text-4xl font-black text-slate-900" id="kpiLoss">0 <span class="text-sm">ha</span></div>
-                <p class="text-[10px] text-emerald-600 font-bold mt-4">Primary Canopy Loss</p>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Peak Severity</h3>
+                <div class="text-4xl font-black text-rose-600">EXTREME</div>
+                <p class="text-[10px] text-rose-400 font-bold mt-4">Dry Season Criticality</p>
             </div>
             <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <i class="fas fa-tachometer-alt absolute top-0 right-0 p-4 opacity-5 text-6xl text-blue-600"></i>
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg Fire Power (FRP)</h3>
-                <div class="text-4xl font-black text-slate-900" id="kpiFRP">0 <span class="text-sm">MW</span></div>
-                <p class="text-[10px] text-blue-600 font-bold mt-4">Radiative Intensity</p>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Primary Driver</h3>
+                <div class="text-3xl font-black text-slate-900 uppercase leading-none" id="kpiDriver">AGRI</div>
+                <p class="text-[10px] text-slate-400 font-bold mt-4">Dominant Fire Type</p>
             </div>
         </div>
 
         <!-- Main Charts -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
             <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Temporal Fire Trajectory (2001-2026)</h3>
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Annual Forest Loss & Burn Intensity</h3>
                 <div class="relative h-[400px]">
-                    <canvas id="temporalChart"></canvas>
+                    <canvas id="annualLossChart"></canvas>
                 </div>
             </div>
             <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10 text-center">Seasonal Intensity</h3>
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10 text-center">Fire Type Distribution</h3>
                 <div class="relative h-[400px]">
+                    <canvas id="typeChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Severity Index</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="severityChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Cumulative Degradation</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="cumulativeChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Monthly Seasonality</h3>
+                <div class="relative h-[300px]">
                     <canvas id="seasonalChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Burned Area vs Forest Loss</h3>
-                <div class="relative h-[300px]">
-                    <canvas id="comparisonChart"></canvas>
-                </div>
-            </div>
-            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Cumulative Fire Evolution</h3>
-                <div class="relative h-[300px]">
-                    <canvas id="cumulativeChart"></canvas>
-                </div>
+        <!-- Risk Table -->
+        <div class="mt-16 bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm overflow-hidden">
+            <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-8">Annual Impact Matrix</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-[10px] font-black uppercase text-slate-400 border-b border-slate-100">
+                            <th class="pb-4 px-4 text-center">Year</th>
+                            <th class="pb-4 px-4">Burned (ha)</th>
+                            <th class="pb-4 px-4">Loss (ha)</th>
+                            <th class="pb-4 px-4">Cumulative (ha)</th>
+                            <th class="pb-4 px-4">Impact %</th>
+                            <th class="pb-4 px-4 text-right">Fire Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTableBody" class="text-xs font-bold text-slate-600">
+                        <!-- Dynamic Rows -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
 
     <footer class="bg-white py-20 mt-20 border-t border-slate-200">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Fire Monitoring System • Scientific Platform</p>
+            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Fire Monitoring System • Analytics Engine v2.1</p>
             <div class="flex justify-center gap-12 opacity-50 mb-10 grayscale">
                 <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-8" alt="NASA FIRMS">
             </div>
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • NASA / UMD Hansen Integrated</p>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Advanced Classification Pipeline</p>
         </div>
     </footer>
 
     <script>
         async function initDashboard() {
-            const fireRes = await fetch('data/csv/burned-area-by-year.csv');
-            const fireText = await fireRes.text();
-            const fireData = Papa.parse(fireText, { header: true }).data.filter(d => d.year);
+            const lossRes = await fetch('data/csv/annual-hectare-loss.csv');
+            const lossText = await lossRes.text();
+            const lossData = Papa.parse(lossText, { header: true }).data.filter(d => d.year);
 
-            const monthRes = await fetch('data/csv/monthly-fire-stats.csv');
-            const monthText = await monthRes.text();
-            const monthData = Papa.parse(monthText, { header: true }).data.filter(d => d.month);
+            const classRes = await fetch('data/csv/fire-classification.csv');
+            const classText = await classRes.text();
+            const classData = Papa.parse(classText, { header: true }).data.filter(d => d.year);
 
             // Update KPIs
-            const totalHotspots = fireData.reduce((acc, curr) => acc + parseInt(curr.fire_count), 0);
-            const totalBurned = fireData.reduce((acc, curr) => acc + parseFloat(curr.total_burned_area_ha), 0);
-            const totalLoss = fireData.reduce((acc, curr) => acc + parseFloat(curr.total_forest_loss_ha), 0);
-            const avgFRP = fireData.reduce((acc, curr) => acc + parseFloat(curr.avg_frp), 0) / fireData.length;
-
-            document.getElementById('kpiHotspots').innerText = totalHotspots.toLocaleString();
+            const latest = lossData[lossData.length - 1];
+            const totalBurned = lossData.reduce((acc, curr) => acc + parseFloat(curr.annual_burned_ha), 0);
+            const totalLoss = lossData.reduce((acc, curr) => acc + parseFloat(curr.annual_forest_loss_ha), 0);
+            
             document.getElementById('kpiBurned').innerText = Math.round(totalBurned).toLocaleString();
             document.getElementById('kpiLoss').innerText = Math.round(totalLoss).toLocaleString();
-            document.getElementById('kpiFRP').innerText = avgFRP.toFixed(1);
+            document.getElementById('cumLossPercent').innerText = (totalLoss / 1372625 * 100).toFixed(2) + '%';
+
+            // Driver distribution
+            const drivers = {};
+            classData.forEach(d => drivers[d.fire_type] = (drivers[d.fire_type] || 0) + 1);
+            const topDriver = Object.keys(drivers).reduce((a, b) => drivers[a] > drivers[b] ? a : b);
+            document.getElementById('kpiDriver').innerText = topDriver.split(' ')[0].toUpperCase();
 
             // Charts
             Chart.defaults.color = '#94a3b8';
             Chart.defaults.font.family = 'Plus Jakarta Sans';
             Chart.defaults.font.weight = 'bold';
 
-            // Temporal Chart
-            new Chart(document.getElementById('temporalChart'), {
-                type: 'line',
+            // Annual Loss Chart
+            new Chart(document.getElementById('annualLossChart'), {
+                type: 'bar',
                 data: {
-                    labels: fireData.map(d => d.year),
-                    datasets: [{
-                        label: 'Fire Hotspots',
-                        data: fireData.map(d => d.fire_count),
-                        borderColor: '#e11d48',
-                        backgroundColor: 'rgba(225, 29, 72, 0.05)',
-                        fill: true,
-                        tension: 0.4,
-                        borderWidth: 4,
-                        pointRadius: 0,
-                        pointHoverRadius: 6
-                    }]
+                    labels: lossData.map(d => d.year),
+                    datasets: [
+                        { label: 'Burned Area (ha)', data: lossData.map(d => d.annual_burned_ha), backgroundColor: '#fcd34d' },
+                        { label: 'Forest Loss (ha)', data: lossData.map(d => d.annual_forest_loss_ha), backgroundColor: '#10b981' }
+                    ]
                 },
                 options: { 
                     responsive: true, maintainAspectRatio: false,
-                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' }, border: { display: false } }, x: { grid: { display: false }, border: { display: false } } },
-                    plugins: { legend: { display: false } }
+                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
                 }
             });
 
-            // Seasonal Chart
-            new Chart(document.getElementById('seasonalChart'), {
-                type: 'radar',
+            // Type Distribution
+            new Chart(document.getElementById('typeChart'), {
+                type: 'doughnut',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    labels: Object.keys(drivers),
                     datasets: [{
-                        label: 'Avg Fire Count',
-                        data: monthData.map(d => d.avg_fire_count),
-                        borderColor: '#f59e0b',
-                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
-                        borderWidth: 2
+                        data: Object.values(drivers),
+                        backgroundColor: ['#f59e0b', '#10b981', '#3b82f6', '#ef4444', '#8b5cf6', '#06b6d4', '#f43f5e', '#64748b']
                     }]
                 },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: { r: { grid: { color: 'rgba(0,0,0,0.05)' }, pointLabels: { font: { size: 10 } } } },
-                    plugins: { legend: { display: false } }
-                }
+                options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } } }
             });
 
-            // Comparison Chart
-            new Chart(document.getElementById('comparisonChart'), {
-                type: 'bar',
+            // Severity Chart
+            const severity = { "Low": 0, "Moderate": 0, "High": 0, "Extreme": 0 };
+            classData.forEach(d => severity[d.severity]++);
+            new Chart(document.getElementById('severityChart'), {
+                type: 'polarArea',
                 data: {
-                    labels: fireData.map(d => d.year).slice(-10),
-                    datasets: [
-                        { label: 'Burned Area', data: fireData.map(d => d.total_burned_area_ha).slice(-10), backgroundColor: '#fcd34d' },
-                        { label: 'Forest Loss', data: fireData.map(d => d.total_forest_loss_ha).slice(-10), backgroundColor: '#10b981' }
-                    ]
+                    labels: Object.keys(severity),
+                    datasets: [{ data: Object.values(severity), backgroundColor: ['#10b981', '#fcd34d', '#f59e0b', '#e11d48'] }]
                 },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: { y: { display: false }, x: { grid: { display: false } } },
-                    plugins: { legend: { position: 'bottom' } }
-                }
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: 'rgba(0,0,0,0.05)' } } } }
             });
 
-            // Cumulative Evolution
-            let cum = 0;
-            const cumData = fireData.map(d => { cum += parseInt(d.fire_count); return cum; });
+            // Cumulative Chart
             new Chart(document.getElementById('cumulativeChart'), {
                 type: 'line',
                 data: {
-                    labels: fireData.map(d => d.year),
-                    datasets: [{
-                        label: 'Cumulative Fires',
-                        data: cumData,
-                        borderColor: '#2563eb',
-                        fill: false,
-                        tension: 0.1,
-                        borderWidth: 2,
-                        pointRadius: 2
-                    }]
+                    labels: lossData.map(d => d.year),
+                    datasets: [{ label: 'Cumulative Loss', data: lossData.map(d => d.cumulative_loss_ha), borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16, 185, 129, 0.05)', tension: 0.4 }]
                 },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } },
-                    plugins: { legend: { display: false } }
-                }
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
+            });
+
+            // Seasonal Chart (Monthly)
+            const monthly = Array(12).fill(0);
+            classData.forEach(d => monthly[parseInt(d.month)-1]++);
+            new Chart(document.getElementById('seasonalChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                    datasets: [{ label: 'Fire Frequency', data: monthly, borderColor: '#f59e0b', tension: 0.4 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            });
+
+            // Table
+            const tbody = document.getElementById('statsTableBody');
+            lossData.reverse().forEach(d => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-50 hover:bg-slate-50 transition";
+                tr.innerHTML = `
+                    <td class="py-4 px-4 text-center text-slate-900">${d.year}</td>
+                    <td class="py-4 px-4">${parseFloat(d.annual_burned_ha).toLocaleString()}</td>
+                    <td class="py-4 px-4 text-rose-600">${parseFloat(d.annual_forest_loss_ha).toLocaleString()}</td>
+                    <td class="py-4 px-4">${parseFloat(d.cumulative_loss_ha).toLocaleString()}</td>
+                    <td class="py-4 px-4 text-emerald-600">${d.loss_percent_reserve}%</td>
+                    <td class="py-4 px-4 text-right">${d.fire_count}</td>
+                `;
+                tbody.appendChild(tr);
             });
         }
 

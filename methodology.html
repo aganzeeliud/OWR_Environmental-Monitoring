@@ -29,68 +29,90 @@
     <main class="container mx-auto px-6 py-20 max-w-4xl">
         <header class="mb-20">
             <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">The <span class="text-rose-600">Methodology</span></h1>
-            <p class="text-xl text-slate-500 font-medium">Quantifying wildfire dynamics and forest loss through multi-sensor remote sensing integration (2001-2026).</p>
+            <p class="text-xl text-slate-500 font-medium">Advanced multi-criteria classification and severity modeling for wildfire dynamics in the Okapi Wildlife Reserve (2001-2026).</p>
         </header>
 
         <section class="space-y-16">
+            <!-- Classification Logic -->
             <div>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">1. Data Sources</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                        <h3 class="font-black text-rose-600 uppercase text-xs mb-4 tracking-widest">Active Fire (FIRMS)</h3>
-                        <p class="text-sm leading-relaxed text-slate-600">MODIS (MCD14DL) and VIIRS (VNP14IMGTDL) thermal anomalies provide near real-time and historical active fire locations. VIIRS offers higher spatial resolution (375m) compared to MODIS (1km).</p>
+                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">1. Fire Type Classification</h2>
+                <p class="text-slate-600 mb-8 leading-relaxed">Fires are classified into 9 distinct drivers using spatial proximity analysis, temporal recurrence, and spectral intensity indicators.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Slash-and-Burn</h4>
+                        <p class="text-[10px] leading-relaxed">Detected in areas within 5km of villages with high forest loss intensity (>3ha) and high seasonality.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                        <h3 class="font-black text-rose-600 uppercase text-xs mb-4 tracking-widest">Burned Area (MODIS)</h3>
-                        <p class="text-sm leading-relaxed text-slate-600">The MCD64A1 Collection 6.1 Burned Area product is used to quantify the physical extent of fire damage in hectares.</p>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Mining-Related</h4>
+                        <p class="text-[10px] leading-relaxed">Events intersecting or proximal to CAMI mining titles and IPIS artisanal site buffers.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                        <h3 class="font-black text-rose-600 uppercase text-xs mb-4 tracking-widest">Forest Loss (Hansen)</h3>
-                        <p class="text-sm leading-relaxed text-slate-600">Global Forest Change (GFC) v1.9 data from the University of Maryland (UMD) enables high-resolution (30m) detection of tree cover loss.</p>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Wildfire</h4>
+                        <p class="text-[10px] leading-relaxed">Remote events (>10km from human features) with Extreme severity and dry season timing (Dec-Feb).</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Charcoal Production</h4>
+                        <p class="text-[10px] leading-relaxed">High forest loss events proximal to road corridors and transport hubs.</p>
                     </div>
                 </div>
             </div>
 
+            <!-- Severity Modeling -->
             <div>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">2. Analysis Workflow</h2>
-                <div class="bg-slate-900 text-emerald-400 p-10 rounded-[2.5rem] font-mono text-xs shadow-2xl overflow-x-auto">
-                    <div class="flex space-x-2 mb-4">
-                        <div class="w-3 h-3 bg-rose-500 rounded-full"></div>
-                        <div class="w-3 h-3 bg-amber-500 rounded-full"></div>
-                        <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                    </div>
-                    <pre>
-# OWR SPATIAL INTERSECTION LOGIC
-def compute_fire_loss(fire_pixels, forest_mask):
-    # Intersect Active Fire pixels with Primary Forest Mask
-    loss_ha = 0
-    for p in fire_pixels:
-        if forest_mask.contains(p.geometry):
-            # Forest Loss is detected if NDVI drop > threshold
-            if p.frp > 10.0 and p.confidence > 80:
-                loss_ha += (fire_res ** 2) / 10000
-    return loss_ha</pre>
+                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">2. Severity Thresholds</h2>
+                <div class="overflow-hidden bg-white border border-slate-200 rounded-2xl shadow-sm">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="p-4 font-black uppercase text-slate-400">Class</th>
+                                <th class="p-4 font-black uppercase text-slate-400">FRP (MW)</th>
+                                <th class="p-4 font-black uppercase text-slate-400">Burn Size (ha)</th>
+                                <th class="p-4 font-black uppercase text-slate-400">Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-bold">
+                            <tr class="border-b border-slate-100">
+                                <td class="p-4 text-emerald-600">Low</td>
+                                <td class="p-4">< 30</td>
+                                <td class="p-4">< 2.0</td>
+                                <td class="p-4">Surface fire, low canopy impact</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-4 text-amber-600">Moderate</td>
+                                <td class="p-4">30 - 60</td>
+                                <td class="p-4">2.0 - 4.0</td>
+                                <td class="p-4">Mixed intensity, understory loss</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-4 text-orange-600">High</td>
+                                <td class="p-4">60 - 100</td>
+                                <td class="p-4">4.0 - 5.5</td>
+                                <td class="p-4">Significant crown impact</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 text-rose-600">Extreme</td>
+                                <td class="p-4">> 100</td>
+                                <td class="p-4">> 5.5</td>
+                                <td class="p-4">Complete stand replacement</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
+            <!-- Hectare Calculation -->
             <div>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">3. Technical Limitations</h2>
-                <ul class="space-y-6 text-slate-600">
-                    <li class="flex items-start">
-                        <i class="fas fa-exclamation-triangle text-rose-600 mt-1 mr-4"></i>
-                        <p><strong>Cloud Cover:</strong> Extensive cloud cover during the wet season may result in underestimation of active fire counts.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-exclamation-triangle text-rose-600 mt-1 mr-4"></i>
-                        <p><strong>MODIS vs VIIRS:</strong> MODIS data (2001-present) is the primary long-term baseline, while VIIRS (2012-present) provides improved detection of small fires.</p>
-                    </li>
-                </ul>
+                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">3. Hectare Loss Calculation</h2>
+                <p class="text-slate-600 mb-8 leading-relaxed">Total forest loss is calculated by intersecting the annual MODIS Burned Area (MCD64A1) product with the University of Maryland Hansen GFC tree cover dataset. The <strong>Cumulative Loss %</strong> is relative to the official reserve area of 1,372,625 hectares.</p>
+                <div class="bg-slate-900 text-emerald-400 p-8 rounded-[2rem] font-mono text-xs shadow-xl">
+                    Cumulative_Percent = (Sum(Annual_Forest_Loss_ha) / 1,372,625) * 100
+                </div>
             </div>
         </section>
 
-        <footer class="mt-32 pt-12 border-t border-slate-200 opacity-50 flex justify-between items-center">
-            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Scientific Reference OWR-FIRE-2026</p>
-            <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-4 grayscale">
+        <footer class="mt-32 pt-12 border-t border-slate-200 opacity-50 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <div>Data integrated from NASA FIRMS & GFC v1.9</div>
+            <div>Auth: OWR Scientific Council</div>
         </footer>
     </main>
 </body>

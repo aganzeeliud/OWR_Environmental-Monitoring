@@ -32,7 +32,7 @@
         <div class="flex items-center space-x-6">
             <a href="index.html" class="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-rose-600 transition">Dashboard</a>
             <div class="bg-emerald-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 items-center border border-emerald-100 flex">
-                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span> 2001-2026 Archive
+                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span> Classified Dataset
             </div>
         </div>
     </nav>
@@ -40,7 +40,7 @@
     <div class="flex relative">
         <!-- Sidebar -->
         <aside class="w-80 glass z-[1000] p-6 overflow-y-auto absolute left-0 top-0 bottom-0 m-4 rounded-3xl shadow-xl transition-transform duration-300" id="sidebar">
-            <h2 class="font-black text-xs uppercase tracking-[0.2em] text-rose-600 mb-6">Map Control</h2>
+            <h2 class="font-black text-xs uppercase tracking-[0.2em] text-rose-600 mb-6">Advanced Filter</h2>
             
             <div class="space-y-8">
                 <div>
@@ -54,37 +54,48 @@
                 </div>
 
                 <div>
-                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Layers</h3>
-                    <div class="space-y-3">
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
-                            <span class="text-xs font-bold"><i class="fas fa-fire text-rose-600 mr-2"></i> Active Hotspots</span>
-                            <input type="checkbox" id="checkHotspots" checked class="rounded-full text-rose-600 focus:ring-0">
-                        </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
-                            <span class="text-xs font-bold"><i class="fas fa-layer-group text-amber-600 mr-2"></i> Heatmap Intensity</span>
-                            <input type="checkbox" id="checkHeatmap" class="rounded-full text-amber-600 focus:ring-0">
-                        </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
-                            <span class="text-xs font-bold"><i class="fas fa-shield-alt text-emerald-600 mr-2"></i> OWR Boundary</span>
-                            <input type="checkbox" id="checkBoundary" checked class="rounded-full text-emerald-600 focus:ring-0">
-                        </label>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Fire Type</h3>
+                    <select id="typeFilter" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs font-bold text-slate-700 outline-none">
+                        <option value="all">All drivers</option>
+                        <option value="Agricultural fire">Agriculture</option>
+                        <option value="Slash-and-burn agriculture">Slash-and-Burn</option>
+                        <option value="Charcoal production">Charcoal</option>
+                        <option value="Wildfire/natural vegetation fire">Wildfire</option>
+                        <option value="Mining-related fire">Mining</option>
+                        <option value="Settlement-related fire">Settlement</option>
+                        <option value="Hunting/fire camp">Hunting Camp</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Severity</h3>
+                    <div class="flex gap-2">
+                        <button onclick="toggleSev('Low')" class="sev-btn bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-[10px] font-black border border-emerald-100 opacity-50" data-val="Low">LOW</button>
+                        <button onclick="toggleSev('Moderate')" class="sev-btn bg-amber-50 text-amber-600 px-3 py-1 rounded-lg text-[10px] font-black border border-amber-100 opacity-50" data-val="Moderate">MOD</button>
+                        <button onclick="toggleSev('High')" class="sev-btn bg-orange-50 text-orange-600 px-3 py-1 rounded-lg text-[10px] font-black border border-orange-100 opacity-50" data-val="High">HIGH</button>
+                        <button onclick="toggleSev('Extreme')" class="sev-btn bg-rose-50 text-rose-600 px-3 py-1 rounded-lg text-[10px] font-black border border-rose-100 opacity-100" data-val="Extreme">EXT</button>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Basemap</h3>
-                    <select id="baseMapSelect" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-rose-600 outline-none">
-                        <option value="googleSat">Google Satellite</option>
-                        <option value="topo">Topology</option>
-                        <option value="osm">Standard</option>
-                    </select>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Layers</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-fire text-rose-600 mr-2"></i> Hotspots</span>
+                            <input type="checkbox" id="checkHotspots" checked class="rounded-full text-rose-600 focus:ring-0">
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-layer-group text-amber-600 mr-2"></i> Risk Heatmap</span>
+                            <input type="checkbox" id="checkHeatmap" class="rounded-full text-amber-600 focus:ring-0">
+                        </label>
+                    </div>
                 </div>
 
                 <div class="pt-6 border-t border-slate-100">
                     <div class="bg-rose-50 p-4 rounded-2xl border border-rose-100">
-                        <h4 class="text-[10px] font-black text-rose-600 uppercase tracking-widest mb-1">Live Stats (Year)</h4>
+                        <h4 class="text-[10px] font-black text-rose-600 uppercase tracking-widest mb-1">Filter Result</h4>
                         <div class="text-2xl font-black text-slate-900" id="statCount">0</div>
-                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Detected fire pixels</p>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Events matched</p>
                     </div>
                 </div>
             </div>
@@ -92,63 +103,67 @@
 
         <div id="map" class="w-full"></div>
         
-        <!-- Map Controls -->
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-[1001] timeline-control no-print">
             <button id="playBtn" class="text-rose-600 hover:scale-110 transition"><i class="fas fa-play"></i></button>
-            <span class="text-xs font-black uppercase tracking-widest text-slate-400">Temporal Playback</span>
+            <span class="text-xs font-black uppercase tracking-widest text-slate-400">Temporal Indexing</span>
         </div>
     </div>
 
     <script>
         const map = L.map('map', { zoomControl: false }).setView([1.6333, 28.5833], 9);
-        L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-        const baseMaps = {
-            googleSat: L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps' }),
-            topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: 'OpenTopoMap' }),
-            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' })
-        };
-        baseMaps.googleSat.addTo(map);
+        L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps' }).addTo(map);
 
         let hotspotLayer = L.markerClusterGroup();
         let heatmapLayer = L.heatLayer([], { radius: 25, blur: 15, maxZoom: 10 });
-        let boundaryLayer;
         let allHotspots = [];
+        let activeSeverities = ["Low", "Moderate", "High", "Extreme"];
 
         async function initMap() {
             const [bndRes, fireRes] = await Promise.all([
                 fetch('data/boundary/okapi-boundary.geojson'),
-                fetch('data/geojson/fire-hotspots.geojson')
+                fetch('data/geojson/fire-classification.geojson')
             ]);
 
             const boundaryData = await bndRes.json();
             const fireData = await fireRes.json();
             allHotspots = fireData.features;
 
-            boundaryLayer = L.geoJSON(boundaryData, {
+            L.geoJSON(boundaryData, {
                 style: { color: "#10b981", weight: 3, fillOpacity: 0.05, dashArray: '5, 10' }
             }).addTo(map);
 
-            renderYear(2026);
+            render();
         }
 
-        function renderYear(year) {
-            hotspotLayer.clearLayers();
-            const filtered = allHotspots.filter(f => f.properties.year == year);
+        function render() {
+            const year = document.getElementById('timeSlider').value;
+            const type = document.getElementById('typeFilter').value;
             
-            const points = [];
+            hotspotLayer.clearLayers();
+            const filtered = allHotspots.filter(f => {
+                const p = f.properties;
+                return p.year == year && 
+                       (type == 'all' || p.fire_type == type) &&
+                       activeSeverities.includes(p.severity);
+            });
+            
             filtered.forEach(f => {
+                const p = f.properties;
                 const marker = L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], {
-                    radius: 6, fillColor: '#e11d48', color: '#fff', weight: 1, fillOpacity: 0.8
+                    radius: 7, fillColor: getSevColor(p.severity), color: '#fff', weight: 1, fillOpacity: 0.9
                 }).bindPopup(`
                     <div class="p-2">
-                        <div class="text-[10px] font-black text-slate-400 uppercase mb-1">Source: ${f.properties.source}</div>
-                        <div class="text-sm font-black text-slate-900">${f.properties.year}-${f.properties.month} Fire Pixel</div>
-                        <div class="mt-2 text-xs font-bold text-rose-600">FRP: ${f.properties.frp} MW</div>
+                        <div class="text-[10px] font-black text-slate-400 uppercase mb-1">${p.severity} SEVERITY</div>
+                        <div class="text-sm font-black text-slate-900">${p.fire_type}</div>
+                        <div class="grid grid-cols-2 gap-4 mt-4 text-[10px] font-bold">
+                            <div><span class="text-slate-400 block uppercase">Burned</span> ${p.burned_area_ha} ha</div>
+                            <div><span class="text-slate-400 block uppercase">Loss</span> ${p.forest_loss_ha} ha</div>
+                            <div><span class="text-slate-400 block uppercase">FRP</span> ${p.frp} MW</div>
+                            <div><span class="text-slate-400 block uppercase">CONF</span> ${p.confidence}%</div>
+                        </div>
                     </div>
                 `);
                 hotspotLayer.addLayer(marker);
-                points.append([f.geometry.coordinates[1], f.geometry.coordinates[0], 0.5]);
             });
 
             if(document.getElementById('checkHotspots').checked) hotspotLayer.addTo(map);
@@ -158,38 +173,29 @@
             document.getElementById('statCount').innerText = filtered.length.toLocaleString();
         }
 
-        // Controls
-        document.getElementById('timeSlider').oninput = (e) => {
-            const yr = e.target.value;
-            document.getElementById('currentYear').innerText = yr;
-            renderYear(yr);
-        };
+        function getSevColor(s) {
+            return s == "Extreme" ? "#e11d48" : (s == "High" ? "#f59e0b" : (s == "Moderate" ? "#fcd34d" : "#10b981"));
+        }
 
+        function toggleSev(val) {
+            const btn = document.querySelector(`.sev-btn[data-val="${val}"]`);
+            if(activeSeverities.includes(val)) {
+                activeSeverities = activeSeverities.filter(v => v !== val);
+                btn.style.opacity = "0.5";
+            } else {
+                activeSeverities.push(val);
+                btn.style.opacity = "1";
+            }
+            render();
+        }
+
+        document.getElementById('timeSlider').oninput = (e) => {
+            document.getElementById('currentYear').innerText = e.target.value;
+            render();
+        };
+        document.getElementById('typeFilter').onchange = render;
         document.getElementById('checkHotspots').onchange = (e) => e.target.checked ? hotspotLayer.addTo(map) : map.removeLayer(hotspotLayer);
         document.getElementById('checkHeatmap').onchange = (e) => e.target.checked ? heatmapLayer.addTo(map) : map.removeLayer(heatmapLayer);
-        document.getElementById('checkBoundary').onchange = (e) => e.target.checked ? boundaryLayer.addTo(map) : map.removeLayer(boundaryLayer);
-        document.getElementById('baseMapSelect').onchange = (e) => {
-            Object.values(baseMaps).forEach(m => map.removeLayer(m));
-            baseMaps[e.target.value].addTo(map);
-        };
-
-        let isPlaying = false;
-        let playInterval;
-        document.getElementById('playBtn').onclick = () => {
-            isPlaying = !isPlaying;
-            document.getElementById('playBtn').innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-            if(isPlaying) {
-                playInterval = setInterval(() => {
-                    let yr = parseInt(document.getElementById('timeSlider').value);
-                    yr = yr >= 2026 ? 2001 : yr + 1;
-                    document.getElementById('timeSlider').value = yr;
-                    document.getElementById('currentYear').innerText = yr;
-                    renderYear(yr);
-                }, 1000);
-            } else {
-                clearInterval(playInterval);
-            }
-        };
 
         initMap();
     </script>
