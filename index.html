@@ -3,199 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWR Environmental Intelligence | Command Center</title>
+    <title>Fire & Forest Intel | OWR Monitoring</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #1e293b; }
-        .hero-gradient { background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(248, 250, 252, 1)); }
-        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.05); }
-        .stat-ticker { animation: ticker 40s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        #miniMap { height: 128px; width: 100%; border-radius: 1rem; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="text-slate-700">
 
-    <!-- Top Status Bar -->
-    <div class="bg-emerald-600 py-2 px-4 overflow-hidden whitespace-nowrap z-[2000] relative">
-        <div class="stat-ticker inline-block text-[10px] font-black uppercase tracking-[0.3em] text-white">
-            Live Monitoring: Okapi Wildlife Reserve (DRC) • Forest Loss: 4,250ha/yr • Active Fire Alerts: 12 • Mining Sites Mapped: 84 • Carbon Released: 1.8M Tons • 26 Years of Scientific Intelligence • Hansen GFC / NASA / ESA / CAMI / IPIS Integrated
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-[1000] glass px-6 py-4 flex justify-between items-center mx-4 mt-4 rounded-2xl shadow-sm">
+    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-200">
-                <i class="fas fa-leaf text-white text-xl"></i>
+            <div class="bg-rose-600 p-2 rounded-lg">
+                <i class="fas fa-fire text-white"></i>
             </div>
-            <span class="text-xl font-extrabold tracking-tighter text-slate-900">OWR <span class="text-emerald-600">INTEL</span></span>
+            <span class="font-bold tracking-tighter text-xl uppercase">OWR FIRE INTEL</span>
         </div>
-        <div class="hidden md:flex space-x-8 text-xs font-black uppercase tracking-widest text-slate-500">
-            <a href="dashboard.html" class="hover:text-emerald-600 transition">Analytics</a>
-            <a href="timeline.html" class="hover:text-emerald-600 transition">Timeline</a>
-            <a href="mining-analysis.html" class="hover:text-emerald-600 transition">Mining</a>
-            <a href="logging-analysis.html" class="hover:text-emerald-600 transition">Logging</a>
-            <a href="maps.html" class="hover:text-emerald-600 transition">Spatial</a>
-            <a href="database.html" class="hover:text-emerald-600 transition">Data</a>
+        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <a href="index.html" class="text-rose-600">Dashboard</a>
+            <a href="map.html" class="hover:text-rose-600 transition">Interactive Map</a>
+            <a href="methodology.html" class="hover:text-rose-600 transition">Methodology</a>
+            <a href="download.html" class="hover:text-rose-600 transition">Download Data</a>
         </div>
-        <button class="bg-emerald-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest hover:bg-emerald-700 transition shadow-lg shadow-emerald-100">Access Hub</button>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative h-[85vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover scale-110 opacity-40" alt="Congo Basin">
-            <div class="absolute inset-0 hero-gradient"></div>
-        </div>
-        <div class="container mx-auto px-4 relative z-10 text-center">
-            <div class="mb-8 flex justify-center space-x-4">
-                <span class="bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-200">2000 — 2026 Analysis</span>
-                <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-200">Scientific Intelligence</span>
+    <main class="container mx-auto px-6 py-12">
+        <header class="mb-16">
+            <h1 class="text-5xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Wildfire & Forest Loss</h1>
+            <p class="text-slate-500 text-lg max-w-3xl">Strategic monitoring of fire dynamics and primary forest loss within the Okapi Wildlife Reserve (2001–2026). Integrating NASA FIRMS and MODIS Burned Area products.</p>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <i class="fas fa-fire-alt absolute top-0 right-0 p-4 opacity-5 text-6xl text-rose-600"></i>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Cumulative Hotspots</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiHotspots">0</div>
+                <p class="text-[10px] text-rose-600 font-bold mt-4">2001-2026 Total</p>
             </div>
-            <h1 class="text-6xl md:text-8xl font-black mb-8 leading-none tracking-tighter text-slate-900">
-                Guardians of the <br><span class="text-emerald-600">Congo Basin</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-600 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
-                The most comprehensive environmental intelligence platform for the <strong>Okapi Wildlife Reserve</strong>. 26 years of data quantifying the impact of mining, logging, and fire.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="timeline.html" class="bg-emerald-600 text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition shadow-2xl">Start Timeline</a>
-                <a href="database.html" class="bg-white text-slate-900 px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-slate-50 transition border border-slate-200 shadow-sm">Download Data</a>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <i class="fas fa-chart-area absolute top-0 right-0 p-4 opacity-5 text-6xl text-amber-600"></i>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Burned Area (Est.)</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiBurned">0 <span class="text-sm">ha</span></div>
+                <p class="text-[10px] text-amber-600 font-bold mt-4">Total Scientific Estimate</p>
             </div>
-        </div>
-    </header>
-
-    <!-- Main Module Grid -->
-    <main class="container mx-auto px-4 py-32 relative -mt-32 z-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Module: Timeline -->
-            <a href="timeline.html" class="bg-white p-10 rounded-[2.5rem] border border-slate-200 card-hover group shadow-sm">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                    <i class="fas fa-history text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Temporal Analysis</h3>
-                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Animated year-by-year evolution of environmental change from 2000 to 2026. Visualizing the decadal trajectory of forest loss.</p>
-                <span class="text-emerald-600 text-xs font-black uppercase tracking-widest flex items-center">Open Timeline <i class="fas fa-arrow-right ml-2"></i></span>
-            </a>
-
-            <!-- Module: Logging -->
-            <a href="logging-analysis.html" class="bg-white p-10 rounded-[2.5rem] border border-slate-200 card-hover group shadow-sm">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                    <i class="fas fa-truck-loading text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Logging Intelligence</h3>
-                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Tracking illegal logging hotspots and associated road expansion. Temporal monitoring of primary forest extraction.</p>
-                <span class="text-emerald-600 text-xs font-black uppercase tracking-widest flex items-center">Analyze Logging <i class="fas fa-arrow-right ml-2"></i></span>
-            </a>
-
-            <!-- Module: Mining -->
-            <a href="mining-analysis.html" class="bg-white p-10 rounded-[2.5rem] border border-slate-200 card-hover group shadow-sm">
-                <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-amber-600 group-hover:text-white transition-all">
-                    <i class="fas fa-pickaxe text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Mining Governance</h3>
-                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Integrating official <strong>CAMI RDC</strong> concession polygons and <strong>IPIS</strong> artisanal site databases. Monitoring permits within the OWR boundary.</p>
-                <span class="text-amber-600 text-xs font-black uppercase tracking-widest flex items-center">Analyze Governance <i class="fas fa-arrow-right ml-2"></i></span>
-            </a>
-
-            <!-- Module: Dashboard -->
-            <a href="dashboard.html" class="bg-white p-10 rounded-[2.5rem] border border-slate-200 card-hover group block shadow-sm">
-                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <i class="fas fa-chart-line text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Ecological Dashboard</h3>
-                <p class="text-slate-500 mb-8 text-sm leading-relaxed">High-level environmental indicators and interactive trend charts. Quantitative monitoring of forest health and risk levels.</p>
-                <span class="text-blue-600 text-xs font-black uppercase tracking-widest flex items-center">Explore Trends <i class="fas fa-arrow-right ml-2"></i></span>
-            </a>
-
-            <!-- Module: Spatial Map -->
-            <a href="maps.html" class="bg-white p-10 rounded-[2.5rem] border border-slate-200 card-hover group shadow-sm">
-                <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-rose-600 group-hover:text-white transition-all">
-                    <i class="fas fa-map-marked-alt text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Spatial Explorer</h3>
-                <div id="miniMap" class="mb-6"></div>
-                <span class="text-rose-600 text-xs font-black uppercase tracking-widest flex items-center">Open Map <i class="fas fa-arrow-right ml-2"></i></span>
-            </a>
-
-            <!-- Module: Database -->
-            <a href="database.html" class="bg-white p-10 rounded-[2.5rem] border border-slate-200 card-hover group shadow-sm">
-                <div class="w-16 h-16 bg-slate-100 text-slate-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-slate-900 group-hover:text-white transition-all">
-                    <i class="fas fa-database text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Scientific Data Hub</h3>
-                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Access to all 20 environmental thematic databases. Searchable, sortable, and downloadable in CSV format.</p>
-                <span class="text-slate-900 text-xs font-black uppercase tracking-widest flex items-center">Browse Databases <i class="fas fa-arrow-right ml-2"></i></span>
-            </a>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <i class="fas fa-tree absolute top-0 right-0 p-4 opacity-5 text-6xl text-emerald-600"></i>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Forest Loss via Fire</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiLoss">0 <span class="text-sm">ha</span></div>
+                <p class="text-[10px] text-emerald-600 font-bold mt-4">Primary Canopy Loss</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                <i class="fas fa-tachometer-alt absolute top-0 right-0 p-4 opacity-5 text-6xl text-blue-600"></i>
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg Fire Power (FRP)</h3>
+                <div class="text-4xl font-black text-slate-900" id="kpiFRP">0 <span class="text-sm">MW</span></div>
+                <p class="text-[10px] text-blue-600 font-bold mt-4">Radiative Intensity</p>
+            </div>
         </div>
 
-        <!-- Scientific Partners -->
-        <section class="mt-40 text-center">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.6em] text-emerald-600 mb-16">Authoritative Scientific Partners</h4>
-            <div class="flex flex-wrap justify-center gap-16 items-center opacity-70 hover:opacity-100 transition duration-700">
-                <a href="https://drclicences.cami.cd/fr/" class="text-xl font-black text-slate-900 hover:text-emerald-600 transition tracking-tighter">CAMI RDC</a>
-                <a href="https://ipisresearch.be/" class="text-xl font-black text-slate-900 hover:text-emerald-600 transition tracking-tighter italic">IPIS RESEARCH</a>
-                <a href="https://earthenginepartners.appspot.com/science-2013-global-forest" class="text-xl font-black text-slate-900 hover:text-emerald-600 transition tracking-tighter">HANSEN / UMD</a>
-                <a href="https://firms.modaps.eosdis.nasa.gov/" class="text-xl font-black text-slate-900 hover:text-emerald-600 transition tracking-tighter italic">NASA FIRMS</a>
-                <a href="https://worldcover2020.esa.int/" class="text-xl font-black text-slate-900 hover:text-emerald-600 transition tracking-tighter uppercase tracking-widest">ESA WORLDCOVER</a>
+        <!-- Main Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
+            <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Temporal Fire Trajectory (2001-2026)</h3>
+                <div class="relative h-[400px]">
+                    <canvas id="temporalChart"></canvas>
+                </div>
             </div>
-        </section>
+            <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10 text-center">Seasonal Intensity</h3>
+                <div class="relative h-[400px]">
+                    <canvas id="seasonalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Burned Area vs Forest Loss</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Cumulative Fire Evolution</h3>
+                <div class="relative h-[300px]">
+                    <canvas id="cumulativeChart"></canvas>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white py-20 mt-40 border-t border-slate-200">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between items-center gap-12">
-                <div class="w-full md:w-1/3">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center">
-                            <i class="fas fa-leaf text-white text-sm"></i>
-                        </div>
-                        <span class="text-lg font-black tracking-tighter text-slate-900">OWR INTEL</span>
-                    </div>
-                    <p class="text-sm text-slate-500 leading-relaxed">Quantitative environmental monitoring and scientific intelligence for the Okapi Wildlife Reserve, DR Congo. Quantified in Hectares (ha).</p>
-                </div>
-                <div class="flex gap-12">
-                    <div class="space-y-4">
-                        <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-400">Modules</h5>
-                        <ul class="text-xs space-y-2 text-slate-500">
-                            <li><a href="timeline.html" class="hover:text-emerald-600 transition">Timeline</a></li>
-                            <li><a href="mining-analysis.html" class="hover:text-emerald-600 transition">Mining Intel</a></li>
-                            <li><a href="logging-analysis.html" class="hover:text-emerald-600 transition">Logging Intel</a></li>
-                            <li><a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a></li>
-                        </ul>
-                    </div>
-                    <div class="space-y-4">
-                        <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-400">Resources</h5>
-                        <ul class="text-xs space-y-2 text-slate-500">
-                            <li><a href="database.html" class="hover:text-emerald-600 transition">Database Hub</a></li>
-                            <li><a href="methodology.html" class="hover:text-emerald-600 transition">Methodology</a></li>
-                            <li><a href="readme.md" class="hover:text-emerald-600 transition">Documentation</a></li>
-                        </ul>
-                    </div>
-                </div>
+    <footer class="bg-white py-20 mt-20 border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Fire Monitoring System • Scientific Platform</p>
+            <div class="flex justify-center gap-12 opacity-50 mb-10 grayscale">
+                <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-8" alt="NASA FIRMS">
             </div>
-            <div class="mt-20 pt-10 border-t border-slate-100 text-center text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
-                &copy; 2026 Okapi Wildlife Reserve Monitoring System • Open Science Initiative
-            </div>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • NASA / UMD Hansen Integrated</p>
         </div>
     </footer>
 
     <script>
-        const miniMap = L.map('miniMap', { zoomControl: false, attributionControl: false }).setView([1.6333, 28.5833], 6);
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(miniMap);
+        async function initDashboard() {
+            const fireRes = await fetch('data/csv/burned-area-by-year.csv');
+            const fireText = await fireRes.text();
+            const fireData = Papa.parse(fireText, { header: true }).data.filter(d => d.year);
 
-        L.polygon([[1.0, 27.5], [1.0, 30.0], [2.5, 30.0], [2.5, 27.5]], {
-            color: "#059669", weight: 2, fillOpacity: 0.1
-        }).addTo(miniMap);
+            const monthRes = await fetch('data/csv/monthly-fire-stats.csv');
+            const monthText = await monthRes.text();
+            const monthData = Papa.parse(monthText, { header: true }).data.filter(d => d.month);
+
+            // Update KPIs
+            const totalHotspots = fireData.reduce((acc, curr) => acc + parseInt(curr.fire_count), 0);
+            const totalBurned = fireData.reduce((acc, curr) => acc + parseFloat(curr.total_burned_area_ha), 0);
+            const totalLoss = fireData.reduce((acc, curr) => acc + parseFloat(curr.total_forest_loss_ha), 0);
+            const avgFRP = fireData.reduce((acc, curr) => acc + parseFloat(curr.avg_frp), 0) / fireData.length;
+
+            document.getElementById('kpiHotspots').innerText = totalHotspots.toLocaleString();
+            document.getElementById('kpiBurned').innerText = Math.round(totalBurned).toLocaleString();
+            document.getElementById('kpiLoss').innerText = Math.round(totalLoss).toLocaleString();
+            document.getElementById('kpiFRP').innerText = avgFRP.toFixed(1);
+
+            // Charts
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = 'Plus Jakarta Sans';
+            Chart.defaults.font.weight = 'bold';
+
+            // Temporal Chart
+            new Chart(document.getElementById('temporalChart'), {
+                type: 'line',
+                data: {
+                    labels: fireData.map(d => d.year),
+                    datasets: [{
+                        label: 'Fire Hotspots',
+                        data: fireData.map(d => d.fire_count),
+                        borderColor: '#e11d48',
+                        backgroundColor: 'rgba(225, 29, 72, 0.05)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: { 
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' }, border: { display: false } }, x: { grid: { display: false }, border: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Seasonal Chart
+            new Chart(document.getElementById('seasonalChart'), {
+                type: 'radar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Avg Fire Count',
+                        data: monthData.map(d => d.avg_fire_count),
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { r: { grid: { color: 'rgba(0,0,0,0.05)' }, pointLabels: { font: { size: 10 } } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Comparison Chart
+            new Chart(document.getElementById('comparisonChart'), {
+                type: 'bar',
+                data: {
+                    labels: fireData.map(d => d.year).slice(-10),
+                    datasets: [
+                        { label: 'Burned Area', data: fireData.map(d => d.total_burned_area_ha).slice(-10), backgroundColor: '#fcd34d' },
+                        { label: 'Forest Loss', data: fireData.map(d => d.total_forest_loss_ha).slice(-10), backgroundColor: '#10b981' }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { display: false }, x: { grid: { display: false } } },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            // Cumulative Evolution
+            let cum = 0;
+            const cumData = fireData.map(d => { cum += parseInt(d.fire_count); return cum; });
+            new Chart(document.getElementById('cumulativeChart'), {
+                type: 'line',
+                data: {
+                    labels: fireData.map(d => d.year),
+                    datasets: [{
+                        label: 'Cumulative Fires',
+                        data: cumData,
+                        borderColor: '#2563eb',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2,
+                        pointRadius: 2
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        initDashboard();
     </script>
-
 </body>
 </html>

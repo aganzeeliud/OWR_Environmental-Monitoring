@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Data | OWR Fire Monitoring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+    </style>
+</head>
+<body class="text-slate-700">
+    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
+        <div class="flex items-center space-x-3">
+            <div class="bg-rose-600 p-2 rounded-lg">
+                <i class="fas fa-cloud-download-alt text-white"></i>
+            </div>
+            <span class="font-bold tracking-tighter text-xl uppercase">Open Data Portal</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <a href="index.html" class="hover:text-rose-600 transition">Dashboard</a>
+            <a href="map.html" class="hover:text-rose-600 transition">Interactive Map</a>
+            <a href="download.html" class="text-rose-600">Download</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-20">
+        <header class="mb-16 text-center">
+            <h1 class="text-6xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Access the <span class="text-rose-600">Data</span></h1>
+            <p class="text-xl text-slate-500 max-w-2xl mx-auto">Download the complete temporal database for wildfire hotspots, burned area, and forest loss within the Okapi Wildlife Reserve (2001-2026).</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- CSV Download -->
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-16 h-16 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-rose-600 group-hover:text-white transition-all">
+                    <i class="fas fa-file-csv text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Fire Hotspots (CSV)</h3>
+                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Complete tabular dataset including coordinates, FRP, confidence, and source provider (MODIS/VIIRS).</p>
+                <a href="data/csv/fire-hotspots.csv" class="bg-slate-900 text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest block text-center hover:bg-rose-600 transition shadow-lg">Download CSV</a>
+            </div>
+
+            <!-- GeoJSON Download -->
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <i class="fas fa-globe-africa text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Spatial Hotspots</h3>
+                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Geospatial vector format (GeoJSON) ready for integration into QGIS, ArcGIS, or other spatial analysis software.</p>
+                <a href="data/geojson/fire-hotspots.geojson" class="bg-slate-900 text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest block text-center hover:bg-blue-600 transition shadow-lg">Download GeoJSON</a>
+            </div>
+
+            <!-- Stats Download -->
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+                <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                    <i class="fas fa-chart-line text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-4 text-slate-900 uppercase tracking-tighter">Annual Stats</h3>
+                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Consolidated annual statistics for burned area (ha) and primary forest loss (ha) from 2001 to 2026.</p>
+                <a href="data/csv/burned-area-by-year.csv" class="bg-slate-900 text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest block text-center hover:bg-emerald-600 transition shadow-lg">Download Stats</a>
+            </div>
+        </div>
+
+        <div class="mt-20 bg-slate-900 rounded-[3rem] p-16 text-white relative overflow-hidden">
+            <i class="fas fa-database absolute -bottom-10 -right-10 text-[15rem] opacity-5"></i>
+            <h2 class="text-4xl font-black mb-8 uppercase tracking-tighter">Scientific Integrity & License</h2>
+            <p class="text-slate-400 max-w-3xl leading-relaxed mb-8">This data is provided under the Open Database License (ODbL). All datasets used in this platform are sourced from NASA EarthData and the University of Maryland. Proper citation is required for any publication using these derivatives.</p>
+            <div class="flex gap-4">
+                <div class="bg-white/5 border border-white/10 px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">EPSG:4326 (WGS84)</div>
+                <div class="bg-white/5 border border-white/10 px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">Precision: 30m / 375m / 1km</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

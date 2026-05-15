@@ -1,0 +1,22 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "718",
+                "name": "Okapi Wildlife Reserve",
+                "designation": "World Heritage Site",
+                "area_ha": 1372625
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [28.0, 1.0], [29.2, 1.0], [29.2, 2.5], [28.0, 2.5], [28.0, 1.0]
+                    ]
+                ]
+            }
+        }
+    ]
+}

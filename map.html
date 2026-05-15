@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Explorer | OWR Fire Monitoring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-heat@0.2.0/dist/leaflet-heat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        #map { height: calc(100vh - 64px); background: #e2e8f0; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.05); }
+        .custom-popup .leaflet-popup-content-wrapper { border-radius: 12px; }
+        .timeline-control { background: white; padding: 10px 20px; border-radius: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; }
+    </style>
+</head>
+<body class="overflow-hidden text-slate-700">
+    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 relative z-[1001]">
+        <a href="index.html" class="flex items-center space-x-3">
+            <div class="bg-rose-600 p-2 rounded-lg">
+                <i class="fas fa-satellite text-white"></i>
+            </div>
+            <span class="font-bold tracking-tighter text-xl uppercase">OWR SPATIAL INTEL</span>
+        </a>
+        <div class="flex items-center space-x-6">
+            <a href="index.html" class="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-rose-600 transition">Dashboard</a>
+            <div class="bg-emerald-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 items-center border border-emerald-100 flex">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span> 2001-2026 Archive
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex relative">
+        <!-- Sidebar -->
+        <aside class="w-80 glass z-[1000] p-6 overflow-y-auto absolute left-0 top-0 bottom-0 m-4 rounded-3xl shadow-xl transition-transform duration-300" id="sidebar">
+            <h2 class="font-black text-xs uppercase tracking-[0.2em] text-rose-600 mb-6">Map Control</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Temporal Filter</h3>
+                    <input type="range" id="timeSlider" min="2001" max="2026" value="2026" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-600">
+                    <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400">
+                        <span>2001</span>
+                        <span id="currentYear" class="text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-100">2026</span>
+                        <span>2026</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Layers</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-fire text-rose-600 mr-2"></i> Active Hotspots</span>
+                            <input type="checkbox" id="checkHotspots" checked class="rounded-full text-rose-600 focus:ring-0">
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-layer-group text-amber-600 mr-2"></i> Heatmap Intensity</span>
+                            <input type="checkbox" id="checkHeatmap" class="rounded-full text-amber-600 focus:ring-0">
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                            <span class="text-xs font-bold"><i class="fas fa-shield-alt text-emerald-600 mr-2"></i> OWR Boundary</span>
+                            <input type="checkbox" id="checkBoundary" checked class="rounded-full text-emerald-600 focus:ring-0">
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Basemap</h3>
+                    <select id="baseMapSelect" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-rose-600 outline-none">
+                        <option value="googleSat">Google Satellite</option>
+                        <option value="topo">Topology</option>
+                        <option value="osm">Standard</option>
+                    </select>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100">
+                    <div class="bg-rose-50 p-4 rounded-2xl border border-rose-100">
+                        <h4 class="text-[10px] font-black text-rose-600 uppercase tracking-widest mb-1">Live Stats (Year)</h4>
+                        <div class="text-2xl font-black text-slate-900" id="statCount">0</div>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Detected fire pixels</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="map" class="w-full"></div>
+        
+        <!-- Map Controls -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-[1001] timeline-control no-print">
+            <button id="playBtn" class="text-rose-600 hover:scale-110 transition"><i class="fas fa-play"></i></button>
+            <span class="text-xs font-black uppercase tracking-widest text-slate-400">Temporal Playback</span>
+        </div>
+    </div>
+
+    <script>
+        const map = L.map('map', { zoomControl: false }).setView([1.6333, 28.5833], 9);
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        const baseMaps = {
+            googleSat: L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: 'Google Maps' }),
+            topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: 'OpenTopoMap' }),
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' })
+        };
+        baseMaps.googleSat.addTo(map);
+
+        let hotspotLayer = L.markerClusterGroup();
+        let heatmapLayer = L.heatLayer([], { radius: 25, blur: 15, maxZoom: 10 });
+        let boundaryLayer;
+        let allHotspots = [];
+
+        async function initMap() {
+            const [bndRes, fireRes] = await Promise.all([
+                fetch('data/boundary/okapi-boundary.geojson'),
+                fetch('data/geojson/fire-hotspots.geojson')
+            ]);
+
+            const boundaryData = await bndRes.json();
+            const fireData = await fireRes.json();
+            allHotspots = fireData.features;
+
+            boundaryLayer = L.geoJSON(boundaryData, {
+                style: { color: "#10b981", weight: 3, fillOpacity: 0.05, dashArray: '5, 10' }
+            }).addTo(map);
+
+            renderYear(2026);
+        }
+
+        function renderYear(year) {
+            hotspotLayer.clearLayers();
+            const filtered = allHotspots.filter(f => f.properties.year == year);
+            
+            const points = [];
+            filtered.forEach(f => {
+                const marker = L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], {
+                    radius: 6, fillColor: '#e11d48', color: '#fff', weight: 1, fillOpacity: 0.8
+                }).bindPopup(`
+                    <div class="p-2">
+                        <div class="text-[10px] font-black text-slate-400 uppercase mb-1">Source: ${f.properties.source}</div>
+                        <div class="text-sm font-black text-slate-900">${f.properties.year}-${f.properties.month} Fire Pixel</div>
+                        <div class="mt-2 text-xs font-bold text-rose-600">FRP: ${f.properties.frp} MW</div>
+                    </div>
+                `);
+                hotspotLayer.addLayer(marker);
+                points.append([f.geometry.coordinates[1], f.geometry.coordinates[0], 0.5]);
+            });
+
+            if(document.getElementById('checkHotspots').checked) hotspotLayer.addTo(map);
+            heatmapLayer.setLatLngs(filtered.map(f => [f.geometry.coordinates[1], f.geometry.coordinates[0], 0.5]));
+            if(document.getElementById('checkHeatmap').checked) heatmapLayer.addTo(map);
+            
+            document.getElementById('statCount').innerText = filtered.length.toLocaleString();
+        }
+
+        // Controls
+        document.getElementById('timeSlider').oninput = (e) => {
+            const yr = e.target.value;
+            document.getElementById('currentYear').innerText = yr;
+            renderYear(yr);
+        };
+
+        document.getElementById('checkHotspots').onchange = (e) => e.target.checked ? hotspotLayer.addTo(map) : map.removeLayer(hotspotLayer);
+        document.getElementById('checkHeatmap').onchange = (e) => e.target.checked ? heatmapLayer.addTo(map) : map.removeLayer(heatmapLayer);
+        document.getElementById('checkBoundary').onchange = (e) => e.target.checked ? boundaryLayer.addTo(map) : map.removeLayer(boundaryLayer);
+        document.getElementById('baseMapSelect').onchange = (e) => {
+            Object.values(baseMaps).forEach(m => map.removeLayer(m));
+            baseMaps[e.target.value].addTo(map);
+        };
+
+        let isPlaying = false;
+        let playInterval;
+        document.getElementById('playBtn').onclick = () => {
+            isPlaying = !isPlaying;
+            document.getElementById('playBtn').innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            if(isPlaying) {
+                playInterval = setInterval(() => {
+                    let yr = parseInt(document.getElementById('timeSlider').value);
+                    yr = yr >= 2026 ? 2001 : yr + 1;
+                    document.getElementById('timeSlider').value = yr;
+                    document.getElementById('currentYear').innerText = yr;
+                    renderYear(yr);
+                }, 1000);
+            } else {
+                clearInterval(playInterval);
+            }
+        };
+
+        initMap();
+    </script>
+</body>
+</html>
