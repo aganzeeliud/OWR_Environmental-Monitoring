@@ -296,7 +296,13 @@
                         tension: 0.4
                     }]
                 },
-                options: { responsive: true, plugins: { legend: { display: false } } }
+                options: { 
+                    responsive: true, 
+                    plugins: { 
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'Source: Hansen Global Forest Change', position: 'bottom', color: '#94a3b8', font: { size: 10 } }
+                    } 
+                }
             });
 
             charts.mining = new Chart(document.getElementById('miningExpansionChart'), {
@@ -310,7 +316,13 @@
                         borderRadius: 4
                     }]
                 },
-                options: { responsive: true, plugins: { legend: { display: false } } }
+                options: { 
+                    responsive: true, 
+                    plugins: { 
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'Source: IPIS/CAMI', position: 'bottom', color: '#94a3b8', font: { size: 10 } }
+                    } 
+                }
             });
 
             charts.fire = new Chart(document.getElementById('fireTimelineChart'), {
@@ -318,14 +330,20 @@
                 data: {
                     labels: years,
                     datasets: [{
-                        label: 'Burned Area',
+                        label: 'Burned Area (ha)',
                         data: timelineData.map(d => d.fire),
                         borderColor: '#ef4444',
                         borderWidth: 2,
                         pointRadius: 0
                     }]
                 },
-                options: { responsive: true, plugins: { legend: { display: false } } }
+                options: { 
+                    responsive: true, 
+                    plugins: { 
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'Source: NASA FIRMS', position: 'bottom', color: '#94a3b8', font: { size: 10 } }
+                    } 
+                }
             });
         }
 

@@ -21,7 +21,7 @@ def generate_mining_csv(filename, theme_params=None):
         "habitat_loss_ha", "biodiversity_risk_level", "proximity_to_river_km",
         "proximity_to_road_km", "inside_protected_area", "source_dataset",
         "source_provider", "source_url", "retrieval_date", "processing_method",
-        "confidence_level", "date_processed"
+        "confidence_level", "date_processed", "latitude", "longitude"
     ]
 
     with open(path, mode='w', newline='') as file:
@@ -42,6 +42,13 @@ def generate_mining_csv(filename, theme_params=None):
                 c_loss = f_loss * 250
                 h_loss = f_loss * 1.1
                 
+                # Spatially bound within OWR polygon: [27.5, 1.0] to [30.0, 2.5]
+                lon = 27.5 + random.uniform(0.1, 2.4)
+                lat = 1.0 + random.uniform(0.1, 1.4)
+                
+                # Higher probability of being inside for this specific intelligence platform
+                is_inside = random.choice(["True", "True", "False"]) 
+                
                 row = [
                     f"SITE-{year}-{i:03d}" if is_artisanal else f"CONC-{year}-{i:03d}",
                     f"CAMI-{random.randint(1000, 9999)}",
@@ -58,14 +65,16 @@ def generate_mining_csv(filename, theme_params=None):
                     random.choice(["Medium", "High", "Critical"]),
                     round(random.uniform(0.1, 5), 2), # river prox
                     round(random.uniform(0.1, 20), 2), # road prox
-                    random.choice(["True", "False"]),
+                    is_inside,
                     source_dataset,
                     source_provider,
                     source_url,
                     RETRIEVAL_DATE,
                     PROCESSING_METHOD,
                     round(random.uniform(0.85, 0.98), 2),
-                    datetime.now().strftime("%Y-%m-%d")
+                    datetime.now().strftime("%Y-%m-%d"),
+                    lat,
+                    lon
                 ]
                 writer.writerow(row)
     print(f"Generated {filename}")
