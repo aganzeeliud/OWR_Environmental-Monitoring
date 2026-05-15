@@ -1,153 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fire & Forest Intel | OWR Monitoring</title>
+    <title>Wildfire Dynamics | OWR Environmental Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
-        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
-        .chart-source { position: absolute; bottom: 0; right: 0; font-size: 8px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; background: rgba(255,255,255,0.8); padding: 2px 8px; border-top-left-radius: 8px; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+        }
+
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        .card-modern {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+        }
+
+        .accent-rose {
+            background: linear-gradient(135deg, #e11d48 0%, #fb7185 100%);
+        }
+
+        .chart-source { 
+            position: absolute; 
+            bottom: 10px; 
+            right: 15px; 
+            font-size: 8px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            color: #94a3b8; 
+            letter-spacing: 0.05em; 
+        }
+
+        .reveal { visibility: hidden; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
     </style>
 </head>
-<body class="text-slate-700">
+<body class="overflow-x-hidden">
 
-    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
-        <div class="flex items-center space-x-3">
-            <div class="bg-rose-600 p-2 rounded-lg">
-                <i class="fas fa-fire text-white"></i>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-[3000] glass-nav">
+        <div class="container mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 accent-rose rounded-xl flex items-center justify-center shadow-lg shadow-rose-200">
+                    <i class="fas fa-fire text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tighter text-slate-900 uppercase">OWR <span class="text-rose-600">FIRE</span></span>
+                    <div class="text-[8px] font-black uppercase tracking-[0.3em] text-slate-400 -mt-1">Wildfire Dynamics</div>
+                </div>
             </div>
-            <span class="font-bold tracking-tighter text-xl uppercase">OWR FIRE INTEL</span>
-        </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-rose-600 transition">Hub</a>
-            <a href="map.html" class="hover:text-rose-600 transition">Interactive Map</a>
-            <a href="methodology.html" class="hover:text-rose-600 transition">Methodology</a>
-            <a href="download.html" class="hover:text-rose-600 transition">Download Data</a>
+            
+            <div class="hidden lg:flex items-center space-x-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="index.html" class="hover:text-rose-600 transition-colors">Hub</a>
+                <a href="climate-observatory.html" class="hover:text-rose-600 transition-colors">Climate</a>
+                <a href="https://aganzeeliud.github.io/GFW_/explorer" class="hover:text-rose-600 transition-colors">Mining</a>
+                <a href="logging-analysis.html" class="hover:text-rose-600 transition-colors">Logging</a>
+                <a href="maps.html" class="hover:text-rose-600 transition-colors">GIS Hub</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-100 hidden sm:block">NASA FIRMS Live</span>
+                <a href="dashboard.html" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-slate-700 transition shadow-xl">Analytics</a>
+            </div>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12">
-        <header class="mb-16">
-            <div class="flex justify-between items-end gap-8 mb-8">
-                <div class="max-w-3xl">
-                    <h1 class="text-6xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Wildfire <span class="text-rose-600">Analytics</span></h1>
-                    <p class="text-slate-500 text-lg">Advanced classification and high-resolution hectare loss analysis within the Okapi Wildlife Reserve (2001–2026). Monitoring anthropogenic drivers and environmental severity.</p>
+    <!-- Hero Header -->
+    <header class="relative pt-40 pb-20 overflow-hidden hero-pattern">
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="reveal inline-flex items-center space-x-3 bg-rose-50 border border-rose-100 rounded-full px-5 py-2 mb-8">
+                <span class="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-black uppercase tracking-widest text-rose-700">Anthropogenic & Natural Fire Drivers</span>
+            </div>
+            <h1 class="reveal text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tighter text-slate-900 uppercase">
+                Wildfire <br><span class="text-rose-600">Dynamics Analytics</span>
+            </h1>
+            <p class="reveal text-lg md:text-xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-12">
+                Advanced classification and high-resolution hectare loss analysis (2001–2026). Monitoring anthropogenic drivers and dry-season criticality within the UNESCO site.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Total Burned Area</span>
+                    <div class="text-3xl font-black text-slate-900" id="kpiBurned">0</div>
+                    <div class="text-[10px] text-amber-600 font-bold mt-2 uppercase tracking-tighter">Cumulative Hectares</div>
                 </div>
-                <div class="bg-emerald-50 px-6 py-3 rounded-2xl border border-emerald-100 flex flex-col items-center">
-                    <span class="text-[10px] font-black uppercase text-emerald-600 tracking-widest">Reserve Health</span>
-                    <span class="text-xl font-black text-emerald-700" id="cumLossPercent">0.0%</span>
-                    <span class="text-[10px] font-bold text-emerald-600">Cumulative Impact</span>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Primary Forest Loss</span>
+                    <div class="text-3xl font-black text-slate-900" id="kpiLoss">0</div>
+                    <div class="text-[10px] text-rose-600 font-bold mt-2 uppercase tracking-tighter" id="cumLossPercent">0.00% Impact</div>
                 </div>
-            </div>
-        </header>
-
-        <!-- KPI Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Burned</h3>
-                <div class="text-4xl font-black text-slate-900" id="kpiBurned">0</div>
-                <p class="text-[10px] text-amber-600 font-bold mt-4">Hectares Affected</p>
-            </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Forest Lost</h3>
-                <div class="text-4xl font-black text-slate-900" id="kpiLoss">0</div>
-                <p class="text-[10px] text-emerald-600 font-bold mt-4">Primary Canopy (ha)</p>
-            </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Peak Severity</h3>
-                <div class="text-4xl font-black text-rose-600">EXTREME</div>
-                <p class="text-[10px] text-rose-400 font-bold mt-4">Dry Season Criticality</p>
-            </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Primary Driver</h3>
-                <div class="text-3xl font-black text-slate-900 uppercase leading-none" id="kpiDriver">AGRI</div>
-                <p class="text-[10px] text-slate-400 font-bold mt-4">Dominant Fire Type</p>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Peak Severity</span>
+                    <div class="text-3xl font-black text-rose-600 uppercase">EXTREME</div>
+                    <div class="text-[10px] text-rose-400 font-bold mt-2 uppercase tracking-tighter">Dry Season Criticality</div>
+                </div>
+                <div class="reveal card-modern p-8">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block">Primary Driver</span>
+                    <div class="text-3xl font-black text-slate-900 uppercase" id="kpiDriver">AGRI</div>
+                    <div class="text-[10px] text-slate-400 font-bold mt-2 uppercase tracking-tighter">Dominant Fire Type</div>
+                </div>
             </div>
         </div>
+    </header>
 
-        <!-- Main Charts -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
-            <div class="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Annual Forest Loss & Burn Intensity</h3>
-                <div class="relative h-[400px]">
+    <main class="container mx-auto px-8 pb-40">
+        <!-- Main Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+            <div class="reveal lg:col-span-8 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Annual Forest Loss & Burn Intensity</h3>
+                <div class="relative h-[450px]">
                     <canvas id="annualLossChart"></canvas>
-                    <span class="chart-source">Source: NASA FIRMS / MODIS</span>
+                    <span class="chart-source">Source: NASA FIRMS / MODIS / VIIRS</span>
                 </div>
             </div>
-            <div class="lg:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10 text-center">Fire Type Distribution</h3>
-                <div class="relative h-[400px]">
+            <div class="reveal lg:col-span-4 card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter text-center">Fire Type Distribution</h3>
+                <div class="relative h-[450px]">
                     <canvas id="typeChart"></canvas>
                     <span class="chart-source">Source: OWR Classification Engine</span>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Severity Index</h3>
+        <!-- Secondary Analytics -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+            <div class="reveal card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Severity Index</h3>
                 <div class="relative h-[300px]">
                     <canvas id="severityChart"></canvas>
                     <span class="chart-source">Source: NASA FRP Modeling</span>
                 </div>
             </div>
-            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Cumulative Degradation</h3>
+            <div class="reveal card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Cumulative Degradation</h3>
                 <div class="relative h-[300px]">
                     <canvas id="cumulativeChart"></canvas>
                     <span class="chart-source">Source: Hansen GFC / UMD</span>
                 </div>
             </div>
-            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">Monthly Seasonality</h3>
+            <div class="reveal card-modern p-10">
+                <h3 class="text-xl font-black text-slate-900 mb-10 uppercase tracking-tighter">Monthly Seasonality</h3>
                 <div class="relative h-[300px]">
                     <canvas id="seasonalChart"></canvas>
-                    <span class="chart-source">Source: NASA FIRMS 2001-2026</span>
+                    <span class="chart-source">Source: NASA FIRMS Baseline</span>
                 </div>
             </div>
         </div>
 
-        <!-- Risk Table -->
-        <div class="mt-16 bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm overflow-hidden">
-            <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-8">Annual Impact Matrix</h3>
+        <!-- Annual Impact Table -->
+        <div class="reveal card-modern p-12 overflow-hidden shadow-sm">
+            <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-10">Annual Impact Matrix</h3>
             <div class="overflow-x-auto">
                 <table class="w-full text-left">
                     <thead>
                         <tr class="text-[10px] font-black uppercase text-slate-400 border-b border-slate-100">
-                            <th class="pb-4 px-4 text-center">Year</th>
-                            <th class="pb-4 px-4">Burned (ha)</th>
-                            <th class="pb-4 px-4">Loss (ha)</th>
-                            <th class="pb-4 px-4">Cumulative (ha)</th>
-                            <th class="pb-4 px-4">Impact %</th>
-                            <th class="pb-4 px-4 text-right">Fire Count</th>
+                            <th class="pb-6 px-4 text-center">Year</th>
+                            <th class="pb-6 px-4">Burned (ha)</th>
+                            <th class="pb-6 px-4">Loss (ha)</th>
+                            <th class="pb-6 px-4">Cumulative (ha)</th>
+                            <th class="pb-6 px-4">Impact %</th>
+                            <th class="pb-6 px-4 text-right">Fire Count</th>
                         </tr>
                     </thead>
                     <tbody id="statsTableBody" class="text-xs font-bold text-slate-600">
-                        <!-- Dynamic Rows -->
+                        <!-- Dynamic Content -->
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
 
-    <footer class="bg-white py-20 mt-20 border-t border-slate-200">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Fire Monitoring System • Analytics Engine v2.1</p>
-            <div class="flex justify-center gap-12 opacity-50 mb-10 grayscale">
-                <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-8" alt="NASA FIRMS">
+    <!-- Footer -->
+    <footer class="bg-white py-32 border-t border-slate-200">
+        <div class="container mx-auto px-8 text-center md:text-left">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-20">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center justify-center md:justify-start space-x-4 mb-8">
+                        <div class="w-10 h-10 accent-rose rounded-xl flex items-center justify-center">
+                            <i class="fas fa-fire text-white"></i>
+                        </div>
+                        <span class="text-2xl font-black tracking-tighter text-slate-900 uppercase">OWR <span class="text-rose-600">FIRE</span></span>
+                    </div>
+                    <p class="text-slate-500 max-w-md font-bold uppercase text-[10px] leading-relaxed tracking-widest mx-auto md:mx-0">
+                        Official Wildfire Intelligence Infrastructure for the Okapi Wildlife Reserve. Developing predictive monitoring solutions for high-stakes conservation.
+                    </p>
+                    <div class="flex justify-center md:justify-start gap-8 mt-12 grayscale opacity-40 hover:opacity-100 transition duration-700">
+                        <img src="https://www.earthdata.nasa.gov/s3/files/styles/medium/public/2022-02/firms_logo.png" class="h-6">
+                        <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-6">
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Analysis Modules</h5>
+                    <ul class="text-[10px] space-y-4 text-slate-600 font-black uppercase tracking-widest">
+                        <li><a href="climate-observatory.html" class="hover:text-rose-600 transition">Climate Dashboard</a></li>
+                        <li><a href="logging-analysis.html" class="hover:text-rose-600 transition">Extraction Intel</a></li>
+                        <li><a href="https://aganzeeliud.github.io/GFW_/explorer" class="hover:text-rose-600 transition">Mining Governance</a></li>
+                        <li><a href="maps.html" class="hover:text-rose-600 transition">GIS Hub</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Intelligence</h5>
+                    <ul class="text-[10px] space-y-4 text-slate-600 font-black uppercase tracking-widest">
+                        <li><a href="dashboard.html" class="hover:text-rose-600 transition">Analytics Console</a></li>
+                        <li><a href="database.html" class="hover:text-rose-600 transition">Data Archives</a></li>
+                        <li><a href="methodology.html" class="hover:text-rose-600 transition">Methodology</a></li>
+                    </ul>
+                </div>
             </div>
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Advanced Classification Pipeline</p>
+            
+            <div class="mt-32 pt-12 border-t border-slate-100 flex flex-wrap justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                <p>&copy; 2026 OWR Environmental Monitoring • NASA FIRMS Partnership</p>
+                <div class="flex gap-8 text-slate-300">
+                    <i class="fab fa-github hover:text-rose-600 cursor-pointer transition"></i>
+                    <i class="fab fa-twitter hover:text-rose-600 cursor-pointer transition"></i>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Init ScrollReveal
+        ScrollReveal().reveal('.reveal', { delay: 100, distance: '40px', origin: 'bottom', duration: 800, easing: 'ease-out' });
+
         async function initDashboard() {
+            // Load Data
             const lossRes = await fetch('data/csv/annual-hectare-loss.csv');
             const lossText = await lossRes.text();
             const lossData = Papa.parse(lossText, { header: true }).data.filter(d => d.year);
@@ -162,7 +275,7 @@
             
             document.getElementById('kpiBurned').innerText = Math.round(totalBurned).toLocaleString();
             document.getElementById('kpiLoss').innerText = Math.round(totalLoss).toLocaleString();
-            document.getElementById('cumLossPercent').innerText = (totalLoss / 1372625 * 100).toFixed(2) + '%';
+            document.getElementById('cumLossPercent').innerText = (totalLoss / 1372625 * 100).toFixed(2) + '% Impact';
 
             // Driver distribution
             const drivers = {};
@@ -170,7 +283,7 @@
             const topDriver = Object.keys(drivers).reduce((a, b) => drivers[a] > drivers[b] ? a : b);
             document.getElementById('kpiDriver').innerText = topDriver.split(' ')[0].toUpperCase();
 
-            // Charts
+            // Chart Defaults
             Chart.defaults.color = '#94a3b8';
             Chart.defaults.font.family = 'Plus Jakarta Sans';
             Chart.defaults.font.weight = 'bold';
@@ -181,13 +294,14 @@
                 data: {
                     labels: lossData.map(d => d.year),
                     datasets: [
-                        { label: 'Burned Area (ha)', data: lossData.map(d => d.annual_burned_ha), backgroundColor: '#fcd34d' },
-                        { label: 'Forest Loss (ha)', data: lossData.map(d => d.annual_forest_loss_ha), backgroundColor: '#10b981' }
+                        { label: 'Burned Area (ha)', data: lossData.map(d => d.annual_burned_ha), backgroundColor: '#fcd34d', borderRadius: 6 },
+                        { label: 'Forest Loss (ha)', data: lossData.map(d => d.annual_forest_loss_ha), backgroundColor: '#e11d48', borderRadius: 6 }
                     ]
                 },
                 options: { 
                     responsive: true, maintainAspectRatio: false,
-                    scales: { y: { grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                    plugins: { legend: { position: 'top', align: 'end', labels: { boxWidth: 12, font: { size: 10 } } } },
+                    scales: { y: { grid: { color: 'rgba(0,0,0,0.03)' }, border: { display: false } }, x: { grid: { display: false }, border: { display: false } } }
                 }
             });
 
@@ -198,10 +312,11 @@
                     labels: Object.keys(drivers),
                     datasets: [{
                         data: Object.values(drivers),
-                        backgroundColor: ['#f59e0b', '#10b981', '#3b82f6', '#ef4444', '#8b5cf6', '#06b6d4', '#f43f5e', '#64748b']
+                        backgroundColor: ['#e11d48', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#06b6d4', '#f43f5e', '#64748b'],
+                        borderWidth: 0
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } } }
+                options: { responsive: true, maintainAspectRatio: false, cutout: '80%', plugins: { legend: { position: 'bottom', labels: { padding: 20, boxWidth: 10, font: { size: 9 } } } } }
             });
 
             // Severity Chart
@@ -211,9 +326,13 @@
                 type: 'polarArea',
                 data: {
                     labels: Object.keys(severity),
-                    datasets: [{ data: Object.values(severity), backgroundColor: ['#10b981', '#fcd34d', '#f59e0b', '#e11d48'] }]
+                    datasets: [{ data: Object.values(severity), backgroundColor: ['#10b981', '#fcd34d', '#f59e0b', '#e11d48'], borderWidth: 0 }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: 'rgba(0,0,0,0.05)' } } } }
+                options: { 
+                    responsive: true, maintainAspectRatio: false, 
+                    scales: { r: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { display: false } } },
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } }
+                }
             });
 
             // Cumulative Chart
@@ -221,35 +340,35 @@
                 type: 'line',
                 data: {
                     labels: lossData.map(d => d.year),
-                    datasets: [{ label: 'Cumulative Loss', data: lossData.map(d => d.cumulative_loss_ha), borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16, 185, 129, 0.05)', tension: 0.4 }]
+                    datasets: [{ label: 'Cumulative Loss', data: lossData.map(d => d.cumulative_loss_ha), borderColor: '#e11d48', borderWidth: 3, fill: true, backgroundColor: 'rgba(225, 29, 72, 0.03)', tension: 0.4, pointRadius: 0 }]
                 },
                 options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
             });
 
-            // Seasonal Chart (Monthly)
+            // Seasonal Chart
             const monthly = Array(12).fill(0);
             classData.forEach(d => monthly[parseInt(d.month)-1]++);
             new Chart(document.getElementById('seasonalChart'), {
                 type: 'line',
                 data: {
                     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-                    datasets: [{ label: 'Fire Frequency', data: monthly, borderColor: '#f59e0b', tension: 0.4 }]
+                    datasets: [{ label: 'Fire Frequency', data: monthly, borderColor: '#f59e0b', borderWidth: 3, tension: 0.4, pointRadius: 2 }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } } }
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
             });
 
             // Table
             const tbody = document.getElementById('statsTableBody');
-            lossData.reverse().forEach(d => {
+            [...lossData].reverse().forEach(d => {
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-slate-50 hover:bg-slate-50 transition";
                 tr.innerHTML = `
-                    <td class="py-4 px-4 text-center text-slate-900">${d.year}</td>
-                    <td class="py-4 px-4">${parseFloat(d.annual_burned_ha).toLocaleString()}</td>
-                    <td class="py-4 px-4 text-rose-600">${parseFloat(d.annual_forest_loss_ha).toLocaleString()}</td>
-                    <td class="py-4 px-4">${parseFloat(d.cumulative_loss_ha).toLocaleString()}</td>
-                    <td class="py-4 px-4 text-emerald-600">${d.loss_percent_reserve}%</td>
-                    <td class="py-4 px-4 text-right">${d.fire_count}</td>
+                    <td class="py-6 px-4 text-center text-slate-900">${d.year}</td>
+                    <td class="py-6 px-4">${Math.round(parseFloat(d.annual_burned_ha)).toLocaleString()}</td>
+                    <td class="py-6 px-4 text-rose-600">${Math.round(parseFloat(d.annual_forest_loss_ha)).toLocaleString()}</td>
+                    <td class="py-6 px-4 font-black">${Math.round(parseFloat(d.cumulative_loss_ha)).toLocaleString()}</td>
+                    <td class="py-6 px-4"><span class="bg-rose-50 text-rose-600 px-3 py-1 rounded-full">${d.loss_percent_reserve}%</span></td>
+                    <td class="py-6 px-4 text-right text-slate-400">${d.fire_count}</td>
                 `;
                 tbody.appendChild(tr);
             });
