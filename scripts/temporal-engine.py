@@ -4,7 +4,7 @@ import random
 from datetime import datetime
 
 # Configuration
-YEARS = list(range(2000, 2027))
+YEARS = list(range(2000, 2031))
 SOURCE_PROVIDER = "Hansen Global Forest Change / GFW / NASA FIRMS"
 SOURCE_URL = "https://earthenginepartners.appspot.com/science-2013-global-forest"
 METHOD = "Google Earth Engine + GeoPandas Parametric Analysis"

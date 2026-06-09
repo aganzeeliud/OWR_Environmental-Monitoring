@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Boundaries for OWR: [Lng_min, Lat_min, Lng_max, Lat_max]
 OWR_BOUNDS = [28.0, 1.0, 29.2, 2.5]
-YEARS = list(range(2000, 2027))
+YEARS = list(range(2000, 2031))
 
 def generate_geodata():
     geojson = {

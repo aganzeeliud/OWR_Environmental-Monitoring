@@ -9,7 +9,7 @@ from datetime import datetime
 LNG_MIN, LNG_MAX = 28.0, 29.2
 LAT_MIN, LAT_MAX = 1.0, 2.5
 RESERVE_AREA_HA = 1372625
-YEARS = list(range(2001, 2027))
+YEARS = list(range(2001, 2031))
 
 # Simulation "Anchors" for Human Activity (Lat, Lng)
 VILLAGES = [[1.2, 28.1], [1.5, 28.8], [2.1, 28.5]]

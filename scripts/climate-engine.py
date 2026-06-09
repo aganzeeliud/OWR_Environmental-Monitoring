@@ -9,7 +9,7 @@ from datetime import datetime
 np.random.seed(42)
 
 # Configuration
-YEARS = list(range(1990, 2027))
+YEARS = list(range(1990, 2031))
 MONTHS = list(range(1, 13))
 RFO_COORDS = [
     [28.0, 1.0], [29.2, 1.0], [29.2, 2.5], [28.0, 2.5], [28.0, 1.0]

@@ -4,7 +4,7 @@ import random
 from datetime import datetime
 
 # Configuration
-YEARS = list(range(2000, 2027))
+YEARS = list(range(2000, 2031))
 OWR_LAT = 1.6333
 OWR_LON = 28.5833
 PROVINCE = "Ituri"

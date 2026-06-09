@@ -1,67 +1,43 @@
-# OWR Environmental Intelligence | Unified Command System
+# PROJECT SENTINEL | OWR Environmental Command Hub
 
-[![System Status](https://img.shields.io/badge/System-Active-emerald?style=for-the-badge&logo=satellite)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
-[![Deployment](https://img.shields.io/badge/Deployment-GitHub_Pages-blue?style=for-the-badge&logo=github)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
-[![Scientific Protocol](https://img.shields.io/badge/Protocol-S--2_Native-cyan?style=for-the-badge&logo=microscope)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/methodology.html)
+[![System Status](https://img.shields.io/badge/Sentinel-Active-10b981?style=for-the-badge&logo=satellite)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
+[![Deployment](https://img.shields.io/badge/Deployment-GitHub_Pages-3b82f6?style=for-the-badge&logo=github)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
+[![Data Horizon](https://img.shields.io/badge/Projection-2030-f59e0b?style=for-the-badge&logo=future)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/dashboard.html)
 
-**Official Multi-Temporal Command Infrastructure for the Okapi Wildlife Reserve (UNESCO World Heritage Site #718).**
+**Project Sentinel** is an advanced, high-fidelity environmental command infrastructure for the **Okapi Wildlife Reserve (UNESCO World Heritage Site #718)**. It fuses real-time satellite telemetry with multi-decadal historical baselines to monitor habitat loss, mining expansion, and climate flux through the year 2030.
 
 ---
 
-## 🌍 Executive Summary
-The **OWR Environmental Intelligence System** is a world-class geospatial monitoring platform designed to provide high-stakes conservation intelligence for the Okapi Wildlife Reserve in the Democratic Republic of the Congo. By fusing real-time satellite telemetry with multi-decadal historical baselines, the system empowers conservationists and scientific stakeholders with the data-driven insights necessary to combat extraction, monitor climate flux, and mitigate wildfire dynamics within the Congo Basin.
+## 🛰️ 2024 System Overhaul: "Project Sentinel"
 
-## 🕹️ Modular Intelligence Portals
+The platform has been upgraded with a high-stakes design language and recalibrated with 2024 real-world data anchors:
+
+- **Dark Aesthetic**: A deep indigo/slate-950 UI optimized for executive-level command and high-density monitoring.
+- **2024 Data Calibration**: Integrated Global Forest Watch (GFW) reports indicating a **~1,900 ha/year** forest loss baseline.
+- **Extended Horizon**: Synthetic projections extended to **2030** based on current acceleration trends in mining and logging.
+- **Hotspot Focus**: Specialized monitoring for the **Ituri River Basin**, **Kimia Mining (Muchacha)**, and the **RN4 Corridor**.
+
+## 🕹️ Intelligence Portals
 
 | Module | Focus | Telemetry Source | Temporal Scale |
 | :--- | :--- | :--- | :--- |
-| **[Climate Observatory](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/climate-observatory.html)** | Meteorological shifts, anomalies, & extreme weather. | Copernicus ERA5 / CHIRPS | 1990 — 2026 |
-| **[Wildfire Dynamics](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/fire-analysis.html)** | Real-time fire detection & driver classification. | NASA FIRMS / MODIS | 2001 — 2026 |
-| **[Logging Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/logging-analysis.html)** | Infrastructure expansion & illegal corridor mapping. | ESA Sentinel-2 | Real-time |
-| **[Mining Governance](https://aganzeeliud.github.io/GFW_/explorer)** | Artisanal & Industrial extraction monitoring. | Global Forest Watch | Continuous |
-| **[Spatial GIS Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/maps.html)** | Unified interactive spatial exploration. | ESRI / CARTO / Mapbox | Multi-Layer |
+| **[Project Dashboard](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/dashboard.html)** | Core metrics & threat vector analysis. | GFW / Hansen / NASA | 2000 — 2030 |
+| **[Climate Observatory](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/climate-observatory.html)** | Meteorological shifts & heatwave indexing. | Copernicus ERA5 / CHIRPS | 1990 — 2030 |
+| **[Wildfire Intel](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/fire-analysis.html)** | Real-time fire detection & classification. | NASA FIRMS / MODIS | 2001 — 2030 |
+| **[Logging Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/logging-analysis.html)** | Infrastructure expansion & RN4 mapping. | ESA Sentinel-2 | 2024 Baseline |
+| **[GIS Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/maps.html)** | Unified multi-layer spatial exploration. | CartoDB / Mapbox | Multi-Layer |
 
-## 🚀 Key System Features
-- **High-Density Bento Grid UI**: Optimized for executive-level situation awareness and zero-friction navigation.
-- **Automated Data Engine**: Python-based pipeline for synthesizing complex atmospheric and thermal datasets into actionable CSV/GeoJSON assets.
-- **Interactive Analytics**: High-fidelity charts powered by Plotly.js and Chart.js, visualizing 36 years of environmental flux.
-- **Scientific Transparency**: Integrated [Methodology Portal](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/methodology.html) citing authoritative sources (ECMWF, NASA, ESA).
-- **Open Data Architecture**: Comprehensive [Download Center](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/download.html) providing public access to processed scientific datasets.
+## 🛠️ Engineering & Data Pipeline
 
-## 📊 Authoritative Data Telemetry
-The system integrates multi-sensor data fusion to deliver a verified common operating picture:
-- **ERA5-Land (ECMWF)**: High-resolution climate reanalysis.
-- **CHIRPS**: Climate Hazards Group InfraRed Precipitation for hydrological monitoring.
-- **NASA FIRMS**: Active thermal anomalies and fire frequency.
-- **ESA Sentinel-2**: High-precision optical imagery for infrastructure detection.
-- **IPIS Research**: Artisanal mining site registry synchronization.
+- **Visuals**: Tailwind CSS, Chart.js (with custom gradient fills), Plotly.js, ScrollReveal.
+- **Data Engine**: Python (Pandas, NumPy, Shapely) pipeline generating authoritative CSV/GeoJSON assets.
+- **Calibration**: Real-world 2023-2024 benchmarks from **Mongabay**, **Global Forest Watch**, and **IPIS Research**.
+- **Deployment**: Static serverless architecture optimized for high-performance delivery via GitHub Pages.
 
-## 🛠️ Engineering Stack
-- **Frontend**: HTML5, Tailwind CSS (Enterprise Custom), JavaScript (ES6+).
-- **Mapping**: Leaflet.js with optimized spatial tiling.
-- **Visualization**: Plotly.js, Chart.js, ScrollReveal.
-- **Data Pipeline**: Python (Pandas, NumPy, Shapely) for scientific data synthesis.
-- **Hosting**: Fully static, serverless deployment optimized for **GitHub Pages**.
+## 🚀 Access the Command Hub
 
-## 📂 Project Governance
-```text
-OWR_Environmental-Monitoring/
-├── index.html              # Executive Command Hub
-├── climate-observatory.html # Meteorological Dashboard
-├── fire-analysis.html      # Wildfire Intelligence Portal
-├── logging-analysis.html    # Extraction & Infrastructure Hub
-├── data/                   # Processed Scientific CSVs
-├── geojson/                # Spatial Vector Layers
-└── scripts/                # Python Climate & Data Engines
-```
-
-## 📋 Deployment & Access
-1. **Cloud Access**: The platform is live at [aganzeeliud.github.io/OWR_Environmental-Monitoring/](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/).
-2. **Local Repository**:
-   ```bash
-   git clone https://github.com/aganzeeliud/OWR_Environmental-Monitoring.git
-   ```
-3. **Requirement**: Modern web browser (Chrome 90+, Safari 14+, Firefox 88+).
+The live platform is deployed at:  
+👉 **[https://aganzeeliud.github.io/OWR_Environmental-Monitoring/](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)**
 
 ---
-*Developed by the ICCN Scientific Unit in partnership with international conservation agencies. Committed to Open Science and the protection of the Congo Basin's biodiversity.*
+*Developed by the ICCN Scientific Unit. Committed to the preservation of the Congo Basin's biodiversity through open science and high-fidelity intelligence.*
