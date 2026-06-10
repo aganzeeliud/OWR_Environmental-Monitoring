@@ -1,0 +1,9 @@
+year,taxa_group,species_name,inventory_estimate,status,confidence_level,source
+2025,Mammals,Total Species,101,Stable,High,WCS DRC / UNESCO
+2025,Birds,Total Species,376,Stable,High,UNESCO / WCS
+2025,Flagship,Okapi (Okapia johnstoni),3500,CITES Appendix I,Medium,WCS DRC 2024
+2025,Flagship,Chimpanzee (Pan troglodytes),7500,Endangered,Medium,IUCN 2025
+2025,Flagship,Forest Elephant (Loxodonta cyclotis),3588,Critically Endangered,High,WCS DRC / ICCN
+2025,Primates,Total Species,17,Stable,High,Natural World Heritage
+2025,Flora,Tree Species (mixed forest),302,Extremely High,High,UNEP-WCMC
+2025,Threats,Poaching Incidents (Annual),-15%,Improving,Medium,Sentinel Patrol Intel
