@@ -10,7 +10,7 @@
     <style>
         .hero {
             padding-top: 10rem;
-            padding-bottom: 5rem;
+            padding-bottom: 3rem;
             text-align: center;
         }
         .hero-title {
@@ -29,6 +29,32 @@
             max-width: 40rem;
             margin: 0 auto 3rem;
             font-weight: 500;
+        }
+        .metrics-ribbon {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .metric-item {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            display: block;
+        }
+        .metric-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-secondary);
         }
         .grid-hub {
             display: grid;
@@ -69,10 +95,29 @@
             <p class="hero-subtitle">Authoritative ecological monitoring for the Okapi Wildlife Reserve. High-stakes intelligence for climate flux, habitat loss, and illegal extraction via NASA & ESA telemetry.</p>
             <div style="display: flex; gap: 1rem; justify-content: center;">
                 <a href="dashboard.html" class="btn btn-primary">Launch Analytics</a>
-                <a href="maps.html" class="btn btn-outline">Explore GIS</a>
+                <a href="maps.html" class="btn btn-outline">Explore GIS Hub</a>
             </div>
         </div>
     </header>
+
+    <div class="metrics-ribbon reveal">
+        <div class="metric-item">
+            <span class="metric-value text-emerald">1.37M</span>
+            <span class="metric-label">Hectares Monitored</span>
+        </div>
+        <div class="metric-item">
+            <span class="metric-value text-rose">1,920</span>
+            <span class="metric-label">Annual Loss (ha)</span>
+        </div>
+        <div class="metric-item">
+            <span class="metric-value text-amber">186</span>
+            <span class="metric-label">Active Hotspots</span>
+        </div>
+        <div class="metric-item">
+            <span class="metric-value text-blue">2.4M</span>
+            <span class="metric-label">tCO2e Carbon Loss</span>
+        </div>
+    </div>
 
     <main class="container">
         <div class="grid-hub">
@@ -129,6 +174,48 @@
                         <div class="mono text-blue" style="font-weight: 700;">Incursion Alert</div>
                     </div>
                     <a href="logging-analysis.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Biodiversity & Habitat -->
+            <div class="reveal glass card">
+                <div class="logo-icon" style="background: #8b5cf6; margin-bottom: 2rem;"><i class="fas fa-paw"></i></div>
+                <h3 class="card-title">Biodiversity <span style="color: #8b5cf6;">& Habitat</span></h3>
+                <p class="card-desc">Monitoring of indicator species (Okapi, Forest Elephant) and habitat fragmentation levels.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span class="stat-label">Threat Level</span>
+                        <div class="mono" style="color: #8b5cf6; font-weight: 700;">CRITICAL</div>
+                    </div>
+                    <a href="dashboard.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Carbon Sequestration -->
+            <div class="reveal glass card">
+                <div class="logo-icon" style="background: #06b6d4; margin-bottom: 2rem;"><i class="fas fa-leaf"></i></div>
+                <h3 class="card-title">Carbon <span style="color: #06b6d4;">Dynamics</span></h3>
+                <p class="card-desc">Biomass loss analysis and fire/logging related carbon emissions tracking.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span class="stat-label">Loss Rate</span>
+                        <div class="mono" style="color: #06b6d4; font-weight: 700;">+2.4M tCO2e</div>
+                    </div>
+                    <a href="dashboard.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Human Footprint -->
+            <div class="reveal glass card">
+                <div class="logo-icon" style="background: #f472b6; margin-bottom: 2rem;"><i class="fas fa-house-user"></i></div>
+                <h3 class="card-title">Human <span style="color: #f472b6;">Footprint</span></h3>
+                <p class="card-desc">Tracking settlement expansion and population pressure within the reserve boundaries.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span class="stat-label">Pop. Est.</span>
+                        <div class="mono" style="color: #f472b6; font-weight: 700;">~24,500</div>
+                    </div>
+                    <a href="dashboard.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
