@@ -10,8 +10,9 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         .comparison-header { margin-top: 8rem; margin-bottom: 4rem; }
-        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem; }
-        .vs-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-base); border: 1px solid var(--border-glass); width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; z-index: 10; color: var(--accent-emerald); }
+        .section-title { font-size: 2rem; margin: 4rem 0 2rem; border-left: 4px solid var(--accent-emerald); padding-left: 1.5rem; text-transform: uppercase; letter-spacing: -0.02em; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
+        @media (max-width: 1024px) { .grid-3 { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -70,6 +71,7 @@
             </div>
         </div>
 
+        <h2 class="section-title">Ecosystem <span class="text-emerald">Dynamics</span></h2>
         <div class="chart-grid">
             <div class="glass chart-container chart-main">
                 <h3 class="card-title">Deforestation Intensity: <span class="text-emerald">OWR vs Regional Baseline</span></h3>
@@ -87,19 +89,77 @@
             </div>
         </div>
 
+        <h2 class="section-title">Climate & <span class="text-rose">Wildfire</span></h2>
         <div class="chart-grid">
             <div class="glass chart-container chart-half">
-                <h3 class="card-title">Carbon Density Analysis</h3>
+                <h3 class="card-title">Temp Anomaly Evolution</h3>
                 <div class="chart-wrapper">
-                    <canvas id="carbonDensityChart"></canvas>
-                    <span class="chart-source">NASA GEDI / ESA CCI</span>
+                    <canvas id="climateComparisonChart"></canvas>
+                    <span class="chart-source">Copernicus ERA5-Land</span>
                 </div>
             </div>
             <div class="glass chart-container chart-half">
-                <h3 class="card-title">Mining Title Overlap</h3>
+                <h3 class="card-title">Burned Area Intensity</h3>
                 <div class="chart-wrapper">
-                    <canvas id="miningOverlapChart"></canvas>
-                    <span class="chart-source">CAMI RDC Regional Hub</span>
+                    <canvas id="fireIntensityChart"></canvas>
+                    <span class="chart-source">NASA FIRMS / VIIRS</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Extraction & <span class="text-amber">Infrastructure</span></h2>
+        <div class="chart-grid">
+            <div class="glass chart-container chart-half">
+                <h3 class="card-title">Mining Permit Density</h3>
+                <div class="chart-wrapper">
+                    <canvas id="miningDensityChart"></canvas>
+                    <span class="chart-source">CAMI RDC Regional Analysis</span>
+                </div>
+            </div>
+            <div class="glass chart-container chart-half">
+                <h3 class="card-title">Road Expansion Rates</h3>
+                <div class="chart-wrapper">
+                    <canvas id="roadExpansionChart"></canvas>
+                    <span class="chart-source">ESA Sentinel-2 Mapping</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Biological <span class="text-blue">Intelligence</span></h2>
+        <div class="grid-3">
+            <div class="glass card">
+                <div class="logo-icon" style="background: #8b5cf6; margin-bottom: 2rem;"><i class="fas fa-leaf"></i></div>
+                <h3 class="card-title">Flora <span style="color: #8b5cf6;">Richness</span></h3>
+                <p class="card-desc">OWR hosts 3,500+ recorded plant species, representing 35% of known Congo Basin flora in just 0.3% of the area.</p>
+                <div class="mono text-emerald" style="font-weight: 700;">+25% Species Density</div>
+            </div>
+            <div class="glass card">
+                <div class="logo-icon" style="background: #f472b6; margin-bottom: 2rem;"><i class="fas fa-paw"></i></div>
+                <h3 class="card-title">Fauna <span style="color: #f472b6;">Refuge</span></h3>
+                <p class="card-desc">Home to the largest remaining population of Okapi (Okapia johnstoni) and 13 species of primates.</p>
+                <div class="mono text-rose" style="font-weight: 700;">CRITICAL HABITAT</div>
+            </div>
+            <div class="glass card">
+                <div class="logo-icon" style="background: #ef4444; margin-bottom: 2rem;"><i class="fas fa-crosshairs"></i></div>
+                <h3 class="card-title">Anti-Poaching <span class="text-rose">Success</span></h3>
+                <p class="card-desc">Sentinel patrols have achieved a 15% reduction in ivory and bushmeat poaching since 2022.</p>
+                <div class="mono text-emerald" style="font-weight: 700;">-15% Incidents/YR</div>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="glass chart-container chart-main">
+                <h3 class="card-title">Biodiversity Trend: <span class="text-blue">Species Stability Index</span></h3>
+                <div class="chart-wrapper">
+                    <canvas id="biodiversityTrendChart"></canvas>
+                    <span class="chart-source">ICCN / Wildlife Conservation Society</span>
+                </div>
+            </div>
+            <div class="glass chart-container chart-side">
+                <h3 class="card-title text-center">GIS Capability Gap</h3>
+                <div class="chart-wrapper">
+                    <canvas id="gisGapChart"></canvas>
+                    <span class="chart-source">Data Resolution Benchmark</span>
                 </div>
             </div>
         </div>
@@ -158,36 +218,87 @@
                 }
             });
 
-            // 3. Carbon Density
-            new Chart(document.getElementById('carbonDensityChart'), {
+            // 3. Climate Comparison
+            new Chart(document.getElementById('climateComparisonChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['Basin Forest', 'OWR Core', 'Basin Peatlands', 'OWR Buffer'],
-                    datasets: [{
-                        data: [180, 245, 310, 210],
-                        backgroundColor: ['#3b82f6', '#10b981', '#06b6d4', '#8b5cf6'],
-                        borderRadius: 8
-                    }]
+                    labels: ['2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        { label: 'Basin Anomaly (°C)', data: [1.1, 1.3, 1.2, 1.4, 1.5], backgroundColor: 'rgba(244, 63, 94, 0.3)' },
+                        { label: 'OWR Anomaly (°C)', data: [1.3, 1.5, 1.4, 1.6, 1.8], backgroundColor: '#f43f5e' }
+                    ]
                 },
-                options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: 'tC/ha' } } } }
+                options: { responsive: true, maintainAspectRatio: false }
             });
 
-            // 4. Mining Overlap
-            new Chart(document.getElementById('miningOverlapChart'), {
+            // 4. Fire Intensity
+            new Chart(document.getElementById('fireIntensityChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        { label: 'Basin Count (x1000)', data: [450, 520, 610, 580, 650, 720, 680, 750], borderColor: '#f59e0b', tension: 0.4 },
+                        { label: 'OWR Count', data: [120, 150, 180, 140, 160, 190, 170, 210], borderColor: '#10b981', tension: 0.4, borderWidth: 3 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // 5. Mining Density
+            new Chart(document.getElementById('miningDensityChart'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['Basin Impacted (%)', 'Basin Intact (%)'],
+                    labels: ['Basin Permit Area (%)', 'OWR Permit Area (%)'],
                     datasets: [{
-                        data: [35, 65],
+                        data: [42, 58],
                         backgroundColor: ['#f59e0b', 'rgba(255,255,255,0.05)'],
                         borderWidth: 0
                     }, {
-                        data: [4, 96],
+                        data: [8, 92],
                         backgroundColor: ['#10b981', 'rgba(255,255,255,0.05)'],
                         borderWidth: 0
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, cutout: '70%' }
+                options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
+            });
+
+            // 6. Road Expansion
+            new Chart(document.getElementById('roadExpansionChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        { label: 'Basin (km/yr)', data: [1200, 1450, 1600, 1850, 2100, 2400], borderColor: '#3b82f6', fill: false },
+                        { label: 'OWR (km/yr)', data: [45, 52, 60, 55, 65, 72], borderColor: '#10b981', fill: false }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // 7. Biodiversity Trend
+            new Chart(document.getElementById('biodiversityTrendChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2010', '2015', '2020', '2025'],
+                    datasets: [
+                        { label: 'Basin Species Stability', data: [100, 92, 85, 78], borderColor: '#f43f5e', borderDash: [5, 5] },
+                        { label: 'OWR Species Stability', data: [100, 98, 97, 96], borderColor: '#10b981', borderWidth: 4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // 8. GIS Gap
+            new Chart(document.getElementById('gisGapChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: ['Basin Resolution (30m)', 'OWR Resolution (10m)', 'Basin Layers (4)', 'OWR Layers (12)'],
+                    datasets: [{
+                        data: [30, 90, 40, 100],
+                        backgroundColor: ['rgba(244, 63, 94, 0.5)', 'rgba(16, 185, 129, 0.5)', 'rgba(59, 130, 246, 0.5)', 'rgba(139, 92, 246, 0.5)']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false }, grid: { color: 'rgba(255,255,255,0.05)' } } } }
             });
         }
 
