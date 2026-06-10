@@ -4,116 +4,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Methodology | OWR Fire Monitoring</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .methodology-header {
+            margin-top: 8rem;
+            margin-bottom: 4rem;
+        }
+        .method-section {
+            margin-bottom: 6rem;
+        }
+        .method-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        .method-table th, .method-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-glass);
+            text-align: left;
+        }
+        .method-table th {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .method-table td {
+            font-size: 0.9rem;
+        }
     </style>
 </head>
-<body class="text-slate-700">
-    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
-        <div class="flex items-center space-x-3">
-            <div class="bg-rose-600 p-2 rounded-lg">
-                <i class="fas fa-microscope text-white"></i>
+<body>
+
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-microscope"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">Scientific Standards</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Analytics</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link">GIS Hub</a>
             </div>
-            <span class="font-bold tracking-tighter text-xl uppercase">Scientific Standards</span>
-        </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-rose-600 transition">Dashboard</a>
-            <a href="map.html" class="hover:text-rose-600 transition">Interactive Map</a>
-            <a href="methodology.html" class="text-rose-600">Methodology</a>
+            <a href="dashboard.html" class="btn btn-primary">Systems Active</a>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-20 max-w-4xl">
-        <header class="mb-20">
-            <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">The <span class="text-rose-600">Methodology</span></h1>
-            <p class="text-xl text-slate-500 font-medium">Advanced multi-criteria classification and severity modeling for wildfire dynamics in the Okapi Wildlife Reserve (2001-2026).</p>
+    <main class="container" style="max-width: 1000px;">
+        <header class="methodology-header">
+            <span class="stat-label" style="background: rgba(244, 63, 94, 0.1); color: var(--accent-rose); padding: 0.25rem 0.75rem; border-radius: 2rem;">Research Protocol v2.1</span>
+            <h1 style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 1rem; line-height: 1;">The <span class="text-rose">Methodology</span></h1>
+            <p class="card-desc" style="font-size: 1.1rem;">Advanced multi-criteria classification and severity modeling for wildfire dynamics in the Okapi Wildlife Reserve (2001-2026).</p>
         </header>
 
-        <section class="space-y-16">
-            <!-- Classification Logic -->
-            <div>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">1. Fire Type Classification</h2>
-                <p class="text-slate-600 mb-8 leading-relaxed">Fires are classified into 9 distinct drivers using spatial proximity analysis, temporal recurrence, and spectral intensity indicators.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Slash-and-Burn</h4>
-                        <p class="text-[10px] leading-relaxed">Detected in areas within 5km of villages with high forest loss intensity (>3ha) and high seasonality.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Mining-Related</h4>
-                        <p class="text-[10px] leading-relaxed">Events intersecting or proximal to CAMI mining titles and IPIS artisanal site buffers.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Wildfire</h4>
-                        <p class="text-[10px] leading-relaxed">Remote events (>10km from human features) with Extreme severity and dry season timing (Dec-Feb).</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <h4 class="text-xs font-black text-rose-600 uppercase mb-2">Charcoal Production</h4>
-                        <p class="text-[10px] leading-relaxed">High forest loss events proximal to road corridors and transport hubs.</p>
-                    </div>
-                </div>
+        <section class="method-section">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                <div class="mono" style="font-size: 1.5rem; color: var(--accent-rose); font-weight: 900;">01</div>
+                <h2 class="card-title" style="margin: 0;">Fire Type Classification</h2>
             </div>
-
-            <!-- Severity Modeling -->
-            <div>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">2. Severity Thresholds</h2>
-                <div class="overflow-hidden bg-white border border-slate-200 rounded-2xl shadow-sm">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-slate-50 border-b border-slate-200">
-                            <tr>
-                                <th class="p-4 font-black uppercase text-slate-400">Class</th>
-                                <th class="p-4 font-black uppercase text-slate-400">FRP (MW)</th>
-                                <th class="p-4 font-black uppercase text-slate-400">Burn Size (ha)</th>
-                                <th class="p-4 font-black uppercase text-slate-400">Impact</th>
-                            </tr>
-                        </thead>
-                        <tbody class="font-bold">
-                            <tr class="border-b border-slate-100">
-                                <td class="p-4 text-emerald-600">Low</td>
-                                <td class="p-4">< 30</td>
-                                <td class="p-4">< 2.0</td>
-                                <td class="p-4">Surface fire, low canopy impact</td>
-                            </tr>
-                            <tr class="border-b border-slate-100">
-                                <td class="p-4 text-amber-600">Moderate</td>
-                                <td class="p-4">30 - 60</td>
-                                <td class="p-4">2.0 - 4.0</td>
-                                <td class="p-4">Mixed intensity, understory loss</td>
-                            </tr>
-                            <tr class="border-b border-slate-100">
-                                <td class="p-4 text-orange-600">High</td>
-                                <td class="p-4">60 - 100</td>
-                                <td class="p-4">4.0 - 5.5</td>
-                                <td class="p-4">Significant crown impact</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 text-rose-600">Extreme</td>
-                                <td class="p-4">> 100</td>
-                                <td class="p-4">> 5.5</td>
-                                <td class="p-4">Complete stand replacement</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <p class="card-desc" style="margin-bottom: 3rem;">Fires are classified into 9 distinct drivers using spatial proximity analysis, temporal recurrence, and spectral intensity indicators.</p>
+            
+            <div class="stat-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="glass card" style="padding: 2rem;">
+                    <h4 class="stat-label" style="color: var(--accent-rose); margin-bottom: 1rem;">Slash-and-Burn</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Detected in areas within 5km of villages with high forest loss intensity (>3ha) and high seasonality.</p>
                 </div>
-            </div>
-
-            <!-- Hectare Calculation -->
-            <div>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 border-b-4 border-rose-600 pb-2 inline-block">3. Hectare Loss Calculation</h2>
-                <p class="text-slate-600 mb-8 leading-relaxed">Total forest loss is calculated by intersecting the annual MODIS Burned Area (MCD64A1) product with the University of Maryland Hansen GFC tree cover dataset. The <strong>Cumulative Loss %</strong> is relative to the official reserve area of 1,372,625 hectares.</p>
-                <div class="bg-slate-900 text-emerald-400 p-8 rounded-[2rem] font-mono text-xs shadow-xl">
-                    Cumulative_Percent = (Sum(Annual_Forest_Loss_ha) / 1,372,625) * 100
+                <div class="glass card" style="padding: 2rem;">
+                    <h4 class="stat-label" style="color: var(--accent-rose); margin-bottom: 1rem;">Mining-Related</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Events intersecting or proximal to CAMI mining titles and IPIS artisanal site buffers.</p>
+                </div>
+                <div class="glass card" style="padding: 2rem;">
+                    <h4 class="stat-label" style="color: var(--accent-rose); margin-bottom: 1rem;">Wildfire</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Remote events (>10km from human features) with Extreme severity and dry season timing (Dec-Feb).</p>
+                </div>
+                <div class="glass card" style="padding: 2rem;">
+                    <h4 class="stat-label" style="color: var(--accent-rose); margin-bottom: 1rem;">Charcoal Production</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">High forest loss events proximal to road corridors and transport hubs.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="mt-32 pt-12 border-t border-slate-200 opacity-50 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-400">
-            <div>Data integrated from NASA FIRMS & GFC v1.9</div>
-            <div>Auth: OWR Scientific Council</div>
-        </footer>
+        <section class="method-section">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                <div class="mono" style="font-size: 1.5rem; color: var(--accent-rose); font-weight: 900;">02</div>
+                <h2 class="card-title" style="margin: 0;">Severity Thresholds</h2>
+            </div>
+            <div class="glass card" style="padding: 0; overflow: hidden;">
+                <table class="method-table">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>FRP (MW)</th>
+                            <th>Burn Size (ha)</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody class="mono">
+                        <tr>
+                            <td class="text-emerald">Low</td>
+                            <td>&lt; 30</td>
+                            <td>&lt; 2.0</td>
+                            <td style="font-family: var(--font-body); opacity: 0.8;">Surface fire, low canopy impact</td>
+                        </tr>
+                        <tr>
+                            <td class="text-amber">Moderate</td>
+                            <td>30 - 60</td>
+                            <td>2.0 - 4.0</td>
+                            <td style="font-family: var(--font-body); opacity: 0.8;">Mixed intensity, understory loss</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #f97316;">High</td>
+                            <td>60 - 100</td>
+                            <td>4.0 - 5.5</td>
+                            <td style="font-family: var(--font-body); opacity: 0.8;">Significant crown impact</td>
+                        </tr>
+                        <tr>
+                            <td class="text-rose">Extreme</td>
+                            <td>&gt; 100</td>
+                            <td>&gt; 5.5</td>
+                            <td style="font-family: var(--font-body); opacity: 0.8;">Complete stand replacement</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="method-section" style="margin-bottom: 10rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                <div class="mono" style="font-size: 1.5rem; color: var(--accent-rose); font-weight: 900;">03</div>
+                <h2 class="card-title" style="margin: 0;">Hectare Loss Calculation</h2>
+            </div>
+            <p class="card-desc">Total forest loss is calculated by intersecting the annual MODIS Burned Area (MCD64A1) product with the University of Maryland Hansen GFC tree cover dataset.</p>
+            <div class="glass" style="padding: 3rem; background: rgba(0,0,0,0.3); border-radius: 2rem; border: 1px solid var(--accent-emerald);">
+                <div class="mono text-emerald" style="font-size: 1.25rem; text-align: center;">
+                    Cumulative_Percent = (Sum(Annual_Forest_Loss_ha) / 1,372,625) * 100
+                </div>
+            </div>
+            <p class="stat-label" style="text-align: center; margin-top: 2rem; text-transform: none;">The <strong>Cumulative Loss %</strong> is relative to the official reserve area of 1,372,625 hectares.</p>
+        </section>
     </main>
+
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); margin-top: 10rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">ICCN Scientific Infrastructure</span>
+                </div>
+            </div>
+            <p class="stat-label" style="margin: 0;">&copy; 2024—2030 Project Sentinel • All Rights Reserved</p>
+            <div style="display: flex; gap: 1.5rem; font-size: 1.25rem; color: var(--text-secondary);">
+                <i class="fab fa-github hover:text-white transition cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-white transition cursor-pointer"></i>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

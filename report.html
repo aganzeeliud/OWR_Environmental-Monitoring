@@ -4,121 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelligence Report | OWR Monitoring</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #334155; }
-        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
+        .report-container {
+            max-width: 1000px;
+            margin-top: 8rem;
+            margin-bottom: 10rem;
+        }
+        .report-header {
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 3rem;
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .report-section {
+            margin-bottom: 5rem;
+        }
+        .finding-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .finding-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
         @media print {
-            .no-print { display: none; }
-            body { background: white; color: black; }
-            .bg-white { background: white !important; }
-            .text-emerald-600 { color: #059669 !important; }
+            .glass-nav, .btn, footer { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .glass { background: white !important; border: 1px solid #eee !important; color: black !important; }
+            .report-container { margin-top: 0 !important; max-width: 100% !important; }
+            .text-emerald { color: #059669 !important; }
+            .text-rose { color: #dc2626 !important; }
+            .stat-label { color: #666 !important; }
+            .card-desc { color: #444 !important; }
         }
     </style>
 </head>
-<body class="bg-[#f8fafc]">
+<body>
 
-    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000] no-print">
-        <div class="flex items-center space-x-3">
-            <div class="bg-emerald-600 p-2 rounded-lg">
-                <i class="fas fa-file-invoice text-white"></i>
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-file-invoice"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">Report Generator</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Analytics</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link">GIS Hub</a>
             </div>
-            <span class="font-bold tracking-tighter text-xl uppercase text-slate-900">Report Gen</span>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="fas fa-print"></i> Print Report
+            </button>
         </div>
-        <button onclick="window.print()" class="bg-emerald-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-emerald-700 transition shadow-lg shadow-emerald-100">
-            <i class="fas fa-print mr-2"></i> Print Report
-        </button>
     </nav>
 
-    <main class="container mx-auto px-6 py-20 max-w-5xl">
-        <header class="mb-20 flex justify-between items-start border-b border-slate-200 pb-12">
+    <main class="container report-container">
+        <header class="report-header">
             <div>
-                <div class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-4">Official Intelligence Document</div>
-                <h1 class="text-5xl font-black text-slate-900 uppercase tracking-tighter leading-none mb-4">State of the <span class="text-emerald-600">Reserve</span></h1>
-                <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Okapi Wildlife Reserve (UNESCO #718) • Annual Assessment 2026</p>
+                <span class="stat-label" style="color: var(--accent-emerald); display: block; margin-bottom: 1rem;">Official Intelligence Document</span>
+                <h1 style="font-size: 3.5rem; line-height: 1; margin-bottom: 1rem;">State of the <span class="text-emerald">Reserve</span></h1>
+                <p class="stat-label" style="text-transform: none; letter-spacing: 0.05em;">Okapi Wildlife Reserve (UNESCO #718) • Annual Assessment 2026</p>
             </div>
-            <div class="text-right">
-                <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">Reference ID</div>
-                <div class="text-xl font-black text-slate-900">OWR-2026-ALPHA</div>
-                <div class="text-[10px] font-bold text-slate-400 mt-2">Date: May 15, 2026</div>
+            <div style="text-align: right;">
+                <span class="stat-label" style="display: block; margin-bottom: 0.5rem;">Reference ID</span>
+                <div class="mono" style="font-size: 1.5rem; font-weight: 900;">OWR-2026-ALPHA</div>
+                <span class="stat-label" style="display: block; margin-top: 1rem; text-transform: none;">Date: May 15, 2026</span>
             </div>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Conservation Status</h3>
-                <div class="text-2xl font-black text-emerald-600 uppercase">Stable / At Risk</div>
+        <div class="stat-grid" style="margin-bottom: 5rem;">
+            <div class="glass card" style="padding: 2rem;">
+                <span class="stat-label" style="display: block; margin-bottom: 1rem;">Conservation Status</span>
+                <div style="font-size: 1.5rem; font-weight: 900; color: var(--accent-emerald);">STABLE / AT RISK</div>
             </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Illegal Activity Index</h3>
-                <div class="text-2xl font-black text-rose-600 uppercase">Increasing</div>
+            <div class="glass card" style="padding: 2rem; border-left-color: var(--accent-rose);">
+                <span class="stat-label" style="display: block; margin-bottom: 1rem;">Illegal Activity Index</span>
+                <div style="font-size: 1.5rem; font-weight: 900; color: var(--accent-rose);">INCREASING</div>
             </div>
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Monitoring Coverage</h3>
-                <div class="text-2xl font-black text-slate-900 uppercase">98.2% Sat-Intel</div>
+            <div class="glass card" style="padding: 2rem; border-left-color: var(--accent-blue);">
+                <span class="stat-label" style="display: block; margin-bottom: 1rem;">Monitoring Coverage</span>
+                <div style="font-size: 1.5rem; font-weight: 900;">98.2% SAT-INTEL</div>
             </div>
         </div>
 
-        <article class="space-y-16">
-            <section>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-6 border-l-4 border-emerald-600 pl-6">Executive Summary</h2>
-                <p class="text-lg text-slate-600 leading-relaxed mb-6">The Okapi Wildlife Reserve continues to face significant pressure from multi-vector environmental threats. While primary forest cover remains largely intact in the core zone, the expansion of artisanal mining sites and illegal logging infrastructure in the buffer zones represents a critical challenge for conservation management.</p>
-                <p class="text-slate-500 leading-relaxed">Our 2026 assessment detects a 12% acceleration in forest fragmentation compared to the 2018-2022 baseline, primarily driven by road expansion associated with mining permits in the Epulu and Mambasa sectors.</p>
+        <article>
+            <section class="report-section">
+                <h2 class="card-title" style="border-left: 4px solid var(--accent-emerald); padding-left: 1.5rem; margin-bottom: 2rem;">Executive Summary</h2>
+                <p class="card-desc" style="font-size: 1.1rem; line-height: 1.8; color: var(--text-primary);">The Okapi Wildlife Reserve continues to face significant pressure from multi-vector environmental threats. While primary forest cover remains largely intact in the core zone, the expansion of artisanal mining sites and illegal logging infrastructure in the buffer zones represents a critical challenge for conservation management.</p>
+                <p class="card-desc" style="line-height: 1.8;">Our 2026 assessment detects a 12% acceleration in forest fragmentation compared to the 2018-2022 baseline, primarily driven by road expansion associated with mining permits in the Epulu and Mambasa sectors.</p>
             </section>
 
-            <section class="bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm">
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-10">Key Findings</h2>
-                <ul class="space-y-8">
-                    <li class="flex items-start">
-                        <span class="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center mr-6 shrink-0 font-black border border-emerald-100">01</span>
-                        <div>
-                            <h4 class="text-slate-900 font-black uppercase tracking-widest text-sm mb-2">Mining Encroachment</h4>
-                            <p class="text-sm text-slate-500">124 active mining sites mapped within 50km of the reserve boundary, with 12 sites showing active encroachment inside protected zones.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center mr-6 shrink-0 font-black border border-emerald-100">02</span>
-                        <div>
-                            <h4 class="text-slate-900 font-black uppercase tracking-widest text-sm mb-2">Fire Recurrence</h4>
-                            <p class="text-sm text-slate-500">4,250 ha impacted by fire anomalies in the current cycle, predominantly associated with small-scale agricultural clearing at the reserve frontiers.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center mr-6 shrink-0 font-black border border-emerald-100">03</span>
-                        <div>
-                            <h4 class="text-slate-900 font-black uppercase tracking-widest text-sm mb-2">Carbon Sequestration</h4>
-                            <p class="text-sm text-slate-500">Estimated cumulative carbon loss of 1.8M tons CO2e since 2000, representing a significant loss in ecosystem service value.</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-6 border-l-4 border-rose-600 pl-6">Recommendations</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                        <h4 class="text-slate-900 font-black uppercase text-xs mb-4">Immediate Action</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Increase patrol frequency in high-risk mining corridors and implement a 5km no-extraction buffer zone strictly enforced via satellite telemetry.</p>
+            <section class="glass card report-section" style="padding: 3rem;">
+                <h2 class="card-title" style="margin-bottom: 3rem;">Key Findings</h2>
+                <div class="finding-item">
+                    <div class="finding-number">01</div>
+                    <div>
+                        <h4 class="stat-label" style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Mining Encroachment</h4>
+                        <p class="card-desc" style="margin-bottom: 0;">124 active mining sites mapped within 50km of the reserve boundary, with 12 sites showing active encroachment inside protected zones.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                        <h4 class="text-slate-900 font-black uppercase text-xs mb-4">Strategic Policy</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Formalize artisanal mining cooperatives outside the reserve boundary and integrate local communities into the carbon credit benefit-sharing mechanism.</p>
+                </div>
+                <div class="finding-item">
+                    <div class="finding-number">02</div>
+                    <div>
+                        <h4 class="stat-label" style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Fire Recurrence</h4>
+                        <p class="card-desc" style="margin-bottom: 0;">4,250 ha impacted by fire anomalies in the current cycle, predominantly associated with small-scale agricultural clearing at the reserve frontiers.</p>
+                    </div>
+                </div>
+                <div class="finding-item">
+                    <div class="finding-number">03</div>
+                    <div>
+                        <h4 class="stat-label" style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Carbon Sequestration</h4>
+                        <p class="card-desc" style="margin-bottom: 0;">Estimated cumulative carbon loss of 1.8M tons CO2e since 2000, representing a significant loss in ecosystem service value.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="report-section">
+                <h2 class="card-title" style="border-left: 4px solid var(--accent-rose); padding-left: 1.5rem; margin-bottom: 2rem;">Recommendations</h2>
+                <div class="stat-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="glass card" style="padding: 2rem;">
+                        <h4 class="stat-label" style="color: var(--accent-rose); margin-bottom: 1rem;">Immediate Action</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Increase patrol frequency in high-risk mining corridors and implement a 5km no-extraction buffer zone strictly enforced via satellite telemetry.</p>
+                    </div>
+                    <div class="glass card" style="padding: 2rem;">
+                        <h4 class="stat-label" style="color: var(--accent-blue); margin-bottom: 1rem;">Strategic Policy</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Formalize artisanal mining cooperatives outside the reserve boundary and integrate local communities into the carbon credit benefit-sharing mechanism.</p>
                     </div>
                 </div>
             </section>
         </article>
 
-        <div class="mt-32 pt-12 border-t border-slate-200 flex justify-between items-center opacity-50">
-            <div class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">End of Intelligence Report</div>
-            <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-4 grayscale">
+        <div style="margin-top: 8rem; padding-top: 3rem; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; opacity: 0.5;">
+            <span class="stat-label">End of Intelligence Report</span>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span class="stat-label">Scientific Council Approval</span>
+                <div style="width: 2rem; height: 2rem; background: var(--text-secondary); border-radius: 50%; opacity: 0.2;"></div>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-white py-20 border-t border-slate-200 no-print">
-        <div class="container mx-auto px-6 text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-            &copy; 2026 OWR Environmental Monitoring • Report Engine v2.0
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); margin-top: 10rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">ICCN Scientific Infrastructure</span>
+                </div>
+            </div>
+            <p class="stat-label" style="margin: 0;">&copy; 2024—2030 Project Sentinel • All Rights Reserved</p>
+            <div style="display: flex; gap: 1.5rem; font-size: 1.25rem; color: var(--text-secondary);">
+                <i class="fab fa-github hover:text-white transition cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-white transition cursor-pointer"></i>
+            </div>
         </div>
     </footer>
 

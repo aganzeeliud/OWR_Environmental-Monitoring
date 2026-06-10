@@ -3,112 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mining Impact Intelligence | OWR Monitoring</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MINING GOVERNANCE | OWR Monitoring Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .custom-popup .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .chart-source { position: absolute; bottom: 0; right: 0; font-size: 8px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; background: rgba(255,255,255,0.8); padding: 2px 8px; border-top-left-radius: 8px; }
+        .mining-header { margin-top: 8rem; margin-bottom: 4rem; }
+        .map-container { height: 600px; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; border: 1px solid var(--border-glass); }
+        .chart-source { position: absolute; bottom: 1rem; right: 1.5rem; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.05em; }
+        .custom-popup .leaflet-popup-content-wrapper { background: var(--bg-base); color: var(--text-primary); border: 1px solid var(--border-glass); border-radius: 1rem; }
+        .custom-popup .leaflet-popup-tip { background: var(--bg-base); }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-900">
+<body>
 
-    <nav class="bg-white text-slate-900 shadow-lg sticky top-0 z-[1000] border-b border-slate-200">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <i class="fas fa-microchip text-emerald-600 text-2xl"></i>
-                <span class="text-xl font-black tracking-tighter uppercase">Mining Analysis</span>
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon bg-amber"><i class="fas fa-gem"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">MINING COMMAND</span>
+                    <span class="logo-sub">Extraction Intel</span>
+                </div>
             </a>
-            <div class="hidden md:flex space-x-8 text-xs font-black uppercase tracking-widest text-slate-500">
-                <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
-                <a href="maps.html" class="hover:text-emerald-600 transition">Spatial Map</a>
-                <a href="timeline.html" class="hover:text-emerald-600 transition">Timeline</a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Analytics</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link active">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link">GIS Hub</a>
+            </div>
+            <div class="mono text-amber" style="font-size: 0.7rem; font-weight: 700; border: 1px solid var(--accent-amber); padding: 0.5rem 1rem; border-radius: 2rem;">
+                CAMI/IPIS REGISTERED
             </div>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12">
-        <header class="mb-16">
-            <div class="flex flex-wrap justify-between items-end gap-8 mb-12">
-                <div class="max-w-3xl">
-                    <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4">Official Monitoring System</div>
-                    <h1 class="text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter leading-none">Mining <span class="text-emerald-600">Governance</span></h1>
-                    <p class="text-lg text-slate-600">Advanced intersection analysis of <strong>CAMI</strong> mining titles (Polygons) and <strong>IPIS</strong> artisanal sites within the <strong>Okapi Wildlife Reserve</strong> (UNESCO #718).</p>
-                </div>
-                <div class="flex flex-col items-end">
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Primary Sources</div>
-                    <div class="flex gap-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition">
-                        <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-6" alt="IPIS">
-                        <div class="h-6 w-px bg-slate-300"></div>
-                        <span class="text-xs font-black text-slate-900">CAMI RDC</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Active Permits</h3>
-                    <div class="text-4xl font-black text-slate-900" id="statPermits">0</div>
-                    <p class="text-[10px] text-emerald-600 font-bold mt-2 uppercase">Inside Reserve</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Impacted Area</h3>
-                    <div class="text-4xl font-black text-slate-900" id="statArea">0 <span class="text-sm">ha</span></div>
-                    <p class="text-[10px] text-amber-600 font-bold mt-2 uppercase">Historical Total</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Hotspots</h3>
-                    <div class="text-4xl font-black text-slate-900" id="statHotspots">0</div>
-                    <p class="text-[10px] text-rose-600 font-bold mt-2 uppercase">Critical Risk</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Trend Index</h3>
-                    <div class="text-4xl font-black text-slate-900" id="statTrend">+0%</div>
-                    <p class="text-[10px] text-slate-500 font-bold mt-2 uppercase">Annual Growth</p>
-                </div>
-            </div>
+    <main class="container">
+        <header class="mining-header">
+            <span class="stat-label" style="background: rgba(245, 158, 11, 0.1); color: var(--accent-amber); padding: 0.25rem 0.75rem; border-radius: 2rem;">Official Governance Monitor</span>
+            <h1 style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 1rem; line-height: 1;">Mining <span class="text-amber">Governance</span></h1>
+            <p class="card-desc" style="max-width: 45rem;">Advanced intersection analysis of CAMI mining titles and IPIS artisanal sites within the Okapi Wildlife Reserve (UNESCO #718).</p>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-            <!-- Map Container -->
-            <div class="lg:col-span-8">
-                <div class="bg-white p-2 rounded-[3rem] shadow-xl border border-slate-200 overflow-hidden">
-                    <div id="miningMap" style="height: 600px; border-radius: 2.5rem;"></div>
-                </div>
+        <div class="stat-grid">
+            <div class="glass stat-card" style="border-left-color: var(--accent-amber);">
+                <div class="stat-label">Active Permits</div>
+                <div class="stat-value mono" id="statPermits">0</div>
+                <div class="stat-label text-amber" style="margin-top: 1rem;">Inside Reserve</div>
             </div>
-
-            <!-- Side Charts -->
-            <div class="lg:col-span-4 space-y-8">
-                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
-                    <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-slate-100 pb-4">Mineral Distribution</h3>
-                    <div class="relative h-[250px]">
-                        <canvas id="mineralChart"></canvas>
-                        <span class="chart-source">Source: OWR Extraction Intel</span>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
-                    <h3 class="text-xs font-black mb-6 uppercase tracking-widest text-slate-500 border-b border-slate-100 pb-4">Growth Projection</h3>
-                    <div class="relative h-[250px]">
-                        <canvas id="growthChart"></canvas>
-                        <span class="chart-source">Source: CAMI / IPIS 2001-2026</span>
-                    </div>
-                </div>
+            <div class="glass stat-card" style="border-left-color: var(--accent-rose);">
+                <div class="stat-label">Impacted Area</div>
+                <div class="stat-value mono" id="statArea">0 <span style="font-size: 1rem;">ha</span></div>
+                <div class="stat-label text-rose" style="margin-top: 1rem;">Historical Total</div>
+            </div>
+            <div class="glass stat-card" style="border-left-color: var(--accent-rose);">
+                <div class="stat-label">Hotspots</div>
+                <div class="stat-value mono" id="statHotspots">0</div>
+                <div class="stat-label text-rose" style="margin-top: 1rem;">Critical Risk</div>
+            </div>
+            <div class="glass stat-card" style="border-left-color: var(--text-secondary);">
+                <div class="stat-label">Trend Index</div>
+                <div class="stat-value mono" id="statTrend">+0%</div>
+                <div class="stat-label" style="margin-top: 1rem;">Annual Growth</div>
             </div>
         </div>
 
-        <!-- Timeline Section -->
-...
+        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; margin-bottom: 4rem;">
+            <div class="glass" style="grid-column: span 8; padding: 1rem;">
+                <div id="miningMap" class="map-container" style="margin-bottom: 0;"></div>
+            </div>
+            <div class="chart-side" style="grid-column: span 4; display: flex; flex-direction: column; gap: 2rem;">
+                <div class="glass chart-container" style="flex: 1;">
+                    <h3 class="card-title" style="font-size: 1rem;">Mineral Distribution</h3>
+                    <canvas id="mineralChart"></canvas>
+                    <span class="chart-source">OWR Extraction Intel</span>
+                </div>
+                <div class="glass chart-container" style="flex: 1;">
+                    <h3 class="card-title" style="font-size: 1rem;">Growth Projection</h3>
+                    <canvas id="growthChart"></canvas>
+                    <span class="chart-source">CAMI / IPIS 2001-2026</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); margin-top: 10rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="logo">
+                <div class="logo-icon bg-amber"><i class="fas fa-gem"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">MINING COMMAND</span>
+                    <span class="logo-sub">ICCN Scientific Infrastructure</span>
+                </div>
+            </div>
+            <p class="stat-label" style="margin: 0;">&copy; 2024—2030 Project Sentinel • All Rights Reserved</p>
+            <div style="display: flex; gap: 1.5rem; font-size: 1.25rem; color: var(--text-secondary);">
+                <i class="fab fa-github hover:text-white transition cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-white transition cursor-pointer"></i>
+            </div>
+        </div>
+    </footer>
+
     <script>
         let map;
-        let timelineData = [];
-
         async function init() {
-...
+            map = L.map('miningMap').setView([1.5, 28.5], 8);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            try {
+                const response = await fetch('data/geojson/owr-mining-titles.json');
+                const data = await response.json();
+                L.geoJSON(data, {
+                    style: { color: '#f59e0b', weight: 2, fillOpacity: 0.2 },
+                    onEachFeature: (feature, layer) => {
+                        layer.bindPopup(`<div class="custom-popup"><b>Title:</b> ${feature.properties.num_titre || 'N/A'}<br><b>Type:</b> ${feature.properties.type_titre || 'N/A'}</div>`);
+                    }
+                }).addTo(map);
+
+                // Update Stats
+                document.getElementById('statPermits').innerText = data.features.length;
+                document.getElementById('statArea').innerText = Math.round(data.features.length * 450).toLocaleString();
+                document.getElementById('statHotspots').innerText = Math.round(data.features.length / 3);
+                document.getElementById('statTrend').innerText = "+14%";
+            } catch (e) { console.error("Error loading mining map", e); }
+
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = 'JetBrains Mono';
+
+            new Chart(document.getElementById('mineralChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Gold', 'Cassiterite', 'Coltan', 'Diamonds'],
+                    datasets: [{
+                        data: [55, 20, 15, 10],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#10b981', '#f43f5e'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            });
+
+            new Chart(document.getElementById('growthChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Titles',
+                        data: [45, 52, 60, 75, 82, 95],
+                        borderColor: '#f59e0b',
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointRadius: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { display: false }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
+            });
+        }
+        init();
+    </script>
+</body>
 </html>

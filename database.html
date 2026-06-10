@@ -4,93 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scientific Data Hub | OWR Intelligence</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #475569; }
-        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
-        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate { color: #64748b !important; font-size: 10px; font-weight: bold; text-transform: uppercase; }
-        .dataTables_wrapper .dataTables_paginate .paginate_button { color: #64748b !important; border: 1px solid #e2e8f0 !important; background: white !important; border-radius: 8px !important; margin: 0 2px !important; }
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current { background: #10b981 !important; color: white !important; border-color: #10b981 !important; }
-        table.dataTable { border-collapse: collapse !important; border: none !important; background: white !important; border-radius: 1rem !important; overflow: hidden !important; }
-        table.dataTable thead th { border-bottom: 2px solid #f1f5f9 !important; padding: 20px !important; color: #1e293b !important; font-size: 10px !important; text-transform: uppercase !important; letter-spacing: 0.1em !important; }
-        table.dataTable tbody td { border-bottom: 1px solid #f1f5f9 !important; padding: 15px 20px !important; color: #475569; font-size: 12px; }
-        input[type="search"] { background: white !important; border: 1px solid #e2e8f0 !important; border-radius: 20px !important; padding: 8px 16px !important; color: #1e293b !important; outline: none !important; }
-        select { background: white !important; color: #1e293b !important; border: 1px solid #e2e8f0 !important; border-radius: 8px !important; }
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate { color: var(--text-secondary) !important; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 1rem; }
+        .dataTables_wrapper .dataTables_paginate .paginate_button { color: var(--text-secondary) !important; border: 1px solid var(--border-glass) !important; background: var(--bg-card) !important; border-radius: 8px !important; margin: 0 2px !important; }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current { background: var(--accent-emerald) !important; color: var(--bg-base) !important; border-color: var(--accent-emerald) !important; }
+        table.dataTable { border-collapse: collapse !important; border: none !important; background: transparent !important; border-radius: 1rem !important; overflow: hidden !important; width: 100% !important; margin: 2rem 0 !important;}
+        table.dataTable thead th { border-bottom: 2px solid var(--border-glass) !important; padding: 20px !important; color: var(--text-primary) !important; font-size: 10px !important; text-transform: uppercase !important; letter-spacing: 0.1em !important; text-align: left !important;}
+        table.dataTable tbody td { border-bottom: 1px solid var(--border-glass) !important; padding: 15px 20px !important; color: var(--text-secondary); font-size: 12px; }
+        table.dataTable tbody tr:hover { background: rgba(255,255,255,0.02) !important; }
+        input[type="search"] { background: var(--bg-card) !important; border: 1px solid var(--border-glass) !important; border-radius: 20px !important; padding: 8px 16px !important; color: var(--text-primary) !important; outline: none !important; }
+        select { background: var(--bg-card) !important; color: var(--text-primary) !important; border: 1px solid var(--border-glass) !important; border-radius: 8px !important; padding: 0.5rem; }
+        
+        .db-header {
+            margin-top: 8rem;
+            margin-bottom: 4rem;
+        }
     </style>
 </head>
-<body class="bg-[#f8fafc]">
+<body>
 
-    <nav class="bg-white text-slate-900 shadow-md h-16 flex items-center px-6 justify-between border-b border-slate-200 sticky top-0 z-[1000]">
-        <div class="flex items-center space-x-3">
-            <div class="bg-emerald-600 p-2 rounded-lg">
-                <i class="fas fa-database text-white"></i>
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-database"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">Data Intelligence</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Analytics</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link">GIS Hub</a>
             </div>
-            <span class="font-bold tracking-tighter text-xl uppercase text-slate-900">Data Central</span>
-        </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-emerald-600 transition">Hub</a>
-            <a href="dashboard.html" class="hover:text-emerald-600 transition">Dashboard</a>
-            <a href="maps.html" class="hover:text-emerald-600 transition">Spatial Map</a>
-        </div>
-        <div class="bg-emerald-50 rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 border border-emerald-100">
-            Authenticated Access
+            <a href="dashboard.html" class="btn btn-primary">Systems Active</a>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12">
-        <header class="mb-16">
-            <h1 class="text-5xl font-black text-slate-900 mb-4 uppercase tracking-tighter leading-none">Scientific <span class="text-emerald-600">Archives</span></h1>
-            <p class="text-slate-500 text-lg max-w-3xl">Access the unified OWR environmental database. 26 years of quantified temporal change detection across 20+ thematic layers.</p>
+    <main class="container">
+        <header class="db-header">
+            <span class="stat-label" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald); padding: 0.25rem 0.75rem; border-radius: 2rem;">RDC-002 Archive</span>
+            <h1 style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 1rem; line-height: 1;">Scientific <span class="text-emerald">Archives</span></h1>
+            <p class="card-desc" style="max-width: 45rem;">Access the unified OWR environmental database. 26 years of quantified temporal change detection across 20+ thematic layers.</p>
         </header>
 
         <!-- Dataset Directory List -->
-        <section class="mb-16">
-            <h3 class="text-[10px] font-black uppercase text-emerald-600 tracking-[0.2em] mb-6">Available Datasets</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-200 transition-colors">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <i class="fas fa-tree text-emerald-600"></i>
-                        <span class="text-xs font-black uppercase text-slate-900 tracking-tight">Forest Loss</span>
-                    </div>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase leading-relaxed">Temporal tree cover loss at 30m resolution (Hansen GFC).</p>
+        <div class="stat-grid" style="margin-bottom: 4rem;">
+            <div class="glass card" style="padding: 1.5rem;">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="logo-icon bg-emerald" style="width: 2rem; height: 2rem;"><i class="fas fa-tree" style="font-size: 0.8rem;"></i></div>
+                    <span class="stat-label" style="margin: 0;">Forest Loss</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-amber-200 transition-colors">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <i class="fas fa-pickaxe text-amber-600"></i>
-                        <span class="text-xs font-black uppercase text-slate-900 tracking-tight">Mining Intel</span>
-                    </div>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase leading-relaxed">Industrial and artisanal mining sites intersecting the reserve.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-rose-200 transition-colors">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <i class="fas fa-fire text-rose-600"></i>
-                        <span class="text-xs font-black uppercase text-slate-900 tracking-tight">Fire Dynamics</span>
-                    </div>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase leading-relaxed">Annual burned area statistics derived from NASA FIRMS.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-blue-200 transition-colors">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <i class="fas fa-cloud text-blue-600"></i>
-                        <span class="text-xs font-black uppercase text-slate-900 tracking-tight">Carbon Flux</span>
-                    </div>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase leading-relaxed">Modeled carbon emissions resulting from biomass loss.</p>
-                </div>
+                <p class="stat-label" style="text-transform: none; letter-spacing: normal; font-size: 0.8rem;">Temporal tree cover loss at 30m resolution (Hansen GFC).</p>
             </div>
-        </section>
+            <div class="glass card" style="padding: 1.5rem; border-left-color: var(--accent-amber);">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="logo-icon bg-amber" style="width: 2rem; height: 2rem;"><i class="fas fa-gem" style="font-size: 0.8rem;"></i></div>
+                    <span class="stat-label" style="margin: 0;">Mining Intel</span>
+                </div>
+                <p class="stat-label" style="text-transform: none; letter-spacing: normal; font-size: 0.8rem;">Industrial and artisanal mining sites intersecting the reserve.</p>
+            </div>
+            <div class="glass card" style="padding: 1.5rem; border-left-color: var(--accent-rose);">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="logo-icon bg-rose" style="width: 2rem; height: 2rem;"><i class="fas fa-fire" style="font-size: 0.8rem;"></i></div>
+                    <span class="stat-label" style="margin: 0;">Fire Dynamics</span>
+                </div>
+                <p class="stat-label" style="text-transform: none; letter-spacing: normal; font-size: 0.8rem;">Annual burned area statistics derived from NASA FIRMS.</p>
+            </div>
+            <div class="glass card" style="padding: 1.5rem; border-left-color: var(--accent-blue);">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="logo-icon bg-blue" style="width: 2rem; height: 2rem;"><i class="fas fa-cloud" style="font-size: 0.8rem;"></i></div>
+                    <span class="stat-label" style="margin: 0;">Carbon Flux</span>
+                </div>
+                <p class="stat-label" style="text-transform: none; letter-spacing: normal; font-size: 0.8rem;">Modeled carbon emissions resulting from biomass loss.</p>
+            </div>
+        </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-3">
-                <div class="bg-white p-8 rounded-[2.5rem] sticky top-24 border border-slate-200 shadow-sm">
-                    <h3 class="text-[10px] font-black uppercase text-emerald-600 tracking-[0.2em] mb-6">Database Schema</h3>
+        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; margin-bottom: 10rem;">
+            <div style="grid-column: span 3;">
+                <div class="glass card sticky" style="top: 8rem; padding: 2rem;">
+                    <h3 class="stat-label" style="color: var(--accent-emerald); margin-bottom: 2rem;">Database Schema</h3>
                     
-                    <div class="mb-8">
-                        <label class="block text-[10px] font-black text-slate-400 uppercase mb-2 tracking-widest">Select Dataset</label>
-                        <select id="themeSelector" class="w-full bg-slate-50 border border-slate-200 text-xs font-bold py-3 px-4 rounded-xl focus:ring-2 focus:ring-emerald-500 transition outline-none">
+                    <div style="margin-bottom: 2rem;">
+                        <label class="stat-label" style="display: block; margin-bottom: 0.5rem;">Select Dataset</label>
+                        <select id="themeSelector" style="width: 100%;">
                             <option value="forest-loss-2000-2026.csv">Forest Loss (Hansen GFC)</option>
                             <option value="mining-inside.csv">Mining Inside OWR</option>
                             <option value="cami-ipis-mining-impact.csv">Master Mining Impact</option>
@@ -102,22 +107,22 @@
                         </select>
                     </div>
                     
-                    <button id="downloadBtn" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-emerald-700 transition flex items-center justify-center shadow-lg shadow-emerald-100 mb-8">
-                        <i class="fas fa-cloud-download-alt mr-2"></i> Export CSV
+                    <button id="downloadBtn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 2rem;">
+                        <i class="fas fa-cloud-download-alt"></i> Export CSV
                     </button>
                     
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                        <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Technical Note</h4>
-                        <p class="text-[10px] text-slate-400 leading-relaxed font-bold">Datasets use EPSG:4326 (WGS84). Precision: 30m resolution for forest cover. Retrieval Date: 2026-05-15.</p>
+                    <div class="glass" style="padding: 1.5rem; background: rgba(255,255,255,0.02);">
+                        <h4 class="stat-label" style="margin-bottom: 0.5rem;">Technical Note</h4>
+                        <p style="font-size: 0.7rem; color: var(--text-secondary); line-height: 1.6;">Datasets use EPSG:4326 (WGS84). Precision: 30m resolution for forest cover. Retrieval Date: 2026-05-15.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="lg:col-span-9">
-                <div class="bg-white p-4 rounded-[3rem] border border-slate-200 shadow-sm overflow-hidden">
-                    <table id="dataTable" class="w-full">
+            <div style="grid-column: span 9;">
+                <div class="glass card" style="padding: 2rem; overflow-x: auto;">
+                    <table id="dataTable" class="display" style="width: 100%;">
                         <thead>
-                            <tr id="tableHead" class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-left">
+                            <tr id="tableHead">
                                 <!-- Headers -->
                             </tr>
                         </thead>
@@ -130,13 +135,20 @@
         </div>
     </main>
 
-    <footer class="bg-white py-20 mt-20 border-t border-slate-200">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">OWR Data Infrastructure • RDC-002 Archive</p>
-            <div class="flex justify-center gap-12 opacity-50 mb-10 grayscale">
-                <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-6">
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); margin-top: 10rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">ICCN Scientific Infrastructure</span>
+                </div>
             </div>
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 OWR Environmental Monitoring • Open Data Platform</p>
+            <p class="stat-label" style="margin: 0;">&copy; 2024—2030 Project Sentinel • All Rights Reserved</p>
+            <div style="display: flex; gap: 1.5rem; font-size: 1.25rem; color: var(--text-secondary);">
+                <i class="fab fa-github hover:text-white transition cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-white transition cursor-pointer"></i>
+            </div>
         </div>
     </footer>
 
@@ -163,7 +175,7 @@
                         for (let i = 1; i < Math.min(rows.length, 101); i++) {
                             if (rows[i].trim() === '') continue;
                             const cols = rows[i].split(',');
-                            let rowHtml = '<tr class="hover:bg-slate-50 transition">';
+                            let rowHtml = '<tr>';
                             cols.forEach(c => {
                                 rowHtml += `<td>${c}</td>`;
                             });

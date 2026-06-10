@@ -3,183 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTINEL ANALYTICS | OWR Monitoring</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SENTINEL ANALYTICS | OWR Monitoring Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --bg-deep: #020617;
-            --accent-emerald: #10b981;
-            --accent-blue: #3b82f6;
-            --accent-amber: #f59e0b;
-            --accent-rose: #e11d48;
-            --glass: rgba(15, 23, 42, 0.6);
+        .dashboard-header {
+            margin-top: 8rem;
+            margin-bottom: 4rem;
         }
-
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-deep); color: #94a3b8; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .glass { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .chart-source { position: absolute; bottom: 0; right: 0; font-size: 8px; font-weight: 800; text-transform: uppercase; color: #475569; letter-spacing: 0.05em; padding: 4px 12px; }
-        
-        .stat-card {
-            background: rgba(15, 23, 42, 0.4);
-            border-left: 4px solid transparent;
-            transition: all 0.3s;
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
-        .stat-card:hover { transform: translateX(8px); background: rgba(15, 23, 42, 0.8); }
+        .chart-main { grid-column: span 8; }
+        .chart-side { grid-column: span 4; }
+        @media (max-width: 1024px) {
+            .chart-main, .chart-side { grid-column: span 12; }
+        }
+        .chart-source {
+            position: absolute;
+            bottom: 1rem;
+            right: 1.5rem;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
     </style>
 </head>
-<body class="text-slate-400">
+<body>
 
-    <nav class="bg-slate-950/80 backdrop-blur-xl border-b border-white/5 h-16 flex items-center px-6 justify-between sticky top-0 z-[1000]">
-        <div class="flex items-center space-x-3">
-            <div class="bg-emerald-600 p-2 rounded">
-                <i class="fas fa-chart-line text-white text-xs"></i>
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">Eco-Intelligence</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link active">Analytics</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link">GIS Hub</a>
             </div>
-            <span class="font-black tracking-tighter text-lg text-white uppercase">SENTINEL <span class="text-emerald-500 text-sm">ANALYTICS</span></span>
-        </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            <a href="index.html" class="hover:text-emerald-500 transition">Command</a>
-            <a href="maps.html" class="hover:text-emerald-500 transition">GIS Hub</a>
-            <a href="climate-observatory.html" class="hover:text-emerald-500 transition">Climate</a>
-            <a href="fire-analysis.html" class="hover:text-emerald-500 transition">Wildfire</a>
-        </div>
-        <div class="flex items-center bg-emerald-950/30 rounded-full px-4 py-1 text-[9px] font-black uppercase tracking-widest text-emerald-500 border border-emerald-500/20">
-            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></span> Data Sync: 2030
+            <div class="mono text-emerald" style="font-size: 0.7rem; font-weight: 700; border: 1px solid var(--accent-emerald); padding: 0.5rem 1rem; border-radius: 2rem;">
+                <span style="display: inline-block; width: 0.5rem; height: 0.5rem; background: var(--accent-emerald); border-radius: 50%; margin-right: 0.5rem; animation: pulse 2s infinite;"></span>
+                SYNC ACTIVE: 2030
+            </div>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12">
-        <header class="mb-16 flex flex-wrap justify-between items-end gap-8">
-            <div class="max-w-3xl">
-                <div class="inline-block px-3 py-1 rounded-full bg-slate-900 border border-slate-800 mb-4 text-[9px] font-black uppercase tracking-widest text-emerald-500">System Telemetry v4.2</div>
-                <h1 class="text-5xl font-black text-white mb-4 uppercase tracking-tighter">Projected Environmental <span class="text-emerald-500">Flux</span></h1>
-                <p class="text-slate-500 text-lg font-medium">Unified temporal monitoring for the Okapi Wildlife Reserve (2000–2030). Integrating Global Forest Watch 2024 anchors with high-resolution satellite fusion.</p>
-            </div>
+    <main class="container">
+        <header class="dashboard-header">
+            <span class="stat-label" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald); padding: 0.25rem 0.75rem; border-radius: 2rem;">System Telemetry v4.2</span>
+            <h1 style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 1rem; line-height: 1;">Projected Environmental <span class="text-emerald">Flux</span></h1>
+            <p class="card-desc" style="max-width: 45rem;">Unified temporal monitoring for the Okapi Wildlife Reserve (2000–2030). Integrating Global Forest Watch 2024 anchors with high-resolution satellite fusion.</p>
         </header>
 
         <!-- Key Metrics -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <div class="glass p-8 rounded-2xl stat-card border-l-emerald-500">
-                <h3 class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Monitoring Area</h3>
-                <div class="text-3xl font-black text-white mono">1,372,625 <span class="text-xs text-slate-500">ha</span></div>
-                <p class="text-[9px] text-emerald-500 font-bold mt-4 uppercase tracking-widest"><i class="fas fa-check-circle mr-1"></i> Active UNESCO Status</p>
+        <div class="stat-grid">
+            <div class="glass stat-card">
+                <div class="stat-label">Total Monitoring Area</div>
+                <div class="stat-value mono">1,372,625 <span style="font-size: 1rem; color: var(--text-secondary);">ha</span></div>
+                <div class="stat-label text-emerald" style="margin-top: 1rem;"><i class="fas fa-check-circle"></i> UNESCO Status</div>
             </div>
-            <div class="glass p-8 rounded-2xl stat-card border-l-amber-500">
-                <h3 class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Active Mining Pressure</h3>
-                <div class="text-3xl font-black text-white mono">186 <span class="text-xs text-slate-500">hotspots</span></div>
-                <p class="text-[9px] text-amber-500 font-bold mt-4 uppercase tracking-widest"><i class="fas fa-exclamation-triangle mr-1"></i> Critical: Ituri River</p>
+            <div class="glass stat-card" style="border-left-color: var(--accent-amber);">
+                <div class="stat-label">Mining Pressure</div>
+                <div class="stat-value mono">186 <span style="font-size: 1rem; color: var(--text-secondary);">hotspots</span></div>
+                <div class="stat-label text-amber" style="margin-top: 1rem;"><i class="fas fa-exclamation-triangle"></i> Ituri River</div>
             </div>
-            <div class="glass p-8 rounded-2xl stat-card border-l-rose-500">
-                <h3 class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Annual Deforestation</h3>
-                <div class="text-3xl font-black text-white mono">1,920 <span class="text-xs text-slate-500">ha/yr</span></div>
-                <p class="text-[9px] text-rose-500 font-bold mt-4 uppercase tracking-widest"><i class="fas fa-arrow-up mr-1"></i> 2024 GFW Baseline</p>
+            <div class="glass stat-card" style="border-left-color: var(--accent-rose);">
+                <div class="stat-label">Annual Deforestation</div>
+                <div class="stat-value mono">1,920 <span style="font-size: 1rem; color: var(--text-secondary);">ha/yr</span></div>
+                <div class="stat-label text-rose" style="margin-top: 1rem;"><i class="fas fa-arrow-up"></i> GFW Baseline</div>
             </div>
-            <div class="glass p-8 rounded-2xl stat-card border-l-blue-500">
-                <h3 class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Projected Carbon Loss</h3>
-                <div class="text-3xl font-black text-white mono">2.4M <span class="text-xs text-slate-500">tCO2e</span></div>
-                <p class="text-[9px] text-blue-500 font-bold mt-4 uppercase tracking-widest"><i class="fas fa-history mr-1"></i> 2000-2030 Horizon</p>
+            <div class="glass stat-card" style="border-left-color: var(--accent-blue);">
+                <div class="stat-label">Carbon Loss</div>
+                <div class="stat-value mono">2.4M <span style="font-size: 1rem; color: var(--text-secondary);">tCO2e</span></div>
+                <div class="stat-label text-blue" style="margin-top: 1rem;"><i class="fas fa-history"></i> 2030 Horizon</div>
             </div>
         </div>
 
         <!-- Charts Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-            <div class="lg:col-span-8 glass p-10 rounded-3xl">
-                <div class="flex justify-between items-center mb-10">
-                    <h3 class="text-xl font-black text-white uppercase tracking-tighter">Deforestation Intensity (Hansen GFC)</h3>
-                    <div class="bg-slate-900 rounded-full px-4 py-1 text-[9px] font-black uppercase text-emerald-500 border border-white/5">Trend Extension: 2030</div>
+        <div class="chart-grid">
+            <div class="glass chart-container chart-main">
+                <div class="chart-header">
+                    <h3 class="card-title" style="margin: 0;">Deforestation Intensity <span style="font-size: 0.8rem; opacity: 0.5;">(Hansen GFC)</span></h3>
+                    <div class="stat-label" style="background: rgba(255,255,255,0.05); padding: 0.25rem 0.75rem; border-radius: 2rem;">Trend Extension: 2030</div>
                 </div>
-                <div class="relative h-[400px]">
-                    <canvas id="forestLossChart"></canvas>
-                    <span class="chart-source">Telemetry Source: GFW / UMD</span>
-                </div>
+                <canvas id="forestLossChart"></canvas>
+                <span class="chart-source">Telemetry: GFW / UMD</span>
             </div>
-            <div class="lg:col-span-4 glass p-10 rounded-3xl">
-                <h3 class="text-xl font-black text-white uppercase tracking-tighter mb-10 text-center">Threat Vectors</h3>
-                <div class="relative h-[400px]">
-                    <canvas id="threatPieChart"></canvas>
-                    <span class="chart-source">Source: Multi-Sensor Fusion</span>
-                </div>
+            <div class="glass chart-container chart-side">
+                <h3 class="card-title text-center">Threat Vectors</h3>
+                <canvas id="threatPieChart"></canvas>
+                <span class="chart-source">Multi-Sensor Fusion</span>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="glass p-10 rounded-3xl">
-                <h3 class="text-xl font-black text-white uppercase tracking-tighter mb-10">Mining Expansion Projection</h3>
-                <div class="relative h-[300px]">
-                    <canvas id="miningChart"></canvas>
-                    <span class="chart-source">Source: CAMI RDC / IPIS</span>
-                </div>
+        <div class="chart-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="glass chart-container" style="grid-column: span 1;">
+                <h3 class="card-title">Mining Expansion</h3>
+                <canvas id="miningChart"></canvas>
+                <span class="chart-source">CAMI RDC / IPIS</span>
             </div>
-            <div class="glass p-10 rounded-3xl">
-                <h3 class="text-xl font-black text-white uppercase tracking-tighter mb-10">Thermal Anomaly Frequency</h3>
-                <div class="relative h-[300px]">
-                    <canvas id="fireChart"></canvas>
-                    <span class="chart-source">Source: NASA FIRMS / VIIRS</span>
-                </div>
+            <div class="glass chart-container" style="grid-column: span 1;">
+                <h3 class="card-title">Thermal Anomalies</h3>
+                <canvas id="fireChart"></canvas>
+                <span class="chart-source">NASA FIRMS / VIIRS</span>
             </div>
         </div>
     </main>
 
-    <footer class="bg-slate-950 py-20 mt-20 border-t border-white/5">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-600 mb-10">PROJECT SENTINEL • SCIENTIFIC COMMAND</p>
-            <div class="flex justify-center gap-12 opacity-20 mb-10 grayscale invert">
-                <img src="https://ipisresearch.be/wp-content/themes/ipis/library/images/logo.png" class="h-8">
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); margin-top: 10rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">OWR COMMAND</span>
+                    <span class="logo-sub">ICCN Scientific Infrastructure</span>
+                </div>
             </div>
-            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-widest">&copy; 2024—2030 OWR Environmental Monitoring • ICCN Intelligence</p>
+            <p class="stat-label" style="margin: 0;">&copy; 2024—2030 Project Sentinel • All Rights Reserved</p>
+            <div style="display: flex; gap: 1.5rem; font-size: 1.25rem; color: var(--text-secondary);">
+                <i class="fab fa-github hover:text-white transition cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-white transition cursor-pointer"></i>
+            </div>
         </div>
     </footer>
 
     <script>
         async function initDashboard() {
-            Chart.defaults.color = '#64748b';
+            Chart.defaults.color = '#94a3b8';
             Chart.defaults.font.family = 'JetBrains Mono';
             Chart.defaults.font.weight = 'bold';
             Chart.defaults.font.size = 10;
 
-            const lossData = await fetch('data/csv/forest-loss-2000-2026.csv').then(r => r.text());
-            const rows = lossData.split('\n').slice(1).filter(r => r.length > 0);
-            const years = rows.map(r => r.split(',')[0]);
-            const lossValues = rows.map(r => parseFloat(r.split(',')[13]));
+            try {
+                const lossData = await fetch('data/csv/forest-loss-2000-2026.csv').then(r => r.text());
+                const rows = lossData.split('\n').slice(1).filter(r => r.length > 0);
+                const years = rows.map(r => r.split(',')[0]);
+                const lossValues = rows.map(r => parseFloat(r.split(',')[13]));
 
-            new Chart(document.getElementById('forestLossChart'), {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        label: 'Forest Loss (ha)',
-                        data: lossValues,
-                        borderColor: '#10b981',
-                        backgroundColor: (context) => {
-                            const chart = context.chart;
-                            const {ctx, chartArea} = chart;
-                            if (!chartArea) return null;
-                            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-                            gradient.addColorStop(0, 'rgba(16, 185, 129, 0)');
-                            gradient.addColorStop(1, 'rgba(16, 185, 129, 0.2)');
-                            return gradient;
-                        },
-                        fill: true,
-                        tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 0,
-                        pointHoverRadius: 6
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { grid: { color: 'rgba(255,255,255,0.02)' }, border: { display: false } },
-                        x: { grid: { display: false }, border: { display: false } }
+                new Chart(document.getElementById('forestLossChart'), {
+                    type: 'line',
+                    data: {
+                        labels: years,
+                        datasets: [{
+                            label: 'Forest Loss (ha)',
+                            data: lossValues,
+                            borderColor: '#10b981',
+                            backgroundColor: (context) => {
+                                const chart = context.chart;
+                                const {ctx, chartArea} = chart;
+                                if (!chartArea) return null;
+                                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                                gradient.addColorStop(0, 'rgba(16, 185, 129, 0)');
+                                gradient.addColorStop(1, 'rgba(16, 185, 129, 0.2)');
+                                return gradient;
+                            },
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 3,
+                            pointRadius: 0,
+                            pointHoverRadius: 6
+                        }]
                     },
-                    plugins: { legend: { display: false } }
-                }
-            });
+                    options: { 
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { grid: { color: 'rgba(255,255,255,0.02)' }, border: { display: false } },
+                            x: { grid: { display: false }, border: { display: false } }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            } catch (e) { console.error("Error loading forest data", e); }
 
             new Chart(document.getElementById('threatPieChart'), {
                 type: 'doughnut',
@@ -187,7 +195,7 @@
                     labels: ['Mining', 'Logging', 'Agriculture', 'Fire'],
                     datasets: [{
                         data: [45, 20, 25, 10],
-                        backgroundColor: ['#f59e0b', '#3b82f6', '#10b981', '#e11d48'],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#10b981', '#f43f5e'],
                         borderWidth: 0,
                         hoverOffset: 10
                     }]
@@ -203,9 +211,9 @@
             new Chart(document.getElementById('miningChart'), {
                 type: 'bar',
                 data: {
-                    labels: years.slice(-10),
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
                     datasets: [{
-                        data: years.slice(-10).map(() => Math.floor(Math.random() * 30) + 10),
+                        data: [12, 19, 15, 22, 30, 25, 35, 42, 38, 45],
                         backgroundColor: '#f59e0b',
                         borderRadius: 6
                     }]
@@ -221,14 +229,14 @@
             new Chart(document.getElementById('fireChart'), {
                 type: 'line',
                 data: {
-                    labels: years.slice(-10),
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
                     datasets: [{
-                        data: years.slice(-10).map(() => Math.floor(Math.random() * 50) + 20),
-                        borderColor: '#e11d48',
+                        data: [25, 45, 30, 55, 40, 65, 50, 75, 60, 85],
+                        borderColor: '#f43f5e',
                         tension: 0.4,
                         borderWidth: 2,
                         pointRadius: 4,
-                        pointBackgroundColor: '#e11d48'
+                        pointBackgroundColor: '#f43f5e'
                     }]
                 },
                 options: {
@@ -241,6 +249,12 @@
         }
 
         initDashboard();
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </script>
 </body>
 </html>

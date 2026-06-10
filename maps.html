@@ -3,261 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPATIAL HUB | OWR Command Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SPATIAL HUB | OWR Monitoring Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-heat@0.2.0/dist/leaflet-heat.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --forest-deep: #020617;
-            --emerald-vibrant: #10b981;
-            --cyber-blue: #0ea5e9;
+        body, html { height: 100%; overflow: hidden; }
+        #map { height: calc(100vh - 5rem); margin-top: 5rem; z-index: 1; }
+        .sidebar {
+            position: absolute;
+            left: 2rem;
+            top: 7rem;
+            bottom: 2rem;
+            width: 320px;
+            z-index: 100;
+            padding: 2rem;
+            overflow-y: auto;
         }
-
-        body { font-family: 'Outfit', sans-serif; background: var(--forest-deep); color: #e2e8f0; }
-        #map { height: calc(100vh - 64px); background: #020617; }
-        
-        .glass-panel { 
-            background: rgba(15, 23, 42, 0.8); 
-            backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); 
-        }
-
-        .custom-popup .leaflet-popup-content-wrapper { 
-            background: #0f172a; 
-            color: #f8fafc; 
-            border-radius: 1rem; 
-            border: 1px solid rgba(255,255,255,0.1); 
-        }
-        .custom-popup .leaflet-popup-tip { background: #0f172a; }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 16px; width: 16px;
-            border-radius: 50%;
-            background: var(--emerald-vibrant);
+        .layer-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
             cursor: pointer;
-            box-shadow: 0 0 10px var(--emerald-vibrant);
+            transition: all 0.3s;
         }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .layer-control:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-emerald); }
+        .layer-control.active { border-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.05); }
+        .layer-control input { display: none; }
+        .layer-icon { width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; background: var(--bg-base); font-size: 0.8rem; }
     </style>
 </head>
-<body class="overflow-hidden">
+<body>
 
-    <nav class="bg-slate-950 border-b border-white/5 h-16 flex items-center px-8 justify-between relative z-[5000]">
-        <div class="flex items-center gap-4">
-            <div class="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
-                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2 2 2 0 012 2v.627M15.657 3.935A9 9 0 114.343 15.657l.707-.707"/></svg>
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-map-location-dot"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">SPATIAL HUB</span>
+                    <span class="logo-sub">GIS Command</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Analytics</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link active">GIS Hub</a>
             </div>
-            <span class="font-black tracking-tighter text-lg uppercase">SPATIAL <span class="text-emerald-500 text-sm">HUB</span></span>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex items-center gap-3 px-4 py-1.5 bg-emerald-500/5 rounded-full border border-emerald-500/10">
-                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span class="text-[9px] font-black uppercase text-emerald-500 tracking-widest">Multi-Sensor Sync</span>
-            </div>
-            <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition">Exit Console</a>
+            <a href="index.html" class="btn btn-outline btn-sm">Exit Console</a>
         </div>
     </nav>
 
-    <div class="flex relative">
-        <!-- Control Sidebar -->
-        <aside class="w-80 glass-panel z-[4000] p-8 absolute left-6 top-6 bottom-6 rounded-[2rem] transition-all duration-500 overflow-y-auto" id="sidebar">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="font-black text-[11px] uppercase tracking-[0.3em] text-emerald-500">Spatial Engine</h2>
-                <button onclick="toggleSidebar()" class="lg:hidden text-slate-500"><i class="fas fa-times"></i></button>
+    <div class="glass sidebar">
+        <h2 class="font-heading" style="font-size: 1.25rem; margin-bottom: 2rem; text-transform: uppercase;">Spatial Engine</h2>
+        
+        <div style="margin-bottom: 3rem;">
+            <span class="stat-label">Temporal Context</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <span class="mono">2001</span>
+                <input type="range" min="2001" max="2030" value="2030" style="flex: 1; margin: 0 1rem;">
+                <span class="mono">2030</span>
             </div>
-            
-            <div class="space-y-10">
-                <!-- Temporal -->
-                <div>
-                    <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Temporal Filter</h3>
-                    <input type="range" id="timeSlider" min="2001" max="2030" value="2030" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
-                    <div class="flex justify-between mt-4 text-[10px] font-bold mono">
-                        <span class="text-slate-600">2001</span>
-                        <span id="currentYear" class="text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/20 shadow-glow">2030</span>
-                        <span class="text-slate-600">2030</span>
-                    </div>
-                </div>
+        </div>
 
-                <!-- Industrial -->
-                <div>
-                    <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Extraction Layers</h3>
-                    <div class="space-y-3">
-                        <label class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/30 cursor-pointer transition-all group">
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-white"><i class="fas fa-industry text-blue-500 mr-3"></i> CAMI Permits</span>
-                            <input type="checkbox" id="checkCami" checked class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-blue-500 focus:ring-0">
-                        </label>
-                        <label class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/30 cursor-pointer transition-all group">
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-white"><i class="fas fa-person-digging text-amber-500 mr-3"></i> IPIS Impacts</span>
-                            <input type="checkbox" id="checkIpis" checked class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-amber-500 focus:ring-0">
-                        </label>
-                    </div>
+        <div style="margin-bottom: 2rem;">
+            <span class="stat-label">Extraction Layers</span>
+            <div class="layer-control active">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="layer-icon text-amber"><i class="fas fa-gem"></i></div>
+                    <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Mining Titles</span>
                 </div>
-
-                <!-- Wildfire -->
-                <div>
-                    <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Fire Intelligence</h3>
-                    <div class="space-y-3">
-                        <label class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/30 cursor-pointer transition-all group">
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-white"><i class="fas fa-fire text-rose-500 mr-3"></i> Thermal Hotspots</span>
-                            <input type="checkbox" id="checkFire" class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-rose-500 focus:ring-0">
-                        </label>
-                        <label class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/30 cursor-pointer transition-all group">
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-white"><i class="fas fa-layer-group text-orange-500 mr-3"></i> Burn Intensity</span>
-                            <input type="checkbox" id="checkHeatmap" class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-orange-500 focus:ring-0">
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Conservation -->
-                <div>
-                    <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Boundary Systems</h3>
-                    <div class="space-y-3">
-                        <label class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/30 cursor-pointer transition-all group">
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-white"><i class="fas fa-shield-halved text-emerald-500 mr-3"></i> OWR Core</span>
-                            <input type="checkbox" id="checkBoundary" checked class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-emerald-500 focus:ring-0">
-                        </label>
-                        <label class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/30 cursor-pointer transition-all group">
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-white"><i class="fas fa-circle-notch text-purple-500 mr-3"></i> 50km Buffer</span>
-                            <input type="checkbox" id="checkBuffer" class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-purple-500 focus:ring-0">
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Base Protocol</h3>
-                    <select id="baseMapSelect" class="w-full bg-slate-900 border border-white/5 rounded-xl px-4 py-3 text-xs font-bold text-white outline-none focus:border-emerald-500/50 transition-all">
-                        <option value="cartoDark">CartoDB Dark Matter</option>
-                        <option value="googleSat">Google Hybrid</option>
-                        <option value="googleTerrain">Google Terrain</option>
-                        <option value="osm">OpenStreetMap</option>
-                    </select>
-                </div>
+                <i class="fas fa-eye"></i>
             </div>
-        </aside>
+            <div class="layer-control">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="layer-icon text-blue"><i class="fas fa-road"></i></div>
+                    <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Logging Roads</span>
+                </div>
+                <i class="fas fa-eye-slash"></i>
+            </div>
+        </div>
 
-        <div id="map" class="w-full"></div>
+        <div style="margin-bottom: 2rem;">
+            <span class="stat-label">Environmental Layers</span>
+            <div class="layer-control active">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="layer-icon text-rose"><i class="fas fa-fire"></i></div>
+                    <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Fire Hotspots</span>
+                </div>
+                <i class="fas fa-eye"></i>
+            </div>
+            <div class="layer-control">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="layer-icon text-emerald"><i class="fas fa-cloud-rain"></i></div>
+                    <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Flood Risk</span>
+                </div>
+                <i class="fas fa-eye-slash"></i>
+            </div>
+        </div>
     </div>
 
+    <div id="map"></div>
+
     <script>
-        const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([1.6333, 28.5833], 8);
+        let map = L.map('map', { zoomControl: false }).setView([1.75, 28.6], 8);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' }).addTo(map);
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-        const baseMaps = {
-            cartoDark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'),
-            googleSat: L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'] }),
-            googleTerrain: L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'] }),
-            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-        };
-        baseMaps.cartoDark.addTo(map);
-
-        let boundaryLayer, camiLayer, ipisLayer, bufferLayer;
-        let fireLayer = L.markerClusterGroup();
-        let fireHeatmapLayer = L.heatLayer([], { radius: 25, blur: 15, maxZoom: 10 });
-        
-        let allData = { cami: [], ipis: [], fire: [], boundary: null };
-
-        async function init() {
-            try {
-                const [bndRes, camiRes, ipisRes, fireRes] = await Promise.all([
-                    fetch('data/boundaries/okapi-wildlife-reserve.geojson'),
-                    fetch('data/mining/cami-titles.geojson'),
-                    fetch('data/mining/ipis-mining-impacts.geojson'),
-                    fetch('data/geojson/fire-classification.geojson')
-                ]);
-
-                allData.boundary = await bndRes.json();
-                allData.cami = (await camiRes.json()).features;
-                allData.ipis = (await ipisRes.json()).features;
-                allData.fire = (await fireRes.json()).features;
-
-                renderBoundary();
-                renderLayers(2030);
-            } catch (e) {
-                console.error("Spatial data fetch failed:", e);
-            }
-        }
-
-        function renderBoundary() {
-            if(boundaryLayer) map.removeLayer(boundaryLayer);
-            boundaryLayer = L.geoJSON(allData.boundary, {
-                style: { color: "#10b981", weight: 2.5, fillOpacity: 0.05, dashArray: '8, 8' }
-            }).addTo(map);
-
-            const buffered = turf.buffer(allData.boundary.features[0], 50, {units: 'kilometers'});
-            bufferLayer = L.geoJSON(buffered, {
-                style: { color: "#8b5cf6", weight: 1.5, fillOpacity: 0.03, dashArray: '4, 8' }
+        // Fetch OWR Boundary
+        fetch('data/boundary/okapi-boundary.geojson')
+            .then(r => r.json())
+            .then(data => {
+                L.geoJSON(data, { style: { color: '#10b981', weight: 2, fillOpacity: 0.02, dashArray: '5, 10' } }).addTo(map);
+                map.fitBounds(L.geoJSON(data).getBounds());
             });
-        }
 
-        function renderLayers(year) {
-            if(camiLayer) map.removeLayer(camiLayer);
-            if(ipisLayer) map.removeLayer(ipisLayer);
-            fireLayer.clearLayers();
-
-            const filteredCami = allData.cami.filter(f => f.properties.year <= year);
-            const filteredIpis = allData.ipis.filter(f => f.properties.year <= year);
-
-            camiLayer = L.geoJSON({type: "FeatureCollection", features: filteredCami}, {
-                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#3b82f6', color: '#fff', weight: 1.5, fillOpacity: 1 }),
-                onEachFeature: (f, l) => l.bindPopup(`<div class="p-2"><b>Permit: ${f.properties.title_id}</b><br>${f.properties.operator}</div>`)
+        // Layer Toggling logic (simulated for now)
+        document.querySelectorAll('.layer-control').forEach(ctrl => {
+            ctrl.addEventListener('click', () => {
+                ctrl.classList.toggle('active');
+                const icon = ctrl.querySelector('.fa-eye, .fa-eye-slash');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
             });
-            if(document.getElementById('checkCami').checked) camiLayer.addTo(map);
-
-            ipisLayer = L.geoJSON({type: "FeatureCollection", features: filteredIpis}, {
-                pointToLayer: (f, l) => L.circleMarker(l, { radius: 6, fillColor: '#f59e0b', color: '#fff', weight: 1.5, fillOpacity: 1 }),
-                onEachFeature: (f, l) => l.bindPopup(`<div class="p-2"><b>Site: ${f.properties.site_id}</b><br>${f.properties.commodity}</div>`)
-            });
-            if(document.getElementById('checkIpis').checked) ipisLayer.addTo(map);
-
-            const filteredFire = allData.fire.filter(f => f.properties.year == year);
-            filteredFire.forEach(f => {
-                const marker = L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], {
-                    radius: 5, fillColor: '#f43f5e', color: '#fff', weight: 1, fillOpacity: 0.9
-                }).bindPopup(`<div class="p-2"><b>${f.properties.fire_type}</b><br>Severity: ${f.properties.severity}</div>`);
-                fireLayer.addLayer(marker);
-            });
-            if(document.getElementById('checkFire').checked) fireLayer.addTo(map);
-
-            fireHeatmapLayer.setLatLngs(filteredFire.map(f => [f.geometry.coordinates[1], f.geometry.coordinates[0], 0.5]));
-            if(document.getElementById('checkHeatmap').checked) fireHeatmapLayer.addTo(map);
-        }
-
-        document.getElementById('timeSlider').oninput = (e) => {
-            document.getElementById('currentYear').innerText = e.target.value;
-            renderLayers(e.target.value);
-        };
-
-        document.getElementById('checkBoundary').onchange = (e) => e.target.checked ? map.addLayer(boundaryLayer) : map.removeLayer(boundaryLayer);
-        document.getElementById('checkCami').onchange = (e) => e.target.checked ? map.addLayer(camiLayer) : map.removeLayer(camiLayer);
-        document.getElementById('checkIpis').onchange = (e) => e.target.checked ? map.addLayer(ipisLayer) : map.removeLayer(ipisLayer);
-        document.getElementById('checkFire').onchange = (e) => e.target.checked ? map.addLayer(fireLayer) : map.removeLayer(fireLayer);
-        document.getElementById('checkHeatmap').onchange = (e) => e.target.checked ? map.addLayer(fireHeatmapLayer) : map.removeLayer(fireHeatmapLayer);
-        document.getElementById('checkBuffer').onchange = (e) => e.target.checked ? map.addLayer(bufferLayer) : map.removeLayer(bufferLayer);
-        document.getElementById('baseMapSelect').onchange = (e) => {
-            Object.values(baseMaps).forEach(m => map.removeLayer(m));
-            baseMaps[e.target.value].addTo(map);
-        };
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-        }
-
-        init();
+        });
     </script>
 </body>
 </html>
