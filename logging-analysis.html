@@ -14,7 +14,6 @@
     <style>
         .logging-header { margin-top: 8rem; margin-bottom: 4rem; }
         #loggingMap { height: 600px; border-radius: 1.5rem; border: 1px solid var(--border-glass); overflow: hidden; }
-        .chart-source { position: absolute; bottom: 1rem; right: 1.5rem; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.05em; }
     </style>
 </head>
 <body>
@@ -76,16 +75,20 @@
             <div id="loggingMap"></div>
         </div>
 
-        <div class="chart-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem;">
-            <div class="glass chart-container">
+        <div class="chart-grid">
+            <div class="glass chart-container chart-half">
                 <h3 class="card-title">Yearly Logging Intensity</h3>
-                <canvas id="intensityChart"></canvas>
-                <span class="chart-source">Hansen GFC / GFW Buffer Analysis</span>
+                <div class="chart-wrapper">
+                    <canvas id="intensityChart"></canvas>
+                    <span class="chart-source">Hansen GFC / GFW Buffer Analysis</span>
+                </div>
             </div>
-            <div class="glass chart-container">
+            <div class="glass chart-container chart-half">
                 <h3 class="card-title">Road expansion vs. Forest Loss</h3>
-                <canvas id="roadForestChart"></canvas>
-                <span class="chart-source">Multi-Temporal Road Mapping</span>
+                <div class="chart-wrapper">
+                    <canvas id="roadForestChart"></canvas>
+                    <span class="chart-source">Multi-Temporal Road Mapping</span>
+                </div>
             </div>
         </div>
     </main>

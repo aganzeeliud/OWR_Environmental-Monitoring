@@ -11,7 +11,6 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         .fire-header { margin-top: 8rem; margin-bottom: 4rem; }
-        .chart-source { position: absolute; bottom: 1rem; right: 1.5rem; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.05em; }
         table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
         th { text-align: left; padding: 1.5rem; border-bottom: 1px solid var(--border-glass); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
         td { padding: 1.5rem; border-bottom: 1px solid var(--border-glass); font-size: 0.8rem; }
@@ -75,31 +74,44 @@
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; margin-bottom: 4rem;">
-            <div class="glass chart-container" style="grid-column: span 8;">
+        <div class="chart-grid">
+            <div class="glass chart-container chart-main">
                 <h3 class="card-title">Annual Forest Loss & Burn Intensity</h3>
-                <canvas id="annualLossChart"></canvas>
-                <span class="chart-source">NASA FIRMS / VIIRS Telemetry</span>
+                <div class="chart-wrapper">
+                    <canvas id="annualLossChart"></canvas>
+                    <span class="chart-source">NASA FIRMS / VIIRS Telemetry</span>
+                </div>
             </div>
-            <div class="glass chart-container" style="grid-column: span 4;">
+            <div class="glass chart-container chart-side">
                 <h3 class="card-title text-center">Fire Type Distribution</h3>
-                <canvas id="typeChart"></canvas>
-                <span class="chart-source">OWR Classification Engine</span>
+                <div class="chart-wrapper">
+                    <canvas id="typeChart"></canvas>
+                    <span class="chart-source">OWR Classification Engine</span>
+                </div>
             </div>
         </div>
 
-        <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
-            <div class="glass chart-container">
+        <div class="chart-grid">
+            <div class="glass chart-container chart-third chart-sm">
                 <h3 class="card-title">Severity Index</h3>
-                <canvas id="severityChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="severityChart"></canvas>
+                    <span class="chart-source">OWR Multi-Sensor Fusion</span>
+                </div>
             </div>
-            <div class="glass chart-container">
+            <div class="glass chart-container chart-third chart-sm">
                 <h3 class="card-title">Cumulative Degradation</h3>
-                <canvas id="cumulativeChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="cumulativeChart"></canvas>
+                    <span class="chart-source">Historical GFW Baseline</span>
+                </div>
             </div>
-            <div class="glass chart-container">
+            <div class="glass chart-container chart-third chart-sm">
                 <h3 class="card-title">Monthly Seasonality</h3>
-                <canvas id="seasonalChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="seasonalChart"></canvas>
+                    <span class="chart-source">NASA MODIS Active Fire</span>
+                </div>
             </div>
         </div>
 

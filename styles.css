@@ -229,10 +229,36 @@ nav {
 }
 
 /* Charts */
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
 .chart-container {
-    padding: 2rem;
+    padding: 2.5rem;
     position: relative;
-    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    height: 100%;
+    grid-column: span 12;
+}
+
+.chart-main { grid-column: span 8; }
+.chart-side { grid-column: span 4; }
+.chart-half { grid-column: span 6; }
+.chart-third { grid-column: span 4; }
+
+.chart-sm {
+    min-height: 350px;
+}
+
+@media (max-width: 1024px) {
+    .chart-main, .chart-side, .chart-half, .chart-third {
+        grid-column: span 12;
+    }
 }
 
 .chart-header {
@@ -240,6 +266,26 @@ nav {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    flex-shrink: 0;
+}
+
+.chart-wrapper {
+    flex-grow: 1;
+    position: relative;
+    min-height: 0; /* Important for flex children with overflow */
+    width: 100%;
+}
+
+.chart-source {
+    position: absolute;
+    bottom: -1rem;
+    right: 0;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    pointer-events: none;
 }
 
 /* Utils */

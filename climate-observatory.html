@@ -14,7 +14,6 @@
     <style>
         .climate-header { margin-top: 8rem; margin-bottom: 4rem; }
         #map { height: 600px; border-radius: 1.5rem; border: 1px solid var(--border-glass); overflow: hidden; }
-        .chart-source { position: absolute; bottom: 1rem; right: 1.5rem; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.05em; }
         .layer-btn { width: 100%; text-align: left; padding: 1rem; border-radius: 1rem; border: 1px solid var(--border-glass); background: var(--bg-card); color: var(--text-secondary); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s; margin-bottom: 1rem; }
         .layer-btn.active { background: var(--accent-emerald); color: var(--bg-base); border-color: var(--accent-emerald); }
     </style>
@@ -97,31 +96,41 @@
             </div>
         </div>
 
-        <div class="chart-grid" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; margin-bottom: 2rem;">
-            <div class="glass chart-container" style="grid-column: span 12;">
+        <div class="chart-grid">
+            <div class="glass chart-container">
                 <h3 class="card-title">Temperature Evolution (1990—2026)</h3>
-                <div id="temp-evolution-chart" style="height: 400px;"></div>
-                <span class="chart-source">Source: ERA5-Land Reanalysis (ECMWF)</span>
+                <div class="chart-wrapper">
+                    <div id="temp-evolution-chart" style="height: 400px;"></div>
+                    <span class="chart-source">Source: ERA5-Land Reanalysis (ECMWF)</span>
+                </div>
             </div>
-            <div class="glass chart-container" style="grid-column: span 7;">
+            <div class="glass chart-container chart-main">
                 <h3 class="card-title">Monthly Climatology (Rainfall Cycle)</h3>
-                <div id="seasonal-climatology-chart" style="height: 350px;"></div>
-                <span class="chart-source">Source: CHIRPS Rainfall Dataset v2.0</span>
+                <div class="chart-wrapper">
+                    <div id="seasonal-climatology-chart" style="height: 350px;"></div>
+                    <span class="chart-source">Source: CHIRPS Rainfall Dataset v2.0</span>
+                </div>
             </div>
-            <div class="glass chart-container" style="grid-column: span 5;">
+            <div class="glass chart-container chart-side">
                 <h3 class="card-title text-center">Heatwave Frequency</h3>
-                <div id="heatwave-chart" style="height: 350px;"></div>
-                <span class="chart-source">Source: NASA POWER Meteorological Data</span>
+                <div class="chart-wrapper">
+                    <div id="heatwave-chart" style="height: 350px;"></div>
+                    <span class="chart-source">Source: NASA POWER Meteorological Data</span>
+                </div>
             </div>
-            <div class="glass chart-container" style="grid-column: span 6;">
+            <div class="glass chart-container chart-half">
                 <h3 class="card-title">Annual Rainfall Flux</h3>
-                <div id="rain-flux-chart" style="height: 300px;"></div>
-                <span class="chart-source">Source: Multi-Sensor Precipitation Integration</span>
+                <div class="chart-wrapper">
+                    <div id="rain-flux-chart" style="height: 300px;"></div>
+                    <span class="chart-source">Source: Multi-Sensor Precipitation Integration</span>
+                </div>
             </div>
-            <div class="glass chart-container" style="grid-column: span 6;">
+            <div class="glass chart-container chart-half">
                 <h3 class="card-title text-center">Drought Severity (SPI Index)</h3>
-                <div id="drought-chart" style="height: 300px;"></div>
-                <span class="chart-source">Source: TerraClimate / Water Balance</span>
+                <div class="chart-wrapper">
+                    <div id="drought-chart" style="height: 300px;"></div>
+                    <span class="chart-source">Source: TerraClimate / Water Balance</span>
+                </div>
             </div>
         </div>
     </main>

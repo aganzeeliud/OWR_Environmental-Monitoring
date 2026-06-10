@@ -12,27 +12,6 @@
             margin-top: 8rem;
             margin-bottom: 4rem;
         }
-        .chart-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        .chart-main { grid-column: span 8; }
-        .chart-side { grid-column: span 4; }
-        @media (max-width: 1024px) {
-            .chart-main, .chart-side { grid-column: span 12; }
-        }
-        .chart-source {
-            position: absolute;
-            bottom: 1rem;
-            right: 1.5rem;
-            font-size: 0.6rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
-        }
     </style>
 </head>
 <body>
@@ -99,26 +78,34 @@
                     <h3 class="card-title" style="margin: 0;">Deforestation Intensity <span style="font-size: 0.8rem; opacity: 0.5;">(Hansen GFC)</span></h3>
                     <div class="stat-label" style="background: rgba(255,255,255,0.05); padding: 0.25rem 0.75rem; border-radius: 2rem;">Trend Extension: 2030</div>
                 </div>
-                <canvas id="forestLossChart"></canvas>
-                <span class="chart-source">Telemetry: GFW / UMD</span>
+                <div class="chart-wrapper">
+                    <canvas id="forestLossChart"></canvas>
+                    <span class="chart-source">Telemetry: GFW / UMD</span>
+                </div>
             </div>
             <div class="glass chart-container chart-side">
                 <h3 class="card-title text-center">Threat Vectors</h3>
-                <canvas id="threatPieChart"></canvas>
-                <span class="chart-source">Multi-Sensor Fusion</span>
+                <div class="chart-wrapper">
+                    <canvas id="threatPieChart"></canvas>
+                    <span class="chart-source">Multi-Sensor Fusion</span>
+                </div>
             </div>
         </div>
 
-        <div class="chart-grid" style="grid-template-columns: 1fr 1fr;">
-            <div class="glass chart-container" style="grid-column: span 1;">
+        <div class="chart-grid">
+            <div class="glass chart-container chart-half">
                 <h3 class="card-title">Mining Expansion</h3>
-                <canvas id="miningChart"></canvas>
-                <span class="chart-source">CAMI RDC / IPIS</span>
+                <div class="chart-wrapper">
+                    <canvas id="miningChart"></canvas>
+                    <span class="chart-source">CAMI RDC / IPIS</span>
+                </div>
             </div>
-            <div class="glass chart-container" style="grid-column: span 1;">
+            <div class="glass chart-container chart-half">
                 <h3 class="card-title">Thermal Anomalies</h3>
-                <canvas id="fireChart"></canvas>
-                <span class="chart-source">NASA FIRMS / VIIRS</span>
+                <div class="chart-wrapper">
+                    <canvas id="fireChart"></canvas>
+                    <span class="chart-source">NASA FIRMS / VIIRS</span>
+                </div>
             </div>
         </div>
     </main>
