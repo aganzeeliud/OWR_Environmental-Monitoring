@@ -71,13 +71,39 @@
             </div>
         </div>
 
+        <div class="glass card" style="background: rgba(15, 23, 42, 0.8); margin-bottom: 4rem; position: relative; overflow: hidden; padding: 4rem;">
+            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Scientific Overview</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                <div style="font-size: 1rem; color: var(--text-primary); line-height: 1.8;">
+                    <p style="margin-bottom: 1.5rem;">Project Sentinel employs a <strong>Multi-Sensor Fusion (MSF)</strong> approach to monitoring the Okapi Wildlife Reserve. By integrating thermal anomalies from NASA FIRMS (VIIRS 375m) with optical change detection from ESA Sentinel-2 and the Hansen Global Forest Change dataset, we achieve a high-fidelity temporal reconstruction of ecosystem flux.</p>
+                    <p>Our methodology focuses on the <strong>Ituri River Basin</strong>, where artisanal mining and agricultural expansion represent the primary drivers of primary forest loss. The platform normalizes heterogeneous data sources into a unified temporal coordinate system (2000–2030), allowing for cross-validation between industrial permits (CAMI) and observed in-situ degradation.</p>
+                </div>
+                <div style="font-size: 1rem; color: var(--text-secondary); line-height: 1.8;">
+                    <p style="margin-bottom: 1.5rem;">The <strong>Congo Basin Comparison</strong> module leverages NASA GEDI (Global Ecosystem Dynamics Investigation) LiDAR data to quantify aboveground biomass density. This allows us to benchmark the OWR core zone against regional carbon sequestration averages, highlighting its status as one of the most critical high-carbon sinks in Central Africa.</p>
+                    <p>Validation is performed monthly using high-resolution Planet NICFI imagery to ensure detection accuracy in high-cloud-cover equatorial regions.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="glass card" style="background: rgba(15, 23, 42, 0.8); margin-bottom: 10rem; position: relative; overflow: hidden; padding: 4rem;">
-            <i class="fas fa-database" style="position: absolute; bottom: -2rem; right: -2rem; font-size: 15rem; opacity: 0.05; pointer-events: none;"></i>
-            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Scientific Integrity & License</h2>
-            <p class="card-desc" style="max-width: 50rem; font-size: 1.1rem; line-height: 1.8;">This data is provided under the Open Database License (ODbL). All datasets used in this platform are sourced from NASA EarthData and the University of Maryland. Proper citation is required for any publication using these derivatives.</p>
-            <div style="display: flex; gap: 1rem; margin-top: 3rem;">
-                <div class="mono" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 0.75rem 1.5rem; rounded: 0.75rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">EPSG:4326 (WGS84)</div>
-                <div class="mono" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 0.75rem 1.5rem; rounded: 0.75rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">Precision: 30m / 375m / 1km</div>
+            <i class="fas fa-book-open" style="position: absolute; bottom: -2rem; right: -2rem; font-size: 15rem; opacity: 0.05; pointer-events: none;"></i>
+            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Scientific References</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-secondary);">
+                    <li style="margin-bottom: 1rem;"><a href="https://www.globalforestwatch.org/" class="text-emerald hover:underline">Global Forest Watch (GFW)</a> - Hansen GFC Tree Cover Loss Baseline</li>
+                    <li style="margin-bottom: 1rem;"><a href="https://firms.modaps.eosdis.nasa.gov/" class="text-emerald hover:underline">NASA FIRMS</a> - VIIRS & MODIS Thermal Anomaly Data</li>
+                    <li style="margin-bottom: 1rem;"><a href="https://ipisresearch.be/" class="text-emerald hover:underline">IPIS Research</a> - Artisanal Mining Site Mapping (DRC)</li>
+                </ul>
+                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-secondary);">
+                    <li style="margin-bottom: 1rem;"><a href="https://mongabay.com/" class="text-emerald hover:underline">Mongabay Intelligence</a> - Investigative Environmental Journalism</li>
+                    <li style="margin-bottom: 1rem;"><a href="https://gedi.umd.edu/" class="text-emerald hover:underline">NASA GEDI</a> - Aboveground Biomass & Carbon Density</li>
+                    <li style="margin-bottom: 1rem;"><a href="https://www.comifac.org/" class="text-emerald hover:underline">COMIFAC / OFAC</a> - State of the Congo Basin Forests 2024</li>
+                </ul>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 3rem; border-top: 1px solid var(--border-glass); pt-2rem; padding-top: 2rem;">
+                <div class="mono" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">License: ODbL 1.0</div>
+                <div class="mono" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">API: NASA EarthData v4</div>
             </div>
         </div>
     </main>

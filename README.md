@@ -1,43 +1,60 @@
-# PROJECT SENTINEL | OWR Environmental Command Hub
+# OWR ECOSYSTEM COMMAND | Environmental Intelligence Hub
 
-[![System Status](https://img.shields.io/badge/Sentinel-Active-10b981?style=for-the-badge&logo=satellite)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
-[![Deployment](https://img.shields.io/badge/Deployment-GitHub_Pages-3b82f6?style=for-the-badge&logo=github)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)
-[![Data Horizon](https://img.shields.io/badge/Projection-2030-f59e0b?style=for-the-badge&logo=future)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/dashboard.html)
+![Sentinel Banner](https://img.shields.io/badge/Sentinel_Protocol-v4.2-10b981?style=for-the-badge&logo=satellite-dish)
+![Status](https://img.shields.io/badge/System-Active-3b82f6?style=for-the-badge)
+![Projection](https://img.shields.io/badge/Horizon-2030-f59e0b?style=for-the-badge)
 
-**Project Sentinel** is an advanced, high-fidelity environmental command infrastructure for the **Okapi Wildlife Reserve (UNESCO World Heritage Site #718)**. It fuses real-time satellite telemetry with multi-decadal historical baselines to monitor habitat loss, mining expansion, and climate flux through the year 2030.
+**Authoritative ecological monitoring for the Okapi Wildlife Reserve (UNESCO #718).**  
+This platform fuses real-time satellite telemetry with multi-decadal historical baselines to monitor habitat loss, mining expansion, and climate flux within the second largest tropical rainforest on Earth.
 
 ---
 
-## 🛰️ 2024 System Overhaul: "Project Sentinel"
+## 🛰️ Intelligence Modules
 
-The platform has been upgraded with a high-stakes design language and recalibrated with 2024 real-world data anchors:
+Access the full suite of analytical dashboards and spatial consoles:
 
-- **Dark Aesthetic**: A deep indigo/slate-950 UI optimized for executive-level command and high-density monitoring.
-- **2024 Data Calibration**: Integrated Global Forest Watch (GFW) reports indicating a **~1,900 ha/year** forest loss baseline.
-- **Extended Horizon**: Synthetic projections extended to **2030** based on current acceleration trends in mining and logging.
-- **Hotspot Focus**: Specialized monitoring for the **Ituri River Basin**, **Kimia Mining (Muchacha)**, and the **RN4 Corridor**.
+| Portal | Intelligence Focus | Baseline |
+| :--- | :--- | :--- |
+| **[Ecosystem Dashboard](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/dashboard.html)** | Unified metrics & projected flux (2000-2030). | Hansen GFC |
+| **[Congo Basin Benchmark](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/congo-basin.html)** | Regional comparison & carbon sink valuation. | NASA GEDI |
+| **[Climate Observatory](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/climate-observatory.html)** | Meteorological anomalies & hydrological risk. | ERA5-Land |
+| **[Wildfire Dynamics](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/fire-analysis.html)** | Thermal anomaly classification & severity indexing. | NASA FIRMS |
+| **[Mining Governance](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/mining-analysis.html)** | Intersection of CAMI titles and artisanal sites. | CAMI RDC |
+| **[Logging Intelligence](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/logging-analysis.html)** | Road expansion & forest buffer degradation. | Sentinel-2 |
+| **[Spatial Hub (GIS)](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/maps.html)** | Multi-layer integrated GIS console. | CartoDB |
+| **[Temporal Explorer](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/timeline.html)** | 26-year spatiotemporal reconstruction. | Multi-Sensor |
 
-## 🕹️ Intelligence Portals
+---
 
-| Module | Focus | Telemetry Source | Temporal Scale |
-| :--- | :--- | :--- | :--- |
-| **[Project Dashboard](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/dashboard.html)** | Core metrics & threat vector analysis. | GFW / Hansen / NASA | 2000 — 2030 |
-| **[Climate Observatory](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/climate-observatory.html)** | Meteorological shifts & heatwave indexing. | Copernicus ERA5 / CHIRPS | 1990 — 2030 |
-| **[Wildfire Intel](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/fire-analysis.html)** | Real-time fire detection & classification. | NASA FIRMS / MODIS | 2001 — 2030 |
-| **[Logging Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/logging-analysis.html)** | Infrastructure expansion & RN4 mapping. | ESA Sentinel-2 | 2024 Baseline |
-| **[GIS Hub](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/maps.html)** | Unified multi-layer spatial exploration. | CartoDB / Mapbox | Multi-Layer |
+## 🔬 Scientific Methodology
 
-## 🛠️ Engineering & Data Pipeline
+Project Sentinel employs a **Multi-Sensor Fusion (MSF)** approach:
 
-- **Visuals**: Tailwind CSS, Chart.js (with custom gradient fills), Plotly.js, ScrollReveal.
-- **Data Engine**: Python (Pandas, NumPy, Shapely) pipeline generating authoritative CSV/GeoJSON assets.
-- **Calibration**: Real-world 2023-2024 benchmarks from **Mongabay**, **Global Forest Watch**, and **IPIS Research**.
-- **Deployment**: Static serverless architecture optimized for high-performance delivery via GitHub Pages.
+1.  **Thermal Detection**: NASA FIRMS (VIIRS 375m / MODIS 1km) for active fire hotspots and classification.
+2.  **Optical Change**: Hansen Global Forest Change (UMD) & ESA Sentinel-2 (10m) for quantified hectare loss.
+3.  **Biomass Modeling**: NASA GEDI LiDAR integration for high-density carbon sink valuation.
+4.  **Governance Mapping**: Spatial intersection of official CAMI mining permits with observed extraction footprints.
+5.  **Temporal Projection**: Trend-line extrapolation (2024-2030) based on observed acceleration in Ituri River Basin extraction.
 
-## 🚀 Access the Command Hub
+Full details are available in the **[Scientific Methodology Report](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/methodology.html)**.
 
-The live platform is deployed at:  
-👉 **[https://aganzeeliud.github.io/OWR_Environmental-Monitoring/](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/)**
+---
+
+## 📊 Open Data Access
+
+Raw telemetry and processed statistics are available for download in CSV and GeoJSON formats via the **[Data Center](https://aganzeeliud.github.io/OWR_Environmental-Monitoring/download.html)**.
+
+- **Coordinate System**: EPSG:4326 (WGS84)
+- **Precision**: 30m resolution (Forest) / 375m (Fire)
+- **License**: Open Database License (ODbL) 1.0
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Glassmorphism UI (Vanilla CSS), Chart.js 4.0, Plotly.js, Leaflet.js, ScrollReveal.
+- **Pipeline**: Python (Pandas, GeoPandas, Shapely) for spatial data engineering.
+- **Deployment**: Static serverless architecture via GitHub Pages.
 
 ---
 *Developed by the ICCN Scientific Unit. Committed to the preservation of the Congo Basin's biodiversity through open science and high-fidelity intelligence.*
