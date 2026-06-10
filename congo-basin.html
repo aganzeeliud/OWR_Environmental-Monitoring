@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONGO BASIN COMPARISON | OWR Monitoring Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        .comparison-header { margin-top: 8rem; margin-bottom: 4rem; }
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem; }
+        .vs-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-base); border: 1px solid var(--border-glass); width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; z-index: 10; color: var(--accent-emerald); }
+    </style>
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon bg-emerald"><i class="fas fa-globe-africa"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">CONGO BASIN</span>
+                    <span class="logo-sub">Regional Intel</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Analytics</a>
+                <a href="congo-basin.html" class="nav-link active">Congo Basin</a>
+                <a href="climate-observatory.html" class="nav-link">Climate</a>
+                <a href="fire-analysis.html" class="nav-link">Wildfire</a>
+                <a href="mining-analysis.html" class="nav-link">Mining</a>
+                <a href="logging-analysis.html" class="nav-link">Logging</a>
+                <a href="maps.html" class="nav-link">GIS Hub</a>
+            </div>
+            <a href="dashboard.html" class="btn btn-primary">Regional Active</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="comparison-header">
+            <div class="reveal">
+                <span class="stat-label" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald); padding: 0.25rem 0.75rem; border-radius: 2rem;">Macro-Ecological Analysis</span>
+                <h1 style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 1rem; line-height: 1;">Bassin du <span class="text-emerald">Congo</span></h1>
+                <p class="card-desc" style="max-width: 45rem;">Comparative intelligence: Benchmark the Okapi Wildlife Reserve against the second largest tropical rainforest on Earth. Quantifying OWR's strategic value within the regional carbon sink.</p>
+            </div>
+        </header>
+
+        <div class="stat-grid">
+            <div class="glass stat-card">
+                <div class="stat-label">Total Basin Area</div>
+                <div class="stat-value mono">500M <span style="font-size: 1rem;">ha</span></div>
+                <div class="stat-label text-emerald" style="margin-top: 1rem;">Global Carbon Sink</div>
+            </div>
+            <div class="glass stat-card" style="border-left-color: var(--accent-blue);">
+                <div class="stat-label">OWR Contribution</div>
+                <div class="stat-value mono">1.37M <span style="font-size: 1rem;">ha</span></div>
+                <div class="stat-label text-blue" style="margin-top: 1rem;">~0.3% of Basin Area</div>
+            </div>
+            <div class="glass stat-card" style="border-left-color: var(--accent-rose);">
+                <div class="stat-label">Basin Loss (Avg)</div>
+                <div class="stat-value mono">0.6% <span style="font-size: 1rem;">/yr</span></div>
+                <div class="stat-label text-rose" style="margin-top: 1rem;">Regional Trend</div>
+            </div>
+            <div class="glass stat-card" style="border-left-color: var(--accent-amber);">
+                <div class="stat-label">OWR Loss (Avg)</div>
+                <div class="stat-value mono">0.14% <span style="font-size: 1rem;">/yr</span></div>
+                <div class="stat-label text-amber" style="margin-top: 1rem;">Reserve Performance</div>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="glass chart-container chart-main">
+                <h3 class="card-title">Deforestation Intensity: <span class="text-emerald">OWR vs Regional Baseline</span></h3>
+                <div class="chart-wrapper">
+                    <canvas id="lossComparisonChart"></canvas>
+                    <span class="chart-source">Telemetry: GFW / Hansen / UMD</span>
+                </div>
+            </div>
+            <div class="glass chart-container chart-side">
+                <h3 class="card-title text-center">Threat Composition</h3>
+                <div class="chart-wrapper">
+                    <canvas id="threatRadarChart"></canvas>
+                    <span class="chart-source">Regional Threat Fusing</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="glass chart-container chart-half">
+                <h3 class="card-title">Carbon Density Analysis</h3>
+                <div class="chart-wrapper">
+                    <canvas id="carbonDensityChart"></canvas>
+                    <span class="chart-source">NASA GEDI / ESA CCI</span>
+                </div>
+            </div>
+            <div class="glass chart-container chart-half">
+                <h3 class="card-title">Mining Title Overlap</h3>
+                <div class="chart-wrapper">
+                    <canvas id="miningOverlapChart"></canvas>
+                    <span class="chart-source">CAMI RDC Regional Hub</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); margin-top: 10rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="logo">
+                <div class="logo-icon bg-emerald"><i class="fas fa-globe-africa"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">CONGO BASIN</span>
+                    <span class="logo-sub">ICCN Scientific Infrastructure</span>
+                </div>
+            </div>
+            <p class="stat-label" style="margin: 0;">&copy; 2024—2030 Project Sentinel • All Rights Reserved</p>
+            <div style="display: flex; gap: 1.5rem; font-size: 1.25rem; color: var(--text-secondary);">
+                <i class="fab fa-github hover:text-white transition cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-white transition cursor-pointer"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        ScrollReveal().reveal('.reveal', { delay: 150, distance: '60px', origin: 'bottom', duration: 1200, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', interval: 100 });
+
+        async function initCharts() {
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = 'JetBrains Mono';
+
+            // 1. Loss Comparison
+            new Chart(document.getElementById('lossComparisonChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        { label: 'Congo Basin (Avg %)', data: [0.45, 0.52, 0.61, 0.58, 0.65, 0.72, 0.68, 0.75], borderColor: '#f43f5e', tension: 0.4, borderWidth: 2, pointRadius: 0 },
+                        { label: 'Okapi Reserve (%)', data: [0.08, 0.12, 0.15, 0.14, 0.16, 0.18, 0.17, 0.19], borderColor: '#10b981', tension: 0.4, borderWidth: 4, pointRadius: 0, fill: true, backgroundColor: 'rgba(16, 185, 129, 0.05)' }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { grid: { color: 'rgba(255,255,255,0.02)' } } } }
+            });
+
+            // 2. Threat Radar
+            new Chart(document.getElementById('threatRadarChart'), {
+                type: 'radar',
+                data: {
+                    labels: ['Mining', 'Logging', 'Agri', 'Fire', 'Infrastructure'],
+                    datasets: [
+                        { label: 'Basin Avg', data: [85, 90, 75, 60, 80], borderColor: '#f43f5e', backgroundColor: 'rgba(244, 63, 94, 0.1)' },
+                        { label: 'OWR', data: [45, 30, 60, 40, 25], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)' }
+                    ]
+                },
+                options: { 
+                    responsive: true, maintainAspectRatio: false, 
+                    scales: { r: { grid: { color: 'rgba(255,255,255,0.05)' }, angleLines: { color: 'rgba(255,255,255,0.05)' }, pointLabels: { color: '#94a3b8' }, ticks: { display: false } } }
+                }
+            });
+
+            // 3. Carbon Density
+            new Chart(document.getElementById('carbonDensityChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Basin Forest', 'OWR Core', 'Basin Peatlands', 'OWR Buffer'],
+                    datasets: [{
+                        data: [180, 245, 310, 210],
+                        backgroundColor: ['#3b82f6', '#10b981', '#06b6d4', '#8b5cf6'],
+                        borderRadius: 8
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: 'tC/ha' } } } }
+            });
+
+            // 4. Mining Overlap
+            new Chart(document.getElementById('miningOverlapChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Basin Impacted (%)', 'Basin Intact (%)'],
+                    datasets: [{
+                        data: [35, 65],
+                        backgroundColor: ['#f59e0b', 'rgba(255,255,255,0.05)'],
+                        borderWidth: 0
+                    }, {
+                        data: [4, 96],
+                        backgroundColor: ['#10b981', 'rgba(255,255,255,0.05)'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '70%' }
+            });
+        }
+
+        initCharts();
+    </script>
+</body>
+</html>
